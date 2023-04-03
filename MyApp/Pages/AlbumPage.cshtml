@@ -2,7 +2,7 @@
 @model AlbumModel
 @inherits ServiceStack.Mvc.RazorPage
 
-@implements IRenderStaticWithPath<AlbumModel>
+@implements IRenderStatic<AlbumModel>
 @functions
 {
     // Generate Album Pages for all paged Albums (i.e. > 1)
@@ -21,22 +21,9 @@
         }
         return to;
     }
-
-    public string? GetStaticPath(AlbumModel model)
-    {
-        return model.Page > 1
-            ? model.GetAlbumRoute(model.Slug!, model.Page) + ".html"
-            : null;
-    }
 }
 
-
 @{
-    if (Model.Gateway == null)
-    {
-        await Model.OnGetAsync();
-    }
-    
     ViewBag.Title = Model.Title;
 }
 

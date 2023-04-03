@@ -13,11 +13,6 @@
 }
 
 @{
-    if (Model.Gateway == null)
-    {
-        await Model.OnGetAsync();
-    }
-    
     ViewBag.Title = Model.Title;
 }
 
