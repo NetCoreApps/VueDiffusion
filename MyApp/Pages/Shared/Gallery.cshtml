@@ -1,0 +1,9 @@
+﻿@page
+@model GalleryResults
+
+<div class="@Html.ClassNames("grid gap-2", AppCss.GetGridClass(Model.GridColumns ?? 5))">
+@foreach (var artifact in Model.Artifacts.OrEmpty())
+{
+    @await Html.PartialAsync("StaticArtifactImage", new ArtifactImageParams { Artifact = artifact })
+}
+</div>

@@ -13,6 +13,12 @@ public class AppHost : AppHostBase, IHostingStartup
 
     public override void Configure(Funq.Container container)
     {
+        AppConfig.Set(new AppConfig {
+            ApiBaseUrl = HostingEnvironment.IsDevelopment() ? "https://localhost:5001" : "https://api.blazordiffusion.com",
+            CdnBaseUrl = HostingEnvironment.IsDevelopment() ? "https://localhost:5001" : "https://blazordiffusion.com",
+            AssetsBasePath = "https://cdn.diffusion.works",
+            FallbackAssetsBasePath = "https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev",
+        });
     }
 }
 

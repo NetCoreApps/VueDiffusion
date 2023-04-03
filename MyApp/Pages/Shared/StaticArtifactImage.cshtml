@@ -1,0 +1,29 @@
+﻿@page
+@model ArtifactImageParams
+
+@{
+    var Artifact = Model.Artifact;
+    @if (Artifact != null)
+    {
+        var MinSize = Model.MinSize;
+        int width = MinSize == null 
+            ? Artifact.Width
+            : (int)(Artifact.Width > Artifact.Height
+                ? (Artifact.Width / (double)Artifact.Height) * MinSize.Value
+                : MinSize.Value);
+
+        int height = MinSize == null 
+            ? Artifact.Height
+            : (int)(Artifact.Height > Artifact.Width
+                ? (Artifact.Height / (double)Artifact.Width) * MinSize.Value
+                : MinSize.Value);
+
+        <div class="@Html.ClassNames("relative overflow-hidden", Model.Class)" style="@Artifact.GetBackgroundStyle()">
+        <img alt="@Artifact.Prompt" width="@width" height="@height" class="@Model.ImageClass"
+             src="@Artifact.GetPublicUrl()" loading="lazy">
+            <a href="@AppConfig.Instance.CdnBaseUrl.CombineWith(Artifact.GetArtifactArtView(Model.Artifact.GetSlug()))"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+    }
+}

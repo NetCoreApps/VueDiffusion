@@ -1,0 +1,68 @@
+﻿@page "/top"
+@inherits ServiceStack.Mvc.RazorPage
+@attribute [RenderStatic]
+
+@inject UserState UserState
+
+@{
+    const int GridColumns = 4;
+
+    SearchArtifacts request = new();
+    List<Artifact> results = new();
+    HashSet<int> resultIds = new();
+    bool hasMore;
+
+    ApiResult<QueryResponse<ArtifactResult>> api = new();
+    GalleryResults GalleryResults = new() { GridColumns = GridColumns };
+
+    request.Skip = 0;
+    request.Take = UserState.StaticTake;
+    request.Show = "top";
+    api = await Gateway.ApiAsync(request);
+    clearResults();
+
+    if (api.Succeeded)
+    {
+        if (api.Response?.Results != null)
+        {
+            addResults(api.Response.Results);
+        }
+    }
+
+    void setResults(IEnumerable<Artifact> newResults)
+    {
+        results = newResults.ToList();
+        GalleryResults = X.Apply(GalleryResults.Clone(), x => x.Artifacts = results.ShuffleGridArtifacts(GridColumns).ToList());
+    }
+    
+    void clearResults()
+    {
+        results.Clear();
+        resultIds.Clear();
+    }
+
+    void addResults(List<ArtifactResult> artifacts, bool reset = false)
+    {
+        if (reset)
+            clearResults();
+
+        hasMore = artifacts.Count >= request.Take;
+        foreach (var artifact in artifacts)
+        {
+            if (resultIds.Contains(artifact.Id))
+                continue;
+
+            resultIds.Add(artifact.Id);
+            results.Add(artifact);
+        }
+        setResults(results);
+    }
+}
+
+<div id="albums" class="mx-auto px-6 lg:px-8">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-6xl">Top Images</h1>
+    </div>
+    
+    @await Html.PartialAsync("Gallery", GalleryResults)
+</div>

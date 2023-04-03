@@ -1,0 +1,44 @@
+﻿@page "/albums/{Slug}"
+@model AlbumModel
+@inherits ServiceStack.Mvc.RazorPage
+
+@implements IRenderStatic<AlbumModel>
+@functions
+{
+    public List<AlbumModel> GetStaticProps(RenderContext ctx)
+    {
+        var userState = ctx.Resolve<UserState>();
+        return userState.AlbumRefs.Map(x => new AlbumModel(userState) { Slug = x.Slug });
+    }
+}
+
+@{
+    if (Model.Gateway == null)
+    {
+        await Model.OnGetAsync();
+    }
+    
+    ViewBag.Title = Model.Title;
+}
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="@Model.SelectedAlbum?.Id">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-6xl">@Model.SelectedAlbum?.Name</h1>
+    </div>
+
+    @await Html.PartialAsync("AlbumNav", Model)
+    @await Html.PartialAsync("Gallery", Model.GalleryResults)
+    @await Html.PartialAsync("AlbumNav", Model)
+
+</div>
+
+@section head {
+    @if (Model.CoverImage != null && Model.SelectedAlbum != null)
+    {
+        @await Html.PartialAsync("HeadCard", new Shared.HeadCard {
+           Url = AppConfig.Instance.CdnBaseUrl.CombineWith(Model.GetAlbumRoute(Model.SelectedAlbum, Model.UsePage)),
+           Description = Model.CoverImage.Prompt,
+           ImagePath = Model.CoverImage.FilePath
+       })
+    }
+}

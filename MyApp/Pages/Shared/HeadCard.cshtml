@@ -1,0 +1,15 @@
+﻿@page
+@model MyApp.Pages.Shared.HeadCard
+
+<link rel="canonical" href="@Model.Url"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="diffusion.works"/>
+<meta name="twitter:creator" content="@@blazordiffusion"/>
+<meta property="og:url" content="@Model.Url"/>
+<meta property="og:title" content="@ViewBag.Title"/>
+@if (Model.Description != null) {
+<meta property="og:description" content="@Model.Description"/>
+}
+@if (Model.ImageUrl != null) {
+<meta property="og:image" content="@Model.ImageUrl"/>
+}

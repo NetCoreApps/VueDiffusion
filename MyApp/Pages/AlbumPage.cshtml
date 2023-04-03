@@ -1,0 +1,77 @@
+﻿@page "/albums/{Slug}_{Page}"
+@model AlbumModel
+@inherits ServiceStack.Mvc.RazorPage
+
+@implements IRenderStaticWithPath<AlbumModel>
+@functions
+{
+    // Generate Album Pages for all paged Albums (i.e. > 1)
+    public List<AlbumModel> GetStaticProps(RenderContext ctx)
+    {
+        var userState = ctx.Resolve<UserState>();
+        var to = new List<AlbumModel>();
+        foreach (var albumRef in userState.AlbumRefs)
+        {
+            int pages = (int)Math.Ceiling(albumRef.ArtifactsCount / (double)UserState.StaticPagedTake);
+            for (var page = 1; page < pages; page++)
+            {
+                var scopePage = page + 1;
+                to.Add(new AlbumModel(userState) { Slug = albumRef.Slug, Page = scopePage });
+            }
+        }
+        return to;
+    }
+
+    public string? GetStaticPath(AlbumModel model)
+    {
+        return model.Page > 1
+            ? model.GetAlbumRoute(model.Slug!, model.Page) + ".html"
+            : null;
+    }
+}
+
+
+@{
+    if (Model.Gateway == null)
+    {
+        await Model.OnGetAsync();
+    }
+    
+    ViewBag.Title = Model.Title;
+}
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="@Model.SelectedAlbum?.Id">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-6xl">@Model.SelectedAlbum?.Name</h1>
+    </div>
+
+    @await Html.PartialAsync("AlbumNav", Model)
+    @await Html.PartialAsync("Gallery", Model.GalleryResults)
+    @await Html.PartialAsync("AlbumNav", Model)
+
+    <h3 class="mt-16 mb-8 text-xl">Other Albums</h3>
+
+    <div class="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
+        @foreach (var album in Model.OtherAlbums)
+        {
+            <div class="text-center">
+                <a href="@($"/albums/{album.Slug}")"
+                   class="@Html.ClassNames("text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl", album.RefId != Model.SelectedAlbum?.AlbumRef ? "text-gray-500 hover:text-gray-300" : "text-gray-300")">
+                    @album.Name
+                </a>
+            </div>
+        }
+    </div>
+
+</div>
+
+@section head {
+    @if (Model.CoverImage != null && Model.SelectedAlbum != null)
+    {
+        @await Html.PartialAsync("HeadCard", new Shared.HeadCard {
+            Url = AppConfig.Instance.CdnBaseUrl.CombineWith(Model.GetAlbumRoute(Model.SelectedAlbum, Model.UsePage)),
+            Description = Model.CoverImage.Prompt,
+            ImagePath = Model.CoverImage.FilePath
+        })
+    }
+}

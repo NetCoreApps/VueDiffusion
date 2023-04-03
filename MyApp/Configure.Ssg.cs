@@ -7,29 +7,33 @@ namespace MyApp;
 public class ConfigureSsg : IHostingStartup
 {
     public void Configure(IWebHostBuilder builder) => builder
-        .ConfigureServices(services =>
+        .ConfigureServices((context,services) =>
         {
             services.AddSingleton<RazorPagesEngine>();
             services.AddSingleton<MarkdownPages>();
-            services.AddSingleton<MarkdownWhatsNew>();
             services.AddSingleton<MarkdownBlog>();
+
+            services.AddSingleton<IServiceGateway>(implementationFactory: 
+                provider => new JsonApiClient(AppConfig.Instance.ApiBaseUrl!));
+            services.AddSingleton<UserState>();
         })
         .ConfigureAppHost(
             appHost => appHost.Plugins.Add(new CleanUrlsFeature()),
             afterPluginsLoaded: appHost =>
             {
                 var pages = appHost.Resolve<MarkdownPages>();
-                var whatsNew = appHost.Resolve<MarkdownWhatsNew>();
                 var blogPosts = appHost.Resolve<MarkdownBlog>();
                 
-                var markdownFeatures = new IMarkdownPages[] { pages, whatsNew, blogPosts }; 
+                var markdownFeatures = new IMarkdownPages[] { pages, blogPosts }; 
                 markdownFeatures.Each(x => x.VirtualFiles = appHost.VirtualFiles);
 
                 blogPosts.Authors = Authors;
 
                 pages.LoadFrom("_pages");
-                whatsNew.LoadFrom("_whatsnew");
                 blogPosts.LoadFrom("_posts");
+                
+                var userState = appHost.Resolve<UserState>();
+                userState.LoadAsync().GetAwaiter().GetResult();
             },
             afterAppHostInit: appHost =>
             {
