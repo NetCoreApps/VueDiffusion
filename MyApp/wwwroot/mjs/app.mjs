@@ -24,6 +24,13 @@ setConfig({
     }
 })
 
+/** @param {Ref<ApiResult>} $ref */
+export function notifyApiResult($ref) {
+    const hold = $ref.value
+    $ref.value = new ApiResult()
+    $ref.value = hold
+}
+
 export function useSwrClient(options) {
     //const api = ref(new ApiResult())
     const storage = config.value.storage

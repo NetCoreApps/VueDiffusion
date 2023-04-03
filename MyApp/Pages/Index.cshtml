@@ -39,7 +39,7 @@
 import { ref, watch, onMounted, onUnmounted, computed } from "vue"
 import { ApiResult } from "@@servicestack/client"
 import { useClient } from "@@servicestack/vue"
-import { mount, useSwrClient } from "app.mjs"
+import { mount, useSwrClient, notifyApiResult } from "app.mjs"
 import { SearchArtifacts, AnonData, QueryArtifacts } from "dtos.mjs"
 import { ArtifactImage, ArtifactGallery, getAlbumCoverArtifactId } from "./mjs/components/Artifacts.mjs" 
 
@@ -82,15 +82,16 @@ const Search = {
         watch([apiAlbums], async () => {
             const albumIds = topAlbums.value.map(getAlbumCoverArtifactId)
             console.log(`watch([apiAlbums])`, albumIds)
-            if (albumIds.length > 0) {
-                apiArtifacts.value = await swr.api(new QueryArtifacts({ ids:albumIds }))
-            }
+            apiArtifacts.value = albumIds.length > 0
+                ? await swr.api(new QueryArtifacts({ ids:albumIds }))
+                : new ApiResult()
         })
         watch([apiArtifacts], async () => {
             console.log(`watch([apiArtifacts])`, apiArtifacts.value.response?.results)
             ;(apiArtifacts.value.response?.results || []).forEach(artifact => {
                 artifactsMap.value[artifact.id] = artifact
             })
+            notifyApiResult(apiArtifacts)
         })
         
         function albumCover(album) {
