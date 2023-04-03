@@ -1,0 +1,1178 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Nature&#x27;s Landing - My App</title>
+    <base href="https://netcoreapps.github.io/VueDiffusion/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+<link rel="canonical" href="https://blazordiffusion.com/albums/nature-s-landing"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="diffusion.works"/>
+<meta name="twitter:creator" content="@blazordiffusion"/>
+<meta property="og:url" content="https://blazordiffusion.com/albums/nature-s-landing"/>
+<meta property="og:title" content="Nature&#x27;s Landing"/>
+<meta property="og:description" content="Moonrise over an epic jungle, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Stanley Artgerm Lau"/>
+<meta property="og:image" content="https://cdn.diffusion.works/artifacts/2022/12/14/16144022/output_1330334353.png"/>
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://api.blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex lg:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Vue Diffusion</span>
+                <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                    <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                </svg>
+                <span class="ml-2 text-xl font-semibold leading-6 text-white">Diffusion</span>
+            </a>
+        </div>
+        <div class="flex lg:hidden">
+            <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a href="signin" class="text-sm font-semibold leading-6 text-white">Sign in <span aria-hidden="true">&rarr;</span></a>
+        </div>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    <div class="lg:hidden" role="dialog" aria-modal="true">
+        <!-- Background backdrop, show/hide based on slide-over state. -->
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <a href="signin" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-24 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="30">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-6xl">Nature&#x27;s Landing</h1>
+    </div>
+
+    
+
+    
+<div class="grid gap-2 grid-cols-4">
+
+        <div class="relative overflow-hidden" style="background-color:#4C4E44FF">
+        <img alt="Moonrise over an epic jungle, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/16144022/output_1330334353.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20096_moonrise-over-an-epic-jungle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4B574AFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/23/35045549/output_3556624130.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53783_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#494425FF">
+        <img alt="Book cover, old bridge, ivy vector elements at each border, fantasy forest landscape, fantasy magic, light night, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Stanley Artgerm Lau, Ivan Shishkin, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/20249221/output_1634699666.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20673_book-cover-old-bridge-ivy-vector-elements-at-each-border-fantasy-forest-landscape-fantasy-magic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4C5D6BFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/23/35045549/output_812653802.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53779_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E5733FF">
+        <img alt="Book cover, old bridge, ivy vector elements at each border, fantasy forest landscape, fantasy magic, light night, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Stanley Artgerm Lau, Ivan Shishkin, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/20249221/output_1328468572.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20670_book-cover-old-bridge-ivy-vector-elements-at-each-border-fantasy-forest-landscape-fantasy-magic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#384842FF">
+        <img alt="Book cover, old bridge, ivy vector elements at each border, fantasy forest landscape, fantasy magic, light night, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Stanley Artgerm Lau, Ivan Shishkin, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/20249221/output_1051908839.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20671_book-cover-old-bridge-ivy-vector-elements-at-each-border-fantasy-forest-landscape-fantasy-magic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7C8A88FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/23/34983645/output_2365329296.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53776_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#3D3C22FF">
+        <img alt="Book cover, old bridge, ivy vector elements at each border, fantasy forest landscape, fantasy magic, light night, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Stanley Artgerm Lau, Ivan Shishkin, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/57161859/output_3050316910.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20433_book-cover-old-bridge-ivy-vector-elements-at-each-border-fantasy-forest-landscape-fantasy-magic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#667759FF">
+        <img alt="Book cover, old bridge, ivy vector elements at each border, fantasy forest landscape, fantasy magic, light night, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Stanley Artgerm Lau, Ivan Shishkin, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/57161859/output_861598640.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20431_book-cover-old-bridge-ivy-vector-elements-at-each-border-fantasy-forest-landscape-fantasy-magic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4C5E4CFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/23/34983645/output_2999032945.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53778_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#455436FF">
+        <img alt="Book cover, old bridge, ivy vector elements at each border, fantasy forest landscape, fantasy magic, light night, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Stanley Artgerm Lau, Ivan Shishkin, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/57161859/output_2823360528.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20437_book-cover-old-bridge-ivy-vector-elements-at-each-border-fantasy-forest-landscape-fantasy-magic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B577EFF">
+        <img alt="Iridescent opalescent landscape, warm tones, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Michal Karcz" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/56695526/output_3414203207.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20399_iridescent-opalescent-landscape-warm-tones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#586C66FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/23/34983645/output_935089463.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53773_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#736335FF">
+        <img alt="Iridescent opalescent landscape, warm tones, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Michal Karcz" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/56695526/output_314154283.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20400_iridescent-opalescent-landscape-warm-tones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#496985FF">
+        <img alt="Iridescent opalescent landscape, warm tones, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Michal Karcz" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/56695526/output_3647612971.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20395_iridescent-opalescent-landscape-warm-tones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#68613BFF">
+        <img alt="Scenic rolling hills from Lord of the Rings, 8k, Intricate Details, Ultra Detailed, Pretty Face, Symmetrical Face, Realistic, Octane Render, Unreal Engine, Concept Art by Alphonse Mucha, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/08/27247509/output_743370330.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50367_scenic-rolling-hills-from-lord-of-the-rings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#706958FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55520213/output_623051293.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20339_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#746E4CFF">
+        <img alt="Scenic rolling hills from Lord of the Rings, 8k, Intricate Details, Ultra Detailed, Pretty Face, Symmetrical Face, Realistic, Octane Render, Unreal Engine, Concept Art by Alphonse Mucha, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/08/27247509/output_408416010.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50366_scenic-rolling-hills-from-lord-of-the-rings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A7666FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55520213/output_2289888458.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20336_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A6234FF">
+        <img alt="Scenic rolling hills from Lord of the Rings, 8k, Intricate Details, Ultra Detailed, Pretty Face, Symmetrical Face, Realistic, Octane Render, Unreal Engine, Concept Art by Alphonse Mucha, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/08/27247509/output_1941356882.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50362_scenic-rolling-hills-from-lord-of-the-rings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#564B37FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55520213/output_2201386562.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20337_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#68724FFF">
+        <img alt="Scenic rolling hills from Lord of the Rings, 8k, Intricate Details, Ultra Detailed, Pretty Face, Symmetrical Face, Realistic, Octane Render, Unreal Engine, Concept Art by Alphonse Mucha, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/08/27247509/output_776338258.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50360_scenic-rolling-hills-from-lord-of-the-rings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5B6D6DFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55520213/output_553038599.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20335_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#494427FF">
+        <img alt="Scenic rolling hills from Lord of the Rings, 8k, Intricate Details, Ultra Detailed, Pretty Face, Symmetrical Face, Realistic, Octane Render, Unreal Engine, Concept Art by Alphonse Mucha, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/08/27247509/output_2943739041.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50364_scenic-rolling-hills-from-lord-of-the-rings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#62716EFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55520213/output_3863648531.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20333_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#576464FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/08/50807951/output_1741971439.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50437_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6D8087FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55520213/output_1252785860.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20331_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5B685BFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/08/50807951/output_1721673246.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50436_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#626961FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55448347/output_2832842321.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20330_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#828690FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55448347/output_46931356.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20328_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#748478FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/08/50807951/output_1932209197.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50434_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4A5B64FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55448347/output_1533432481.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20327_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5A4D37FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55448347/output_3336455291.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20326_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C7662FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/08/50807951/output_2442670839.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50433_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E6A63FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55448347/output_2029510595.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20322_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#676C7AFF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/54970487/output_1923502219.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20292_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#616E6AFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/08/50807951/output_3596644025.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50431_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4E5651FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/54970487/output_710658156.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20289_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5C6B69FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/54970487/output_1734933830.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20288_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#535850FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/05/83745126/output_1491690181.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50331_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#547170FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/54970487/output_959099710.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20286_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4B3E2BFF">
+        <img alt="Portrait of a quiet fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/21361999/output_2902824026.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20117_portrait-of-a-quiet-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4B5552FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/05/83745126/output_2176937665.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50330_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#536A76FF">
+        <img alt="Portrait of a quiet fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/21361999/output_1393331332.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20118_portrait-of-a-quiet-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#55646BFF">
+        <img alt="Portrait of a quiet fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/20969160/output_2464053082.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20116_portrait-of-a-quiet-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4D605AFF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/05/83745126/output_3222782441.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50327_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#673837FF">
+        <img alt="Portrait of a quiet fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/20969160/output_1942789569.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20115_portrait-of-a-quiet-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#736129FF">
+        <img alt="Portrait of a quiet fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/20922727/output_2052626743.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20111_portrait-of-a-quiet-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#677E7FFF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/05/83745126/output_1600165885.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50324_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#424E42FF">
+        <img alt="Portrait of a quiet fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/20922727/output_2025657109.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20112_portrait-of-a-quiet-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F7480FF">
+        <img alt="Portrait of a quiet fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/20922727/output_2446984038.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20109_portrait-of-a-quiet-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#60625CFF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/05/83576209/output_3357163920.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50322_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#30464FFF">
+        <img alt="Moonrise over an epic jungle, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/16144022/output_2351724418.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20093_moonrise-over-an-epic-jungle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#496546FF">
+        <img alt="Moonrise over an epic jungle, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/16087388/output_1268943736.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20092_moonrise-over-an-epic-jungle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#485F54FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/05/83576209/output_1907428546.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50320_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E7350FF">
+        <img alt="Moonrise over an epic jungle, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/16018184/output_3930495835.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20086_moonrise-over-an-epic-jungle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#504324FF">
+        <img alt="Moonrise over an epic jungle, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/16018184/output_919710276.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20085_moonrise-over-an-epic-jungle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#51574AFF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/05/83576209/output_2105014231.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50318_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7F5E64FF">
+        <img alt="Moonrise over an epic jungle, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/16018184/output_3143529317.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20088_moonrise-over-an-epic-jungle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C6B69FF">
+        <img alt="Studio Ghibli landscape of a large chinese temple in the tall mountains, 4k, Highly Detailed, Masterpiece, Trending on Artstation, Matte Painting, Volumetric Lighting, Fantasy by Stanley Artgerm Lau, Beeple, Makoto Shinkai" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/14678249/output_2012519909.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20070_studio-ghibli-landscape-of-a-large-chinese-temple-in-the-tall-mountains.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#48341EFF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/49320643/output_4122365507.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19841_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#504B3FFF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/05/83576209/output_61814473.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50317_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#446F94FF">
+        <img alt="Dark fantasy concept art of a snowy forest with a single cabin in the woods, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/54806244/output_2370210496.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20004_dark-fantasy-concept-art-of-a-snowy-forest-with-a-single-cabin-in-the-woods.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#434D44FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/05/83576209/output_1749132616.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50316_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4F686FFF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/53873332/output_612304166.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19921_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#465B67FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/54494126/output_2051407223.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19988_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#445D5AFF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/54428502/output_1991814651.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19996_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#565F61FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/05/83576209/output_2973705717.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50314_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4D6365FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78546030/output_3546643214.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50311_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A7D8EFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78546030/output_270315723.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50309_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4A564CFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78546030/output_2482540901.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50308_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#777972FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78546030/output_3502099795.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50307_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#758675FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78452188/output_4046304951.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50303_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#625A4FFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78452188/output_701765072.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50299_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#697575FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78452188/output_653500806.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50296_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F6C6EFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78351499/output_1432119027.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50279_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#576967FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78351499/output_776533914.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50281_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F6962FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78347928/output_1085114690.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50294_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#485D55FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78347928/output_1621012274.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50289_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#41524CFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78347928/output_3539546872.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50287_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#738B88FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78316822/output_2367430588.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50276_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A838FFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/04/78316822/output_2283427943.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/50/50277_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#47655DFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/17/21900166/output_4125380188.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/21/21742_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4E7696FF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/17/21900166/output_1381368628.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/21/21747_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F879AFF">
+        <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/17/21900166/output_3173231615.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/21/21743_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#495655FF">
+        <img alt="Beautiful misty swedish forest from the view of a mountain, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/24468997/output_3030045936.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20799_beautiful-misty-swedish-forest-from-the-view-of-a-mountain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7D8899FF">
+        <img alt="Beautiful misty swedish forest from the view of a mountain, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/24468997/output_1311396317.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20797_beautiful-misty-swedish-forest-from-the-view-of-a-mountain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#737F79FF">
+        <img alt="Beautiful misty swedish forest from the view of a mountain, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/24468997/output_2761280044.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20793_beautiful-misty-swedish-forest-from-the-view-of-a-mountain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#79736AFF">
+        <img alt="Beautiful misty swedish forest from the view of a mountain, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/24468997/output_2413496773.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20792_beautiful-misty-swedish-forest-from-the-view-of-a-mountain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#656A74FF">
+        <img alt="Beautiful misty swedish forest from the view of a mountain, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/24404405/output_2763207271.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20787_beautiful-misty-swedish-forest-from-the-view-of-a-mountain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#777172FF">
+        <img alt="Beautiful misty swedish forest from the view of a mountain, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/24404405/output_1075332016.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20786_beautiful-misty-swedish-forest-from-the-view-of-a-mountain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E7273FF">
+        <img alt="Beautiful misty swedish forest from the view of a mountain, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/24404405/output_1599434393.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20785_beautiful-misty-swedish-forest-from-the-view-of-a-mountain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#747B74FF">
+        <img alt="Beautiful misty swedish forest from the view of a mountain, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/24340234/output_4257214738.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20780_beautiful-misty-swedish-forest-from-the-view-of-a-mountain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#657474FF">
+        <img alt="Beautiful misty swedish forest from the view of a mountain, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/24340234/output_1226147091.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20782_beautiful-misty-swedish-forest-from-the-view-of-a-mountain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#737A7CFF">
+        <img alt="Beautiful misty swedish forest from the view of a mountain, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/24340234/output_1334426363.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20777_beautiful-misty-swedish-forest-from-the-view-of-a-mountain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#726558FF">
+        <img alt="Grand tree on a hill at night generating electricity, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/23815166/output_3093077942.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20726_grand-tree-on-a-hill-at-night-generating-electricity.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F562FFF">
+        <img alt="Grand tree on a hill at night generating electricity, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/23815166/output_3408981938.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20720_grand-tree-on-a-hill-at-night-generating-electricity.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#375559FF">
+        <img alt="Grand tree on a hill at night generating electricity, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/23815166/output_1308555262.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20723_grand-tree-on-a-hill-at-night-generating-electricity.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#624918FF">
+        <img alt="Grand tree on a hill at night generating electricity, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/15/23815166/output_1792986468.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20728_grand-tree-on-a-hill-at-night-generating-electricity.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4D4338FF">
+        <img alt="Iridescent opalescent landscape, warm tones, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Michal Karcz" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/56846305/output_4184735058.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20412_iridescent-opalescent-landscape-warm-tones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F324BFF">
+        <img alt="Iridescent opalescent landscape, warm tones, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Michal Karcz" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/56846305/output_815942047.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20416_iridescent-opalescent-landscape-warm-tones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#663934FF">
+        <img alt="Iridescent opalescent landscape, warm tones, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Michal Karcz" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/56766743/output_1610017776.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20408_iridescent-opalescent-landscape-warm-tones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#68303BFF">
+        <img alt="Iridescent opalescent landscape, warm tones, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Michal Karcz" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/56766743/output_497005371.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20410_iridescent-opalescent-landscape-warm-tones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#595C55FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55209486/output_3978920731.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20308_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#577277FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55209486/output_677560374.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20311_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#51686AFF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55209486/output_1616032836.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20309_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4F5A58FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55209486/output_3663076393.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20306_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#566968FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55209486/output_3169637642.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20305_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4D5756FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55079389/output_504638534.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20302_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#59615AFF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55079389/output_1711596767.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20297_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#475753FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55079389/output_1449926334.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20296_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#566A66FF">
+        <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/55079389/output_1784649812.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20299_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E8395FF">
+        <img alt="Dark fantasy concept art of a snowy forest with a single cabin in the woods, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/54861722/output_566934499.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20018_dark-fantasy-concept-art-of-a-snowy-forest-with-a-single-cabin-in-the-woods.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#444746FF">
+        <img alt="A highly detailed matte painting of a camp fire in the forest at night in the style of Firewatch, 4k resolution, Masterpiece, Trending on Artstation, Volumetric Lighting" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/48985253/output_1198092122.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19829_a-highly-detailed-matte-painting-of-a-camp-fire-in-the-forest-at-night-in-the-style-of-firewatch.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#678879FF">
+        <img alt="Landscape of a large japanese castle in the tall mountains, with matsu pine trees, with sakura cherry trees by Studio Ghibli, 4k, Highly Detailed, Masterpiece, Trending on Artstation, Matte Painting, Octane Render, Volumetric Lighting by Stanley Artgerm Lau, Beeple, Makoto Shinkai" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/54261554/output_3698027025.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19984_landscape-of-a-large-japanese-castle-in-the-tall-mountains-with-matsu-pine-trees-with-sakura-cherr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#476782FF">
+        <img alt="Dark fantasy concept art of a snowy forest with a single cabin in the woods, Atmospheric, Highly Detailed, Intricate, Trending on Artstation, Stunning, Realistic, Unreal Engine, Dynamic Lighting, Radiant, Fantasy by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/54861722/output_1973856951.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20012_dark-fantasy-concept-art-of-a-snowy-forest-with-a-single-cabin-in-the-woods.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#745C45FF">
+        <img alt="A beautiful humble temple in the mountains, forgotten valley, wide shot, horizon, sunrays, 4k resolution, Atmospheric, Hyper Detailed, Trending on Artstation, Sunny Day, Golden Hour, Volumetric Lighting, Concept Art, Digital Art, Fantasy by Shinji Aramaki, Posuka Demizu" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/7392718/output_3878776593.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20039_a-beautiful-humble-temple-in-the-mountains-forgotten-valley-wide-shot-horizon-sunrays.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#746E53FF">
+        <img alt="A beautiful humble temple in the mountains, forgotten valley, wide shot, horizon, sunrays, 4k resolution, Atmospheric, Hyper Detailed, Trending on Artstation, Sunny Day, Golden Hour, Volumetric Lighting, Concept Art, Digital Art, Fantasy by Shinji Aramaki, Posuka Demizu" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/14/7415037/output_466487501.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/20/20044_a-beautiful-humble-temple-in-the-mountains-forgotten-valley-wide-shot-horizon-sunrays.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#646950FF">
+        <img alt="Void covered fields with large mountains in the distance, small medieval town, nighttime, 4k, HQ, Intricate Artwork, Ultra Detailed, Gothic and Fantasy, Oil on Canvas, Cloudy Day, Sharp Focus, Volumetric Lighting" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/19605304/output_2344874627.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18701_void-covered-fields-with-large-mountains-in-the-distance-small-medieval-town-nighttime.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4B4F35FF">
+        <img alt="Scenic rolling hills from Lord of the Rings, 8k, Intricate Details, Ultra Detailed, Pretty Face, Symmetrical Face, Realistic, Octane Render, Unreal Engine, Concept Art by Alphonse Mucha, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/49082629/output_2181640109.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19833_scenic-rolling-hills-from-lord-of-the-rings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4A5F3BFF">
+        <img alt="Inside of a giant O&#x27;Neill Cylinder with lush vegetation floating in space, 4k resolution, Masterpiece, Trending on Artstation, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/53973192/output_912540557.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19940_inside-of-a-giant-o-neill-cylinder-with-lush-vegetation-floating-in-space.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F7E95FF">
+        <img alt="A retro futuristic city surrounded by ice, 4k resolution, Masterpiece, Trending on Artstation, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/54070644/output_844616321.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19957_a-retro-futuristic-city-surrounded-by-ice.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#746A41FF">
+        <img alt="Scenic rolling hills from Lord of the Rings, 8k, Intricate Details, Ultra Detailed, Pretty Face, Symmetrical Face, Realistic, Octane Render, Unreal Engine, Concept Art by Alphonse Mucha, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/49251990/output_2892913290.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19837_scenic-rolling-hills-from-lord-of-the-rings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#676B74FF">
+        <img alt="Landscape of a large japanese castle in the tall mountains, with matsu pine trees, with sakura cherry trees by Studio Ghibli, 4k, Highly Detailed, Masterpiece, Trending on Artstation, Matte Painting, Octane Render, Volumetric Lighting by Stanley Artgerm Lau, Beeple, Makoto Shinkai" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/54327087/output_4172228584.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19973_landscape-of-a-large-japanese-castle-in-the-tall-mountains-with-matsu-pine-trees-with-sakura-cherr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+</div>
+
+    
+
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<footer class="relative z-10 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://github.com/NetCoreTemplates/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

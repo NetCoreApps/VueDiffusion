@@ -1,0 +1,1202 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Tifa Lockhart - My App</title>
+    <base href="https://netcoreapps.github.io/VueDiffusion/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+<link rel="canonical" href="https://blazordiffusion.com/albums/tifa-lockhart"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="diffusion.works"/>
+<meta name="twitter:creator" content="@blazordiffusion"/>
+<meta property="og:url" content="https://blazordiffusion.com/albums/tifa-lockhart"/>
+<meta property="og:title" content="Tifa Lockhart"/>
+<meta property="og:description" content="Anime portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by  WLOP"/>
+<meta property="og:image" content="https://cdn.diffusion.works/artifacts/2022/11/07/11304910/output_3602418852.png"/>
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://api.blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex lg:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Vue Diffusion</span>
+                <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                    <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                </svg>
+                <span class="ml-2 text-xl font-semibold leading-6 text-white">Diffusion</span>
+            </a>
+        </div>
+        <div class="flex lg:hidden">
+            <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a href="signin" class="text-sm font-semibold leading-6 text-white">Sign in <span aria-hidden="true">&rarr;</span></a>
+        </div>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    <div class="lg:hidden" role="dialog" aria-modal="true">
+        <!-- Background backdrop, show/hide based on slide-over state. -->
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <a href="signin" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-24 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="52">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-6xl">Tifa Lockhart</h1>
+    </div>
+
+    
+
+    
+<div class="grid gap-2 grid-cols-4">
+
+        <div class="relative overflow-hidden" style="background-color:#7F7375FF">
+        <img alt="Anime portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by  WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/11304910/output_3602418852.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3648_anime-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#717070FF">
+        <img alt="Alluring matte portrait of the beautiful Tifa Lockhart in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/41865698/output_3743203775.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40661_alluring-matte-portrait-of-the-beautiful-tifa-lockhart-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#837C7AFF">
+        <img alt="Alluring matte portrait of the beautiful Tifa Lockhart in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/41809867/output_2737694562.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40655_alluring-matte-portrait-of-the-beautiful-tifa-lockhart-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#72716DFF">
+        <img alt="Alluring matte portrait of the beautiful Tifa Lockhart in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/41703715/output_1400905395.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40630_alluring-matte-portrait-of-the-beautiful-tifa-lockhart-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C7B84FF">
+        <img alt="Alluring matte portrait of the beautiful Tifa Lockhart in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/41703715/output_2373709056.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40628_alluring-matte-portrait-of-the-beautiful-tifa-lockhart-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#766556FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/46201004/output_1716599672.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35944_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#756B68FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/46201004/output_1205382040.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35945_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#796F68FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/46311066/output_1053881085.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35957_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#88877EFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/46311066/output_968835008.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35954_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F6A5FFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/46311066/output_3052956294.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35953_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#64593FFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/46311066/output_2331721433.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35950_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B746DFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/46021724/output_784623457.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35936_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#757A7DFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/46021724/output_2931026251.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35934_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#676C6AFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/46021724/output_338676733.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35932_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B7978FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45912724/output_3711327379.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35925_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#574139FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45912724/output_2952692427.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35924_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B6C6FFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45841688/output_2512240618.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35919_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E6257FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45841688/output_4144415989.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35916_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#75605DFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45841688/output_1985705081.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35915_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#787877FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45841688/output_3929509331.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35913_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C6968FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45775478/output_3594623365.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35912_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F655FFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45775478/output_162088277.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35907_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#675D5EFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45775478/output_4151116167.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35906_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#676762FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45775478/output_8569099.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35904_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#727375FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45026422/output_3175961865.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35820_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A6B67FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45026422/output_1479341593.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35819_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#737065FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45026422/output_2802706473.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35815_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#766A57FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Tifa Lockhart wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/45026422/output_1385528913.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35814_alluring-matte-portrait-of-a-beautiful-veiled-tifa-lockhart-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B5A53FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/25992937/output_3526175978.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32973_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A716FFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/25992937/output_618680556.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32970_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#797682FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/25992937/output_3695041105.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32967_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5A5351FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/25827837/output_2546982217.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32965_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7D634AFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/25827837/output_1404839987.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32962_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#868789FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/25827837/output_1916346149.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32959_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#836B5EFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/30/47465460/output_2628432754.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30960_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7F7170FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/30/47465460/output_2681386660.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30959_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#626A6AFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/30/47465460/output_2829985827.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30958_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#76686EFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/48365696/output_2364525922.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30757_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F7579FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/48365696/output_1701767534.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30756_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#686A73FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/48365696/output_1849937189.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30750_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#828078FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35610341/output_2862129071.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30748_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E5C4FFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35610341/output_1971933894.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30745_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#65656BFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35610341/output_103998198.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30744_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C6F6CFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35610341/output_40279459.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30741_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F5C57FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35518755/output_1875051663.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30732_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#807C78FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35518755/output_3300998119.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30738_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#585850FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35429925/output_3249564135.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30730_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#64574FFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35429925/output_1433803671.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30728_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B7B77FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35429925/output_3383338721.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30726_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#72736DFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35429925/output_1222846274.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30724_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#706663FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35357034/output_1520031251.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30722_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5B5F60FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35357034/output_1112397644.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30720_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E5C5CFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35357034/output_3527378527.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30719_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#756F6CFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35357034/output_2864375990.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30718_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#75706EFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35357034/output_1358398705.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30717_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#695D4DFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35357034/output_2447141580.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30715_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#797076FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35300808/output_480663528.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30713_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#936D60FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35300808/output_3975968660.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30709_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6D5349FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35300808/output_2907817366.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30708_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E6360FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/35300808/output_3072356306.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30705_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#483E34FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30449614/output_3473179950.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30619_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#636360FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30449614/output_815302397.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30616_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#826E53FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30377175/output_2416203297.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30615_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#75625AFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30377175/output_3271685793.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30610_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E584DFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30263363/output_122282156.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30596_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#77817EFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30263363/output_213525743.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30594_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C716BFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30263363/output_1900912106.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30597_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#696B6FFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30189008/output_1439328042.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30587_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#67676AFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30189008/output_969203783.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30588_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#757372FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30189008/output_1348608179.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30584_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7D8778FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30189008/output_4194893842.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30581_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7C747CFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30189008/output_1150042215.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30580_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E5964FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30024267/output_3019409724.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30575_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#777380FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30024267/output_173987051.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30574_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#615541FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/30024267/output_969490652.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30572_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#694233FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51149892/output_1788235068.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1982_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#684D3FFF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51240884/output_2689250825.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1990_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7D6858FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51240884/output_256571506.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1984_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#75767BFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/52298473/output_1803533248.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29182_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F6971FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/52298473/output_3180191033.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29180_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5C5D58FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/52086698/output_429653611.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29167_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#656B6EFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/51884171/output_1582318444.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29146_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#71707CFF">
+        <img alt="Matte portrait of Tifa Lockhart with tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/34360474/output_4242041597.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10620_matte-portrait-of-tifa-lockhart-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7D7C7CFF">
+        <img alt="Black &amp; White portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37075294/output_1206506259.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5175_black-white-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#847872FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51329861/output_3378435346.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1994_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7C7C7BFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/52298473/output_3043150952.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29185_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#84706FFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/52298473/output_2382467101.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29183_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#766355FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/52086698/output_2944930836.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29163_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#705552FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/52086698/output_3227289331.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29159_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#806753FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/51884171/output_763397936.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29149_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A6950FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/51884171/output_3871541583.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29141_alluring-matte-portrait-of-a-beautiful-tifa-lockhart-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#645E5CFF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Tifa Lockhart with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/63225355/output_2209591922.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8421_alluring-highly-detailed-matte-portrait-of-a-beautiful-tifa-lockhart-with-shimmering-hair-in-the-sty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#74716BFF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Tifa Lockhart with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/63225355/output_1548989793.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8426_alluring-highly-detailed-matte-portrait-of-a-beautiful-tifa-lockhart-with-shimmering-hair-in-the-sty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#776467FF">
+        <img alt="Matte portrait of Tifa Lockhart with tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/34360474/output_2029606220.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10623_matte-portrait-of-tifa-lockhart-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A5B50FF">
+        <img alt="Beautiful Tifa Lockhart from Final Fantasy, 8k,Ultra Detailed,Symmetrical Face,Photo Realistic,Deviantart,Joyful, by  Artgerm,by Tom Bagshaw,by William-Adolphe Bouguereau,by Frank Frazetta,by Peter Mohrbacher" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/20/18040199/output_1348976561.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0080_beautiful-tifa-lockhart-from-final-fantasy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#716862FF">
+        <img alt="Beautiful Tifa Lockhart from Final Fantasy, 8k,Ultra Detailed,Symmetrical Face,Photo Realistic,Deviantart,Joyful, by  Artgerm,by Tom Bagshaw,by William-Adolphe Bouguereau,by Frank Frazetta,by Peter Mohrbacher" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/20/18040199/output_2524804286.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0082_beautiful-tifa-lockhart-from-final-fantasy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#766468FF">
+        <img alt="Beautiful Tifa Lockhart from Final Fantasy, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art, by  Artgerm,by Alphonse Mucha,by Greg Rutkowski" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/25/10209380/output_811031759.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1068_beautiful-tifa-lockhart-from-final-fantasy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#826B63FF">
+        <img alt="Beautiful Tifa Lockhart from Final Fantasy, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art, by Alphonse Mucha,by Greg Rutkowski" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/29/60055985/output_2473119171.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1786_beautiful-tifa-lockhart-from-final-fantasy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A4F4EFF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63558117/output_1786671365.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13246_alluring-matte-portrait-of-a-beautiful-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C5D42FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63558117/output_3348590864.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13250_alluring-matte-portrait-of-a-beautiful-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B6356FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/67817892/output_1534036292.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13699_alluring-matte-portrait-of-a-beautiful-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E6462FF">
+        <img alt="Alluring matte portrait of a beautiful Tifa Lockhart, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/67817892/output_339367478.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13698_alluring-matte-portrait-of-a-beautiful-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#867575FF">
+        <img alt="Beautiful Tifa Lockhart from Final Fantasy, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/25/10591126/output_2710281860.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1075_beautiful-tifa-lockhart-from-final-fantasy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#786A6BFF">
+        <img alt="Beautiful Tifa Lockhart from Final Fantasy, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/25/9806219/output_156834936.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1263_beautiful-tifa-lockhart-from-final-fantasy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#676164FF">
+        <img alt="Beautiful Tifa Lockhart from Final Fantasy, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/25/9806219/output_272860202.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1255_beautiful-tifa-lockhart-from-final-fantasy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#656266FF">
+        <img alt="Tifa Lockhart in leather armor, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/22/41673805/output_2352808474.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0526_tifa-lockhart-in-leather-armor.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#867B6AFF">
+        <img alt="Tifa Lockhart from Final Fantasy, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/35156500/output_3772751781.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19053_tifa-lockhart-from-final-fantasy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8A8489FF">
+        <img alt="Anime portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/11022592/output_759700691.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3623_anime-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#766066FF">
+        <img alt="Anime portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/11022592/output_704110877.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3621_anime-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#846165FF">
+        <img alt="Anime portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/11022592/output_1133441761.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3620_anime-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5D5D56FF">
+        <img alt="Anime portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/11382157/output_1689400992.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3663_anime-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#706F6FFF">
+        <img alt="Black &amp; White portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37075294/output_1973373278.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5173_black-white-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7C7B7BFF">
+        <img alt="Black &amp; White portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37075294/output_4131051492.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5167_black-white-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#867D6FFF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51329861/output_829485938.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1999_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#825140FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51329861/output_3366341789.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1997_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#9B7B66FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51329861/output_355369995.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1995_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#825B47FF">
+        <img alt="Anime portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/11194064/output_847944118.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3644_anime-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8D7780FF">
+        <img alt="Anime portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/11194064/output_3180451573.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3639_anime-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A5C4AFF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51240884/output_1521637695.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1989_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#806A69FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51240884/output_3990983231.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1988_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#624744FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51240884/output_1294067523.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1987_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C5D53FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51240884/output_2558212040.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1985_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#694944FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51149892/output_2964064536.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1983_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#787164FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51149892/output_4256735684.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1979_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F6760FF">
+        <img alt="Steampunk portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/51149892/output_4156150889.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1980_steampunk-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#767C7AFF">
+        <img alt="Anime portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by  WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/11304910/output_2009717154.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3653_anime-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8B5960FF">
+        <img alt="Anime portrait of Tifa Lockhart, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by  WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/11304910/output_4014480923.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3650_anime-portrait-of-tifa-lockhart.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+</div>
+
+    
+
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<footer class="relative z-10 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://github.com/NetCoreTemplates/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

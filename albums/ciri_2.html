@@ -1,0 +1,1617 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Ciri Page 2 - My App</title>
+    <base href="https://netcoreapps.github.io/VueDiffusion/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://api.blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex lg:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Vue Diffusion</span>
+                <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                    <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                </svg>
+                <span class="ml-2 text-xl font-semibold leading-6 text-white">Diffusion</span>
+            </a>
+        </div>
+        <div class="flex lg:hidden">
+            <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a href="signin" class="text-sm font-semibold leading-6 text-white">Sign in <span aria-hidden="true">&rarr;</span></a>
+        </div>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    <div class="lg:hidden" role="dialog" aria-modal="true">
+        <!-- Background backdrop, show/hide based on slide-over state. -->
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <a href="signin" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-24 sm:py-32 lg:pb-40">
+            
+
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="3">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-6xl">Ciri</h1>
+    </div>
+
+    
+    <nav class="mt-8 mb-8 flex items-center justify-between border-t border-gray-700 px-4 sm:px-0">
+        <div class="-mt-px flex w-0 flex-1">
+                <a href="/albums/ciri" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">
+                    <!-- Heroicon name: mini/arrow-long-left -->
+                    <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"/>
+                    </svg>
+                    Previous
+                </a>
+        </div>
+        <div class="hidden md:-mt-px md:flex">
+                    <a href="/albums/ciri" class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">1</a>
+                    <a href="/albums/ciri_2" class="inline-flex items-center border-t-2 border-indigo-400 px-4 pt-4 text-sm font-medium text-indigo-300" aria-current="page">2</a>
+        </div>
+        <div class="-mt-px flex w-0 flex-1 justify-end">
+        </div>
+    </nav>
+
+    
+<div class="grid gap-2 grid-cols-4">
+
+        <div class="relative overflow-hidden" style="background-color:#7B6A4CFF">
+        <img alt="Alluring matte portrait of a beautiful Ciri, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/65311615/output_1530089744.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13387_alluring-matte-portrait-of-a-beautiful-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#63604BFF">
+        <img alt="Alluring matte portrait of a beautiful Ciri, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/65311615/output_1890300685.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13386_alluring-matte-portrait-of-a-beautiful-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#666763FF">
+        <img alt="Alluring matte portrait of a beautiful Ciri, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/65195528/output_4199397133.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13385_alluring-matte-portrait-of-a-beautiful-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#777779FF">
+        <img alt="Alluring matte portrait of a beautiful Ciri, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/65195528/output_3271857862.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13383_alluring-matte-portrait-of-a-beautiful-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#807B68FF">
+        <img alt="Alluring matte portrait of a beautiful Ciri, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/65195528/output_2401709554.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13380_alluring-matte-portrait-of-a-beautiful-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#766B4FFF">
+        <img alt="Alluring matte portrait of a beautiful Ciri, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/65129525/output_1517423739.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13376_alluring-matte-portrait-of-a-beautiful-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A756AFF">
+        <img alt="Alluring matte portrait of a beautiful Ciri, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/65129525/output_4025531139.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13375_alluring-matte-portrait-of-a-beautiful-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B6B58FF">
+        <img alt="Alluring matte portrait of a beautiful Ciri, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/65129525/output_4018027149.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13372_alluring-matte-portrait-of-a-beautiful-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#776746FF">
+        <img alt="Alluring matte portrait of a beautiful Ciri, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/65129525/output_162084337.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13370_alluring-matte-portrait-of-a-beautiful-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A5E4CFF">
+        <img alt="Matte portrait of Ciri from The Witcher 3 with colored tattoos, 4k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Grayscale, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/48272073/output_3127922791.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11531_matte-portrait-of-ciri-from-the-witcher-3-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#685C53FF">
+        <img alt="Matte portrait of Ciri from The Witcher 3 with colored tattoos, 4k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Grayscale, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/48272073/output_3957465260.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11530_matte-portrait-of-ciri-from-the-witcher-3-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#727975FF">
+        <img alt="Matte portrait of Ciri from The Witcher 3 with colored tattoos, 4k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Grayscale, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/48272073/output_2795101858.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11529_matte-portrait-of-ciri-from-the-witcher-3-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#806F70FF">
+        <img alt="Matte portrait of Ciri from The Witcher 3 with colored tattoos, 4k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Grayscale, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/48272073/output_4259123328.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11528_matte-portrait-of-ciri-from-the-witcher-3-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5D5753FF">
+        <img alt="Matte portrait of Ciri from The Witcher 3 with colored tattoos, 4k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Grayscale, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/48272073/output_1376267261.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11527_matte-portrait-of-ciri-from-the-witcher-3-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8F8D90FF">
+        <img alt="Matte portrait of Ciri from The Witcher 3 with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Grayscale, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/48149602/output_304999671.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11525_matte-portrait-of-ciri-from-the-witcher-3-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#525052FF">
+        <img alt="Matte portrait of Ciri from The Witcher 3 with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Grayscale, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/48149602/output_39319662.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11524_matte-portrait-of-ciri-from-the-witcher-3-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#84717BFF">
+        <img alt="Matte portrait of Ciri from The Witcher 3 with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Grayscale, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/48149602/output_151002795.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11522_matte-portrait-of-ciri-from-the-witcher-3-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#687473FF">
+        <img alt="Matte portrait of Ciri from The Witcher 3 with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Grayscale, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/48149602/output_4233171632.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11519_matte-portrait-of-ciri-from-the-witcher-3-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#736554FF">
+        <img alt="Matte portrait of Ciri with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/32369748/output_1126241530.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10498_matte-portrait-of-ciri-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#605347FF">
+        <img alt="Matte portrait of Ciri with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/32369748/output_2092162795.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10497_matte-portrait-of-ciri-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B6C61FF">
+        <img alt="Matte portrait of Ciri with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/32369748/output_1801574292.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10496_matte-portrait-of-ciri-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#939690FF">
+        <img alt="Matte portrait of Ciri with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/32369748/output_754169842.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10494_matte-portrait-of-ciri-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#67765FFF">
+        <img alt="Matte portrait of Ciri with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Volumetric Lighting, Concept Art, Magical by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/31886711/output_2531836076.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10481_matte-portrait-of-ciri-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#917A69FF">
+        <img alt="Matte portrait of Ciri with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Volumetric Lighting, Concept Art, Magical by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/31886711/output_1661053373.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10478_matte-portrait-of-ciri-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#574634FF">
+        <img alt="Matte portrait of Ciri with colored tattoos, 8k, Highly Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Volumetric Lighting, Concept Art, Magical by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/31886711/output_4179982495.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10477_matte-portrait-of-ciri-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#616152FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8584237/output_4270850859.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8700_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6D7464FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8409691/output_846969369.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8697_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#72766EFF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri in Assassin Creed style in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/9302249/output_2908127584.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8743_portrait-of-an-alluring-witcher-3-ciri-in-assassin-creed-style-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#707266FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8409691/output_2165642819.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8696_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C7A6DFF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8409691/output_3759357100.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8692_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C7E76FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri in Assassin Creed style in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/9302249/output_2401265295.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8739_portrait-of-an-alluring-witcher-3-ciri-in-assassin-creed-style-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#757F82FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8409691/output_4286766044.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8691_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#627073FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8409691/output_4083100195.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8690_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#797E7DFF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri in Assassin Creed style in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/9302249/output_3554645273.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8736_portrait-of-an-alluring-witcher-3-ciri-in-assassin-creed-style-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#636C63FF">
+        <img alt="Portrait of an alluring Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8284180/output_2433948228.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8685_portrait-of-an-alluring-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#978684FF">
+        <img alt="Portrait of an alluring Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8284180/output_3657739262.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8683_portrait-of-an-alluring-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#52533DFF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri in Assassin Creed style in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/9302249/output_4124104292.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8735_portrait-of-an-alluring-witcher-3-ciri-in-assassin-creed-style-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A6D74FF">
+        <img alt="Portrait of an alluring Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8284180/output_36615251.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8681_portrait-of-an-alluring-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#68817EFF">
+        <img alt="Alluring matte portrait of a menacing Ciri emerging from a fire portal, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/6963893/output_2713818002.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8625_alluring-matte-portrait-of-a-menacing-ciri-emerging-from-a-fire-portal.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#727D8BFF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri in Assassin Creed style in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/9190955/output_1334780466.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8734_portrait-of-an-alluring-witcher-3-ciri-in-assassin-creed-style-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#765949FF">
+        <img alt="Alluring matte portrait of a menacing Ciri emerging from a fire portal, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/6963893/output_2777559284.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8624_alluring-matte-portrait-of-a-menacing-ciri-emerging-from-a-fire-portal.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#875949FF">
+        <img alt="Alluring matte portrait of a menacing Ciri emerging from a fire portal, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/6963893/output_1429959271.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8623_alluring-matte-portrait-of-a-menacing-ciri-emerging-from-a-fire-portal.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#685945FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri in Assassin Creed style in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/9190955/output_1602213100.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8733_portrait-of-an-alluring-witcher-3-ciri-in-assassin-creed-style-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#774F3BFF">
+        <img alt="Alluring matte portrait of a menacing Ciri emerging from a fire portal, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/6963893/output_1143200043.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8620_alluring-matte-portrait-of-a-menacing-ciri-emerging-from-a-fire-portal.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#656C72FF">
+        <img alt="Alluring matte portrait of a menacing Ciri emerging from a fire portal, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/6963893/output_2325895823.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8619_alluring-matte-portrait-of-a-menacing-ciri-emerging-from-a-fire-portal.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E7F75FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri in Assassin Creed style in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/9190955/output_1936752662.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8732_portrait-of-an-alluring-witcher-3-ciri-in-assassin-creed-style-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#627771FF">
+        <img alt="Alluring matte portrait of a menacing Ciri emerging from a fire portal, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/6963893/output_2883936801.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8618_alluring-matte-portrait-of-a-menacing-ciri-emerging-from-a-fire-portal.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#837567FF">
+        <img alt="Alluring matte portrait of a menacing yellow eyed Ciri stepping out of a fire portal, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/6830470/output_3025025977.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8615_alluring-matte-portrait-of-a-menacing-yellow-eyed-ciri-stepping-out-of-a-fire-portal.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#766C5AFF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri in Assassin Creed style in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/9190955/output_3102034391.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8731_portrait-of-an-alluring-witcher-3-ciri-in-assassin-creed-style-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8D6441FF">
+        <img alt="Alluring matte portrait of a yellow cat eyed Ciri casting fire spells, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/5995887/output_1308725971.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8586_alluring-matte-portrait-of-a-yellow-cat-eyed-ciri-casting-fire-spells.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C6653FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8805189/output_1858170319.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8724_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#71788BFF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful spell casting Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/64340497/output_1382117452.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8534_alluring-highly-detailed-matte-portrait-of-a-beautiful-spell-casting-ciri-in-the-style-of-stefan-kos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#69746DFF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful spell casting Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/64340497/output_2050935873.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8532_alluring-highly-detailed-matte-portrait-of-a-beautiful-spell-casting-ciri-in-the-style-of-stefan-kos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#768073FF">
+        <img alt="Alluring matte portrait of a menacing Ciri in The Witcher 3 Style, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/5822875/output_4081756256.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8579_alluring-matte-portrait-of-a-menacing-ciri-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6D6658FF">
+        <img alt="Alluring matte portrait of a menacing Ciri in The Witcher 3 Style, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/5822875/output_2697358500.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8578_alluring-matte-portrait-of-a-menacing-ciri-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E767BFF">
+        <img alt="Alluring matte portrait of a menacing Ciri in The Witcher 3 Style, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/5822875/output_3609524802.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8575_alluring-matte-portrait-of-a-menacing-ciri-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5D554CFF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful spell casting Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/64340497/output_1656401726.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8530_alluring-highly-detailed-matte-portrait-of-a-beautiful-spell-casting-ciri-in-the-style-of-stefan-kos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#828DA1FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful spell casting Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/64340497/output_2761615079.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8528_alluring-highly-detailed-matte-portrait-of-a-beautiful-spell-casting-ciri-in-the-style-of-stefan-kos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5B6050FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8805189/output_326675757.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8721_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5D5751FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/63038753/output_710361044.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8408_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-with-shimmering-hair-in-the-style-of-ste.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6D6251FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/63038753/output_4206312513.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8407_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-with-shimmering-hair-in-the-style-of-ste.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5B4F58FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8805189/output_124983964.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8719_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#726665FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/63038753/output_4221246834.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8403_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-with-shimmering-hair-in-the-style-of-ste.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#727677FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62974634/output_4163363091.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8401_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-with-shimmering-hair-in-the-style-of-ste.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7D766AFF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8805189/output_2675863757.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8718_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#615B58FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62974634/output_3461874627.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8399_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-with-shimmering-hair-in-the-style-of-ste.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#857B6CFF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62974634/output_2045415652.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8396_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-with-shimmering-hair-in-the-style-of-ste.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#767E75FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8693543/output_1290515015.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8715_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#9A8772FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62907831/output_4169989598.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8391_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#72655EFF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62907831/output_868529730.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8390_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8A8471FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62907831/output_2484623556.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8387_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7F7E73FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62907831/output_2568436810.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8386_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#646F77FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62907831/output_1398336381.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8384_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B7159FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62844411/output_1669168374.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8383_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A7B66FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62844411/output_3326433698.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8382_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#776F70FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62844411/output_1214276830.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8380_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#696C71FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62844411/output_185947714.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8379_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#736462FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62844411/output_970344056.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8378_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#77654FFF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62844411/output_2683962185.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8377_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#898487FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62777781/output_585881300.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8374_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#83796DFF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62777781/output_192807590.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8373_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C6F65FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62777781/output_1675235386.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8372_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C6862FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62777781/output_3623378589.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8371_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B6B61FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62777781/output_2266469725.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8370_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8F8471FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62777781/output_2788259704.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8368_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#727B89FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62777781/output_846879.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8367_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F7167FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Ciri in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/62777781/output_4051572503.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8366_alluring-highly-detailed-matte-portrait-of-a-beautiful-ciri-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#61554EFF">
+        <img alt="Steampunk portrait of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/30/50864503/output_286787662.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1942_steampunk-portrait-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8E8076FF">
+        <img alt="Symmetry! Portrait of Ciri as Amazon Viking Athena, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,Sharp Focus,Smooth,Concept Art,Elegant,Dark, by Stanley Artgerm Lau,by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/06/61664783/output_1095714180.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3521_symmetry-portrait-of-ciri-as-amazon-viking-athena.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#696860FF">
+        <img alt="Symmetry! Portrait of Ciri from The Witcher, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,Sharp Focus,Smooth,Concept Art,Elegant,Dark, by Stanley Artgerm Lau,by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/06/61538721/output_810468910.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3513_symmetry-portrait-of-ciri-from-the-witcher.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#81756BFF">
+        <img alt="Closeup of Ciri stylized as Funko Toy, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,Sharp Focus,Smooth,Concept Art,Elegant,Dark, by Stanley Artgerm Lau,by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/06/62120786/output_2379555110.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3541_closeup-of-ciri-stylized-as-funko-toy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#82837CFF">
+        <img alt="Anime closeup of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by  WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/9539599/output_3886654216.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3976_anime-closeup-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#735D49FF">
+        <img alt="Portrait of Ciri from The Witcher, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,Sharp Focus,Smooth,Concept Art,Elegant,Dark, by Stanley Artgerm Lau,by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/06/61471830/output_2428819645.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3511_portrait-of-ciri-from-the-witcher.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5C5A5BFF">
+        <img alt="Black &amp; White portrait of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37259215/output_2658750317.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5189_black-white-portrait-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8A8A8CFF">
+        <img alt="Closeup of Ciri in white Assasin&#x27;s Creed style, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/29/61108098/output_275338953.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1818_closeup-of-ciri-in-white-assasin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#736A6BFF">
+        <img alt="Closeup of Ciri in white Assasin&#x27;s Creed style, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Greg Rutkowski" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/29/60973856/output_2535968690.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1805_closeup-of-ciri-in-white-assasin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#858385FF">
+        <img alt="Black &amp; White portrait of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37332586/output_3561794235.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5197_black-white-portrait-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E7884FF">
+        <img alt="Closeup of Ciri in white Assasin&#x27;s Creed style, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/29/61306196/output_2374787059.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1836_closeup-of-ciri-in-white-assasin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#766C66FF">
+        <img alt="Closeup portrait shot of cirilla, Centered, Highly Detailed,Intricate,Artstation,Sharp Focus,Smooth,Artgerm,Concept Art,Elegant,Digital Painting,Illustration, by Donato Giancola,by Peter Mohrbacher,by  WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/20/35441204/output_3536533572.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0165_closeup-portrait-shot-of-cirilla-centered.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7E6F6FFF">
+        <img alt="Closeup of Ciri in a white dress, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/22/38162233/output_1346125705.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0393_closeup-of-ciri-in-a-white-dress.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#665B58FF">
+        <img alt="Closeup of Ciri in white Assasin&#x27;s Creed style, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/29/61220285/output_2574277645.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1830_closeup-of-ciri-in-white-assasin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#726D6EFF">
+        <img alt="Closeup of Ciri in a white armor, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/22/38589465/output_4108224364.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0400_closeup-of-ciri-in-a-white-armor.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7D7B7BFF">
+        <img alt="Closeup of Ciri in a white dress, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by  Artgerm,by Alphonse Mucha,by Greg Rutkowski" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/22/38132591/output_2519252776.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0385_closeup-of-ciri-in-a-white-dress.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B564DFF">
+        <img alt="Portrait of Ciri from The Witcher, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,Sharp Focus,Smooth,Concept Art,Elegant,Dark, by Stanley Artgerm Lau,by Alphonse Mucha,by Greg Rutkowski" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/11/06/61375571/output_3556372166.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3506_portrait-of-ciri-from-the-witcher.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#776B63FF">
+        <img alt="A closeup of Ciri in white preparing for battle, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/24/64362885/output_657381308.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0967_a-closeup-of-ciri-in-white-preparing-for-battle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C6E74FF">
+        <img alt="Anime closeup of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by  WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/9539599/output_2916707095.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3974_anime-closeup-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F7981FF">
+        <img alt="Anime closeup of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by  WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/9539599/output_720373451.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3971_anime-closeup-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#756C7DFF">
+        <img alt="Anime closeup of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/9484845/output_3099412472.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3961_anime-closeup-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#9B6877FF">
+        <img alt="Anime portrait of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/9061689/output_2234581424.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3938_anime-portrait-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#76726FFF">
+        <img alt="Anime portrait of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/9061689/output_1345363706.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3936_anime-portrait-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F6564FF">
+        <img alt="Anime portrait of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/9061689/output_1161683830.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3942_anime-portrait-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6D6468FF">
+        <img alt="Anime portrait of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/9061689/output_4273579773.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3939_anime-portrait-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#65493FFF">
+        <img alt="Closeup of Cirilla from The Witcher 3, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,D&amp;D,Hearthstone,Sharp Focus,Matte,Concept Art,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/8882929/output_2541057789.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3927_closeup-of-cirilla-from-the-witcher-3.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#655956FF">
+        <img alt="Closeup of Cirilla from The Witcher 3, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,D&amp;D,Hearthstone,Sharp Focus,Matte,Concept Art,Fantasy,Elegant, by Stanley Artgerm Lau,by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/06/61010263/output_1987427907.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3501_closeup-of-cirilla-from-the-witcher-3.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#67574FFF">
+        <img alt="A Film still of Ciri, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,Sharp Focus,Smooth,Concept Art,Elegant,Dark, by Stanley Artgerm Lau,by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/06/61721689/output_221077442.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3526_a-film-still-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#564E48FF">
+        <img alt="A detailed matte portrait of Ciri from the Witcher, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,Sharp Focus,Smooth,Concept Art,Elegant,Dark, by Stanley Artgerm Lau,by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/06/61810964/output_2082107073.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3534_a-detailed-matte-portrait-of-ciri-from-the-witcher.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#717067FF">
+        <img alt="Anime portrait of Ciri from the Witcher, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,Sharp Focus,Smooth,Concept Art,Elegant,Dark, by Stanley Artgerm Lau,by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/06/61862508/output_986065916.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3539_anime-portrait-of-ciri-from-the-witcher.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F7C87FF">
+        <img alt="Ciri, Cyberpunk,Futuristic,Sci-Fi,8k,Dystopian" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/10/17/44484090/output_3001364477.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0061_ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+</div>
+
+    
+    <nav class="mt-8 mb-8 flex items-center justify-between border-t border-gray-700 px-4 sm:px-0">
+        <div class="-mt-px flex w-0 flex-1">
+                <a href="/albums/ciri" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">
+                    <!-- Heroicon name: mini/arrow-long-left -->
+                    <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"/>
+                    </svg>
+                    Previous
+                </a>
+        </div>
+        <div class="hidden md:-mt-px md:flex">
+                    <a href="/albums/ciri" class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">1</a>
+                    <a href="/albums/ciri_2" class="inline-flex items-center border-t-2 border-indigo-400 px-4 pt-4 text-sm font-medium text-indigo-300" aria-current="page">2</a>
+        </div>
+        <div class="-mt-px flex w-0 flex-1 justify-end">
+        </div>
+    </nav>
+
+
+    <h3 class="mt-16 mb-8 text-xl">Other Albums</h3>
+
+    <div class="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
+            <div class="text-center">
+                <a href="/albums/tattoos"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Tattoos
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fictional-characters"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fictional Characters
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/league-of-legends"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    League of Legends
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/steampunk"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Steampunk
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fantasy"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fantasy
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/nidalee"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Nidalee
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/anime"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Anime
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/matte-finesse"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Matte Finesse
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/the-witcher"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    The Witcher
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/leathered-league"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Leathered League
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/black-white"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Black &amp; White
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/landscapes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Landscapes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/a-christmas-miracle"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    A Christmas Miracle
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/architect"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Architect
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/morgana"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Morgana
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kassandra"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kassandra
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/elden-ring"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Elden Ring
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/league-with-wings"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    League with Wings
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ninja"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ninja
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/dystopia"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Dystopia
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/christmas"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Christmas
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ciri"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-300">
+                    Ciri
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/overwatch"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Overwatch
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/goddess"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Goddess
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/katarina"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Katarina
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/samira"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Samira
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fiora"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fiora
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/models"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Models
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kiki-the-witch"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kiki the witch
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/quinn"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Quinn
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/lyx"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Lyx
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/dieter-rams-designs"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Dieter Rams Designs
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/veiled-vixens"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Veiled Vixens
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/akali"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Akali
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/retrofuturistic"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Retrofuturistic
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/nature-s-landing"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Nature&#x27;s Landing
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/cyborg"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Cyborg
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/pirates"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Pirates
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/feathered-femmes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Feathered Femmes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/irelia"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Irelia
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kayle"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kayle
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/assassin-s-creed"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Assassin&#x27;s Creed
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/princess-mononoke"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Princess Mononoke
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/high-octane"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    High Octane
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/sarah-kerrigan"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Sarah Kerrigan
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/artistic-effects"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Artistic effects
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/poison-ivy"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Poison Ivy
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/forest-femmes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Forest Femmes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/sona"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Sona
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/gods"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Gods
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/futuristic"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Futuristic
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vintage-builds"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vintage Builds
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/cassandra-cain"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Cassandra Cain
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/femme-fighters"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Femme Fighters
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/mystical"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Mystical
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ghibli"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ghibli
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/a2"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    A2
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/tifa-lockhart"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Tifa Lockhart
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vayne"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vayne
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/princess-jasmine"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Princess Jasmine
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/weird-portraits"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    weird portraits 
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/matte-portraits"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Matte Portraits
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/miss-fortune"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Miss Fortune
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/faves"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Faves
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/tranquil"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Tranquil
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/retro"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Retro
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/minecraft"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Minecraft
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/disney-portraits"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Disney portraits
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/posters"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    posters 
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/evil"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    evil
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vex"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vex
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/dragons"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Dragons
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/trump"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Trump
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/aloy"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Aloy
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/matte-wings"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Matte Wings
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/sivir"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Sivir
+                </a>
+            </div>
+    </div>
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<footer class="relative z-10 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://github.com/NetCoreTemplates/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

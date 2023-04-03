@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Vayne - My App</title>
+    <base href="https://netcoreapps.github.io/VueDiffusion/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+<link rel="canonical" href="https://blazordiffusion.com/albums/vayne"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="diffusion.works"/>
+<meta name="twitter:creator" content="@blazordiffusion"/>
+<meta property="og:url" content="https://blazordiffusion.com/albums/vayne"/>
+<meta property="og:title" content="Vayne"/>
+<meta property="og:description" content="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski"/>
+<meta property="og:image" content="https://cdn.diffusion.works/artifacts/2022/12/16/54735582/output_1592087845.png"/>
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://api.blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex lg:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Vue Diffusion</span>
+                <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                    <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                </svg>
+                <span class="ml-2 text-xl font-semibold leading-6 text-white">Diffusion</span>
+            </a>
+        </div>
+        <div class="flex lg:hidden">
+            <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a href="signin" class="text-sm font-semibold leading-6 text-white">Sign in <span aria-hidden="true">&rarr;</span></a>
+        </div>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    <div class="lg:hidden" role="dialog" aria-modal="true">
+        <!-- Background backdrop, show/hide based on slide-over state. -->
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <a href="signin" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-24 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="42">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-6xl">Vayne</h1>
+    </div>
+
+    
+
+    
+<div class="grid gap-2 grid-cols-4">
+
+        <div class="relative overflow-hidden" style="background-color:#655A57FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/16/54735582/output_1592087845.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/21/21407_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#757484FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne in dark blue, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/10/43819031/output_4102394758.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/43/43924_alluring-matte-portrait-of-a-beautiful-vayne-in-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A7980FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne in dark blue, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/10/43819031/output_3035030411.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/43/43922_alluring-matte-portrait-of-a-beautiful-vayne-in-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#685C51FF">
+        <img alt="Alluring matte portrait of the beautiful Vayne in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/40559478/output_3290256770.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40434_alluring-matte-portrait-of-the-beautiful-vayne-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#67645EFF">
+        <img alt="Alluring matte portrait of the beautiful Vayne in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/40559478/output_994689580.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40433_alluring-matte-portrait-of-the-beautiful-vayne-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7F7D7BFF">
+        <img alt="Alluring matte portrait of the beautiful Vayne in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/40559478/output_3457028760.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40428_alluring-matte-portrait-of-the-beautiful-vayne-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#75675BFF">
+        <img alt="Alluring matte portrait of the beautiful Vayne in black, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/50806372/output_1991754169.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40074_alluring-matte-portrait-of-the-beautiful-vayne-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#69615BFF">
+        <img alt="Alluring matte portrait of the beautiful Vayne in black, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/50806372/output_2929950060.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40076_alluring-matte-portrait-of-the-beautiful-vayne-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#67605EFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Vayne wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/43520825/output_3972564292.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35731_alluring-matte-portrait-of-a-beautiful-veiled-vayne-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#626D6FFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Vayne wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/43520825/output_2241271719.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35730_alluring-matte-portrait-of-a-beautiful-veiled-vayne-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#666C70FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Vayne wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/43520825/output_3521213257.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35726_alluring-matte-portrait-of-a-beautiful-veiled-vayne-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#78766BFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32900012/output_717139387.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33658_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7E7874FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32900012/output_1183309389.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33656_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#55524BFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32900012/output_1707962785.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33654_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#746D65FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32900012/output_2461040255.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33650_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7F6B4FFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32713005/output_1193456971.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33630_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#615F61FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32713005/output_2339408242.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33627_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F5D61FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32611552/output_3648003132.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33623_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#56504EFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32611552/output_3816426082.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33622_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#787571FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32611552/output_3194792856.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33619_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#806660FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32611552/output_2490292159.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33617_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A625EFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32611552/output_4193132149.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33616_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F5247FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32523190/output_1592967804.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33612_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E5550FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32523190/output_2274650752.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33611_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5B5648FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32523190/output_157542271.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33610_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#615A55FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32523190/output_3276626682.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33609_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B5E64FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/32523190/output_2973623251.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33606_alluring-matte-portrait-of-a-beautiful-vayne-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#675C52FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/17005348/output_3590629424.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30215_alluring-matte-portrait-of-a-beautiful-vayne-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#766860FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/17005348/output_1764365624.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30214_alluring-matte-portrait-of-a-beautiful-vayne-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#645445FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/17005348/output_4058154728.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30212_alluring-matte-portrait-of-a-beautiful-vayne-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#574E46FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/16779506/output_1269717593.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30209_alluring-matte-portrait-of-a-beautiful-vayne-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7F5E4BFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/16779506/output_242375638.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30207_alluring-matte-portrait-of-a-beautiful-vayne-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E7375FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/16779506/output_4199172863.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30206_alluring-matte-portrait-of-a-beautiful-vayne-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8C7F73FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/49340804/output_4284505140.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/28/28612_alluring-matte-portrait-of-a-beautiful-vayne-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#635F5EFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/49340804/output_166959334.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/28/28608_alluring-matte-portrait-of-a-beautiful-vayne-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#867B7AFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/47884740/output_217522277.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/28/28551_alluring-matte-portrait-of-a-beautiful-vayne-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#715F5AFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/47884740/output_3055242814.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/28/28549_alluring-matte-portrait-of-a-beautiful-vayne-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5F5849FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/47884740/output_1041105360.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/28/28548_alluring-matte-portrait-of-a-beautiful-vayne-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#947964FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/47884740/output_3198710984.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/28/28544_alluring-matte-portrait-of-a-beautiful-vayne-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#67544DFF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/56729696/output_455832822.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18020_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#636A62FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/62038002/output_4179711040.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18559_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E6468FF">
+        <img alt="Alluring Matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50921988/output_1931742636.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24994_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#635958FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/55764570/output_1344755228.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17855_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#625465FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/55764570/output_2614236726.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17849_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#615C5DFF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50604663/output_3082847069.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24946_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F5237FF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50723074/output_3830065601.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24962_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7F605CFF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50462934/output_182229916.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24930_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#736065FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50462934/output_3576265269.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24932_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#777969FF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50540553/output_3875221082.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24934_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B5160FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/16/53413085/output_1915079004.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/21/21330_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F5B5DFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/55764570/output_4162039707.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17847_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F676AFF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/16/54980458/output_966432532.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/21/21423_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#686F69FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/62038002/output_3141890846.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18560_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8B5B53FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos in a bikini, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/17/82604569/output_667209658.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/22/22434_matte-portrait-of-vayne-from-league-of-legends-with-tattoos-in-a-bikini.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#73655FFF">
+        <img alt="Vayne from League of Legends, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/40244396/output_4165748254.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19763_vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#755F56FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/55575086/output_2015182877.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17821_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#767C89FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/17/82120018/output_1510898811.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/22/22387_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#696272FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne from League of Legends in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/55762167/output_463997233.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17830_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#695E5FFF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/16/54980458/output_2994603132.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/21/21420_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#897D86FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne from League of Legends in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/55762167/output_3091561692.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17835_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6D6063FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos wearing leather, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/17/82299768/output_2787515157.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/22/22407_matte-portrait-of-vayne-from-league-of-legends-with-tattoos-wearing-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#787276FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50462934/output_2341515552.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24926_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7C6B51FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50462934/output_3887610461.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24929_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8C717CFF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50540553/output_2695424210.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24933_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#696B68FF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50666517/output_1043841057.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24958_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#735050FF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50666517/output_2066195123.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24959_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#816052FF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50723074/output_646835955.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24966_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#644C4BFF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50800675/output_1557110656.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24970_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8A6E64FF">
+        <img alt="Alluring Matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50921988/output_1996508215.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24990_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#665359FF">
+        <img alt="Alluring Matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50921988/output_2466123266.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24988_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#584E4EFF">
+        <img alt="Alluring Matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50921988/output_3832693581.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24987_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7C7286FF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50800675/output_2989031412.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24973_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#855B67FF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50723074/output_801388012.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24965_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#866667FF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50723074/output_1342247964.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24964_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8E7586FF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50666517/output_2898779750.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24951_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#938E80FF">
+        <img alt="Matte portrait of Vayne from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50540553/output_2831483890.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24939_matte-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#60655CFF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos wearing leather, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/17/82299768/output_948271015.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/22/22411_matte-portrait-of-vayne-from-league-of-legends-with-tattoos-wearing-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#857266FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos wearing leather, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/17/82433282/output_2627455244.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/22/22419_matte-portrait-of-vayne-from-league-of-legends-with-tattoos-wearing-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#515255FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/17/82207943/output_1594804992.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/22/22395_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7E6459FF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/16/53413085/output_693030553.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/21/21327_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#64615FFF">
+        <img alt="Matte portrait of Vayne from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/16/54980458/output_4287411249.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/21/21417_matte-portrait-of-vayne-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7E7C87FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne from League of Legends in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/55762167/output_628081046.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17836_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B6475FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/55575086/output_2353216887.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17820_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#68717DFF">
+        <img alt="Alluring matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/55575086/output_727687240.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17825_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#715966FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/55764570/output_537719442.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17851_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5A6978FF">
+        <img alt="Vayne from League of Legends, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/39821588/output_2000170819.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19659_vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#736965FF">
+        <img alt="Vayne from League of Legends, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/39821588/output_1017688670.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19664_vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C525CFF">
+        <img alt="Vayne from League of Legends, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/40244396/output_3908062935.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19764_vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#907263FF">
+        <img alt="Vayne from League of Legends, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/40244396/output_3094963882.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19759_vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#867063FF">
+        <img alt="Steampunk portrait of Vayne from League of Legends, Highly Detailed, Intricate, Artstation, Beautiful, Digital Painting, Sharp Focus, Concept Art, Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/52132165/output_4001045886.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/17/17205_steampunk-portrait-of-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+</div>
+
+    
+
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<footer class="relative z-10 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://github.com/NetCoreTemplates/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

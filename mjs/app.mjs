@@ -1,11 +1,10 @@
-import { createApp, reactive, ref } from "vue"
-import { JsonApiClient, $1, $$ } from "@servicestack/client"
-import ServiceStackVue from "@servicestack/vue"
-import HelloApi from "./components/HelloApi.mjs"
-import GettingStarted from "./components/GettingStarted.mjs"
-import ShellCommand from "./components/ShellCommand.mjs"
-import VueComponentGallery from "./components/VueComponentGallery.mjs"
-import VueComponentLibrary from "./components/VueComponentLibrary.mjs"
+import { createApp, reactive, ref, nextTick } from "vue"
+import { JsonApiClient, ApiResult, nameOf, appendQueryString, $1, $$ } from "@servicestack/client"
+import ServiceStackVue, { useConfig } from "@servicestack/vue"
+
+const BaseUrl = globalThis.BaseUrl = location.origin === 'http://localhost:5000' || location.origin === 'http://localhost:8080'
+    ? 'https://localhost:5001'
+    : 'https://api.blazordiffusion.com/'
 
 let client = null, Apps = []
 let AppData = {
@@ -13,41 +12,54 @@ let AppData = {
 }
 export { client, Apps }
 
-/** Simple inline component examples */
-const Hello = {
-    template: `<b>Hello, {{name}}!</b>`,
-    props: { name:String }
-}
-const Counter = {
-    template: `<b @click="count++">Counter {{count}}</b>`,
-    setup() {
-        let count = ref(1)
-        return { count }
-    }
-}
-const Plugin = {
-    template:`<div>
-        <PrimaryButton @click="show=true">Open Modal</PrimaryButton>
-        <ModalDialog v-if="show" @done="show=false">
-            <div class="p-8">Hello @servicestack/vue!</div>
-        </ModalDialog>
-    </div>`,
-    setup() {
-        const show = ref(false)
-        return { show }
-    }
-}
-
 /** Shared Components */
 const Components = {
-    HelloApi,
-    GettingStarted,
-    ShellCommand,
-    Hello,
-    Counter,
-    Plugin,
-    VueComponentGallery,
-    VueComponentLibrary,
+}
+
+const { config, setConfig } = useConfig()
+setConfig({
+    navigate: url => {
+        console.log('navigating to ', url)
+        location.href = url
+    }
+})
+
+export function useSwrClient(options) {
+    //const api = ref(new ApiResult())
+    const storage = config.value.storage
+    function cacheKey(request) {
+        const key = appendQueryString(`swr.${nameOf(request)}`, request)
+        return key
+    }
+    function fromCache(key) {
+        const json = storage.getItem(key)
+        const ret = json
+            ? JSON.parse(json)
+            : null
+        if (ret) {
+            console.log(key, json?.substring(0,100) + '...')
+        }
+        return ret
+    }
+    
+    async function api(request) {
+        const key = cacheKey(request)
+        
+        const ret = reactive(new ApiResult({ response: fromCache(key) }))
+        nextTick(async () => {
+            const r = await client.api(request)
+            if (r.succeeded && r.response) {
+                r.response._date = new Date().valueOf()
+                const json = JSON.stringify(r.response)
+                storage.setItem(key, json)
+                console.log(`set ${key}`, json?.substring(0,100) + '...')
+                ret.response = r.response
+            }
+        })
+        return ret
+    }
+    
+    return { api } 
 }
 
 const alreadyMounted = el => el.__vue_app__ 
@@ -94,7 +106,7 @@ export function mountAll() {
 /** @param {any} [exports] */
 export function init(exports) {
     if (AppData.init) return
-    client = JsonApiClient.create()
+    client = JsonApiClient.create(BaseUrl)
     AppData = reactive(AppData)
     AppData.init = true
     mountAll()

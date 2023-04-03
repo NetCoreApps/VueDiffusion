@@ -1,0 +1,1578 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Sarah Kerrigan - My App</title>
+    <base href="https://netcoreapps.github.io/VueDiffusion/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+<link rel="canonical" href="https://blazordiffusion.com/albums/sarah-kerrigan"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="diffusion.works"/>
+<meta name="twitter:creator" content="@blazordiffusion"/>
+<meta property="og:url" content="https://blazordiffusion.com/albums/sarah-kerrigan"/>
+<meta property="og:title" content="Sarah Kerrigan"/>
+<meta property="og:description" content="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha"/>
+<meta property="og:image" content="https://cdn.diffusion.works/artifacts/2022/12/08/64613063/output_1661698974.png"/>
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://api.blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex lg:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Vue Diffusion</span>
+                <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                    <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                </svg>
+                <span class="ml-2 text-xl font-semibold leading-6 text-white">Diffusion</span>
+            </a>
+        </div>
+        <div class="flex lg:hidden">
+            <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a href="signin" class="text-sm font-semibold leading-6 text-white">Sign in <span aria-hidden="true">&rarr;</span></a>
+        </div>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    <div class="lg:hidden" role="dialog" aria-modal="true">
+        <!-- Background backdrop, show/hide based on slide-over state. -->
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <a href="signin" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script type="module">
+import { mountAll } from "app.mjs"
+mountAll()
+</script>
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-24 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="24">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-6xl">Sarah Kerrigan</h1>
+    </div>
+
+    
+
+    
+<div class="grid gap-2 grid-cols-4">
+
+        <div class="relative overflow-hidden" style="background-color:#7D5D51FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64613063/output_1661698974.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13317_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#574F3EFF">
+        <img alt="Alluring matte portrait of a fierce beautiful Sarah Kerrigan in black, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/14/50087796/output_475646679.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/45/45984_alluring-matte-portrait-of-a-fierce-beautiful-sarah-kerrigan-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#574B49FF">
+        <img alt="Alluring matte portrait of a fierce beautiful Sarah Kerrigan in black, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/14/50087796/output_3656532790.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/45/45981_alluring-matte-portrait-of-a-fierce-beautiful-sarah-kerrigan-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A7473FF">
+        <img alt="Alluring matte portrait of a fierce beautiful Sarah Kerrigan in black, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/14/50087796/output_1543678252.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/45/45980_alluring-matte-portrait-of-a-fierce-beautiful-sarah-kerrigan-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#635C5AFF">
+        <img alt="Alluring matte portrait of a fierce beautiful Sarah Kerrigan in black, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/14/49998625/output_1153817468.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/45/45952_alluring-matte-portrait-of-a-fierce-beautiful-sarah-kerrigan-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5C4F3EFF">
+        <img alt="Alluring matte portrait of a fierce beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/14/48884700/output_3788616242.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/45/45661_alluring-matte-portrait-of-a-fierce-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#836D66FF">
+        <img alt="Alluring matte portrait of a fierce beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/14/48884700/output_3550218890.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/45/45658_alluring-matte-portrait-of-a-fierce-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#666760FF">
+        <img alt="Alluring matte portrait of a fierce beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/14/48884700/output_3014496383.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/45/45656_alluring-matte-portrait-of-a-fierce-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B573BFF">
+        <img alt="Alluring matte portrait of a beautiful fierce Sarah Kerrigan in leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/14/48727024/output_3167538739.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/45/45606_alluring-matte-portrait-of-a-beautiful-fierce-sarah-kerrigan-in-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#636464FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing dark blue, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/09/33882590/output_1743301691.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/43/43194_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5B626EFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing dark blue, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/09/33882590/output_1245388644.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/43/43199_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#455876FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing dark blue, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/09/33882590/output_3519427359.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/43/43198_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#72766EFF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/41204612/output_2194043705.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40549_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#747066FF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/41204612/output_957020538.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40546_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#778086FF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/41204612/output_3037078427.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40545_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#826A55FF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/41204612/output_2202470565.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40544_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#73593DFF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/41204612/output_301589619.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/40/40543_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#744A3EFF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44962602/output_3604853311.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39548_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E392CFF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44962602/output_4181226747.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39547_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#72524DFF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44962602/output_305559215.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39545_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4F332FFF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44962602/output_1665973240.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39542_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7E2B27FF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44962602/output_1576491512.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39541_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B3826FF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44962602/output_2695485961.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39540_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#626164FF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark blue, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44868921/output_2249926722.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39530_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F6B73FF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark blue, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44868921/output_3806119666.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39529_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#74685BFF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark blue, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44868921/output_3449640704.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39528_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#776359FF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark blue, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44868921/output_4038941250.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39526_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5D7371FF">
+        <img alt="Alluring matte portrait of the beautiful Sarah Kerrigan in dark blue, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/44868921/output_3509641318.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39523_alluring-matte-portrait-of-the-beautiful-sarah-kerrigan-in-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#747181FF">
+        <img alt="Matte portrait of a beautiful Sarah Kerrigan in dark blue, 8k, Highly Detailed, Intricate, Alluring, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/05/37827980/output_695303739.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/37/37589_matte-portrait-of-a-beautiful-sarah-kerrigan-in-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#685645FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42605235/output_894354720.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35604_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E5853FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42605235/output_946204521.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35603_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#675F58FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42605235/output_3984133405.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35600_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#716D6CFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42526628/output_826214952.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35597_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F6A66FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42342051/output_2084441228.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35568_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#61524AFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42342051/output_2459500997.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35563_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#655C50FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42342051/output_3804663501.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35562_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E5555FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42179643/output_671666401.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35559_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#685B64FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42179643/output_237801752.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35558_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E5E53FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42179643/output_4103607518.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35557_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#63676DFF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42179643/output_1882437166.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35555_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#706B62FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Sarah Kerrigan wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/42179643/output_2176287443.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35553_alluring-matte-portrait-of-a-beautiful-veiled-sarah-kerrigan-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#636360FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35200552/output_3909277449.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33949_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6D5954FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35200552/output_3079080417.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33946_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#60594DFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35200552/output_1232764608.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33947_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#645A4DFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35132514/output_3194903129.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33943_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B594AFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35132514/output_3069375352.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33940_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#70635EFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35132514/output_3167508797.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33939_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#66635FFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35132514/output_4198145707.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33937_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#79685AFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35132514/output_3133202939.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33941_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#695E52FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35063831/output_2331727883.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33930_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#564641FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35063831/output_3622155727.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33932_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#534E47FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35007195/output_567617646.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33920_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5D5254FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35007195/output_2109365813.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33918_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#644D3DFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/35007195/output_2291474980.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33921_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#60656AFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/34933149/output_1222383994.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33917_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B5032FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/34933149/output_3506207466.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33914_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#464034FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/34933149/output_1785675952.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33909_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#533624FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/34933149/output_2257329120.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/33/33910_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4B5044FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/24764965/output_294891067.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32858_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5A463BFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/24764965/output_2317238293.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32855_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#4E5254FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/24764965/output_184297492.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32854_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#655748FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/24764965/output_224563330.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32853_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5D6261FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/24764965/output_305303563.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32851_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8F6F55FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/50650904/output_981310454.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29123_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#635D63FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/50650904/output_760366264.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29126_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B7475FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/50650904/output_1852189591.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29129_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5C5752FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/50044224/output_2806732243.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29117_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#886964FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/50044224/output_4047930191.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29120_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#856442FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/50044224/output_3316541926.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29121_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#71674FFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49800653/output_958881897.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29113_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6D5F52FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49800653/output_3240362392.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29112_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#716F68FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49800653/output_1617745757.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29106_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E5642FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49800653/output_2606535019.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29105_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B6B60FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49800653/output_471308256.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29109_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#75644CFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49800653/output_3499254509.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29108_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#645654FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49405880/output_2082848235.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29099_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#727564FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49069189/output_1757597196.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29088_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#746355FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49069189/output_1106682693.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29092_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#604E45FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49069189/output_291552219.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29091_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7E6D5EFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/28/49069189/output_1257369560.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/29/29087_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5B4A3CFF">
+        <img alt="Sarah Kerrigan from Star Craft, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/34793426/output_1925207720.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18997_sarah-kerrigan-from-star-craft.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#766151FF">
+        <img alt="Sarah Kerrigan from Star Craft, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/34793426/output_3938225872.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18996_sarah-kerrigan-from-star-craft.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#856447FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Sarah Kerrigan with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/63735623/output_395325674.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8478_alluring-highly-detailed-matte-portrait-of-a-beautiful-sarah-kerrigan-with-shimmering-hair-in-the-st.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#847269FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Sarah Kerrigan with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/63735623/output_1018035059.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8477_alluring-highly-detailed-matte-portrait-of-a-beautiful-sarah-kerrigan-with-shimmering-hair-in-the-st.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#877674FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Sarah Kerrigan with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/63735623/output_3132678069.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8475_alluring-highly-detailed-matte-portrait-of-a-beautiful-sarah-kerrigan-with-shimmering-hair-in-the-st.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#797463FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful Sarah Kerrigan with shimmering hair in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/18/63735623/output_283358556.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8474_alluring-highly-detailed-matte-portrait-of-a-beautiful-sarah-kerrigan-with-shimmering-hair-in-the-st.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5B5D56FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/19514960/output_1214568247.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14379_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#654A34FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/19514960/output_4047037739.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14375_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B5647FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/19514960/output_551717602.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14374_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8C7362FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/19514960/output_658044726.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14372_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8A6F61FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/19514960/output_10508685.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14371_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#816E63FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/23210332/output_3302088188.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14868_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5D2D19FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/23210332/output_1462620408.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14866_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#926E71FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/23210332/output_24073377.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14862_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#A78D92FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/19580985/output_3608502408.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14367_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#82827CFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/19580985/output_1561428368.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14364_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8F7E77FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/19580985/output_2131364470.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14363_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#816963FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/19580985/output_247850368.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14362_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F452DFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64538455/output_1205286552.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13309_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6B5D5DFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64378778/output_3273049774.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13292_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#59433FFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64887016/output_2012145210.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13342_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#67504BFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64538455/output_730846623.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13306_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#785D4AFF">
+        <img alt="Matte portrait of Sarah Kerrigan with tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/33386584/output_1563233019.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10560_matte-portrait-of-sarah-kerrigan-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6F5F49FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64454267/output_2873167380.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13304_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#62656CFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64454267/output_440371561.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13302_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#976949FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/71129241/output_2911327250.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14049_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8A6F55FF">
+        <img alt="Alluring matte portrait of a beautiful tattooed Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64289897/output_1242815704.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13279_alluring-matte-portrait-of-a-beautiful-tattooed-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7E7C6FFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63938363/output_901502090.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13276_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A6B63FF">
+        <img alt="Matte portrait of Sarah Kerrigan with tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/46344552/output_3027002564.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11312_matte-portrait-of-sarah-kerrigan-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6A7680FF">
+        <img alt="Matte portrait of Sarah Kerrigan with tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/46344552/output_784258048.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11319_matte-portrait-of-sarah-kerrigan-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#706D6CFF">
+        <img alt="Colorful portrait of a tattooed Sarah Kerrigan with a grey scale face, 4k, Highly Detailed, Hyper Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/28197583/output_1305880824.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10271_colorful-portrait-of-a-tattooed-sarah-kerrigan-with-a-grey-scale-face.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7D6D4EFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/71129241/output_1978541343.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14048_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7C6652FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/71129241/output_2676009039.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14045_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7D6865FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/71129241/output_1913270369.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14044_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#827266FF">
+        <img alt="Anime matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64789830/output_2439966120.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13336_anime-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#9A7874FF">
+        <img alt="Anime matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64789830/output_1377098475.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13340_anime-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#745349FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64613063/output_749810292.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13321_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#645F57FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64613063/output_535559748.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13322_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#574635FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64613063/output_3272123694.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13315_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#80675BFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64538455/output_1599224901.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13312_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#9D96A1FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64538455/output_317863234.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13311_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#786C6BFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64538455/output_1606225616.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13305_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#57403DFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64378778/output_2256256153.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13291_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B614EFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64378778/output_4114153438.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13290_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#504D48FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64378778/output_4056689144.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13288_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#785A43FF">
+        <img alt="Alluring matte portrait of a beautiful tattooed Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64289897/output_1018282501.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13283_alluring-matte-portrait-of-a-beautiful-tattooed-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C665FFF">
+        <img alt="Alluring matte portrait of a beautiful tattooed Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/64289897/output_4285411791.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13282_alluring-matte-portrait-of-a-beautiful-tattooed-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7B442FFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63938363/output_1599813167.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13270_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A4D3FFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63938363/output_44887333.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13269_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#634744FF">
+        <img alt="Matte portrait of Sarah Kerrigan with tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/33386584/output_1080598378.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10558_matte-portrait-of-sarah-kerrigan-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6C564FFF">
+        <img alt="Matte portrait of Sarah Kerrigan with tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/33386584/output_2231518662.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10557_matte-portrait-of-sarah-kerrigan-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#61595DFF">
+        <img alt="Matte portrait of Sarah Kerrigan with tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/33386584/output_1384489735.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10559_matte-portrait-of-sarah-kerrigan-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#753F32FF">
+        <img alt="Matte portrait of Sarah Kerrigan with tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/46344552/output_2074189300.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11317_matte-portrait-of-sarah-kerrigan-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#555C55FF">
+        <img alt="Matte portrait of Sarah Kerrigan with tattoos, 8k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/29/46344552/output_4258459354.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/11/11314_matte-portrait-of-sarah-kerrigan-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#775670FF">
+        <img alt="Anime closeup of Ruby Rose as Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/12402929/output_1499434656.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3723_anime-closeup-of-ruby-rose-as-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#835C64FF">
+        <img alt="Anime closeup of Ruby Rose as Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/12402929/output_370853655.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3722_anime-closeup-of-ruby-rose-as-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#857684FF">
+        <img alt="Anime closeup of Ruby Rose as Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/12402929/output_1471334296.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3721_anime-closeup-of-ruby-rose-as-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7E5A5CFF">
+        <img alt="Anime closeup of Ruby Rose as Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/12402929/output_1854163610.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3718_anime-closeup-of-ruby-rose-as-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#87525BFF">
+        <img alt="Anime closeup of Ruby Rose as Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/12402929/output_3347946115.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3726_anime-closeup-of-ruby-rose-as-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#A58372FF">
+        <img alt="Anime closeup of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/10491727/output_1517801161.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3591_anime-closeup-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#645047FF">
+        <img alt="Anime closeup of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/10491727/output_3861021686.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3584_anime-closeup-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#806854FF">
+        <img alt="Anime closeup of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/10491727/output_3939842386.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3588_anime-closeup-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#848D91FF">
+        <img alt="Anime closeup of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/10491727/output_3308900109.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3583_anime-closeup-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8D6E67FF">
+        <img alt="Anime closeup of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/10267128/output_3023154359.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3571_anime-closeup-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#866A76FF">
+        <img alt="Anime closeup of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/10267128/output_2761613446.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3568_anime-closeup-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A5C52FF">
+        <img alt="Anime closeup of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/10267128/output_1181962067.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3565_anime-closeup-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#79544AFF">
+        <img alt="Anime closeup of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/10366430/output_46309212.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3580_anime-closeup-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5C5A5BFF">
+        <img alt="Black &amp; White portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37763514/output_4119068346.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5247_black-white-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#615F60FF">
+        <img alt="Black &amp; White portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37763514/output_2592194016.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5246_black-white-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#737272FF">
+        <img alt="Black &amp; White portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37849281/output_4143474642.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5253_black-white-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#686767FF">
+        <img alt="Black &amp; White portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37849281/output_4045369966.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5249_black-white-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#535152FF">
+        <img alt="Black &amp; White portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37849281/output_2215630620.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5250_black-white-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5E5D5DFF">
+        <img alt="Black &amp; White portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/14/37849281/output_725478016.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5256_black-white-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7A5251FF">
+        <img alt="Closeup portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/02/45697250/output_1871487870.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/2/2477_closeup-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#845854FF">
+        <img alt="Closeup portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/02/45697250/output_2124206592.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/2/2474_closeup-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#647383FF">
+        <img alt="Closeup portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/02/45697250/output_1808934337.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/2/2473_closeup-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#757172FF">
+        <img alt="Closeup portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/02/45697250/output_1140884777.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/2/2470_closeup-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8B6F69FF">
+        <img alt="Closeup portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/02/45697250/output_3684168804.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/2/2478_closeup-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7F736CFF">
+        <img alt="Anime closeup of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/10570663/output_3000331386.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3600_anime-closeup-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#5D4842FF">
+        <img alt="Steampunk portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/02/45775708/output_1973534528.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/2/2483_steampunk-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7F5336FF">
+        <img alt="Steampunk portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/02/45775708/output_3814809676.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/2/2486_steampunk-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#8A6349FF">
+        <img alt="Steampunk portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/02/45775708/output_2385363779.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/2/2481_steampunk-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#695C62FF">
+        <img alt="Steampunk portrait of Sarah Kerrigan, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/02/45775708/output_1604045691.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/2/2485_steampunk-portrait-of-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#835B3DFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63677891/output_1407398259.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13257_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#7C6953FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63677891/output_2356197107.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13251_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#65453EFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63677891/output_4024311063.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13259_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#715949FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63800742/output_3068062623.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13267_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#925C3EFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63800742/output_2791591911.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13266_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#93857EFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63800742/output_3393241100.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13265_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#9E6F58FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63800742/output_3046500359.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13264_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E5033FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63800742/output_1140753835.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13263_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#6E472AFF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63800742/output_1381373061.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13262_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#584834FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63800742/output_418070655.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13261_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+        <div class="relative overflow-hidden" style="background-color:#513829FF">
+        <img alt="Alluring matte portrait of a beautiful Sarah Kerrigan, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/63800742/output_1314781748.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13260_alluring-matte-portrait-of-a-beautiful-sarah-kerrigan.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+</div>
+
+    
+
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<footer class="relative z-10 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://github.com/NetCoreTemplates/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
