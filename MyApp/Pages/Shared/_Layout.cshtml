@@ -15,6 +15,7 @@
     {
         ["app.mjs"] =              ("./mjs/app.mjs",                     "./mjs/app.mjs"),
         ["dtos.mjs"] =             ("./mjs/dtos.mjs",                    "./mjs/dtos.mjs"),
+        ["store.mjs"] =            ("./mjs/store.mjs",                   "./mjs/store.mjs"),
         ["vue"] =                  ("./lib/mjs/vue.mjs",                 "./lib/mjs/vue.min.mjs"),
         ["@servicestack/client"] = ("./lib/mjs/servicestack-client.mjs", "./lib/mjs/servicestack-client.min.mjs"),
         ["@servicestack/vue"] =    ("./lib/mjs/servicestack-vue.mjs",    "./lib/mjs/servicestack-vue.min.mjs"),
@@ -36,9 +37,9 @@
             </div>
         </main>
     </div>
-</div>
 
-@await Html.PartialAsync("Footer")
+    @await Html.PartialAsync("Footer")
+</div>
 
 <script type="module">
 import { init } from "app.mjs"

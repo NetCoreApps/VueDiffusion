@@ -36,20 +36,18 @@
 </div>
 
 <script type="module">
-import { ref, onMounted, onUnmounted, computed } from "vue"
-import { ApiResult } from "@@servicestack/client"
-import { useClient } from "@@servicestack/vue"
+import { ref, inject, onMounted, onUnmounted, computed } from "vue"
+import { ApiResult, queryString, pick } from "@@servicestack/client"
+import { useClient, useUtils } from "@@servicestack/vue"
 import { mount } from "app.mjs"
+import { Store } from "store.mjs"
 import { SearchArtifacts, AnonData, QueryArtifacts } from "dtos.mjs"
-import { ArtifactImage, ArtifactGallery, getAlbumCoverArtifactId } from "./mjs/components/Artifacts.mjs" 
 
 const Search = {
-    components: {
-        ArtifactImage,
-        ArtifactGallery,
-    },
     setup() {
+        const store = inject('store')
         const client = useClient()
+        const { pushState } = useUtils()
         const results = ref([])
         const api = ref(new ApiResult())
         const topAlbums = ref([])
@@ -65,6 +63,10 @@ const Search = {
         async function update() {
             request.value.skip = 0
             request.value.take = 50
+            // clear existing search params
+            let args = Object.assign(Object.keys(queryString(location.search)).reduce((acc,x) => {acc[x] = undefined; return acc}, {}),
+                { query: request.value.query || undefined })
+            pushState(args)
             api.value = await client.api(request.value)
             if (api.value.succeeded) {
                 results.value = api.value.response?.results || []
@@ -82,7 +84,7 @@ const Search = {
         }
         
         function albumCover(album) {
-            return artifactsMap.value[getAlbumCoverArtifactId(album)]
+            return artifactsMap.value[store.getAlbumCoverArtifactId(album)]
         }
         
         async function loadMore() {
@@ -103,7 +105,11 @@ const Search = {
         
         let observer = null
         
-        onMounted(async () => {            
+        onMounted(async () => {
+            const qs = queryString(location.search)
+            const requestArgs = pick(qs, ['query','similar','by','user','modifier','artist','album'])
+            Object.assign(request.value, requestArgs)
+            
             await Promise.all([
                 client.swr(request.value, r => {
                     api.value = r
@@ -112,7 +118,7 @@ const Search = {
                 }), 
                 client.swr(new AnonData(), async api => {
                     topAlbums.value = api.response?.topAlbums || []
-                    const albumIds = topAlbums.value.map(getAlbumCoverArtifactId)
+                    const albumIds = topAlbums.value.map(store.getAlbumCoverArtifactId)
                     if (albumIds.length > 0)
                         await client.swr(new QueryArtifacts({ ids:albumIds }), loadArtifacts)
                 })
