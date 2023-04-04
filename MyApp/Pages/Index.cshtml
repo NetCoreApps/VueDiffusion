@@ -58,6 +58,8 @@ const Search = {
         const topAlbums = computed(() => apiAlbums.value.response?.topAlbums || [])
         const request = ref(new SearchArtifacts({
             query: '',
+            skip: 0,
+            take: 50
         }))
         const bottom = ref()
         const loadingMore = ref(false)
@@ -75,16 +77,10 @@ const Search = {
         
         const artifactsMap = ref({})
         
-        async function loadAnon() {
-            apiAlbums.value = await swr.api(new AnonData())
-        }
-        
         watch([apiAlbums], async () => {
             const albumIds = topAlbums.value.map(getAlbumCoverArtifactId)
             console.log(`watch([apiAlbums])`, albumIds)
-            apiArtifacts.value = albumIds.length > 0
-                ? await swr.api(new QueryArtifacts({ ids:albumIds }))
-                : new ApiResult()
+            await swr.api(new QueryArtifacts({ ids:albumIds }), r => apiArtifacts.value = r)
         })
         watch([apiArtifacts], async () => {
             console.log(`watch([apiArtifacts])`, apiArtifacts.value.response?.results)
@@ -116,8 +112,14 @@ const Search = {
         
         let observer = null
         
-        onMounted(async () => {
-            await Promise.all([update(),loadAnon()])
+        onMounted(async () => {            
+            await Promise.all([
+                swr.api(request.value, r => {
+                    api.value = r
+                    results.value = r.response?.results || []
+                }), 
+                await swr.api(new AnonData(), r => apiAlbums.value = r)
+            ])
             setTimeout(() => {
                 observer = new IntersectionObserver(
                     ([{isIntersecting, target}]) => { 
