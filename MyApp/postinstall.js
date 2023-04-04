@@ -32,7 +32,6 @@ const defaultHostPrefix = 'https://raw.githubusercontent.com/NetCoreTemplates/ra
 const hostFiles = [
     'Markdown.Blog.cs',
     'Markdown.Pages.cs',
-    'Markdown.WhatsNew.cs',
     'MarkdownPagesBase.cs',
 ]
 

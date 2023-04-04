@@ -31,41 +31,6 @@ export function notifyApiResult($ref) {
     $ref.value = hold
 }
 
-export function useSwrClient(options) {
-    //const api = ref(new ApiResult())
-    const storage = config.value.storage
-    function cacheKey(request) {
-        const key = appendQueryString(`swr.${nameOf(request)}`, request)
-        return key
-    }
-    function fromCache(key) {
-        const json = storage.getItem(key)
-        const ret = json
-            ? JSON.parse(json)
-            : null
-        if (ret) {
-            console.log(key, json?.substring(0,100) + '...')
-        }
-        return ret
-    }
-    
-    async function api(request, fn) {
-        const key = cacheKey(request)
-
-        fn(new ApiResult({ response: fromCache(key) }))
-        const api = await client.api(request)
-        if (api.succeeded && api.response) {
-            api.response._date = new Date().valueOf()
-            const json = JSON.stringify(api.response)
-            storage.setItem(key, json)
-            console.log(`set ${key}`, json?.substring(0,100) + '...')
-            fn(api)
-        }
-    }
-    
-    return { api } 
-}
-
 const alreadyMounted = el => el.__vue_app__ 
 
 /** Mount Vue3 Component
