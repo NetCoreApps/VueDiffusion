@@ -49,21 +49,18 @@ export function useSwrClient(options) {
         return ret
     }
     
-    async function api(request) {
+    async function api(request, fn) {
         const key = cacheKey(request)
-        
-        const ret = reactive(new ApiResult({ response: fromCache(key) }))
-        nextTick(async () => {
-            const r = await client.api(request)
-            if (r.succeeded && r.response) {
-                r.response._date = new Date().valueOf()
-                const json = JSON.stringify(r.response)
-                storage.setItem(key, json)
-                console.log(`set ${key}`, json?.substring(0,100) + '...')
-                ret.response = r.response
-            }
-        })
-        return ret
+
+        fn(new ApiResult({ response: fromCache(key) }))
+        const api = await client.api(request)
+        if (api.succeeded && api.response) {
+            api.response._date = new Date().valueOf()
+            const json = JSON.stringify(api.response)
+            storage.setItem(key, json)
+            console.log(`set ${key}`, json?.substring(0,100) + '...')
+            fn(api)
+        }
     }
     
     return { api } 
