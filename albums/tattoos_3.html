@@ -52,7 +52,7 @@
                     <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="signin" class="text-sm font-semibold leading-6 text-white">Sign in <span aria-hidden="true">&rarr;</span></a>
+            <div data-component="SignInLink"><div class="signin-link cursor-pointer -mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></div>
         </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
@@ -82,7 +82,7 @@
                             <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
                     </div>
                     <div class="py-6">
-                        <a href="signin" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in</a>
+                        <div data-component="SignInLink"><div class="signin-link cursor-pointer -mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></div>
                     </div>
                 </div>
             </div>
@@ -91,9 +91,11 @@
 </header>
 
 <script type="module">
-import { mountAll } from "app.mjs"
+import { mountAll, mount } from "app.mjs"
+
 mountAll()
 </script>
+
 
 <div class="bg-gray-900">
     <div class="relative isolate pt-8 min-h-screen">
@@ -746,21 +748,9 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
-                <a href="/albums/league-of-legends"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    League of Legends
-                </a>
-            </div>
-            <div class="text-center">
                 <a href="/albums/steampunk"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Steampunk
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/nidalee"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Nidalee
                 </a>
             </div>
             <div class="text-center">
@@ -770,51 +760,27 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
+                <a href="/albums/league-of-legends"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    League of Legends
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/nidalee"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Nidalee
+                </a>
+            </div>
+            <div class="text-center">
                 <a href="/albums/anime"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Anime
                 </a>
             </div>
             <div class="text-center">
-                <a href="/albums/matte-finesse"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Matte Finesse
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/leathered-league"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Leathered League
-                </a>
-            </div>
-            <div class="text-center">
                 <a href="/albums/the-witcher"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     The Witcher
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/black-white"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Black &amp; White
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/kassandra"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Kassandra
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/a-christmas-miracle"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    A Christmas Miracle
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/morgana"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Morgana
                 </a>
             </div>
             <div class="text-center">
@@ -830,9 +796,51 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
+                <a href="/albums/black-white"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Black &amp; White
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/matte-finesse"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Matte Finesse
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/a-christmas-miracle"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    A Christmas Miracle
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/morgana"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Morgana
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ninja"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ninja
+                </a>
+            </div>
+            <div class="text-center">
                 <a href="/albums/elden-ring"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Elden Ring
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/leathered-league"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Leathered League
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kassandra"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kassandra
                 </a>
             </div>
             <div class="text-center">
@@ -854,63 +862,15 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
-                <a href="/albums/ninja"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Ninja
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/ciri"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Ciri
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/goddess"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Goddess
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/katarina"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Katarina
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/fiora"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Fiora
-                </a>
-            </div>
-            <div class="text-center">
                 <a href="/albums/overwatch"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Overwatch
                 </a>
             </div>
             <div class="text-center">
-                <a href="/albums/veiled-vixens"
+                <a href="/albums/ciri"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Veiled Vixens
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/feathered-femmes"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Feathered Femmes
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/irelia"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Irelia
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/kayle"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Kayle
+                    Ciri
                 </a>
             </div>
             <div class="text-center">
@@ -950,12 +910,6 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
-                <a href="/albums/forest-femmes"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Forest Femmes
-                </a>
-            </div>
-            <div class="text-center">
                 <a href="/albums/akali"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Akali
@@ -986,6 +940,18 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
+                <a href="/albums/goddess"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Goddess
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/katarina"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Katarina
+                </a>
+            </div>
+            <div class="text-center">
                 <a href="/albums/assassin-s-creed"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Assassin&#x27;s Creed
@@ -995,6 +961,12 @@ mountAll()
                 <a href="/albums/princess-mononoke"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Princess Mononoke
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fiora"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fiora
                 </a>
             </div>
             <div class="text-center">
@@ -1019,6 +991,12 @@ mountAll()
                 <a href="/albums/poison-ivy"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Poison Ivy
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/veiled-vixens"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Veiled Vixens
                 </a>
             </div>
             <div class="text-center">
@@ -1049,6 +1027,24 @@ mountAll()
                 <a href="/albums/cassandra-cain"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Cassandra Cain
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/feathered-femmes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Feathered Femmes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/irelia"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Irelia
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kayle"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kayle
                 </a>
             </div>
             <div class="text-center">
@@ -1151,6 +1147,12 @@ mountAll()
                 <a href="/albums/evil"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     evil
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/forest-femmes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Forest Femmes
                 </a>
             </div>
             <div class="text-center">

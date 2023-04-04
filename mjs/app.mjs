@@ -1,8 +1,10 @@
-import { createApp, reactive, ref, nextTick, inject } from "vue"
-import { JsonApiClient, ApiResult, nameOf, appendQueryString, $1, $$ } from "@servicestack/client"
-import ServiceStackVue, { useConfig } from "@servicestack/vue"
+import { createApp, reactive, nextTick } from "vue"
+import { JsonApiClient, $1, $$ } from "@servicestack/client"
+import ServiceStackVue, { useConfig, useAuth } from "@servicestack/vue"
 import { ArtifactGallery, ArtifactImage } from "./components/Artifacts.mjs"
+import { SignInDialog, SignInLink } from "./components/Auth.mjs"
 import { BaseUrl, Store } from "./store.mjs"
+import { Authenticate } from "./dtos.mjs";
 
 let client = null, store = null, Apps = []
 let AppData = {
@@ -14,6 +16,8 @@ export { client, Apps }
 const Components = {
     ArtifactGallery, 
     ArtifactImage,
+    SignInDialog,
+    SignInLink,
 }
 
 const { config, setConfig } = useConfig()
@@ -73,6 +77,13 @@ export function init(exports) {
     store = new Store(client)
     AppData = reactive(AppData)
     AppData.init = true
+    nextTick(() => {
+        const { signIn } = useAuth()
+        const api = client.api(new Authenticate())
+        if (api.succeeded) {
+            signIn(api.response)
+        }
+    })
     mountAll()
 
     if (exports) {
