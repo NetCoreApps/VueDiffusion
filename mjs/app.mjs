@@ -1,12 +1,10 @@
-import { createApp, reactive, ref, nextTick } from "vue"
+import { createApp, reactive, ref, nextTick, inject } from "vue"
 import { JsonApiClient, ApiResult, nameOf, appendQueryString, $1, $$ } from "@servicestack/client"
 import ServiceStackVue, { useConfig } from "@servicestack/vue"
+import { ArtifactGallery, ArtifactImage } from "./components/Artifacts.mjs"
+import { BaseUrl, Store } from "./store.mjs"
 
-const BaseUrl = globalThis.BaseUrl = location.origin === 'http://localhost:5000' || location.origin === 'http://localhost:8080'
-    ? 'https://localhost:5001'
-    : 'https://api.blazordiffusion.com/'
-
-let client = null, Apps = []
+let client = null, store = null, Apps = []
 let AppData = {
     init:false
 }
@@ -14,6 +12,8 @@ export { client, Apps }
 
 /** Shared Components */
 const Components = {
+    ArtifactGallery, 
+    ArtifactImage,
 }
 
 const { config, setConfig } = useConfig()
@@ -23,13 +23,6 @@ setConfig({
         location.href = url
     }
 })
-
-/** @param {Ref<ApiResult>} $ref */
-export function notifyApiResult($ref) {
-    const hold = $ref.value
-    $ref.value = new ApiResult()
-    $ref.value = hold
-}
 
 const alreadyMounted = el => el.__vue_app__ 
 
@@ -45,6 +38,7 @@ export function mount(sel, component, props) {
     if (alreadyMounted(el)) return
     const app = createApp(component, props)
     app.provide('client', client)
+       .provide('store', store)
     Object.keys(Components).forEach(name => {
         app.component(name, Components[name])
     })
@@ -76,6 +70,7 @@ export function mountAll() {
 export function init(exports) {
     if (AppData.init) return
     client = JsonApiClient.create(BaseUrl)
+    store = new Store(client)
     AppData = reactive(AppData)
     AppData.init = true
     mountAll()

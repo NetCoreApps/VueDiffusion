@@ -15,6 +15,7 @@
     "imports": {
         "app.mjs": "./mjs/app.mjs",
         "dtos.mjs": "./mjs/dtos.mjs",
+        "store.mjs": "./mjs/store.mjs",
         "vue": "./lib/mjs/vue.min.mjs",
         "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
         "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
@@ -175,9 +176,8 @@ mountAll()
             </div>
         </main>
     </div>
-</div>
 
-<footer class="relative z-10 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+    <footer class="relative z-10 dark:border-slate-800">
   <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
     <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
       <div class="pb-6">
@@ -210,11 +210,12 @@ mountAll()
       
     </div>
     <p class="mt-10 text-center text-xs leading-5 text-gray-500">
-      <a href="https://github.com/NetCoreTemplates/razor-ssg">powered by razor</a>
+      <a href="https://razor-ssg.web-templates.io/posts/razor-ssg">powered by razor</a>
     </p>
   </div>
 </footer>
 
+</div>
 
 <script type="module">
 import { init } from "app.mjs"
