@@ -179,11 +179,12 @@ const Search = {
             await swr.api(new QueryArtifacts({ ids:albumIds }), r => apiArtifacts.value = r)
         })
         watch([apiArtifacts], async () => {
-            console.log(`watch([apiArtifacts])`, apiArtifacts.value.response?.results)
-            ;(apiArtifacts.value.response?.results || []).forEach(artifact => {
+            const artifacts = apiArtifacts.value.response?.results || []
+            console.log(`watch([apiArtifacts])`, artifacts)
+            artifacts.forEach(artifact => {
                 artifactsMap.value[artifact.id] = artifact
             })
-            notifyApiResult(apiArtifacts)
+            //notifyApiResult(apiArtifacts)
         })
         
         function albumCover(album) {
@@ -213,6 +214,7 @@ const Search = {
                 swr.api(request.value, r => {
                     api.value = r
                     results.value = r.response?.results || []
+                    hasMore = results.value.length === request.value.take
                 }), 
                 await swr.api(new AnonData(), r => apiAlbums.value = r)
             ])
