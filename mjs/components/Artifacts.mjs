@@ -1,4 +1,4 @@
-import { ref, computed, watch, inject, onMounted, onUnmounted } from "vue"
+import { ref, computed, watch, inject, onMounted, onUnmounted, getCurrentInstance } from "vue"
 import { useClient, useAuth, useUtils, useFormatters } from "@servicestack/vue"
 import { queryString, ApiResult, combinePaths } from "@servicestack/client"
 import { HardDeleteCreative, QueryArtifacts, QueryCreatives } from "../dtos.mjs"
@@ -48,12 +48,12 @@ export const ArtifactGallery = {
                             <div class="absolute w-full h-full flex z-10 text-zinc-100 justify-between drop-shadow opacity-0 group-hover:opacity-100 transition-opacity sm:mb-1 text-sm">
                                 <div class="relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
                                     <div class="sm:p-3">
-                                        <svg v-if="hasLiked(artifact)" @click.prevent.stop="unlikeArtifactAsync(artifact)"
+                                        <svg v-if="store.hasLiked(artifact)" @click.prevent.stop="unlikeArtifact(artifact)"
                                              class="w-4 h-4 sm:w-6 sm:h-6 text-red-600 hover:text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <title>undo like</title>
                                             <path fill="currentColor" d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"/>
                                         </svg>
-                                        <svg @click.prevent.stop="likeArtifactAsync(artifact)"
+                                        <svg v-else @click.prevent.stop="likeArtifact(artifact)"
                                              class="w-4 h-4 sm:w-6 sm:h-6 text-cyan-600 hover:text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <title>like</title>
                                             <path fill="currentColor" d="M12 21c-.645-.572-1.374-1.167-2.145-1.8h-.01c-2.715-2.22-5.792-4.732-7.151-7.742c-.446-.958-.683-2-.694-3.058A5.39 5.39 0 0 1 7.5 3a6.158 6.158 0 0 1 3.328.983A5.6 5.6 0 0 1 12 5c.344-.39.738-.732 1.173-1.017A6.152 6.152 0 0 1 16.5 3A5.39 5.39 0 0 1 22 8.4a7.422 7.422 0 0 1-.694 3.063c-1.359 3.01-4.435 5.521-7.15 7.737l-.01.008c-.772.629-1.5 1.224-2.145 1.8L12 21ZM7.5 5a3.535 3.535 0 0 0-2.5.992A3.342 3.342 0 0 0 4 8.4c.011.77.186 1.53.512 2.228A12.316 12.316 0 0 0 7.069 14.1c.991 1 2.131 1.968 3.117 2.782c.273.225.551.452.829.679l.175.143c.267.218.543.444.81.666l.013-.012l.006-.005h.006l.009-.007h.01l.018-.015l.041-.033l.007-.006l.011-.008h.006l.009-.008l.664-.545l.174-.143c.281-.229.559-.456.832-.681c.986-.814 2.127-1.781 3.118-2.786a12.298 12.298 0 0 0 2.557-3.471c.332-.704.51-1.472.52-2.25A3.343 3.343 0 0 0 19 6a3.535 3.535 0 0 0-2.5-1a3.988 3.988 0 0 0-2.99 1.311L12 8.051l-1.51-1.74A3.988 3.988 0 0 0 7.5 5Z"/>
@@ -129,12 +129,12 @@ export const ArtifactGallery = {
                 
                                         <div>
                                             <div class="pb-2 px-4">
-                                                <svg v-if="hasLiked(active)" @click.prevent.stop="unlikeArtifactAsync(active)"
+                                                <svg v-if="store.hasLiked(active)" @click.prevent.stop="unlikeArtifact(active)"
                                                     class="cursor-pointer mr-4 w-6 h-6 text-red-600 hover:text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                     <title>undo like</title>
                                                     <path fill="currentColor" d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z" />
                                                 </svg>
-                                                <svg v-else @click.prevent.stop="likeArtifactAsync(active)"
+                                                <svg v-else @click.prevent.stop="likeArtifact(active)"
                                                     class="cursor-pointer mr-4 w-6 h-6 text-cyan-600 hover:text-cyan-400" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                                                     <title>like</title>
                                                     <path fill="currentColor" d="M12 21c-.645-.572-1.374-1.167-2.145-1.8h-.01c-2.715-2.22-5.792-4.732-7.151-7.742c-.446-.958-.683-2-.694-3.058A5.39 5.39 0 0 1 7.5 3a6.158 6.158 0 0 1 3.328.983A5.6 5.6 0 0 1 12 5c.344-.39.738-.732 1.173-1.017A6.152 6.152 0 0 1 16.5 3A5.39 5.39 0 0 1 22 8.4a7.422 7.422 0 0 1-.694 3.063c-1.359 3.01-4.435 5.521-7.15 7.737l-.01.008c-.772.629-1.5 1.224-2.145 1.8L12 21ZM7.5 5a3.535 3.535 0 0 0-2.5.992A3.342 3.342 0 0 0 4 8.4c.011.77.186 1.53.512 2.228A12.316 12.316 0 0 0 7.069 14.1c.991 1 2.131 1.968 3.117 2.782c.273.225.551.452.829.679l.175.143c.267.218.543.444.81.666l.013-.012l.006-.005h.006l.009-.007h.01l.018-.015l.041-.033l.007-.006l.011-.008h.006l.009-.008l.664-.545l.174-.143c.281-.229.559-.456.832-.681c.986-.814 2.127-1.781 3.118-2.786a12.298 12.298 0 0 0 2.557-3.471c.332-.704.51-1.472.52-2.25A3.343 3.343 0 0 0 19 6a3.535 3.535 0 0 0-2.5-1a3.988 3.988 0 0 0-2.99 1.311L12 8.051l-1.51-1.74A3.988 3.988 0 0 0 7.5 5Z" />
@@ -233,7 +233,8 @@ export const ArtifactGallery = {
         const { user, hasRole } = useAuth()
         const { pushState } = useUtils()
         const { bytes } = useFormatters()
-
+        const instance = getCurrentInstance()
+        
         const selected = ref()
         const viewing = ref()
         const showAuth = ref(false)
@@ -244,11 +245,6 @@ export const ArtifactGallery = {
         const creative = computed(() => apiCreative.value.response?.results?.[0])
         const artifactAlbums = computed(() => [])
         const isModerator = computed(() => hasRole('Moderator'))
-
-        /** @param {Artifact} artifact */
-        function hasLiked(artifact) {
-            return false
-        }
 
         function navNext(next) {
             const artifacts = moderatedArtifacts(creative.value)
@@ -286,22 +282,26 @@ export const ArtifactGallery = {
         function resolveBorderColor(artifact, selectedId) {
             return selectedId && artifact.id == selectedId
                 ? 'border-yellow-300'
-                : 'border-slate-700'
+                : store.resolveBorderColor(artifact)
         }
         
         /** @param {Artifact} artifact */
-        function unlikeArtifactAsync(artifact) {
+        async function unlikeArtifact(artifact) {
             if (!user.value) {
                 showAuth.value = true
                 return
             }
+            await store.unlikeArtifact(artifact.id)
+            instance?.proxy?.$forceUpdate()
         }
         /** @param {Artifact} artifact */
-        function likeArtifactAsync(artifact) {
+        async function likeArtifact(artifact) {
             if (!user.value) {
                 showAuth.value = true
                 return
             }
+            await store.likeArtifact(artifact.id)
+            instance?.proxy?.$forceUpdate()
         }
         /** @param {MouseEvent} e
          *  @param {Artifact} artifact */
@@ -370,8 +370,8 @@ export const ArtifactGallery = {
 
         return { 
             AppCss, AppPrefs, store, selected, creative, viewing, active, artifactAlbums, isModerator,
-            hasLiked, isArtifactResult, bytes,
-            navTo, navNext, handleNav, modalClose, likeArtifactAsync, unlikeArtifactAsync, moderatedArtifacts, hardDelete,
+            isArtifactResult, bytes,
+            navTo, navNext, handleNav, modalClose, likeArtifact, unlikeArtifact, moderatedArtifacts, hardDelete,
             resolveBorderColor, showArtifactMenu,
             showAuth, showSignUp,
         }
