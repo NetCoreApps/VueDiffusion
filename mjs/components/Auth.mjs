@@ -176,8 +176,8 @@ export const SignInLink = {
         /** @type {Store} */
         const store = inject('store')
         const { user } = useAuth()
-        const showAuth = ref(false)
         const showAuthMenu = ref(false)
+        const showAuth = ref(false)
         const showSignUp = ref(false)
         const profileUrl = computed(() => user.value?.profileUrl || store.DefaultProfileUrl)
         const logoutUrl = computed(() => appendQueryString(combinePaths(store.BaseUrl, 'auth/logout'), { 'continue': location.href }))
