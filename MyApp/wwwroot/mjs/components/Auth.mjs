@@ -16,8 +16,8 @@ export const SignInDialog = {
             <ErrorSummary class="mb-3" except="userName,password" />
             <form @submit.prevent="submit">
                 <div class="flex flex-col gap-y-4">
-                    <TextInput id="userName" placeholder="Email" label="Email" help="Email you signed up with" v-model="request.userName" />
-                    <TextInput id="password" type="password" help="6 characters or more" v-model="request.password" />
+                    <TextInput id="userName" label="Email" help="Email you signed up with" v-model="request.userName" placeholder="" />
+                    <TextInput id="password" type="password" help="6 characters or more" v-model="request.password" placeholder="" />
                 </div>
                 <div class="mt-8">
                     <PrimaryButton class="w-full mb-4">Sign In</PrimaryButton>
@@ -115,17 +115,17 @@ export const SignUpDialog = {
             <ErrorSummary class="mb-3" except="userName,password" />
             <form @submit.prevent="submit">
                 <div class="flex flex-col gap-y-4">
-                    <TextInput id="email" v-model="request.email"/>
-                    <TextInput id="displayName" help="Your first and last name" v-model="request.displayName"/>
-                    <TextInput id="password" type="password" help="6 characters or more" v-model="request.password"/>
-                    <TextInput id="confirmPassword" type="password" v-model="request.confirmPassword"/>
+                    <TextInput id="email" v-model="request.email" placeholder="" />
+                    <TextInput id="displayName" v-model="request.displayName" placeholder="" />
+                    <TextInput id="password" type="password" help="6 characters or more" v-model="request.password" placeholder="" />
+                    <TextInput id="confirmPassword" type="password" v-model="request.confirmPassword" placeholder="" />
                 </div>
                 <div class="mt-8">
                     <PrimaryButton class="w-full mb-4">Sign Up</PrimaryButton>
                 </div>
             </form>
         </div>
-        <TextLink class="block text-center" @click="$emit('signin')">&larr; Sign In</TextLink>
+        <TextLink class="block text-center pr-4" @click="$emit('signin')">&larr; Sign In</TextLink>
     </div> 
     </ModalDialog>`,
     emits:['done','signin'],
