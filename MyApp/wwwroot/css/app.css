@@ -1281,6 +1281,10 @@ select{
   height: 100vh;
 }
 
+.h-9 {
+  height: 2.25rem;
+}
+
 .max-h-60 {
   max-height: 15rem;
 }
@@ -1400,6 +1404,10 @@ select{
 
 .w-48 {
   width: 12rem;
+}
+
+.w-9 {
+  width: 2.25rem;
 }
 
 .min-w-0 {

@@ -1,7 +1,7 @@
 import { GetCreativesInAlbums } from "./dtos.mjs"
 import { ApiResult, combinePaths } from "@servicestack/client";
 
-export const BaseUrl = globalThis.BaseUrl = location.origin === 'http://localhost:5000' || location.origin === 'http://localhost:8080'
+export const BaseUrl = globalThis.BaseUrl = location.origin === 'https://localhost:5002' || location.origin === 'http://localhost:8080'
     ? 'https://localhost:5001'
     : 'https://api.blazordiffusion.com/'
 export const AssetsBasePath = globalThis.AssetsBasePath = "https://cdn.diffusion.works"
@@ -11,6 +11,7 @@ export class Store {
     BaseUrl = BaseUrl
     AssetsBasePath = AssetsBasePath
     FallbackAssetsBasePath = FallbackAssetsBasePath
+    DefaultProfileUrl = 'data:image/svg+xml,%3Csvg style=\'color:rgb(8 145 178);border-radius: 9999px;overflow: hidden;\' xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'%3E%3Cpath fill=\'currentColor\' d=\'M200,100 a100,100 0 1 0 -167.3,73.9 a3.6,3.6 0 0 0 0.9,0.8 a99.9,99.9 0 0 0 132.9,0 l0.8,-0.8 A99.6,99.6 0 0 0 200,100 zm-192,0 a92,92 0 1 1 157.2,64.9 a75.8,75.8 0 0 0 -44.5,-34.1 a44,44 0 1 0 -41.4,0 a75.8,75.8 0 0 0 -44.5,34.1 A92.1,92.1 0 0 1 8,100 zm92,28 a36,36 0 1 1 36,-36 a36,36 0 0 1 -36,36 zm-59.1,42.4 a68,68 0 0 1 118.2,0 a91.7,91.7 0 0 1 -118.2,0 z\' /%3E%3C/svg%3E%0A'
     artifactsMap = {}
     creativesInAlbumsMap = {}
     client = null
