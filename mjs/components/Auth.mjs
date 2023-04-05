@@ -2,7 +2,7 @@ import { computed, ref, inject } from "vue"
 import { useClient, useAuth } from "@servicestack/vue"
 import { appendQueryString, combinePaths } from "@servicestack/client"
 import { Store } from "../store.mjs"
-import { Authenticate } from "../dtos.mjs";
+import { Authenticate, Register } from "../dtos.mjs"
 
 export const SignInDialog = {
     template:/*html*/`<ModalDialog @done="done" sizeClass="sm:max-w-prose sm:w-full">
@@ -21,7 +21,6 @@ export const SignInDialog = {
                 </div>
                 <div class="mt-8">
                     <PrimaryButton class="w-full mb-4">Sign In</PrimaryButton>
-                    <SecondaryButton class="w-full">Sign Up</SecondaryButton>
                 </div>
             </form>
     
@@ -50,9 +49,10 @@ export const SignInDialog = {
                 </div>
             </div>
         </div>
+        <TextLink class="mt-4 block text-center" @click="$emit('signup')">Sign Up &rarr;</TextLink>
     </div> 
     </ModalDialog>`,
-    emits:['done'],
+    emits:['done','signup'],
     setup(props, { emit }) {
         /** @type {Store} */
         const store = inject('store')
@@ -103,10 +103,65 @@ export const SignInDialog = {
     }
 }
 
+export const SignUpDialog = {
+    template:/*html*/`<ModalDialog @done="done" sizeClass="sm:max-w-prose sm:w-full">
+    <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <h2 class="text-center text-3xl font-extrabold text-gray-50">
+                Sign Up
+            </h2>
+        </div>
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <ErrorSummary class="mb-3" except="userName,password" />
+            <form @submit.prevent="submit">
+                <div class="flex flex-col gap-y-4">
+                    <TextInput id="email" v-model="request.email"/>
+                    <TextInput id="displayName" help="Your first and last name" v-model="request.displayName"/>
+                    <TextInput id="password" type="password" help="6 characters or more" v-model="request.password"/>
+                    <TextInput id="confirmPassword" type="password" v-model="request.confirmPassword"/>
+                </div>
+                <div class="mt-8">
+                    <PrimaryButton class="w-full mb-4">Sign Up</PrimaryButton>
+                </div>
+            </form>
+        </div>
+        <TextLink class="block text-center" @click="$emit('signin')">&larr; Sign In</TextLink>
+    </div> 
+    </ModalDialog>`,
+    emits:['done','signin'],
+    setup(props, { emit }) {
+        /** @type {Ref<Register>} */
+        const request = ref(new Register({ autoLogin:true }))
+        const client = useClient()
+        const { signIn } = useAuth()
+
+        function done() {
+            emit('done')
+        }
+        async function submit() {
+            if (request.value.password !== request.value.confirmPassword) {
+                client.setError({ fieldName:'confirmPassword', message:'Passwords do not match' })
+                return
+            }
+            if (request.value.password.length < 6) {
+                client.setError({ fieldName:'password', message:'Minimum of 6 characters' })
+                return
+            }
+            const api = await client.api(request.value)
+            if (api.succeeded) {
+                signIn(api.response)
+                done()
+            }
+        }
+        return { request, submit, done }
+    }
+}
+
 export const SignInLink = {
     template:`<div v-if="!user">
         <div @click="showAuth=true" class="signin-link cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div>
-        <SignInDialog v-if="showAuth" @done="showAuth=false" />
+        <SignInDialog v-if="showAuth && !showSignUp" @done="showAuth=false" @signup="showSignUp=true"/>
+        <SignUpDialog v-if="showAuth && showSignUp" @done="showAuth=false"  @signin="showSignUp=false"/>
     </div>
     <div v-else>
         <div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10"
@@ -123,8 +178,9 @@ export const SignInLink = {
         const { user } = useAuth()
         const showAuth = ref(false)
         const showAuthMenu = ref(false)
+        const showSignUp = ref(false)
         const profileUrl = computed(() => user.value?.profileUrl || store.DefaultProfileUrl)
         const logoutUrl = computed(() => appendQueryString(combinePaths(store.BaseUrl, 'auth/logout'), { 'continue': location.href }))
-        return { user, profileUrl, showAuth, showAuthMenu, logoutUrl }
+        return { user, profileUrl, showAuth, showAuthMenu, showSignUp, logoutUrl }
     }
 }

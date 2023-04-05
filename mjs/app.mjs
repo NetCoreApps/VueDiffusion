@@ -2,7 +2,7 @@ import { createApp, reactive, nextTick } from "vue"
 import { JsonApiClient, ApiResult, $1, $$ } from "@servicestack/client"
 import ServiceStackVue, { useConfig, useClient, useAuth } from "@servicestack/vue"
 import { ArtifactGallery, ArtifactImage } from "./components/Artifacts.mjs"
-import { SignInDialog, SignInLink } from "./components/Auth.mjs"
+import { SignInDialog, SignUpDialog, SignInLink } from "./components/Auth.mjs"
 import { BaseUrl, Store } from "./store.mjs"
 import { Authenticate } from "./dtos.mjs";
 
@@ -17,6 +17,7 @@ const Components = {
     ArtifactGallery, 
     ArtifactImage,
     SignInDialog,
+    SignUpDialog,
     SignInLink,
 }
 
