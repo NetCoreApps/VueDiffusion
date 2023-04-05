@@ -77,9 +77,9 @@ export function init(exports) {
     store = new Store(client)
     AppData = reactive(AppData)
     AppData.init = true
-    nextTick(() => {
+    nextTick(async () => {
         const { signIn } = useAuth()
-        const api = client.api(new Authenticate())
+        const api = await client.api(new Authenticate())
         if (api.succeeded) {
             signIn(api.response)
         }
