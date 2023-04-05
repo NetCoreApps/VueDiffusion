@@ -109,11 +109,21 @@ export const SignInLink = {
         <SignInDialog v-if="showAuth" @done="showAuth=false" />
     </div>
     <div v-else>
-        <Icon :svg="user.profileUrl" />
+        <div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10"
+             @click="showAuthMenu=!showAuthMenu">
+            <Icon :src="user.profileUrl" class="w-10 h-10 cursor-pointer" />
+        </div>
+        <div v-if="showAuthMenu" class="font-normal absolute right-2 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-black py-1 shadow-lg ring-1 ring-black dark:ring-gray-600 ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+            <a :href="logoutUrl" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800" role="menuitem" tabindex="-1">Logout</a>
+        </div>
     </div>`,
     setup() {
+        /** @type {Store} */
+        const store = inject('store')
         const { user } = useAuth()
         const showAuth = ref(false)
-        return { user, showAuth }
+        const showAuthMenu = ref(false)
+        const logoutUrl = computed(() => appendQueryString(combinePaths(store.BaseUrl, 'auth/logout'), { 'continue': location.href }))
+        return { user, showAuth, showAuthMenu, logoutUrl }
     }
 }
