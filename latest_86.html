@@ -51,7 +51,7 @@
                     <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <div data-component="SignInLink"><div class="signin-link cursor-pointer -mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></div>
+            <div data-component="SignInLink"><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></div>
         </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
@@ -81,7 +81,7 @@
                             <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
                     </div>
                     <div class="py-6">
-                        <div data-component="SignInLink"><div class="signin-link cursor-pointer -mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></div>
+                        <div data-component="SignInLink"><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></div>
                     </div>
                 </div>
             </div>
@@ -89,9 +89,18 @@
     </div>
 </header>
 
+<script>
+const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
+if (cachedAuth?.profileUrl) {
+    document.querySelectorAll('[data-component=SignInLink]').forEach(el => el.innerHTML = 
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+        </div>`)
+}
+</script>
+
 <script type="module">
 import { mountAll, mount } from "app.mjs"
-
 mountAll()
 </script>
 

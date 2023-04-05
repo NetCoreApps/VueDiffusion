@@ -1,6 +1,6 @@
 import { createApp, reactive, nextTick } from "vue"
-import { JsonApiClient, $1, $$ } from "@servicestack/client"
-import ServiceStackVue, { useConfig, useAuth } from "@servicestack/vue"
+import { JsonApiClient, ApiResult, $1, $$ } from "@servicestack/client"
+import ServiceStackVue, { useConfig, useClient, useAuth } from "@servicestack/vue"
 import { ArtifactGallery, ArtifactImage } from "./components/Artifacts.mjs"
 import { SignInDialog, SignInLink } from "./components/Auth.mjs"
 import { BaseUrl, Store } from "./store.mjs"
@@ -78,10 +78,21 @@ export function init(exports) {
     AppData = reactive(AppData)
     AppData.init = true
     nextTick(async () => {
-        const { signIn } = useAuth()
+        const { signIn, signOut } = useAuth()
+        const storage = config.value.storage
+        const cacheKey = 'swr.Authenticate'
+        const json = storage.getItem(cacheKey)
+        if (json) {
+            signIn(JSON.parse(json))
+        }
         const api = await client.api(new Authenticate())
         if (api.succeeded) {
             signIn(api.response)
+            api.response._date = new Date().valueOf()
+            storage.setItem(cacheKey, JSON.stringify(api.response))
+        } else {
+            storage.removeItem(cacheKey)
+            signOut()
         }
     })
     mountAll()
