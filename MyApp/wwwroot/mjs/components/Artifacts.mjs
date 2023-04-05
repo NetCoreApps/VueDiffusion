@@ -1,7 +1,7 @@
 import { ref, computed, watch, inject, onMounted, onUnmounted } from "vue"
 import { useClient, useAuth, useUtils, useFormatters } from "@servicestack/vue"
 import { queryString, ApiResult, combinePaths } from "@servicestack/client"
-import { QueryArtifacts, QueryCreatives } from "../dtos.mjs"
+import { HardDeleteCreative, QueryArtifacts, QueryCreatives } from "../dtos.mjs"
 import { Store, AppCss, AppPrefs } from "../store.mjs"
 
 /** @param {Artifact} artifact */
@@ -328,8 +328,11 @@ export const ArtifactGallery = {
                 : getArtifacts(creative).filter(x => x.quality >= 0 && !x.nsfw)
         }
         /** @param {number} creativeId */
-        function hardDelete(creativeId) {
-            
+        async function hardDelete(creativeId) {
+            const api = await client.api(new HardDeleteCreative({ id: creativeId }))
+            if (api.succeeded) {
+                modalClose()
+            }
         }
         
         watch([selected], async () => {
