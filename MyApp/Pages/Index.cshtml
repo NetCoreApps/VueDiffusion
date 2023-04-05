@@ -115,7 +115,7 @@ const Search = {
                     api.value = r
                     results.value = r.response?.results || []
                     hasMore = results.value.length === request.value.take
-                }), 
+                }),
                 client.swr(new AnonData(), async api => {
                     topAlbums.value = api.response?.topAlbums || []
                     const albumIds = topAlbums.value.map(store.getAlbumCoverArtifactId)

@@ -1,10 +1,10 @@
 import { createApp, reactive, nextTick } from "vue"
-import { JsonApiClient, ApiResult, $1, $$ } from "@servicestack/client"
+import { JsonApiClient, ApiResult, $1, $$, queryString } from "@servicestack/client"
 import ServiceStackVue, { useConfig, useClient, useAuth } from "@servicestack/vue"
 import { ArtifactGallery, ArtifactImage } from "./components/Artifacts.mjs"
 import { SignInDialog, SignUpDialog, SignInLink } from "./components/Auth.mjs"
 import { BaseUrl, Store } from "./store.mjs"
-import { Authenticate } from "./dtos.mjs";
+import { Authenticate } from "./dtos.mjs"
 
 let client = null, store = null, Apps = []
 let AppData = {
@@ -78,22 +78,19 @@ export function init(exports) {
     store = new Store(client)
     AppData = reactive(AppData)
     AppData.init = true
+    
+    const qs = queryString(location.search)
+    if (qs.clear === 'storage') {
+        localStorage.clear()
+    }
+    
     nextTick(async () => {
-        const { signIn, signOut } = useAuth()
-        const storage = config.value.storage
-        const cacheKey = 'swr.Authenticate'
-        const json = storage.getItem(cacheKey)
-        if (json) {
-            signIn(JSON.parse(json))
-        }
+        store.load()
         const api = await client.api(new Authenticate())
         if (api.succeeded) {
-            signIn(api.response)
-            api.response._date = new Date().valueOf()
-            storage.setItem(cacheKey, JSON.stringify(api.response))
+            store.signIn(api.response)
         } else {
-            storage.removeItem(cacheKey)
-            signOut()
+            store.signOut()
         }
     })
     mountAll()
