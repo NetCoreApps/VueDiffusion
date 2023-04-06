@@ -5,9 +5,9 @@
 }
 
 <div id="search" class="mx-auto px-6 lg:px-8">
-    <div class="mb-8 mx-auto max-w-2xl text-center">
+    <div class="mb-10 mx-auto max-w-2xl text-center">
         <h1 class="max-w-4xl font-display text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">Stable Diffusion Search</h1>
-        <form v-on:submit.prevent="update" class="mt-8 text-lg mx-auto max-w-lg flex justify-center">
+        <form v-on:submit.prevent="update" class="mt-4 sm:mt-8 text-lg mx-auto max-w-lg flex justify-center">
             <text-input id="query" type="search" v-model="request.query" class="bg-transparent h-8 w-96" label="" placeholder="Search existing images"></text-input>
         </form>
     </div>
@@ -15,8 +15,8 @@
     <div class="flex">
         <div class="flex flex-col flex-shrink">
             <div class="z-10 flex-shrink sm:mr-2">
-                <div v-if="topAlbums.length" class="flex flex-col sm:-ml-4 -mt-8 pt-1 sm:pt-2 justify-center items-center">
-                    <div class="text-xs sm:text-sm text-gray-500 whitespace-nowrap w-16 sm:w-24 text-center pb-1">top albums</div>
+                <div v-if="topAlbums.length" class="flex flex-col -ml-6 sm:-ml-4 -mt-5 sm:-mt-8 pt-1 sm:pt-2 justify-center items-center">
+                    <div class="-mt-1 sm:mt-0 text-xs sm:text-sm text-gray-500 whitespace-nowrap w-16 sm:w-24 text-center pb-1">top albums</div>
                     <a :key="album.slug" v-for="album in topAlbums" :href="`/albums/${album.slug}`">
                         <div :class="['sm:mt-2 hover:opacity-80 cursor-pointer h-16 w-16 sm:h-24 sm:w-24 overflow-hidden rounded sm:rounded-lg border-2',
                                       album == album.albumRef ? 'border-yellow-400' : 'border-transparent']">

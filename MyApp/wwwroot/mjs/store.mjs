@@ -1,4 +1,7 @@
-import { Authenticate, GetCreativesInAlbums, UserData, CreateArtifactLike, DeleteArtifactLike } from "./dtos.mjs"
+import { 
+    Authenticate, Creative, Artifact, GetCreativesInAlbums, UserData, CreateArtifactLike, DeleteArtifactLike, 
+    HardDeleteCreative, 
+} from "./dtos.mjs"
 import { ApiResult, combinePaths, leftPart, rightPart } from "@servicestack/client"
 import { useAuth, useUtils } from "@servicestack/vue"
 
@@ -13,6 +16,9 @@ export class Store {
     AssetsBasePath = AssetsBasePath
     FallbackAssetsBasePath = FallbackAssetsBasePath
     DefaultProfileUrl = 'data:image/svg+xml,%3Csvg style=\'color:rgb(8 145 178);border-radius: 9999px;overflow: hidden;\' xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'%3E%3Cpath fill=\'currentColor\' d=\'M200,100 a100,100 0 1 0 -167.3,73.9 a3.6,3.6 0 0 0 0.9,0.8 a99.9,99.9 0 0 0 132.9,0 l0.8,-0.8 A99.6,99.6 0 0 0 200,100 zm-192,0 a92,92 0 1 1 157.2,64.9 a75.8,75.8 0 0 0 -44.5,-34.1 a44,44 0 1 0 -41.4,0 a75.8,75.8 0 0 0 -44.5,34.1 A92.1,92.1 0 0 1 8,100 zm92,28 a36,36 0 1 1 36,-36 a36,36 0 0 1 -36,36 zm-59.1,42.4 a68,68 0 0 1 118.2,0 a91.7,91.7 0 0 1 -118.2,0 z\' /%3E%3C/svg%3E%0A'
+    /** @type {Record<number,Creative>} */
+    creativesMap = {}
+    /** @type {Record<number,Artifact>} */
     artifactsMap = {}
     creativesInAlbumsMap = {}
     /** @type {JsonServiceClient} */
@@ -21,6 +27,10 @@ export class Store {
     auth = null
     authKey = null
     userDataKey = null
+
+    css = new AppCss()
+    data = new AppData()
+    prefs = new AppPrefs()
 
     constructor(client) {
         this.client = client
@@ -77,9 +87,44 @@ export class Store {
     signOut() {
         this.userData = null
     }
-    
-    async loadArtifacts(artifactIds) {
+
+    /** @param {Artifact[]} artifacts */
+    loadArtifacts(artifacts) { artifacts.forEach(x => this.loadArtifact(x)) }
+    /** @param {Artifact} artifact */
+    loadArtifact(artifact) { this.artifactsMap[artifact.id] = artifact }
+
+    /** @param {Creative[]} creatives */
+    loadCreatives(creatives) { creatives.forEach(x => this.loadCreative(x)) }
+    /** @param {Creative} creative */
+    loadCreative(creative) {
+        this.creativesMap[creative.id] = creative
+        this.loadArtifacts(creative.artifacts)
     }
+
+    /** @param {Artifact} artifact */
+    removeArtifact(artifact) {
+        if (artifact) return
+        const pos = this.userData.user.likes.artifactIds.indexOf(artifact.id)
+        if (pos >= 0) this.userData.user.likes.artifactIds.splice(pos,1) 
+        delete this.artifactsMap[artifact.id]
+    }
+
+    /** @param {Creative} creative */
+    removeCreative(creative) {
+        if (creative) return
+        creative.artifacts.forEach(this.removeArtifact)
+        delete this.creativesMap[creative.id]
+    }
+
+    /** @param {Creative} creative */
+    async hardDelete(creative) {
+        const api = await this.client.api(new HardDeleteCreative({ id:creative.id }))
+        if (api.succeeded) {
+            this.removeCreative(creative)
+        }
+        return api
+    }
+
     /** @param {number} creativeId */
     async getCreativeInAlbums(creativeId) {
         if (!creativeId)
@@ -156,6 +201,11 @@ export class Store {
             this.userData.user.likes.artifactIds.push(artifactId)
         }
     }
+    
+    /** @param {Artifact|ArtifactResult} artifact */
+    isArtifactResult(artifact) {
+        return artifact.userPrompt
+    }
 
     /** @param {number} artifactId */
     async unlikeArtifact(artifactId) {
@@ -169,6 +219,40 @@ export class Store {
                 artifactIds.splice(index,1)
             }
         }
+    }
+    /** @param {Creative} creative */
+    getArtifacts(creative) {
+        if (!creative) return []
+        const primary = creative.primaryArtifactId
+            ? creative.artifacts.find(x => x.id === creative.primaryArtifactId)
+            : null
+        if (!primary)
+            return creative.artifacts || []
+
+        function sortFn(prop, desc) {
+            return (a, b) => {
+                if (a[prop] < b[prop]) return desc ? 1 : -1
+                if (a[prop] > b[prop]) return desc ? -1 : 1
+                return 0
+            }
+        }
+        const sortByScore = sortFn('score', true)
+        const sortById = sortFn('id')
+        function sortByQualityAndId(a,b) {
+            const cmp = sortByScore(a,b)
+            return cmp !== 0
+                ? cmp
+                : sortById(a,b)
+        }
+        const to = [primary, ...creative.artifacts.filter(x => x.id !== creative.primaryArtifactId).sort(sortByQualityAndId)]
+        return to
+    }
+    
+    /** @param {Creative} creative */
+    moderatedArtifacts(creative) {
+        return this.isModerator
+            ? this.getArtifacts(creative)
+            : this.getArtifacts(creative).filter(x => x.quality >= 0 && !x.nsfw)
     }
 
     /** @param {Artifact} artifact */
@@ -199,8 +283,8 @@ export class Store {
     }
 }
 
-export const AppCss = {
-    gridClasses: {
+class AppCss {
+    gridClasses = {
         1: "grid-cols-1",
         2: "grid-cols-2",
         3: "grid-cols-3",
@@ -213,16 +297,30 @@ export const AppCss = {
         10: "grid-cols-10",
         11: "grid-cols-11",
         12: "grid-cols-12",
-    },
+    }
     gridClass(columns) {
         return "grid-cols-3 sm:grid-cols-4 xl:grid-cols-5"
         //return AppCss.gridClasses[columns] || "grid-cols-6"
     }
 }
-export const AppPrefs = {
-    clientWidth: 1536,
-    artifactGalleryColumns: 5,
-    shuffle: true,
+class AppPrefs {
+    clientWidth = 1536
+    artifactGalleryColumns = 5
+    shuffle = true
+}
+
+class AppData {
+    title = 'Vue Diffusion'
+    maxArtifactSize = 10 * 1024 * 1024
+    maxAvatarSize = 1024 * 1024
+    adminLinks = [{ label:'Admin', href:'/admin' }]
+    
+    categoryGroups = [
+        { name:'Scene',     items:["Quality", "Style", "Aesthetic", "Features", "Medium", "Setting", "Theme"] },
+        { name:'Effects',   items:["Effects", "CGI", "Filters", "Lenses", "Photography", "Lighting", "Color"] },
+        { name:'Art Style', items:["Art Movement", "Art Style", "18 Century", "19 Century", "20 Century", "21 Century"] },
+        { name:'Mood',      items:["Positive Mood", "Negative Mood"] },
+    ]
 }
 
 /** @param {Ref<ApiResult>} $ref */
