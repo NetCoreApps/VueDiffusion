@@ -252,7 +252,11 @@ public static class AppCss
         ["12"] = "grid-cols-12",
     };
 
-    public static string GetGridClass(int columns) => GetGridClass(columns.ToString());
+    public static string GetGridClass(int columns)
+    {
+        return "grid-cols-3 sm:grid-cols-4 xl:grid-cols-5";
+        //return GetGridClass(columns.ToString());
+    }
 
     public static string GetGridClass(string columns)
     {
