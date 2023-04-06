@@ -215,7 +215,8 @@ export const AppCss = {
         12: "grid-cols-12",
     },
     gridClass(columns) {
-        return AppCss.gridClasses[columns] || "grid-cols-6"
+        return "grid-cols-3 sm:grid-cols-4 xl:grid-cols-5"
+        //return AppCss.gridClasses[columns] || "grid-cols-6"
     }
 }
 export const AppPrefs = {

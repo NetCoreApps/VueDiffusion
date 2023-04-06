@@ -27,9 +27,9 @@
 </head>
 <body class="bg-white dark:bg-black dark:text-white">
 
-<header class="absolute inset-x-0 top-0 z-50">
+<header id="header" class="absolute inset-x-0 top-0 z-50">
     <nav class="flex items-center justify-between p-4" aria-label="Global">
-        <div class="flex lg:flex-1">
+        <div class="flex sm:flex-1">
             <a href="/" class="-m-1.5 p-1.5 flex items-center">
                 <span class="sr-only">Vue Diffusion</span>
                 <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -38,25 +38,25 @@
                 <span class="ml-2 text-xl font-semibold leading-6 text-white">Diffusion</span>
             </a>
         </div>
-        <div class="flex lg:hidden">
-            <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+        <div class="flex sm:hidden">
+            <button v-on:click="showMobileNav=true" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
                 <span class="sr-only">Open main menu</span>
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
                 </svg>
             </button>
         </div>
-        <div class="hidden lg:flex lg:gap-x-12">
+        <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
                     <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
                     <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
                     <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <div data-component="SignInLink"><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></div>
+        <div class="hidden sm:flex sm:flex-1 sm:justify-end">
+            <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
         </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
-    <div class="lg:hidden" role="dialog" aria-modal="true">
+    <div v-if="showMobileNav" class="sm:hidden" role="dialog" aria-modal="true">
         <!-- Background backdrop, show/hide based on slide-over state. -->
         <div class="fixed inset-0 z-50"></div>
         <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
@@ -67,7 +67,7 @@
                         <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
                     </svg>
                 </a>
-                <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                <button v-on:click="showMobileNav=false" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
                     <span class="sr-only">Close menu</span>
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
@@ -82,7 +82,8 @@
                             <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
                     </div>
                     <div class="py-6">
-                        <div data-component="SignInLink"><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></div>
+                        <sign-in-link menu-class="left-4">
+                            <div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
                     </div>
                 </div>
             </div>
@@ -93,7 +94,7 @@
 <script>
 const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
 if (cachedAuth?.profileUrl) {
-    document.querySelectorAll('[data-component=SignInLink]').forEach(el => el.innerHTML = 
+    document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
           <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
         </div>`)
@@ -101,7 +102,17 @@ if (cachedAuth?.profileUrl) {
 </script>
 
 <script type="module">
+import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+
+const HeaderNav = {
+    setup() {
+        const showMobileNav = ref(false)
+        return { showMobileNav }
+    }
+}
+mount('#header', HeaderNav)
+
 mountAll()
 </script>
 
@@ -117,7 +128,7 @@ mountAll()
 
 <div id="albums" class="mx-auto px-6 lg:px-8" data-album="35">
     <div class="mb-8 mx-auto max-w-2xl text-center">
-        <h1 class="max-w-4xl font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-6xl">Katarina</h1>
+        <h1 class="max-w-4xl font-display text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">Katarina</h1>
     </div>
 
     
@@ -140,7 +151,7 @@ mountAll()
     </nav>
 
     
-<div class="grid gap-2 grid-cols-4">
+<div class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
 
         <div class="relative overflow-hidden" style="background-color:#936549FF">
         <img alt="Alluring matte portrait of a beautiful Katarina wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
@@ -1039,15 +1050,15 @@ mountAll()
 
     <div class="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
             <div class="text-center">
-                <a href="/albums/tattoos"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Tattoos
-                </a>
-            </div>
-            <div class="text-center">
                 <a href="/albums/league-of-legends"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     League of Legends
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/tattoos"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Tattoos
                 </a>
             </div>
             <div class="text-center">
@@ -1057,21 +1068,9 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
-                <a href="/albums/nidalee"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Nidalee
-                </a>
-            </div>
-            <div class="text-center">
                 <a href="/albums/matte-finesse"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Matte Finesse
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/steampunk"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Steampunk
                 </a>
             </div>
             <div class="text-center">
@@ -1081,27 +1080,27 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
-                <a href="/albums/anime"
+                <a href="/albums/nidalee"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Anime
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/fantasy"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Fantasy
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/the-witcher"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    The Witcher
+                    Nidalee
                 </a>
             </div>
             <div class="text-center">
                 <a href="/albums/kassandra"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Kassandra
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/anime"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Anime
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/the-witcher"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    The Witcher
                 </a>
             </div>
             <div class="text-center">
@@ -1123,6 +1122,12 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
+                <a href="/albums/steampunk"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Steampunk
+                </a>
+            </div>
+            <div class="text-center">
                 <a href="/albums/elden-ring"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Elden Ring
@@ -1135,21 +1140,9 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
-                <a href="/albums/landscapes"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Landscapes
-                </a>
-            </div>
-            <div class="text-center">
                 <a href="/albums/dystopia"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Dystopia
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/architect"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Architect
                 </a>
             </div>
             <div class="text-center">
@@ -1165,6 +1158,12 @@ mountAll()
                 </a>
             </div>
             <div class="text-center">
+                <a href="/albums/fantasy"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fantasy
+                </a>
+            </div>
+            <div class="text-center">
                 <a href="/albums/goddess"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Goddess
@@ -1174,12 +1173,6 @@ mountAll()
                 <a href="/albums/katarina"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-300">
                     Katarina
-                </a>
-            </div>
-            <div class="text-center">
-                <a href="/albums/ninja"
-                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
-                    Ninja
                 </a>
             </div>
             <div class="text-center">
@@ -1216,6 +1209,24 @@ mountAll()
                 <a href="/albums/forest-femmes"
                    class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
                     Forest Femmes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/landscapes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Landscapes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/architect"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Architect
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ninja"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ninja
                 </a>
             </div>
             <div class="text-center">
