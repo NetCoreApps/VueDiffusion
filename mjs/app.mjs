@@ -1,7 +1,7 @@
 import { createApp, reactive, nextTick } from "vue"
 import { JsonApiClient, ApiResult, $1, $$, queryString } from "@servicestack/client"
 import ServiceStackVue, { useConfig, useClient, useAuth } from "@servicestack/vue"
-import { ArtifactGallery, ArtifactImage } from "./components/Artifacts.mjs"
+import { ArtifactGallery, ArtifactModal, ArtifactImage } from "./components/Artifacts.mjs"
 import { SignInDialog, SignUpDialog, SignInLink } from "./components/Auth.mjs"
 import { BaseUrl, Store } from "./store.mjs"
 import { Authenticate } from "./dtos.mjs"
@@ -14,7 +14,8 @@ export { client, Apps }
 
 /** Shared Components */
 const Components = {
-    ArtifactGallery, 
+    ArtifactModal,
+    ArtifactGallery,
     ArtifactImage,
     SignInDialog,
     SignUpDialog,
@@ -95,8 +96,11 @@ export function init(exports) {
     })
     mountAll()
 
-    if (exports) {
-        exports.client = client
-        exports.Apps = Apps
+    if (!exports) {
+        exports = globalThis
     }
+    exports.client = client
+    exports.Apps = Apps
+    exports.store = store
+    exports.AppData = AppData
 }
