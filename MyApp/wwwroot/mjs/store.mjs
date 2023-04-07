@@ -1,6 +1,6 @@
 import {
     Authenticate, Creative, Artifact, GetCreativesInAlbums, UserData, CreateArtifactLike, DeleteArtifactLike,
-    HardDeleteCreative, QueryCreatives, QueryArtifacts,
+    DeleteCreative, HardDeleteCreative, QueryCreatives, QueryArtifacts, AlbumRef, GetAlbumRefs, GetUserInfo,
 } from "./dtos.mjs"
 import { ApiResult, combinePaths, leftPart, rightPart } from "@servicestack/client"
 import { useAuth, useUtils } from "@servicestack/vue"
@@ -20,13 +20,21 @@ export class Store {
     creativesMap = {}
     /** @type {Record<number,Artifact>} */
     artifactsMap = {}
+    /** @type {Record<number,AlbumResult[]>} */
     creativesInAlbumsMap = {}
+    /** @type {AlbumRef[]} */
+    albumRefs = []
+    /** @type {Record<number,AlbumRef>} */
+    albumRefsMap = {}
+    /** @type {Record<number,UserResult>} */
+    userRefsMap = {}
     /** @type {JsonServiceClient} */
     client = null
     /** @type {AuthenticateResponse} */
     auth = null
     authKey = null
     userDataKey = null
+    albumRefsKey = null
 
     css = new AppCss()
     data = new AppData()
@@ -38,6 +46,7 @@ export class Store {
         const { swrCacheKey } = useUtils()
         this.authKey = swrCacheKey(new Authenticate())
         this.userDataKey = swrCacheKey(new UserData())
+        this.albumRefsKey = swrCacheKey(new GetAlbumRefs())
     }
     
     /** @type {UserDataResponse|null} */
@@ -59,7 +68,8 @@ export class Store {
     async load() {
         await Promise.all([
             this.loadAuth(),
-            this.loadUserData()
+            this.loadUserData(),
+            this.loadAlbumRefs(),
         ])
     }
     async loadAuth() {
@@ -84,17 +94,59 @@ export class Store {
             localStorage.removeItem(cacheKey)
         }
     }
+    async loadAlbumRefs() {
+        const cacheKey = this.albumRefsKey
+        const json = localStorage.getItem(cacheKey)
+        if (json) {
+            this.albumRefs = JSON.parse(json)
+            this.albumRefs.forEach(x => this.albumRefsMap[x.refId] = x)
+        }
+        const api = await this.client.api(new GetAlbumRefs())
+        if (api.succeeded) {
+            this.albumRefs = api.response.results || []
+            this.albumRefs.forEach(x => this.albumRefsMap[x.refId] = x)
+            localStorage.setItem(cacheKey, JSON.stringify(this.albumRefs))
+        }
+    }
+    
+    /** @param {string} userRef */
+    async loadUserByRef(userRef) {
+        if (this.userRefsMap[userRef])
+            return this.userRefsMap[userRef]
+        const api = await this.client.api(new GetUserInfo({ refId:userRef }))
+        if (api.succeeded) {
+            const result = api.response.result
+            if (result)
+                this.userRefsMap[result.refId] = result
+            return result
+        }
+    }
+    
     signOut() {
         this.userData = null
     }
 
+    /** @param {number[]} ids */
+    async loadArtifactsByIds(ids) {
+        const missingIds = []
+        ids.forEach(id => {
+            if (!this.artifactsMap[id]) missingIds.push(id)
+        })
+        if (missingIds.length > 0) {
+            const api = await this.client.api(new QueryArtifacts({ ids:missingIds }))
+            if (api.succeeded) {
+                this.loadArtifacts(api.response.results)
+            }
+        }
+    }
+    
     /** @param {Artifact[]} artifacts */
-    loadArtifacts(artifacts) { artifacts.forEach(x => this.loadArtifact(x)) }
+    loadArtifacts(artifacts) { artifacts?.forEach(x => this.loadArtifact(x)) }
     /** @param {Artifact} artifact */
-    loadArtifact(artifact) { return this.artifactsMap[artifact.id] = artifact }
+    loadArtifact(artifact) { return artifact && (this.artifactsMap[artifact.id] = artifact) }
 
     /** @param {Creative[]} creatives */
-    loadCreatives(creatives) { creatives.forEach(x => this.loadCreative(x)) }
+    loadCreatives(creatives) { creatives?.forEach(x => this.loadCreative(x)) }
     /** @param {Creative} creative */
     loadCreative(creative) {
         if (creative) {
@@ -142,6 +194,15 @@ export class Store {
     }
 
     /** @param {Creative} creative */
+    async softDelete(creative) {
+        const api = await this.client.apiVoid(new DeleteCreative({ id:creative.id }))
+        if (api.succeeded) {
+            this.removeCreative(creative)
+        }
+        return api
+    }
+
+    /** @param {Creative} creative */
     async hardDelete(creative) {
         const api = await this.client.apiVoid(new HardDeleteCreative({ id:creative.id }))
         if (api.succeeded) {
@@ -158,7 +219,11 @@ export class Store {
             return this.creativesInAlbumsMap[creativeId]
         const api = await this.client.api(new GetCreativesInAlbums({ creativeId }))
         if (api.succeeded) {
-            return this.creativesInAlbumsMap[creativeId] = api.response?.results || []
+            /** @type {AlbumResult[]} */
+            const albums = api.response?.results || []
+            this.creativesInAlbumsMap[creativeId] = albums
+            await this.loadArtifactsByIds(albums.map(x => x.primaryArtifactId).filter(x => !!x))
+            return albums
         }
         return []
     }
@@ -168,6 +233,15 @@ export class Store {
             ? album.primaryArtifactId
             : album.artifactIds[0]
     }
+    /** @param {Album|AlbumResult} album */
+    albumCover(album) {
+        return this.artifactsMap[store.getAlbumCoverArtifactId(album)]
+    }
+    /** @param {string} albumRef */
+    albumByRef(albumRef) {
+        //return this.
+    }
+    
     /** @param {String} creativeId */
     createUrl(creativeId) {
         return `/create?id=${creativeId}`
