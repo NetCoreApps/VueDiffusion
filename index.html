@@ -136,14 +136,17 @@ mountAll()
                     <a :key="album.slug" v-for="album in topAlbums" :href="`/albums/${album.slug}`">
                         <div :class="['sm:mt-2 hover:opacity-80 cursor-pointer h-16 w-16 sm:h-24 sm:w-24 overflow-hidden rounded sm:rounded-lg border-2',
                                       album == album.albumRef ? 'border-yellow-400' : 'border-transparent']">
-                            <artifact-image :artifact="albumCover(album)" class="flex w-full h-full" image-class="object-cover"></artifact-image>
+                            <artifact-image :artifact="store.albumCover(album)" class="flex w-full h-full" image-class="object-cover"></artifact-image>
                         </div>
                     </a>
                     <a href="/albums/" to="/albums" class="text-xs sm:text-sm text-gray-500 dark:hover:text-gray-300 whitespace-nowrap w-16 sm:w-24 text-center pb-1">more</a>
                 </div>
             </div>
         </div>
-        <artifact-gallery :results="results"></artifact-gallery>
+        <div v-cloak>
+            <h3 v-if="title" class="text-xl absolute -mt-8 ml-4">{{title}}</h3>
+            <artifact-gallery :results="results"></artifact-gallery>
+        </div>
     </div>
     <div class="mt-12 flex justify-center">
         <loading v-if="loadingMore" class="text-gray-400">loading...</loading>
@@ -153,7 +156,7 @@ mountAll()
 
 <script type="module">
 import { ref, inject, onMounted, onUnmounted, computed } from "vue"
-import { ApiResult, queryString, pick } from "@servicestack/client"
+import { ApiResult, queryString, pick, map } from "@servicestack/client"
 import { useClient, useUtils } from "@servicestack/vue"
 import { mount } from "app.mjs"
 import { Store } from "store.mjs"
@@ -175,6 +178,7 @@ const Search = {
         const bottom = ref()
         const loadingMore = ref(false)
         let hasMore = false
+        const title = ref('')
         
         async function update() {
             request.value.skip = 0
@@ -190,21 +194,8 @@ const Search = {
             }
         }
         
-        const artifactsMap = ref({})
-        
-        function loadArtifacts(api) {
-            const artifacts = api.response?.results || []
-            artifacts.forEach(artifact => {
-                artifactsMap.value[artifact.id] = artifact
-            })
-        }
-        
-        function albumCover(album) {
-            return artifactsMap.value[store.getAlbumCoverArtifactId(album)]
-        }
-        
         async function loadMore() {
-            console.log('load more...', hasMore)
+            //console.log('load more...', hasMore)
             if (hasMore) {
                 request.value.skip += request.value.take
                 request.value.take = 100
@@ -236,9 +227,16 @@ const Search = {
                     topAlbums.value = api.response?.topAlbums || []
                     const albumIds = topAlbums.value.map(store.getAlbumCoverArtifactId)
                     if (albumIds.length > 0)
-                        await client.swr(new QueryArtifacts({ ids:albumIds }), loadArtifacts)
-                })
+                        await client.swr(new QueryArtifacts({ ids:albumIds }), api => store.loadArtifacts(api.response?.results))
+                }),
             ])
+            if (request.value.album) {
+                title.value = store.albumRefsMap[request.value.album]?.name || ''
+            } else if (request.value.user) {
+                await store.loadUserByRef(request.value.user)
+                title.value = map(store.userRefsMap[request.value.user]?.handle, x => `@${x}`) || ''
+            }             
+            
             setTimeout(() => {
                 observer = new IntersectionObserver(
                     ([{isIntersecting, target}]) => { 
@@ -250,7 +248,7 @@ const Search = {
         onUnmounted(() => observer.unobserve())
         
         return { 
-            request, api, topAlbums, results, update, albumCover, bottom, loadingMore,
+            store, request, api, topAlbums, results, update, bottom, loadingMore, title,
         }
     }
 }

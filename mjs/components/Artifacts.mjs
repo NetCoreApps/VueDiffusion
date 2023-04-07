@@ -7,9 +7,9 @@ import { Store } from "../store.mjs"
 export const ArtifactImage = {
     template:`<div v-if="artifact" class="overflow-hidden" :style="store.getBackgroundStyle(artifact)">
       <img :alt="artifact.prompt" :width="width" :height="height" :class="imageClass"
-           :src="store.getPublicUrl(artifact)" loading="lazy" @error="onError(artifact)">
+           :src="store.getPublicUrl(artifact)" :loading="loading || 'lazy'" @error="onError(artifact)">
   </div>`,
-    props:['artifact','imageClass','minSize'],
+    props:['artifact','imageClass','minSize', 'loading'],
     setup(props) {
         /** @type {Store} */
         const store = inject('store')
@@ -51,7 +51,7 @@ export const ArtifactModal = {
                 </div>
                 <div>
                     <div class="relative p-2 w-max flex flex-col mx-auto" @contextmenu.prevent="showArtifactMenu($event, artifact)">
-                        <ArtifactImage :artifact="artifact" class="rounded sm:rounded-lg" />
+                        <ArtifactImage :artifact="artifact" class="rounded sm:rounded-lg" loading="eager" />
             
                         <div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden sm:m-1 rounded sm:rounded-xl">
                             <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp px-2 pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
@@ -130,7 +130,7 @@ export const ArtifactModal = {
                 <div v-for="a in store.moderatedArtifacts(creative)" :key="a.id" @click="$emit('selected',a)"
                     class="relative overflow-hidden cursor-pointer">
                     <div class="relative flex justify-center sm:mx-2 sm:mb-4">
-                        <ArtifactImage :artifact="a" :minSize="118" 
+                        <ArtifactImage :artifact="a" :minSize="118" loading="eager" 
                             :class="['rounded sm:rounded-xl border-2 max-w-[118px] sm:max-w-none object-cover', resolveBorderColor(a, artifact?.id)]"  />
         
                         <div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden rounded sm:rounded-xl">
@@ -154,9 +154,9 @@ export const ArtifactModal = {
                     top albums
                 </div>
                 <div class="flex flex-wrap">
-                    <a :key="album.albumRef" :href="store.searchByAlbumUrl(album.albumRef)" class="flex flex-col group mr-2">
+                    <a v-for="album in artifactAlbums" :key="album.albumRef" :href="store.searchByAlbumUrl(album.albumRef)" class="flex flex-col group mr-2">
                         <div class="mt-2 hover:opacity-80 cursor-pointer h-24 w-24 overflow-hidden rounded sm:rounded-lg border sm:border-2 border-transparent">
-                            <ArtifactImage :artifact="albumCover(album)" class="flex w-full h-full" imageClass="object-cover" />
+                            <ArtifactImage :artifact="store.albumCover(album)" class="flex w-full h-full" imageClass="object-cover" loading="eager" />
                         </div>
                         <div class="w-24 text-xs text-center overflow-hidden group-hover:text-gray-200">
                             {{ album.name }}
@@ -179,7 +179,10 @@ export const ArtifactModal = {
         /** @type {Store} */
         const store = inject('store')
 
-        const artifactAlbums = computed(() => [])
+        /** @type {Ref<AlbumResult[]>} */
+        const creativeAlbums = ref([])
+        /** @type {ComputedRef<AlbumResult[]>} */
+        const artifactAlbums = computed(() => creativeAlbums.value.filter(x => x.artifactIds.includes(props.artifact.id)))
         const creative = ref()
 
         /** @param {MouseEvent} e
@@ -222,7 +225,11 @@ export const ArtifactModal = {
         }
         
         onMounted(async () => {
-            creative.value = await store.getCreative(props.artifact.creativeId)
+            await Promise.all([
+                (async () => creative.value = await store.getCreative(props.artifact.creativeId))(),
+                (async () => creativeAlbums.value = await store.getCreativeInAlbums(props.artifact.creativeId))(),
+            ])
+            
             document.addEventListener('keydown', handleNav)
         })
         onUnmounted(() => document.removeEventListener('keydown', handleNav))
@@ -350,14 +357,15 @@ export const ArtifactGallery = {
             apiCreative.value = selected.value
                 ? await client.api(new QueryCreatives({ id: selected.value.creativeId }))
                 : new ApiResult()
-            if (selected.value)
-                await store.creativesInAlbumsMap[selected.value.creativeId]
+            if (selected.value) {
+                await store.getCreativeInAlbums(selected.value.creativeId)
+            }
         })
         
         onMounted(async () => {
             const qs = queryString(location.search)
-            if (qs.id) {
-                const api = await client.api(new QueryArtifacts({ id: qs.id }))
+            if (qs.view) {
+                const api = await client.api(new QueryArtifacts({ id: qs.view }))
                 if (api.succeeded) {
                     selected.value = api.response.results[0]
                 }

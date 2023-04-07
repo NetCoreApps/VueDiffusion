@@ -9,7 +9,7 @@ import { Store } from "../store.mjs"
 
 export default {
     template:/*html*/`<div>
-    <form class="mt-4 mx-auto shadow overflow-hidden sm:rounded-md w-[420px] sm:w-[600px]" @submit.prevent="noop">
+    <form class="mt-4 mb-20 mx-auto shadow overflow-hidden sm:rounded-md w-[420px] sm:w-[600px]" @submit.prevent="noop">
         <ErrorSummary except="userPrompt,images,width,height" />
 
         <div class="px-4 space-y-6 p-2 sm:p-6">
@@ -140,19 +140,33 @@ export default {
         <Loading class="text-gray-300 font-normal" imageClass="w-7 h-7 mt-1.5">generating images...</Loading>
     </div>
     <div v-for="c in creatives">
-        <a class="block cursor-pointer my-4 flex justify-center items-center text-xl hover:underline underline-offset-4" @click.prevent="populateForm(c)" title="New from this">            
-            <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                <path fill="currentColor" d="M13.74 10.25h8.046v2.626l7.556-4.363l-7.556-4.363v2.598H9.826c1.543.864 2.79 2.174 3.915 3.5zm8.046 10.404c-.618-.195-1.407-.703-2.29-1.587c-1.79-1.756-3.713-4.675-5.732-7.227c-2.05-2.486-4.16-4.972-7.45-5.09h-3.5v3.5h3.5c.655-.028 1.682.485 2.878 1.682c1.788 1.753 3.712 4.674 5.73 7.226c1.922 2.33 3.908 4.64 6.864 5.016v2.702l7.556-4.362l-7.556-4.362v2.502z" />
-            </svg>
-            {{c.userPrompt}}
-        </a>
+        <div class="flex justify-between items-center">
+            <div></div>
+            <div class="flex justify-center items-center">
+                <a class="cursor-pointer my-4 flex justify-center items-center text-xl hover:underline underline-offset-4" @click.prevent="populateForm(c)" title="New from this">            
+                    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                        <path fill="currentColor" d="M13.74 10.25h8.046v2.626l7.556-4.363l-7.556-4.363v2.598H9.826c1.543.864 2.79 2.174 3.915 3.5zm8.046 10.404c-.618-.195-1.407-.703-2.29-1.587c-1.79-1.756-3.713-4.675-5.732-7.227c-2.05-2.486-4.16-4.972-7.45-5.09h-3.5v3.5h3.5c.655-.028 1.682.485 2.878 1.682c1.788 1.753 3.712 4.674 5.73 7.226c1.922 2.33 3.908 4.64 6.864 5.016v2.702l7.556-4.362l-7.556-4.362v2.502z" />
+                    </svg>
+                    {{c.userPrompt}}
+                </a>
+                <div class="group flex cursor-pointer" @click="discard(c)">
+                    <svg class="ml-8 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="currentColor" d="M12 12h2v12h-2zm6 0h2v12h-2z"></path><path fill="currentColor" d="M4 6v2h2v20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8h2V6zm4 22V8h16v20zm4-26h8v2h-8z"></path></svg>
+                    <div class="ml-1 invisible group-hover:visible">discard</div>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <span v-if="!c.primaryArtifactId" title="pin cover image to appear in search results">
+                    <svg class="w-6 h-6 text-yellow-400 cursor-help" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><path fill="currentColor" d="M236.8 188.09L149.35 36.22a24.76 24.76 0 0 0-42.7 0L19.2 188.09a23.51 23.51 0 0 0 0 23.72A24.35 24.35 0 0 0 40.55 224h174.9a24.35 24.35 0 0 0 21.33-12.19a23.51 23.51 0 0 0 .02-23.72Zm-13.87 15.71a8.5 8.5 0 0 1-7.48 4.2H40.55a8.5 8.5 0 0 1-7.48-4.2a7.59 7.59 0 0 1 0-7.72l87.45-151.87a8.75 8.75 0 0 1 15 0l87.45 151.87a7.59 7.59 0 0 1-.04 7.72ZM120 144v-40a8 8 0 0 1 16 0v40a8 8 0 0 1-16 0Zm20 36a12 12 0 1 1-12-12a12 12 0 0 1 12 12Z"/></svg>
+                </span>
+            </div>
+        </div>
         <div :class="['grid',store.css.gridClass(store.prefs.artifactGalleryColumns)]">
-            <div v-for="artifact in c.artifacts" :key="artifact.id" :class="[artifact.width > artifact.height ? 'col-span-2' : artifact.height > artifact.width ? 'row-span-2' : '']">
+            <div v-for="artifact in store.moderatedArtifacts(c)" :key="artifact.id" :class="[artifact.width > artifact.height ? 'col-span-2' : artifact.height > artifact.width ? 'row-span-2' : '']">
                 <div @click="showArtifact(artifact)" class="overflow-hidden flex justify-center">
                     <div class="relative sm:p-2 flex flex-col cursor-pointer items-center" :style="'max-width:' + artifact.width + 'px'"
                          @context-menu="showArtifactMenu($event, artifact)">
     
-                        <ArtifactImage :artifact="artifact" :class="['sm:rounded lg:rounded-xl border sm:border-2', resolveBorderColor(artifact, selected?.id)]" />
+                        <ArtifactImage :artifact="artifact" :class="['sm:rounded lg:rounded-xl border sm:border-2', resolveBorderColor(artifact, artifact.id == c.primaryArtifactId)]" />
     
                         <div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden sm:m-1 rounded sm:rounded-xl">
                             <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
@@ -294,6 +308,12 @@ export default {
                 await loadHistory(true)
             }
         }
+
+        /** @param {Creative} creative */
+        async function discard(creative) {
+            creativeHistory.value = creativeHistory.value.filter(x => x.id !== creative.id) 
+            await store.softDelete(creative)
+        }
         
         function closeDialogs() {
             if (!selected.value?.view) {
@@ -397,9 +417,9 @@ export default {
         const removeModifier = modifier => modifiers.value = modifiers.value.filter(x => x !== modifier)
 
         /** @param {Artifact} artifact
-         *  @param {number} [selectedId] */
-        function resolveBorderColor(artifact, selectedId) {
-            return selectedId && artifact.id == selectedId
+         *  @param {boolean} [selected] */
+        function resolveBorderColor(artifact, selected) {
+            return selected
                 ? 'border-yellow-300'
                 : store.resolveBorderColor(artifact)
         }
@@ -428,7 +448,7 @@ export default {
             store, api, loading, request, artists, modifiers, dataCache, artistOptions, modifierOptions, isDirty, groupCategories,
             creative, creatives, loadingMore, bottom, categoryModifiers, imageSize, selected, showAuth, showSignUp, active,
             resolveBorderColor, noop, navTo, populateForm, closeDialogs, submit, pinArtifact, unpinArtifact, reset, map, showArtifact,
-            selectedGroup, selectGroup, selectedCategory, selectCategory, removeArtist, addModifier, removeModifier,
+            selectedGroup, selectGroup, selectedCategory, selectCategory, removeArtist, addModifier, removeModifier, discard,
         }
     }
 }
