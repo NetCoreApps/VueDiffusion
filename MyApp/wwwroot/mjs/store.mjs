@@ -1,6 +1,6 @@
-import { 
-    Authenticate, Creative, Artifact, GetCreativesInAlbums, UserData, CreateArtifactLike, DeleteArtifactLike, 
-    HardDeleteCreative, 
+import {
+    Authenticate, Creative, Artifact, GetCreativesInAlbums, UserData, CreateArtifactLike, DeleteArtifactLike,
+    HardDeleteCreative, QueryCreatives, QueryArtifacts,
 } from "./dtos.mjs"
 import { ApiResult, combinePaths, leftPart, rightPart } from "@servicestack/client"
 import { useAuth, useUtils } from "@servicestack/vue"
@@ -91,14 +91,39 @@ export class Store {
     /** @param {Artifact[]} artifacts */
     loadArtifacts(artifacts) { artifacts.forEach(x => this.loadArtifact(x)) }
     /** @param {Artifact} artifact */
-    loadArtifact(artifact) { this.artifactsMap[artifact.id] = artifact }
+    loadArtifact(artifact) { return this.artifactsMap[artifact.id] = artifact }
 
     /** @param {Creative[]} creatives */
     loadCreatives(creatives) { creatives.forEach(x => this.loadCreative(x)) }
     /** @param {Creative} creative */
     loadCreative(creative) {
-        this.creativesMap[creative.id] = creative
-        this.loadArtifacts(creative.artifacts)
+        if (creative) {
+            this.creativesMap[creative.id] = creative
+            this.loadArtifacts(creative.artifacts)
+        }
+        return creative
+    }
+    
+    /** @param {number} id */
+    async getCreative(id) {
+        if (this.creativesMap[id])
+            return this.creativesMap[id]
+        const api = await this.client.api(new QueryCreatives({ id }))
+        if (api.succeeded) {
+            return this.loadCreative(api.response.results[0])
+        }
+        return null
+    }
+
+    /** @param {number} id */
+    async getArtifact(id) {
+        if (this.artifactsMap[id])
+            return this.artifactsMap[id]
+        const api = await this.client.api(new QueryArtifacts({ id }))
+        if (api.succeeded) {
+            return this.loadArtifact(api.response.results[0])
+        }
+        return null
     }
 
     /** @param {Artifact} artifact */
@@ -111,14 +136,14 @@ export class Store {
 
     /** @param {Creative} creative */
     removeCreative(creative) {
-        if (creative) return
+        if (!creative) return
         creative.artifacts.forEach(this.removeArtifact)
         delete this.creativesMap[creative.id]
     }
 
     /** @param {Creative} creative */
     async hardDelete(creative) {
-        const api = await this.client.api(new HardDeleteCreative({ id:creative.id }))
+        const api = await this.client.apiVoid(new HardDeleteCreative({ id:creative.id }))
         if (api.succeeded) {
             this.removeCreative(creative)
         }
