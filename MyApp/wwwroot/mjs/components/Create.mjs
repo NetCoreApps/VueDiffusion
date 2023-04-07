@@ -172,8 +172,29 @@ export default {
                             <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
     
                             <div class="absolute w-full h-full flex z-10 text-zinc-100 justify-between drop-shadow opacity-0 group-hover:opacity-100 transition-opacity sm:mb-1 text-sm">
-                                <div class="relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
-                                    <div class="sm:p-3">
+                                <div class="relative p-4 w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                                    <div class="flex justify-between flex-none">
+                                        <div class="cursor-pointer" @click.stop.prevent="">
+                                            <svg v-if="artifact.id == c.primaryArtifactId" @click.stop.prevent="unpinArtifact(c,artifact)"
+                                                    class="w-6 h-6 text-cyan-600 hover:text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                                <title>unpin</title>
+                                                <path fill="#ffce31" d="M62 25.2H39.1L32 3l-7.1 22.2H2l18.5 13.7l-7 22.1L32 47.3L50.5 61l-7.1-22.2L62 25.2z" />
+                                            </svg>
+                                            <svg v-else @click.stop.prevent="pinArtifact(c,artifact)"
+                                                    class="w-6 h-6 text-cyan-600 hover:text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <title>pin as cover image</title>
+                                                <path fill="currentColor" d="M18.27 9.81h-2.82L9.77 4.13l.71-.71l-1.42-1.41l-7.07 7.07l1.42 1.41l.71-.71l5.67 5.68h-.01v2.83l1.42 1.42l3.54-3.55l4.77 4.77l1.41-1.41l-4.77-4.77l3.53-3.53l-1.41-1.41z" />
+                                            </svg>
+                                        </div>
+    
+                                        <div class="px-1 cursor-pointer" @click.stop.prevent="showArtifactMenu($event, artifact, 140)">
+                                            <svg class="w-5 h-5 text-cyan-600 hover:text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><circle cx="8" cy="2.5" r=".75" /><circle cx="8" cy="8" r=".75" /><circle cx="8" cy="13.5" r=".75" /></g>
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:pb-1">
                                         <svg v-if="store.hasLiked(artifact)" @click.prevent.stop="unlikeArtifact(artifact)"
                                              class="w-4 h-4 sm:w-6 sm:h-6 text-red-600 hover:text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <title>undo like</title>
@@ -185,10 +206,11 @@ export default {
                                             <path fill="currentColor" d="M12 21c-.645-.572-1.374-1.167-2.145-1.8h-.01c-2.715-2.22-5.792-4.732-7.151-7.742c-.446-.958-.683-2-.694-3.058A5.39 5.39 0 0 1 7.5 3a6.158 6.158 0 0 1 3.328.983A5.6 5.6 0 0 1 12 5c.344-.39.738-.732 1.173-1.017A6.152 6.152 0 0 1 16.5 3A5.39 5.39 0 0 1 22 8.4a7.422 7.422 0 0 1-.694 3.063c-1.359 3.01-4.435 5.521-7.15 7.737l-.01.008c-.772.629-1.5 1.224-2.145 1.8L12 21ZM7.5 5a3.535 3.535 0 0 0-2.5.992A3.342 3.342 0 0 0 4 8.4c.011.77.186 1.53.512 2.228A12.316 12.316 0 0 0 7.069 14.1c.991 1 2.131 1.968 3.117 2.782c.273.225.551.452.829.679l.175.143c.267.218.543.444.81.666l.013-.012l.006-.005h.006l.009-.007h.01l.018-.015l.041-.033l.007-.006l.011-.008h.006l.009-.008l.664-.545l.174-.143c.281-.229.559-.456.832-.681c.986-.814 2.127-1.781 3.118-2.786a12.298 12.298 0 0 0 2.557-3.471c.332-.704.51-1.472.52-2.25A3.343 3.343 0 0 0 19 6a3.535 3.535 0 0 0-2.5-1a3.988 3.988 0 0 0-2.99 1.311L12 8.051l-1.51-1.74A3.988 3.988 0 0 0 7.5 5Z"/>
                                         </svg>
                                     </div>
-                                    <div class="sm:mt-4"></div>
+                                    
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -309,6 +331,25 @@ export default {
             }
         }
 
+        /** @param {Artifact} artifact */
+        async function unlikeArtifact(artifact) {
+            if (!user.value) {
+                showAuth.value = true
+                return
+            }
+            await store.unlikeArtifact(artifact.id)
+            instance?.proxy?.$forceUpdate()
+        }
+        /** @param {Artifact} artifact */
+        async function likeArtifact(artifact) {
+            if (!user.value) {
+                showAuth.value = true
+                return
+            }
+            await store.likeArtifact(artifact.id)
+            instance?.proxy?.$forceUpdate()
+        }
+
         /** @param {Creative} creative */
         async function discard(creative) {
             creativeHistory.value = creativeHistory.value.filter(x => x.id !== creative.id) 
@@ -345,21 +386,28 @@ export default {
             await loadHistory(true)
         }
 
-        async function pinArtifact(artifact) {
-            const hold = creative.value.primaryArtifactId
-            creative.value.primaryArtifactId = artifact.id
+        /** @param {Creative} c
+          * @param {Artifact} artifact */
+        async function pinArtifact(c,artifact) {
+            const hold = c.primaryArtifactId
+            c.primaryArtifactId = artifact.id
             instance?.proxy?.$forceUpdate()
 
             const api = await client.api(new UpdateCreative({ id:artifact.creativeId, primaryArtifactId:artifact.id }))
-            if (!api.succeeded) {
-                creative.value.primaryArtifactId = hold
+            if (api.succeeded) {
+                store.updatePrimaryArtifact(c, artifact.id, creativeHistory.value)
+            } else {
+                c.primaryArtifactId = hold
             }
             instance?.proxy?.$forceUpdate()
+            await fetchHistory({skip:0}, x => null) //update swr cache
         }
 
-        async function unpinArtifact(artifact) {
-            const hold = creative.value.primaryArtifactId
-            creative.value.primaryArtifactId = null
+        /** @param {Creative} c
+          * @param {Artifact} artifact */
+        async function unpinArtifact(c,artifact) {
+            const hold = c.primaryArtifactId
+            c.primaryArtifactId = null
             instance?.proxy?.$forceUpdate()
 
             const api = await client.api(new UpdateCreative({ 
@@ -367,10 +415,29 @@ export default {
                 primaryArtifactId:artifact.id,
                 unpinPrimaryArtifact:true
             }))
-            if (!api.succeeded) {
-                creative.value.primaryArtifactId = hold
+            if (api.succeeded) {
+                store.updatePrimaryArtifact(c, null, creativeHistory.value)
+            } else {
+                c.primaryArtifactId = hold
             }
             instance?.proxy?.$forceUpdate()
+            await fetchHistory({skip:0}, x => null) //update swr cache
+        }
+        async function fetchHistory({ skip }, fn) {
+            const request = new QueryCreatives({
+                ownerId: parseInt(user.value.userId),
+                take: 10,
+                skip,
+                orderByDesc:'id',
+            })
+            if (skip === 0) {
+                return await client.swr(request, fn)
+            } else {
+                const api = await client.api(request)
+                if (api.succeeded) {
+                    fn(api)
+                }
+            }
         }
 
         function reset() {
@@ -386,13 +453,8 @@ export default {
         async function loadHistory(clear=false) {
             if (user.value) {
                 loadingMore.value = true
-                await client.swr(new QueryCreatives({ 
-                    ownerId: parseInt(user.value.userId),
-                    take: 10,
-                    skip: clear ? 0 : creativeHistory.value.length,
-                    orderByDesc:'id',
-                }), api => {
-                    if (api.succeeded) {
+                await fetchHistory({ skip: clear ? 0 : creativeHistory.value.length }, api => {
+                    if (api.response) {
                         if (clear) creativeHistory.value = []
                         creativeHistory.value.push(...api.response.results)
                         store.loadCreatives(creativeHistory.value)
@@ -447,8 +509,9 @@ export default {
         return { 
             store, api, loading, request, artists, modifiers, dataCache, artistOptions, modifierOptions, isDirty, groupCategories,
             creative, creatives, loadingMore, bottom, categoryModifiers, imageSize, selected, showAuth, showSignUp, active,
-            resolveBorderColor, noop, navTo, populateForm, closeDialogs, submit, pinArtifact, unpinArtifact, reset, map, showArtifact,
+            resolveBorderColor, noop, navTo, populateForm, closeDialogs, submit, reset, map, showArtifact,
             selectedGroup, selectGroup, selectedCategory, selectCategory, removeArtist, addModifier, removeModifier, discard,
+            likeArtifact, unlikeArtifact, pinArtifact, unpinArtifact, 
         }
     }
 }

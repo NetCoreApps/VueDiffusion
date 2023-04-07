@@ -4505,6 +4505,10 @@ select{
     padding: 1.5rem;
   }
 
+  .sm\:p-4 {
+    padding: 1rem;
+  }
+
   .sm\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
@@ -4566,6 +4570,10 @@ select{
 
   .sm\:pt-2 {
     padding-top: 0.5rem;
+  }
+
+  .sm\:pb-1 {
+    padding-bottom: 0.25rem;
   }
 
   .sm\:text-left {
