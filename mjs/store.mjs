@@ -346,6 +346,19 @@ export class Store {
         const to = [primary, ...creative.artifacts.filter(x => x.id !== creative.primaryArtifactId).sort(sortByQualityAndId)]
         return to
     }
+
+    /** @param {Creative} creative
+     *  @param {number|null} artifactId,
+     *  @param {Creative[]|null} creatives
+     */
+    updatePrimaryArtifact(creative, artifactId, creatives) {
+        creative.primaryArtifactId = artifactId
+        if (creatives) {
+            const updateCreative = c => { if (c && c.id == creative.id) c.primaryArtifactId = artifactId }
+            creatives.forEach(updateCreative)
+            Object.values(this.creativesMap).forEach(updateCreative)
+        }
+    }
     
     /** @param {Creative} creative */
     moderatedArtifacts(creative) {
