@@ -28,7 +28,7 @@ export const ArtifactImage = {
 }
 
 export const ArtifactModal = {
-    template:`<ModalDialog @done="$emit('done')" class="z-30">
+    template:`<ModalDialog v-if="creative" @done="$emit('done')" class="z-30">
        <div class="pb-8">
             <h2 class="mt-8 mx-8 mb-4 text-2xl text-center">{{ creative.userPrompt }}</h2> 
             <div class="text-center hidden sm:flex bg-black/40 sm:pl-4 sm:pb-4 sm:pr-4 w-full">
@@ -50,8 +50,8 @@ export const ArtifactModal = {
                     <svg class="w-8 h-8 text-slate-700 group-hover:text-slate-300" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.125 21.1L6.7 12.7q-.15-.15-.213-.325T6.425 12q0-.2.062-.375T6.7 11.3l8.425-8.425q.35-.35.875-.35t.9.375q.375.375.375.875t-.375.875L9.55 12l7.35 7.35q.35.35.35.863t-.375.887q-.375.375-.875.375t-.875-.375Z"/></svg>
                 </div>
                 <div>
-                    <div class="relative p-2 w-max flex flex-col mx-auto" @contextmenu.prevent="showArtifactMenu($event, active)">
-                        <ArtifactImage :artifact="active" class="rounded sm:rounded-lg" />
+                    <div class="relative p-2 w-max flex flex-col mx-auto" @contextmenu.prevent="showArtifactMenu($event, artifact)">
+                        <ArtifactImage :artifact="artifact" class="rounded sm:rounded-lg" />
             
                         <div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden sm:m-1 rounded sm:rounded-xl">
                             <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp px-2 pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
@@ -60,14 +60,14 @@ export const ArtifactModal = {
                                 <div class="relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
                                     <div class="p-4 flex justify-between flex-none">
                                         <div class="cursor-pointer">
-                                            <a :href="store.searchBySimilarUrl(active.refId)">
+                                            <a :href="store.searchBySimilarUrl(artifact.refId)">
                                             <svg class="h-6 w-6 text-cyan-600 hover:text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
                                                 <title>explore similar</title>
                                                 <path d="m11.25 11.25l3 3"/><circle cx="7.5" cy="7.5" r="4.75"/></g>
                                             </svg></a>
                                         </div>
-                                        <div class="px-1 cursor-pointer" @click.prevent.stop="showArtifactMenu($event, active, 140)">
+                                        <div class="px-1 cursor-pointer" @click.prevent.stop="showArtifactMenu($event, artifact, 140)">
                                             <svg class="w-5 h-5 text-cyan-600 hover:text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><circle cx="8" cy="2.5" r=".75" /><circle cx="8" cy="8" r=".75" /><circle cx="8" cy="13.5" r=".75" /></g>
                                             </svg>
@@ -76,12 +76,12 @@ export const ArtifactModal = {
             
                                     <div>
                                         <div class="pb-2 px-4">
-                                            <svg v-if="store.hasLiked(active)" @click.prevent.stop="unlikeArtifact(active)"
+                                            <svg v-if="store.hasLiked(artifact)" @click.prevent.stop="unlikeArtifact(artifact)"
                                                 class="cursor-pointer mr-4 w-6 h-6 text-red-600 hover:text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <title>undo like</title>
                                                 <path fill="currentColor" d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z" />
                                             </svg>
-                                            <svg v-else @click.prevent.stop="likeArtifact(active)"
+                                            <svg v-else @click.prevent.stop="likeArtifact(artifact)"
                                                 class="cursor-pointer mr-4 w-6 h-6 text-cyan-600 hover:text-cyan-400" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                                                 <title>like</title>
                                                 <path fill="currentColor" d="M12 21c-.645-.572-1.374-1.167-2.145-1.8h-.01c-2.715-2.22-5.792-4.732-7.151-7.742c-.446-.958-.683-2-.694-3.058A5.39 5.39 0 0 1 7.5 3a6.158 6.158 0 0 1 3.328.983A5.6 5.6 0 0 1 12 5c.344-.39.738-.732 1.173-1.017A6.152 6.152 0 0 1 16.5 3A5.39 5.39 0 0 1 22 8.4a7.422 7.422 0 0 1-.694 3.063c-1.359 3.01-4.435 5.521-7.15 7.737l-.01.008c-.772.629-1.5 1.224-2.145 1.8L12 21ZM7.5 5a3.535 3.535 0 0 0-2.5.992A3.342 3.342 0 0 0 4 8.4c.011.77.186 1.53.512 2.228A12.316 12.316 0 0 0 7.069 14.1c.991 1 2.131 1.968 3.117 2.782c.273.225.551.452.829.679l.175.143c.267.218.543.444.81.666l.013-.012l.006-.005h.006l.009-.007h.01l.018-.015l.041-.033l.007-.006l.011-.008h.006l.009-.008l.664-.545l.174-.143c.281-.229.559-.456.832-.681c.986-.814 2.127-1.781 3.118-2.786a12.298 12.298 0 0 0 2.557-3.471c.332-.704.51-1.472.52-2.25A3.343 3.343 0 0 0 19 6a3.535 3.535 0 0 0-2.5-1a3.988 3.988 0 0 0-2.99 1.311L12 8.051l-1.51-1.74A3.988 3.988 0 0 0 7.5 5Z" />
@@ -101,11 +101,11 @@ export const ArtifactModal = {
 
             <div class="my-8 flex flex-col items-center">
                 <div class="mb-4 flex">
-                    <span class="my-2 mx-4 text-sm text-gray-600 dark:text-gray-400">{{active.height}} x {{active.width}}</span>
-                    <span class="my-2 mx-4 text-sm text-gray-600 dark:text-gray-400">{{bytes(active.contentLength)}}</span>
+                    <span class="my-2 mx-4 text-sm text-gray-600 dark:text-gray-400">{{artifact.height}} x {{artifact.width}}</span>
+                    <span class="my-2 mx-4 text-sm text-gray-600 dark:text-gray-400">{{bytes(artifact.contentLength)}}</span>
                 </div>
                 <div class="flex flex-wrap">
-                    <a class="mb-4 flex text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" :href=store.downloadUrl(active) target="_blank">
+                    <a class="mb-4 flex text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" :href=store.downloadUrl(artifact) target="_blank">
                         <svg class="w-5 h-5 mr-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 20h12M12 4v12m0 0l3.5-3.5M12 16l-3.5-3.5" /></svg>
                         download
                     </a>
@@ -116,7 +116,7 @@ export const ArtifactModal = {
                         </svg>
                         new from this
                     </a>
-                    <a :href="store.artViewUrl(active.id,creative.userPrompt)" target="_blank"
+                    <a :href="store.artViewUrl(artifact.id,creative.userPrompt)" target="_blank"
                         class="ml-8 mb-4 flex text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
                         <svg class="w-5 h-5 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M8.586 17H3v-2h18v2h-5.586l3.243 3.243l-1.414 1.414L13 17.414V20h-2v-2.586l-4.243 4.243l-1.414-1.414L8.586 17zM5 3h14a1 1 0 0 1 1 1v10H4V4a1 1 0 0 1 1-1zm1 2v7h12V5H6z" />
@@ -131,7 +131,7 @@ export const ArtifactModal = {
                     class="relative overflow-hidden cursor-pointer">
                     <div class="relative flex justify-center sm:mx-2 sm:mb-4">
                         <ArtifactImage :artifact="a" :minSize="118" 
-                            :class="['rounded sm:rounded-xl border-2 max-w-[118px] sm:max-w-none object-cover', resolveBorderColor(a, active?.id)]"  />
+                            :class="['rounded sm:rounded-xl border-2 max-w-[118px] sm:max-w-none object-cover', resolveBorderColor(a, artifact?.id)]"  />
         
                         <div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden rounded sm:rounded-xl">
                             <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
@@ -172,7 +172,7 @@ export const ArtifactModal = {
         </div>
     </ModalDialog>`,
     emits:['done','selected'],
-    props:['creative','active'],
+    props:['artifact'],
     setup(props, { emit }) {
         const client = useClient()
         const { bytes } = useFormatters()
@@ -180,6 +180,7 @@ export const ArtifactModal = {
         const store = inject('store')
 
         const artifactAlbums = computed(() => [])
+        const creative = ref()
 
         /** @param {MouseEvent} e
          *  @param {Artifact} artifact */
@@ -195,8 +196,8 @@ export const ArtifactModal = {
         }
 
         function navNext(next) {
-            const artifacts = store.moderatedArtifacts(props.creative)
-            const pos = artifacts.findIndex(x => x.id === props.active.id)
+            const artifacts = store.moderatedArtifacts(creative.value)
+            const pos = artifacts.findIndex(x => x.id === props.artifact.id)
             if (pos !== -1) {
                 const nextPos = (pos + next) < 0 ? artifacts.length - 1 : (pos + next) % artifacts.length
                 const nextArtifact = artifacts[nextPos]
@@ -214,18 +215,19 @@ export const ArtifactModal = {
         }
 
         async function hardDelete() {
-            const api = await store.hardDelete(props.creative)
+            const api = await store.hardDelete(creative.value)
             if (api.succeeded) {
                 emit('selected',undefined)
             }
         }
         
         onMounted(async () => {
+            creative.value = await store.getCreative(props.artifact.creativeId)
             document.addEventListener('keydown', handleNav)
         })
         onUnmounted(() => document.removeEventListener('keydown', handleNav))
 
-        return { store, artifactAlbums, bytes, resolveBorderColor, showArtifactMenu, navNext, hardDelete }
+        return { store, creative, artifactAlbums, bytes, resolveBorderColor, showArtifactMenu, navNext, hardDelete }
     }
 }
 
@@ -278,8 +280,7 @@ export const ArtifactGallery = {
                 </div>
             </div>
         </div>
-        <ArtifactModal v-if="creative && active" :creative="creative" :active="active" @selected="navTo" @done="modalClose">
-        </ArtifactModal>
+        <ArtifactModal v-if="creative && active" :artifact="active" @selected="navTo" @done="modalClose" />
         <SignInDialog v-if="showAuth && !showSignUp" @done="showAuth=false" @signup="showSignUp=true" />
         <SignUpDialog v-if="showAuth && showSignUp" @done="showAuth=false"  @signin="showSignUp=false" />
     </div>`,

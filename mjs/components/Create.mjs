@@ -2,7 +2,7 @@ import { ref, computed, watch, inject, onMounted, onUnmounted, getCurrentInstanc
 import { useClient, useAuth, useUtils, useFormatters } from "@servicestack/vue"
 import { queryString, ApiResult, combinePaths, map } from "@servicestack/client"
 import {
-    HardDeleteCreative, QueryArtifacts, QueryCreatives, CreateCreative, SearchData, SearchDataResponse,
+    QueryCreatives, CreateCreative, SearchData, SearchDataResponse,
     ArtistInfo, ModifierInfo, UpdateCreative,
 } from "../dtos.mjs"
 import { Store } from "../store.mjs"
@@ -122,7 +122,7 @@ export default {
         </div>
 
         <div class="mt-4 p-2 flex flex-col gap-y-4">
-            <TextInput class="!text-lg" v-model="request.userPrompt" spellcheck="false" placeholder="Description of Image" label="" @click="closeDialogs" />
+            <TextInput input-class="!text-lg" v-model="request.userPrompt" spellcheck="false" placeholder="Description of Image" label="" @click="closeDialogs" />
         </div>
 
         <div class="mt-4 mx-auto flex justify-center">
@@ -136,16 +136,19 @@ export default {
             </div>
         </div>
     </form>
-    <div v-for="c in creativeHistory">
-        <h2 class="cursor-pointer my-4 flex justify-center items-center text-xl hover:underline underline-offset-4" @click="navTo(c.id)">            
+    <div v-if="loading" class="mt-20 mb-32 flex justify-center">
+        <Loading class="text-gray-300 font-normal" imageClass="w-7 h-7 mt-1.5">generating images...</Loading>
+    </div>
+    <div v-for="c in creatives">
+        <a class="block cursor-pointer my-4 flex justify-center items-center text-xl hover:underline underline-offset-4" @click.prevent="populateForm(c)" title="New from this">            
             <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                 <path fill="currentColor" d="M13.74 10.25h8.046v2.626l7.556-4.363l-7.556-4.363v2.598H9.826c1.543.864 2.79 2.174 3.915 3.5zm8.046 10.404c-.618-.195-1.407-.703-2.29-1.587c-1.79-1.756-3.713-4.675-5.732-7.227c-2.05-2.486-4.16-4.972-7.45-5.09h-3.5v3.5h3.5c.655-.028 1.682.485 2.878 1.682c1.788 1.753 3.712 4.674 5.73 7.226c1.922 2.33 3.908 4.64 6.864 5.016v2.702l7.556-4.362l-7.556-4.362v2.502z" />
             </svg>
             {{c.userPrompt}}
-        </h2>
+        </a>
         <div :class="['grid',store.css.gridClass(store.prefs.artifactGalleryColumns)]">
             <div v-for="artifact in c.artifacts" :key="artifact.id" :class="[artifact.width > artifact.height ? 'col-span-2' : artifact.height > artifact.width ? 'row-span-2' : '']">
-                <div @click="showArtifact(c,artifact)" class="overflow-hidden flex justify-center">
+                <div @click="showArtifact(artifact)" class="overflow-hidden flex justify-center">
                     <div class="relative sm:p-2 flex flex-col cursor-pointer items-center" :style="'max-width:' + artifact.width + 'px'"
                          @context-menu="showArtifactMenu($event, artifact)">
     
@@ -177,7 +180,7 @@ export default {
             </div>
         </div>
     </div>
-    <ArtifactModal v-if="active" :creative="creative" :active="active" @selected="showArtifact(creative,$event)" @done="showArtifact()" />
+    <ArtifactModal v-if="active" :artifact="active" @selected="showArtifact" @done="showArtifact(null)" />
     <SignInDialog v-if="showAuth && !showSignUp" @done="showAuth=false" @signup="showSignUp=true" />
     <SignUpDialog v-if="showAuth && showSignUp" @done="showAuth=false"  @signin="showSignUp=false" />
     <div class="mt-12 flex justify-center">
@@ -207,6 +210,10 @@ export default {
         const creative = ref()
         /** @type {Ref<Creative[]>} */
         const creativeHistory = ref([])
+        /** @type {ComputedRef<Creative[]>} */
+        const creatives = computed(() => creative.value 
+            ? [creative.value, ...creativeHistory.value.filter(x => x.id !== creative.value.id)] 
+            : creativeHistory.value)
         /** @type {Ref<{id?:number,view?:number}|null>} */
         const selected = ref({ id:qs.id, view:qs.view })
         const showAuth = ref(false)
@@ -229,6 +236,7 @@ export default {
         const loading = ref(false)
         function noop(){}
         function navTo(creativeId, artifactId) {
+            console.log('navTo', creativeId, artifactId)
             if (!creativeId) {
                 selected.value = null
                 pushState({ id:undefined, view:undefined })
@@ -245,29 +253,46 @@ export default {
                     const api = await client.api(new QueryCreatives({ id:creativeId }))
                     if (api.succeeded) {
                         creative.value = api.response.results?.[0]
+                        if (creative.value) {
+                            store.loadCreative(creative.value)
+                        }
                     }
                 }
             } else {
                 creative.value = null
             }
-            if (creative.value) {
-                request.value.userPrompt = creative.value.userPrompt
-                imageSize.value = creative.value.width > creative.value.height
+            return creative.value
+        }
+        
+        /** @param {Creative} creative */
+        function populateForm(creative) {
+            if (creative) {
+                navTo(creative.id)
+                request.value.userPrompt = creative.userPrompt
+                imageSize.value = creative.width > creative.height
                     ? 'landscape'
-                    : creative.value.height > creative.value.width
+                    : creative.height > creative.width
                         ? 'portrait'
                         : 'square'
-                artists.value = creative.value.artists.map(x => artistOptions.value.find(a => a.id === x.artistId))
-                modifiers.value = creative.value.modifiers.map(x => modifierOptions.value.find(a => a.id === x.modifierId))
+                artists.value = creative.artists?.map(x => artistOptions.value.find(a => a.id === x.artistId)) || []
+                modifiers.value = creative.modifiers?.map(x => modifierOptions.value.find(a => a.id === x.modifierId)) || []
                 document.documentElement.scrollIntoView({ behavior: "smooth" })
+            } else {
+                reset()
             }
         }
-        /**@param {Creative} c 
-         * @param {Artifact} artifact */
-        async function showArtifact(c, artifact) {
+        
+        /** @param {Artifact} artifact */
+        async function showArtifact(artifact) {
+            console.log('showArtifact', artifact)
             active.value = artifact ? store.artifactsMap[artifact.id] : null
-            pushState({ id:c ? c.id : undefined, view: artifact ? artifact.id : undefined })
-            creative.value = c
+            pushState({ view: artifact ? artifact.id : undefined })
+            // undefined == deleted, null == @done
+            if (artifact === undefined) {
+                selected.value = null
+                closeDialogs()
+                await loadHistory(true)
+            }
         }
         
         function closeDialogs() {
@@ -292,6 +317,10 @@ export default {
             request.value.modifierIds = modifiers.value.map(x => x.id)
             loading.value = true
             api.value = await client.api(request.value)
+            if (api.value.succeeded) {
+                creative.value = api.value.response.result
+                navTo(creative.value.id)
+            }
             loading.value = false
             await loadHistory(true)
         }
@@ -340,7 +369,7 @@ export default {
                 await client.swr(new QueryCreatives({ 
                     ownerId: parseInt(user.value.userId),
                     take: 10,
-                    skip: creativeHistory.value.length,
+                    skip: clear ? 0 : creativeHistory.value.length,
                     orderByDesc:'id',
                 }), api => {
                     if (api.succeeded) {
@@ -378,11 +407,13 @@ export default {
 
         let observer = null
         onMounted(async () => {
+            console.log('onMounted')
             await Promise.all([
                 loadCreative(qs.id),
                 client.swr(new SearchData(), async api => dataCache.value = api.response),
                 loadHistory(),
             ])
+            populateForm(creative.value)
             setTimeout(() => {
                 observer = new IntersectionObserver(
                     ([{isIntersecting, target}]) => {
@@ -395,8 +426,8 @@ export default {
         
         return { 
             store, api, loading, request, artists, modifiers, dataCache, artistOptions, modifierOptions, isDirty, groupCategories,
-            creative, creativeHistory, loadingMore, bottom, categoryModifiers, imageSize, selected, showAuth, showSignUp, active,
-            resolveBorderColor, noop, navTo, closeDialogs, submit, pinArtifact, unpinArtifact, reset, map, showArtifact,
+            creative, creatives, loadingMore, bottom, categoryModifiers, imageSize, selected, showAuth, showSignUp, active,
+            resolveBorderColor, noop, navTo, populateForm, closeDialogs, submit, pinArtifact, unpinArtifact, reset, map, showArtifact,
             selectedGroup, selectGroup, selectedCategory, selectCategory, removeArtist, addModifier, removeModifier,
         }
     }

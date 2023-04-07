@@ -147,9 +147,35 @@ mountAll()
     </nav>
 
     
-<div class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+<div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)"></artifact-modal>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </div>
 
+<script type="module">
+import { ref, inject } from "vue"
+import { mount } from "app.mjs"
+import { Store } from "store.mjs"
+
+const Gallery = {
+    setup() {
+        const store = inject('store')
+        const artifact = ref()
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        
+        async function loadArtifact(id) {
+            artifact.value = await store.getArtifact(id)
+        }
+        function showArtifact(a) {
+            artifact.value = a
+        }
+        return { store, artifact, showAuth, showSignUp, loadArtifact, showArtifact }
+    }
+}
+mount('#gallery', Gallery)
+</script>
     
     <nav class="mt-8 mb-8 flex items-center justify-between border-t border-gray-700 px-4 sm:px-0">
         <div class="-mt-px flex w-0 flex-1">

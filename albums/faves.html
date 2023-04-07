@@ -140,8 +140,9 @@ mountAll()
     
 
     
-<div class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
-
+<div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(3190)">
+        
         <div class="relative overflow-hidden" style="background-color:#6C7362FF">
         <img alt="A man sitting under a coolibah tree in the australian bush, near a river, Award-Winning,Hyper Detailed,Intricate,Trending on Artstation,Digital Painting,Dynamic Lighting,Concept Art,Landscape,Bright" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/11/04/10416363/output_2344928489.png" loading="lazy">
@@ -150,6 +151,9 @@ mountAll()
             </div></a>
         </div>
 
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(20410)">
+        
         <div class="relative overflow-hidden" style="background-color:#68303BFF">
         <img alt="Iridescent opalescent landscape, warm tones, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Michal Karcz" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/14/56766743/output_497005371.png" loading="lazy">
@@ -158,6 +162,9 @@ mountAll()
             </div></a>
         </div>
 
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(3192)">
+        
         <div class="relative overflow-hidden" style="background-color:#626C66FF">
         <img alt="A man sitting under a coolibah tree in the australian bush, near a river, Award-Winning,Hyper Detailed,Intricate,Trending on Artstation,Digital Painting,Dynamic Lighting,Concept Art,Landscape,Bright" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/11/04/10416363/output_3590485801.png" loading="lazy">
@@ -165,8 +172,36 @@ mountAll()
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
+
+    </div>
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)"></artifact-modal>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </div>
 
+<script type="module">
+import { ref, inject } from "vue"
+import { mount } from "app.mjs"
+import { Store } from "store.mjs"
+
+const Gallery = {
+    setup() {
+        const store = inject('store')
+        const artifact = ref()
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        
+        async function loadArtifact(id) {
+            artifact.value = await store.getArtifact(id)
+        }
+        function showArtifact(a) {
+            artifact.value = a
+        }
+        return { store, artifact, showAuth, showSignUp, loadArtifact, showArtifact }
+    }
+}
+mount('#gallery', Gallery)
+</script>
     
 
 
