@@ -1,8 +1,8 @@
 import { createApp, reactive, nextTick } from "vue"
 import { JsonApiClient, ApiResult, $1, $$, queryString } from "@servicestack/client"
 import ServiceStackVue, { useConfig, useClient, useAuth } from "@servicestack/vue"
-import { ArtifactGallery, ArtifactModal, ArtifactImage } from "./components/Artifacts.mjs"
-import { SignInDialog, SignUpDialog, SignInLink } from "./components/Auth.mjs"
+import { AlbumTitle, ArtifactLikeIcon, ArtifactExploreIcon, ArtifactGallery, ArtifactModal, ArtifactImage } from "./components/Artifacts.mjs"
+import { SignInDialog, SignUpDialog, SignInLink, AvatarImage } from "./components/Auth.mjs"
 import { BaseUrl, Store } from "./store.mjs"
 import { Authenticate } from "./dtos.mjs"
 
@@ -14,12 +14,16 @@ export { client, Apps }
 
 /** Shared Components */
 const Components = {
-    ArtifactModal,
+    AlbumTitle,
+    ArtifactLikeIcon,
+    ArtifactExploreIcon,
     ArtifactGallery,
+    ArtifactModal,
     ArtifactImage,
     SignInDialog,
     SignUpDialog,
     SignInLink,
+    AvatarImage,
 }
 
 const { config, setConfig } = useConfig()

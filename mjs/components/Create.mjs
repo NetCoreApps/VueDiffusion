@@ -489,12 +489,14 @@ export default {
 
         let observer = null
         onMounted(async () => {
-            console.log('onMounted')
             await Promise.all([
                 loadCreative(qs.id),
                 client.swr(new SearchData(), async api => dataCache.value = api.response),
                 loadHistory(),
             ])
+            if (qs.view) {
+                active.value = store.artifactsMap[qs.view]
+            }
             populateForm(creative.value)
             setTimeout(() => {
                 observer = new IntersectionObserver(

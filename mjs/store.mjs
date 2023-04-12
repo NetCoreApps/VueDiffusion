@@ -2,7 +2,7 @@ import {
     Authenticate, Creative, Artifact, GetCreativesInAlbums, UserData, CreateArtifactLike, DeleteArtifactLike,
     DeleteCreative, HardDeleteCreative, QueryCreatives, QueryArtifacts, AlbumRef, GetAlbumRefs, GetUserInfo,
 } from "./dtos.mjs"
-import { ApiResult, combinePaths, leftPart, rightPart } from "@servicestack/client"
+import { ApiResult, combinePaths, leftPart, queryString, rightPart, setQueryString } from "@servicestack/client"
 import { useAuth, useUtils } from "@servicestack/vue"
 
 export const BaseUrl = globalThis.BaseUrl = location.origin === 'https://localhost:5002' || location.origin === 'http://localhost:8080'
@@ -12,6 +12,11 @@ export const AssetsBasePath = globalThis.AssetsBasePath = "https://cdn.diffusion
 export const FallbackAssetsBasePath = globalThis.FallbackAssetsBasePath = "https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"
 
 export class Store {
+    InitialTake = 50
+    NextPage = 100
+    StaticTake = 500
+    StaticPagedTake = 250
+    
     BaseUrl = BaseUrl
     AssetsBasePath = AssetsBasePath
     FallbackAssetsBasePath = FallbackAssetsBasePath
@@ -35,6 +40,8 @@ export class Store {
     authKey = null
     userDataKey = null
     albumRefsKey = null
+    userAlbumArtifactsKey = null
+    userLikesKey = null
 
     css = new AppCss()
     data = new AppData()
@@ -58,6 +65,8 @@ export class Store {
         signIn(auth)
         auth._date = new Date().valueOf()
         localStorage.setItem(this.authKey, JSON.stringify(auth))
+        this.userAlbumArtifactsKey = `swr[${this.auth.userId}].userAlbumArtifacts`
+        this.userLikesKey = `swr[${this.auth.userId}].userLikedArtifacts`
     }
     signOut() {
         const { signOut } = useAuth()
@@ -108,6 +117,46 @@ export class Store {
             localStorage.setItem(cacheKey, JSON.stringify(this.albumRefs))
         }
     }
+    async loadCachedUserArtifacts() {
+        const userAlbumsJson = localStorage.getItem(this.userAlbumArtifactsKey)
+        if (userAlbumsJson) {
+            this.loadArtifacts(JSON.parse(userAlbumsJson))
+        }
+        const userLikesJson = localStorage.getItem(this.userLikesKey)
+        if (userLikesJson) {
+            this.loadArtifacts(JSON.parse(userLikesJson))
+        }
+    }
+    async loadUserArtifacts() {
+        const userAlbumIds = this.userData.user?.albums.map(x => this.getAlbumCoverArtifactId(x)).filter(x => !!x) || []
+        if (userAlbumIds.length > 0) {
+            const artifacts = await this.loadArtifactsByIds(userAlbumIds)
+            localStorage.setItem(this.userAlbumArtifactsKey, JSON.stringify(artifacts))
+        }
+        const userLikeArtifacts = this.getLikedArtifacts()
+        if (userLikeArtifacts.length > 0) {
+            localStorage.setItem(this.userLikesKey, JSON.stringify(userLikeArtifacts))
+        }
+    }
+
+    /** @param {AlbumResult} album 
+     *  @param {number} [count] */
+    async getAlbumArtifacts(album, count) {
+        const artifactIds = count != null
+            ? album.artifactIds.slice(0, count)
+            : album.artifactIds
+        const to = this.loadArtifactsByIds(artifactIds)
+        return to
+    }
+    
+    /** @param {number} count */
+    async getLikedArtifacts(count= 50) {
+        const userLikeIds = this.userData.user?.likes.artifactIds.slice(0, count)
+        if (userLikeIds.length > 0) {
+            return await this.loadArtifactsByIds(userLikeIds)
+        }
+        return []
+    }
     
     /** @param {string} userRef */
     async loadUserByRef(userRef) {
@@ -124,6 +173,7 @@ export class Store {
     
     signOut() {
         this.userData = null
+        this.userAlbumArtifactsKey = this.userLikesKey = null
     }
 
     /** @param {number[]} ids */
@@ -138,6 +188,7 @@ export class Store {
                 this.loadArtifacts(api.response.results)
             }
         }
+        return ids.map(id => this.artifactsMap[id])
     }
     
     /** @param {Artifact[]} artifacts */
@@ -269,7 +320,11 @@ export class Store {
     searchByUserUrl(userRef) {
         return `/?user=${userRef}`
     }
-    /** @param {String} albumRef */
+    get searchByCurrentUserUrl() { return this.searchByUserUrl(this.userData.user.refId) }
+    
+    /** @param {String} albumRef
+     *  @param {string} source
+     */
     searchByAlbumUrl(albumRef, source='in') {
         return `/?album=${albumRef}&source=${source}`
     }
@@ -281,12 +336,54 @@ export class Store {
         const { hasRole } = useAuth()
         return hasRole('Moderator')
     }
+    get userAlbums() {
+        return this.userData?.user?.albums || []
+    }
 
+    /** @param {UserResult} user */
+    getUserPublicUrl(user) {
+        const avatar = user.avatar
+        return avatar
+            ? this.AssetsBasePath + avatar
+            : user.profileUrl
+    }
+
+    /** @param {UserResult} user */
+    getUserFallbackUrl(user) {
+        const avatar = user.avatar
+        return avatar
+            ? this.FallbackAssetsBasePath + avatar
+            : user.profileUrl
+    }
+
+    /** @param {string} fill */
+    solidImageDataUri(fill) {
+        return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23${(fill || "#000").substring(1)}' d='M2 2h60v60H2z'/%3E%3C/svg%3E`
+    }
+    /** @param {UserResult} user
+     *  @param {string} [lastImageSrc] */
+    getImageErrorUrl(user, lastImageSrc) {
+        const failedImg = this.solidImageDataUri('#000')
+        if (!lastImageSrc)
+            return this.getUserFallbackUrl(user) || failedImg
+        if (lastImageSrc === this.getUserFallbackUrl(user))
+            return setQueryString(this.getUserPublicUrl(user), { r: 1 })
+        
+        const qs = queryString(lastImageSrc)
+        let r = parseInt(qs.r) || 1
+        if (r > 5)
+            return failedImg
+        r++
+        return r % 2 === 0
+            ? setQueryString(this.getUserFallbackUrl(user), { r })
+            : setQueryString(this.getUserPublicUrl(user), { r })
+    }
+    
     /** @param {Artifact} artifact */
     getPublicUrl(artifact) {
         return this.AssetsBasePath + artifact.filePath
     }
-
+    
     /** @param {Artifact} artifact */
     hasLiked(artifact) {
         return this.userData && this.userData.user.likes.artifactIds.includes(artifact.id)
@@ -297,7 +394,7 @@ export class Store {
         if (!this.auth) return
         const api = await this.client.api(new CreateArtifactLike({ artifactId }))
         if (api.succeeded) {
-            this.userData.user.likes.artifactIds.push(artifactId)
+            this.userData.user.likes.artifactIds.unshift(artifactId)
         }
     }
     
@@ -360,6 +457,24 @@ export class Store {
         }
     }
     
+    /** @param {number} albumId
+     *  @param {number|null} artifactId */
+    updateAlbumPrimaryArtifact(albumId, artifactId) {
+        [this.userData.user?.albums.find(x => x.id === albumId)]
+            .filter(x => !!x)
+            .forEach(album => {
+                album.primaryArtifactId = artifactId
+                if (artifactId && album.artifactIds[0].id !== artifactId) {
+                    album.artifactIds = [artifactId, ...album.artifactIds.filter(id => id !== artifactId)]
+                }
+            })
+    } 
+
+    /** @param {Artifact} artifact */
+    isModerated(artifact) {
+        return artifact.quality < 0 || artifact.nsfw
+    }
+    
     /** @param {Creative} creative */
     moderatedArtifacts(creative) {
         return this.isModerator
@@ -375,7 +490,7 @@ export class Store {
     /** @param {Artifact} artifact */
     resolveBorderColor(artifact) {
         return this.isModerator && (artifact.quality < 0 || artifact.nsfw)
-            ? 'border-slate-500'
+            ? 'border-slate-400'
             : this.userData == null
                 ? 'border-transparent'
                 : this.hasLiked(artifact)
@@ -388,7 +503,7 @@ export class Store {
     getBackgroundStyle(artifact) {
         const rgba = (c,opacity) => c.includes('rgb(') 
             ? `rgba(${leftPart(rightPart(c,'('),')')},${opacity})` 
-            : c[0] == '#' && c.length >= 7
+            : c[0] === '#' && c.length >= 7
                 ? c.substring(0,7) + (Math.round(128 * opacity)).toString(16).padStart(2,'0')
                 : c
         return artifact.background ? `background-color:${rgba(artifact.background,.75)};` : ""
