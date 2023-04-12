@@ -29,7 +29,14 @@
         </div>
         <div v-cloak>
             <h3 v-if="title" class="text-xl absolute -mt-8 ml-4">{{title}}</h3>
-            <artifact-gallery :results="results"></artifact-gallery>
+            <artifact-gallery ref="gallery" :results="results">
+                <template #icons="artifact">
+                    <div class="p-3 flex flex-col h-full justify-between">
+                        <artifact-like-icon :artifact="artifact" v-on:changed="gallery?.forceUpdate()"></artifact-like-icon>
+                        <artifact-explore-icon :artifact="artifact" v-on:click.stop></artifact-explore-icon>
+                    </div>
+                </template>
+            </artifact-gallery>
         </div>
     </div>
     <div class="mt-12 flex justify-center">
@@ -39,7 +46,7 @@
 </div>
 
 <script type="module">
-import { ref, inject, onMounted, onUnmounted, computed } from "vue"
+import { ref, inject, onMounted, onUnmounted, computed, nextTick } from "vue"
 import { ApiResult, queryString, pick, map } from "@@servicestack/client"
 import { useClient, useUtils } from "@@servicestack/vue"
 import { mount } from "app.mjs"
@@ -59,6 +66,7 @@ const Search = {
             skip: 0,
             take: 50
         }))
+        const gallery = ref()
         const bottom = ref()
         const loadingMore = ref(false)
         let hasMore = false
@@ -132,7 +140,7 @@ const Search = {
         onUnmounted(() => observer.unobserve())
         
         return { 
-            store, request, api, topAlbums, results, update, bottom, loadingMore, title,
+            store, request, api, topAlbums, results, update, bottom, loadingMore, title, gallery,
         }
     }
 }
