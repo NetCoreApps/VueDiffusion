@@ -1,8 +1,8 @@
 var js = Object.defineProperty;
 var Bs = (e, l, t) => l in e ? js(e, l, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[l] = t;
 var ye = (e, l, t) => (Bs(e, typeof l != "symbol" ? l + "" : l, t), t);
-import { defineComponent as Y, computed as c, openBlock as o, createElementBlock as u, normalizeClass as w, unref as s, createElementVNode as n, createCommentVNode as C, renderSlot as Z, ref as I, toDisplayString as V, inject as Oe, nextTick as ul, isRef as Tn, h as ft, resolveComponent as U, createBlock as X, withCtx as ve, mergeProps as Ce, useAttrs as Rs, createVNode as fe, createTextVNode as he, watchEffect as Sl, normalizeStyle as El, withModifiers as je, Fragment as be, renderList as $e, withDirectives as gt, vModelCheckbox as Hl, withKeys as Es, createStaticVNode as dl, vModelSelect as Hs, useSlots as Nl, onMounted as lt, createSlots as zl, normalizeProps as _t, guardReactiveProps as al, vModelDynamic as Ns, onUnmounted as Ut, watch as At, vModelText as zs, provide as qt, resolveDynamicComponent as Us, resolveDirective as qs } from "vue";
-import { errorResponseExcept as Qs, dateFmt as In, toTime as Ks, omit as nt, enc as Al, setQueryString as Gs, appendQueryString as Rt, nameOf as Ws, ApiResult as Ze, lastRightPart as pt, leftPart as cl, map as De, toDate as bt, toDateTime as Zs, toCamelCase as Js, mapGet as ce, chop as Xs, humanize as Ie, delaySet as Fn, queryString as Tl, combinePaths as Ys, rightPart as ea, toPascalCase as Ye, errorResponse as dt, trimEnd as ta, $1 as ol, lastLeftPart as la, ResponseStatus as Ll, ResponseError as Ln, HttpMethods as Ul, uniqueKeys as Il, humanify as Pn, fromXsdDuration as Dn, isDate as fl, timeFmt12 as na, apiValue as sa, indexOfAny as aa, each as oa } from "@servicestack/client";
+import { defineComponent as Y, computed as c, openBlock as o, createElementBlock as u, normalizeClass as w, unref as s, createElementVNode as n, createCommentVNode as C, renderSlot as Z, ref as I, toDisplayString as V, inject as Oe, nextTick as ul, isRef as In, h as ft, resolveComponent as U, createBlock as X, withCtx as ve, mergeProps as Ce, useAttrs as Rs, createVNode as fe, createTextVNode as he, watchEffect as Sl, normalizeStyle as Hl, withModifiers as je, Fragment as be, renderList as $e, withDirectives as gt, vModelCheckbox as Nl, withKeys as Es, createStaticVNode as dl, vModelSelect as Hs, useSlots as zl, onMounted as lt, createSlots as Ul, normalizeProps as _t, guardReactiveProps as al, vModelDynamic as Ns, onUnmounted as Ut, watch as At, vModelText as zs, provide as qt, resolveDynamicComponent as Us, resolveDirective as qs } from "vue";
+import { errorResponseExcept as Qs, dateFmt as Fn, toTime as Ks, omit as nt, enc as Al, setQueryString as Gs, appendQueryString as Rt, nameOf as Ws, ApiResult as Ze, lastRightPart as pt, leftPart as cl, map as De, toDate as bt, toDateTime as Zs, toCamelCase as Js, mapGet as ce, chop as Xs, humanize as Ie, delaySet as Pn, queryString as Tl, combinePaths as Ys, rightPart as ea, toPascalCase as Ye, errorResponse as dt, trimEnd as ta, $1 as ol, lastLeftPart as la, ResponseStatus as Ll, ResponseError as Vn, HttpMethods as ql, uniqueKeys as Il, humanify as Dn, fromXsdDuration as On, isDate as fl, timeFmt12 as na, apiValue as sa, indexOfAny as aa, each as oa } from "@servicestack/client";
 const ia = { class: "flex items-center" }, ra = {
   key: 0,
   class: "flex-shrink-0 mr-3"
@@ -192,18 +192,18 @@ const ia = { class: "flex items-center" }, ra = {
   }
 });
 function ml(e) {
-  return In(e).replace(/\//g, "-");
+  return Fn(e).replace(/\//g, "-");
 }
-function On(e) {
+function jn(e) {
   return e == null ? "" : Ks(e);
 }
-function jn(e, l) {
+function Bn(e, l) {
   e.value = null, ul(() => e.value = l);
 }
 function kt(e) {
   return Object.keys(e).forEach((l) => {
     const t = e[l];
-    e[l] = Tn(t) ? s(t) : t;
+    e[l] = In(t) ? s(t) : t;
   }), e;
 }
 function Lt(e, l, t) {
@@ -248,7 +248,7 @@ function vl(e) {
   return Object.assign({ target: "_blank", rel: "noopener", class: "text-blue-600" }, e);
 }
 function Ct(e) {
-  return Gl(e);
+  return Wl(e);
 }
 let Ha = ["string", "number", "boolean", "null", "undefined"];
 function yt(e) {
@@ -257,7 +257,7 @@ function yt(e) {
 function Et(e) {
   return !yt(e);
 }
-class Bn {
+class Rn {
   get length() {
     return typeof localStorage > "u" ? 0 : localStorage.length;
   }
@@ -280,13 +280,13 @@ class Bn {
 function il(e) {
   return typeof e == "string" ? JSON.parse(e) : null;
 }
-function ql(e) {
+function Ql(e) {
   if (typeof history < "u") {
     const l = Gs(location.href, e);
     history.pushState({}, "", l);
   }
 }
-function Ql(e, l) {
+function Kl(e, l) {
   if (["function", "Function", "eval", "=>", ";"].some((i) => e.includes(i)))
     throw new Error(`Unsafe script: '${e}'`);
   const a = Object.assign(
@@ -298,22 +298,22 @@ function Ql(e, l) {
 function Pl(e) {
   typeof navigator < "u" && navigator.clipboard.writeText(e);
 }
-function Rn(e) {
+function En(e) {
   const l = ne.config.storage.getItem(e);
   return l ? JSON.parse(l) : null;
 }
-function Kl(e, l) {
+function Gl(e, l) {
   return Rt(`swr.${Ws(e)}`, l ? Object.assign({}, e, l) : e);
 }
 function Na(e) {
   if (e.request) {
-    const l = Kl(e.request, e.args);
+    const l = Gl(e.request, e.args);
     ne.config.storage.removeItem(l);
   }
 }
-async function En(e, l, t, a, i) {
-  const r = Kl(l, a);
-  t(new Ze({ response: Rn(r) }));
+async function Hn(e, l, t, a, i) {
+  const r = Gl(l, a);
+  t(new Ze({ response: En(r) }));
   const d = await e.api(l, a, i);
   if (d.succeeded && d.response) {
     d.response._date = new Date().valueOf();
@@ -324,10 +324,10 @@ async function En(e, l, t, a, i) {
 }
 function za() {
   return {
-    LocalStore: Bn,
+    LocalStore: Rn,
     dateInputFormat: ml,
-    timeInputFormat: On,
-    setRef: jn,
+    timeInputFormat: jn,
+    setRef: Bn,
     unRefs: kt,
     transition: Lt,
     focusNextElement: tl,
@@ -338,13 +338,13 @@ function za() {
     toAppUrl: Ct,
     isPrimitive: yt,
     isComplexType: Et,
-    pushState: ql,
-    scopedExpr: Ql,
+    pushState: Ql,
+    scopedExpr: Kl,
     copyText: Pl,
-    fromCache: Rn,
-    swrCacheKey: Kl,
+    fromCache: En,
+    swrCacheKey: Gl,
     swrClear: Na,
-    swrApi: En
+    swrApi: Hn
   };
 }
 class ne {
@@ -355,7 +355,7 @@ ye(ne, "config", {
   navigate: (l) => location.href = l,
   assetsPathResolver: (l) => l,
   fallbackPathResolver: (l) => l,
-  storage: new Bn(),
+  storage: new Rn(),
   tableIcon: { svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g fill='none' stroke='currentColor' stroke-width='1.5'><path d='M5 12v6s0 3 7 3s7-3 7-3v-6'/><path d='M5 6v6s0 3 7 3s7-3 7-3V6'/><path d='M12 3c7 0 7 3 7 3s0 3-7 3s-7-3-7-3s0-3 7-3Z'/></g></svg>" }
 }), ye(ne, "autoQueryGridDefaults", {
   deny: [],
@@ -371,7 +371,7 @@ function Ua(e) {
 function qa(e) {
   ne.autoQueryGridDefaults = Object.assign(ne.autoQueryGridDefaults, e);
 }
-function Gl(e) {
+function Wl(e) {
   return e && ne.config.assetsPathResolver ? ne.config.assetsPathResolver(e) : e;
 }
 function Qa(e) {
@@ -384,11 +384,11 @@ function wt() {
     setConfig: Ua,
     autoQueryGridDefaults: l,
     setAutoQueryGridDefaults: qa,
-    assetsPathResolver: Gl,
+    assetsPathResolver: Wl,
     fallbackPathResolver: Qa
   };
 }
-const Hn = "png,jpg,jpeg,jfif,gif,svg,webp".split(","), Nn = {
+const Nn = "png,jpg,jpeg,jfif,gif,svg,webp".split(","), zn = {
   img: "png,jpg,jpeg,gif,svg,webp,png,jpg,jpeg,gif,bmp,tif,tiff,webp,ai,psd,ps".split(","),
   vid: "avi,m4v,mov,mp4,mpg,mpeg,wmv,webm".split(","),
   aud: "mp3,mpa,ogg,wav,wma,mid,webm".split(","),
@@ -399,7 +399,7 @@ const Hn = "png,jpg,jpeg,jfif,gif,svg,webp".split(","), Nn = {
   exe: "exe,bat,sh,cmd,com,app,msi,run,vb,vbs,js,ws,wsh".split(","),
   att: "bin,oct,dat".split(",")
   //attachment
-}, Vn = Object.keys(Nn), at = (e, l) => `<svg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' role='img' preserveAspectRatio='xMidYMid meet' viewBox='${e}'>${l}</svg>`, ll = {
+}, Mn = Object.keys(zn), at = (e, l) => `<svg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' role='img' preserveAspectRatio='xMidYMid meet' viewBox='${e}'>${l}</svg>`, ll = {
   img: at("4 4 16 16", "<path fill='currentColor' d='M20 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-2 0H6v6.38l2.19-2.19l5.23 5.23l1-1a1.59 1.59 0 0 1 2.11.11L18 16V6zm-5 3.5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0z'/>"),
   vid: at("0 0 24 24", "<path fill='currentColor' d='m14 2l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8m4 18V9h-5V4H6v16h12m-2-2l-2.5-1.7V18H8v-5h5.5v1.7L16 13v5Z'/>"),
   aud: at("0 0 24 24", "<path fill='currentColor' d='M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6zm10-9h-4v3.88a2.247 2.247 0 0 0-3.5 1.87c0 1.24 1.01 2.25 2.25 2.25S13 17.99 13 16.75V13h3v-2z'/>"),
@@ -409,7 +409,7 @@ const Hn = "png,jpg,jpeg,jfif,gif,svg,webp".split(","), Nn = {
   zip: at("0 0 16 16", "<g fill='currentColor'><path d='M6.5 7.5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v.938l.4 1.599a1 1 0 0 1-.416 1.074l-.93.62a1 1 0 0 1-1.109 0l-.93-.62a1 1 0 0 1-.415-1.074l.4-1.599V7.5zm2 0h-1v.938a1 1 0 0 1-.03.243l-.4 1.598l.93.62l.93-.62l-.4-1.598a1 1 0 0 1-.03-.243V7.5z'/><path d='M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm5.5-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9v1H8v1h1v1H8v1h1v1H7.5V5h-1V4h1V3h-1V2h1V1z'/></g>"),
   exe: at("0 0 16 16", "<path fill='currentColor' fill-rule='evenodd' d='M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM2.575 15.202H.785v-1.073H2.47v-.606H.785v-1.025h1.79v-.648H0v3.999h2.575v-.647ZM6.31 11.85h-.893l-.823 1.439h-.036l-.832-1.439h-.931l1.227 1.983l-1.239 2.016h.861l.853-1.415h.035l.85 1.415h.908l-1.254-1.992L6.31 11.85Zm1.025 3.352h1.79v.647H6.548V11.85h2.576v.648h-1.79v1.025h1.684v.606H7.334v1.073Z'/>"),
   att: at("0 0 24 24", "<path fill='currentColor' d='M14 0a5 5 0 0 1 5 5v12a7 7 0 1 1-14 0V9h2v8a5 5 0 0 0 10 0V5a3 3 0 1 0-6 0v12a1 1 0 1 0 2 0V6h2v11a3 3 0 1 1-6 0V5a5 5 0 0 1 5-5Z'/>")
-}, Ka = /[\r\n%#()<>?[\\\]^`{|}]/g, Mn = 1024, Ga = ["Bytes", "KB", "MB", "GB", "TB"], Wa = (() => {
+}, Ka = /[\r\n%#()<>?[\\\]^`{|}]/g, Sn = 1024, Ga = ["Bytes", "KB", "MB", "GB", "TB"], Wa = (() => {
   const e = "application/", l = e + "vnd.openxmlformats-officedocument.", t = "image/", a = "text/", i = "audio/", r = "video/", d = {
     jpg: t + "jpeg",
     tif: t + "tiff",
@@ -439,17 +439,17 @@ const Hn = "png,jpg,jpeg,jfif,gif,svg,webp".split(","), Nn = {
   return f("jpeg,gif,png,tiff,bmp,webp", (m) => t + m), f("jsx,csv,css", (m) => a + m), f("aac,ac3,aiff,m4a,m4b,m4p,mid,midi,wav", (m) => i + m), f("3gpp,avi,dv,divx,ogg,mp4,webm", (m) => r + m), f("rtf,pdf", (m) => e + m), v("htm,html,shtm", a + "html"), v("js,mjs,cjs", a + "javascript"), v("yml,yaml", e + "yaml"), v("bat,cmd", e + "bat"), v("xml,csproj,fsproj,vbproj", a + "xml"), v("txt,ps1", a + "plain"), v("qt,mov", r + "quicktime"), v("doc,dot", e + "msword"), v("xls,xlt,xla", e + "excel"), v("ppt,oit,pps,ppa", e + "vnd.ms-powerpoint"), v("cer,crt,der", e + "x-x509-ca-cert"), v("gz,tgz,zip,rar,lzh,z", e + "x-compressed"), v("aaf,aca,asd,bin,cab,chm,class,cur,db,dat,deploy,dll,dsp,exe,fla,ics,inf,mix,msi,mso,obj,ocx,prm,prx,psd,psp,qxd,sea,snp,so,sqlite,toc,ttf,u32,xmp,xsn,xtp", e + "octet-stream"), d;
 })();
 let Dl = [];
-function zn(e) {
+function Un(e) {
   return e = e.replace(/"/g, "'"), e = e.replace(/>\s+</g, "><"), e = e.replace(/\s{2,}/g, " "), e.replace(Ka, encodeURIComponent);
 }
-function Wl(e) {
-  return "data:image/svg+xml;utf8," + zn(e);
+function Zl(e) {
+  return "data:image/svg+xml;utf8," + Un(e);
 }
-function Un(e) {
+function qn(e) {
   let l = URL.createObjectURL(e);
   return Dl.push(l), l;
 }
-function qn() {
+function Qn() {
   Dl.forEach((e) => {
     try {
       URL.revokeObjectURL(e);
@@ -458,61 +458,61 @@ function qn() {
     }
   }), Dl = [];
 }
-function Zl(e) {
+function Jl(e) {
   if (!e)
     return null;
   let l = cl(e, "?");
   return pt(l, "/");
 }
 function Qt(e) {
-  let l = Zl(e);
+  let l = Jl(e);
   return l == null || l.indexOf(".") === -1 ? null : pt(l, ".").toLowerCase();
 }
-function Jl(e) {
-  let l = Qt(e.name);
-  return l && Hn.indexOf(l) >= 0 ? Un(e) : mt(e.name);
-}
 function Xl(e) {
+  let l = Qt(e.name);
+  return l && Nn.indexOf(l) >= 0 ? qn(e) : mt(e.name);
+}
+function Yl(e) {
   if (!e)
     return !1;
   if (e.startsWith("blob:") || e.startsWith("data:"))
     return !0;
   let l = Qt(e);
-  return l && Hn.indexOf(l) >= 0 || !1;
+  return l && Nn.indexOf(l) >= 0 || !1;
 }
 function mt(e) {
   if (!e)
     return null;
   let l = Qt(e);
-  return l == null || Xl(e) ? e : Bt(l) || Wl(ll.doc);
+  return l == null || Yl(e) ? e : Bt(l) || Zl(ll.doc);
 }
 function Bt(e) {
-  let l = Qn(e);
-  return l && Wl(l) || null;
+  let l = Kn(e);
+  return l && Zl(l) || null;
 }
-function Qn(e) {
+function Kn(e) {
   if (ll[e])
     return ll[e];
-  for (let l = 0; l < Vn.length; l++) {
-    let t = Vn[l];
-    if (Nn[t].indexOf(e) >= 0)
+  for (let l = 0; l < Mn.length; l++) {
+    let t = Mn[l];
+    if (zn[t].indexOf(e) >= 0)
       return ll[t];
   }
   return null;
 }
-function Yl(e, l = 2) {
+function en(e, l = 2) {
   if (e === 0)
     return "0 Bytes";
-  const t = l < 0 ? 0 : l, a = Math.floor(Math.log(e) / Math.log(Mn));
-  return parseFloat((e / Math.pow(Mn, a)).toFixed(t)) + " " + Ga[a];
+  const t = l < 0 ? 0 : l, a = Math.floor(Math.log(e) / Math.log(Sn));
+  return parseFloat((e / Math.pow(Sn, a)).toFixed(t)) + " " + Ga[a];
 }
 function Za(e) {
-  return e.files && Array.from(e.files).map((l) => ({ fileName: l.name, contentLength: l.size, filePath: Jl(l) }));
+  return e.files && Array.from(e.files).map((l) => ({ fileName: l.name, contentLength: l.size, filePath: Xl(l) }));
 }
 function hl(e, l) {
-  e.onerror = null, e.src = en(e.src, l) || "";
+  e.onerror = null, e.src = tn(e.src, l) || "";
 }
-function en(e, l) {
+function tn(e, l) {
   return Bt(pt(e, ".").toLowerCase()) || (l ? Bt(l) || l : null) || Bt("doc");
 }
 function Ol(e) {
@@ -523,22 +523,22 @@ function Ol(e) {
 }
 function Dm() {
   return {
-    extSvg: Qn,
+    extSvg: Kn,
     extSrc: Bt,
     getExt: Qt,
-    encodeSvg: zn,
-    canPreview: Xl,
-    getFileName: Zl,
+    encodeSvg: Un,
+    canPreview: Yl,
+    getFileName: Jl,
     getMimeType: Ol,
-    formatBytes: Yl,
+    formatBytes: en,
     filePathUri: mt,
-    svgToDataUri: Wl,
-    fileImageUri: Jl,
-    objectUrl: Un,
-    flush: qn,
+    svgToDataUri: Zl,
+    fileImageUri: Xl,
+    objectUrl: qn,
+    flush: Qn,
     inputFiles: Za,
     iconOnError: hl,
-    iconFallbackSrc: en
+    iconFallbackSrc: tn
   };
 }
 class Ja {
@@ -604,11 +604,11 @@ const eo = {
 function Yt(e) {
   return eo[e] || e;
 }
-function Kn(e, l) {
+function Gn(e, l) {
   return e ? (l || (l = []), e === "Nullable`1" ? Yt(l[0]) + "?" : e.endsWith("[]") ? `List<${Yt(e.substring(0, e.length - 2))}>` : l.length === 0 ? Yt(e) : cl(Yt(e), "`") + "<" + l.join(",") + ">") : "";
 }
 function to(e) {
-  return e && Kn(e.name, e.genericArgs);
+  return e && Gn(e.name, e.genericArgs);
 }
 class Mt {
   constructor() {
@@ -674,40 +674,40 @@ const Te = {
 };
 function lo(e) {
   var l;
-  return ((l = e.input) == null ? void 0 : l.type) || gl(tn(e));
+  return ((l = e.input) == null ? void 0 : l.type) || gl(ln(e));
 }
-function Gn(e) {
+function Wn(e) {
   return e.endsWith("?") ? Xs(e, 1) : e;
 }
 function gl(e) {
-  return Xa[Gn(e)];
+  return Xa[Wn(e)];
 }
 function no(e) {
   return e && Ya[e] || "String";
 }
-function tn(e) {
+function ln(e) {
   return e.type === "Nullable`1" ? e.genericArgs[0] : e.type;
 }
 function Bl(e) {
   return e && gl(e) == "number" || !1;
 }
-function Wn(e) {
+function Zn(e) {
   return e && e.toLowerCase() == "string" || !1;
 }
 function so(e) {
   return e == "List`1" || e.startsWith("List<") || e.endsWith("[]");
 }
-function Zn(e) {
+function Jn(e) {
   if (!(e != null && e.type))
     return !1;
-  const l = tn(e);
+  const l = ln(e);
   return e.isValueType && l.indexOf("`") == -1 || e.isEnum ? !1 : gl(e.type) == null;
 }
-function Jn(e) {
+function Xn(e) {
   var t, a, i;
   if (!(e != null && e.type))
     return !1;
-  const l = tn(e);
+  const l = ln(e);
   return e.isValueType && l.indexOf("`") == -1 || e.isEnum || ((t = e.input) == null ? void 0 : t.type) == "file" || ((a = e.input) == null ? void 0 : a.type) == "tag" || ((i = e.input) == null ? void 0 : i.type) == "combobox" ? !0 : gl(e.type) != null;
 }
 function Ht(e, l) {
@@ -768,7 +768,7 @@ function oo(e, l) {
     Bl(v) ? m = Number(m) : v === "List`1" && typeof m == "string" && (m = m.split(",").map((p) => Bl(f) ? Number(p) : p)), t[i.id] = m;
   }), t;
 }
-function ln(e) {
+function nn(e) {
   var l;
   return ((l = e == null ? void 0 : e.api) == null ? void 0 : l.operations) && e.api.operations.length > 0;
 }
@@ -778,16 +778,16 @@ function io(e) {
   return ne.metadata.value;
 }
 function Nt(e) {
-  return e && ln(e) ? (e.date = Zs(new Date()), ne.metadata.value = e, typeof localStorage < "u" && localStorage.setItem(Vt, JSON.stringify(e)), !0) : !1;
+  return e && nn(e) ? (e.date = Zs(new Date()), ne.metadata.value = e, typeof localStorage < "u" && localStorage.setItem(Vt, JSON.stringify(e)), !0) : !1;
 }
 function ro() {
   ne.metadata.value = null, typeof localStorage < "u" && localStorage.removeItem(Vt);
 }
-function Xn() {
+function Yn() {
   if (ne.metadata.value != null)
     return !0;
   let e = globalThis.Server;
-  if (ln(e))
+  if (nn(e))
     Nt(e);
   else {
     const l = typeof localStorage < "u" ? localStorage.getItem(Vt) : null;
@@ -800,25 +800,25 @@ function Xn() {
   }
   return ne.metadata.value != null;
 }
-async function Sn(e, l) {
+async function An(e, l) {
   let t = l ? await l() : await fetch(e);
   if (t.ok) {
     let a = await t.text();
     Nt(JSON.parse(a));
   } else
     console.error(`Could not download ${l ? "AppMetadata" : e}: ${t.statusText}`);
-  ln(ne.metadata.value) || console.warn("AppMetadata is not available");
+  nn(ne.metadata.value) || console.warn("AppMetadata is not available");
 }
 async function uo(e) {
   var r;
   const { olderThan: l, resolvePath: t, resolve: a } = e || {};
-  let i = Xn() && l !== 0;
+  let i = Yn() && l !== 0;
   if (i && l) {
     let d = bt((r = ne.metadata.value) == null ? void 0 : r.date);
     (!d || new Date().getTime() - d.getTime() > l) && (i = !1);
   }
   if (!i) {
-    if ((t || a) && await Sn(t || Vt, a), ne.metadata.value != null)
+    if ((t || a) && await An(t || Vt, a), ne.metadata.value != null)
       return;
     const d = Oe("client");
     if (d != null) {
@@ -827,7 +827,7 @@ async function uo(e) {
     }
     if (ne.metadata.value != null)
       return;
-    await Sn(Vt);
+    await An(Vt);
   }
   return ne.metadata.value;
 }
@@ -858,24 +858,24 @@ function co({ dataModel: e }) {
   let t = l.operations;
   if (e) {
     const i = typeof e == "string" ? it(e) : e;
-    t = t.filter((r) => Yn(r.dataModel, i));
+    t = t.filter((r) => es(r.dataModel, i));
   }
   return t;
 }
-function nn(e) {
+function sn(e) {
   return e ? it(e.name, e.namespace) : null;
 }
-function Yn(e, l) {
+function es(e, l) {
   return e && l && e.name === l.name && (!e.namespace || !l.namespace || e.namespace === l.namespace);
 }
 function fo(e, l) {
   let t = it(e);
   return t && t.properties && t.properties.find((i) => i.name.toLowerCase() === l.toLowerCase());
 }
-function es(e) {
-  return ts(it(e));
-}
 function ts(e) {
+  return ls(it(e));
+}
+function ls(e) {
   if (e && e.isEnum && e.enumNames != null) {
     let l = {};
     for (let t = 0; t < e.enumNames.length; t++) {
@@ -886,7 +886,7 @@ function ts(e) {
   }
   return null;
 }
-function ls(e) {
+function ns(e) {
   if (!e)
     return null;
   let l = {}, t = e.input && e.input.allowableEntries;
@@ -908,11 +908,11 @@ function ls(e) {
   if (e.isEnum) {
     const i = e.genericArgs && e.genericArgs.length == 1 ? e.genericArgs[0] : e.type, r = it(i);
     if (r)
-      return ts(r);
+      return ls(r);
   }
   return null;
 }
-function sn(e) {
+function an(e) {
   if (!e)
     return;
   const l = [];
@@ -924,15 +924,15 @@ function mo(e, l) {
     name: i,
     type: r
   }, l))(e.name, (l == null ? void 0 : l.type) || lo(e) || "text");
-  return e.isEnum && (a.type = "select", a.allowableEntries = sn(ls(e))), a;
+  return e.isEnum && (a.type = "select", a.allowableEntries = an(ns(e))), a;
 }
 function vo(e) {
   let l = [];
   if (e) {
-    const t = Ke(e), a = pl(e.name), i = nn(a == null ? void 0 : a.dataModel);
+    const t = Ke(e), a = pl(e.name), i = sn(a == null ? void 0 : a.dataModel);
     t.forEach((r) => {
       var v, f, m;
-      if (!Jn(r))
+      if (!Xn(r))
         return;
       const d = mo(r, r.input);
       if (d.id = Js(d.id), d.type == "file" && r.uploadTo && !d.accept) {
@@ -948,7 +948,7 @@ function vo(e) {
           const g = {
             $typeFields: t.map((h) => h.name),
             $dataModelFields: i ? Ke(i).map((h) => h.name) : []
-          }, p = Ql(d.options, g);
+          }, p = Kl(d.options, g);
           Object.keys(p).forEach((h) => {
             d[h] = p[h];
           });
@@ -970,7 +970,7 @@ function Ke(e) {
     });
   }
   for (; e; )
-    e.properties && a(e.properties), e = e.inherits ? nn(e.inherits) : null;
+    e.properties && a(e.properties), e = e.inherits ? sn(e.inherits) : null;
   return l.map((i) => i.type.endsWith("[]") ? { ...i, type: "List`1", genericArgs: [i.type.substring(0, i.type.length - 2)] } : i);
 }
 function el(e, l) {
@@ -978,9 +978,9 @@ function el(e, l) {
   return ((t = e.request.implements) == null ? void 0 : t.some((a) => a.name === l)) || !1;
 }
 function Kt(e) {
-  return e ? ns(e, Ke(e)) : null;
+  return e ? ss(e, Ke(e)) : null;
 }
-function ns(e, l) {
+function ss(e, l) {
   let t = l.find((r) => r.name.toLowerCase() === "id");
   if (t && t.isPrimaryKey)
     return t;
@@ -996,11 +996,11 @@ function ns(e, l) {
 function ho(e, l) {
   return De(Kt(e), (t) => ce(l, t.name));
 }
-function ss(e, l, t) {
+function as(e, l, t) {
   return e && e.valueType === "none" ? "" : t.key === "%In" || t.key === "%Between" ? `(${t.value})` : go(l, t.value);
 }
 function go(e, l) {
-  return e ? (e = Gn(e), Bl(e) || e === "Boolean" ? l : so(e) ? `[${l}]` : `'${l}'`) : l;
+  return e ? (e = Wn(e), Bl(e) || e === "Boolean" ? l : so(e) ? `[${l}]` : `'${l}'`) : l;
 }
 function Je() {
   const e = c(() => {
@@ -1013,7 +1013,7 @@ function Je() {
     var a;
     return ((a = ne.metadata.value) == null ? void 0 : a.plugins.autoQuery.viewerConventions) || [];
   });
-  return Xn(), {
+  return Yn(), {
     loadMetadata: uo,
     getMetadata: io,
     setMetadata: Nt,
@@ -1022,29 +1022,29 @@ function Je() {
     metadataApi: l,
     filterDefinitions: t,
     typeOf: it,
-    typeOfRef: nn,
-    typeEquals: Yn,
+    typeOfRef: sn,
+    typeEquals: es,
     apiOf: pl,
     findApis: co,
     typeName: to,
-    typeName2: Kn,
+    typeName2: Gn,
     property: fo,
-    enumOptions: es,
-    propertyOptions: ls,
+    enumOptions: ts,
+    propertyOptions: ns,
     createFormLayout: vo,
     typeProperties: Ke,
-    supportsProp: Jn,
+    supportsProp: Xn,
     Crud: Te,
     Apis: Mt,
     getPrimaryKey: Kt,
-    getPrimaryKeyByProps: ns,
+    getPrimaryKeyByProps: ss,
     getId: ho,
     createDto: Ht,
     makeDto: ao,
     toFormValues: nl,
     formValues: oo,
-    isComplexProp: Zn,
-    asKvps: sn
+    isComplexProp: Jn,
+    asKvps: an
   };
 }
 const We = class {
@@ -1110,7 +1110,7 @@ const We = class {
 };
 let vt = We;
 ye(vt, "Lookup", {});
-const as = Y({
+const os = Y({
   inheritAttrs: !1,
   props: {
     image: Object,
@@ -1139,7 +1139,7 @@ const as = Y({
       } else
         return ft("img", {
           class: [t == null ? void 0 : t.cls, l.class],
-          src: Gl(e.src || (t == null ? void 0 : t.uri)),
+          src: Wl(e.src || (t == null ? void 0 : t.uri)),
           onError: (r) => hl(r.target)
         });
     };
@@ -1311,7 +1311,8 @@ const rl = {
   headingClass: "text-lg font-medium text-gray-900 dark:text-gray-100",
   subHeadingClass: "mt-1 text-sm text-gray-500 dark:text-gray-400",
   closeButtonClass: "rounded-md bg-gray-50 dark:bg-gray-900 text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:ring-offset-black"
-}, os = {
+}, Rl = {
+  modalClass: "relative transform overflow-hidden rounded-lg bg-white dark:bg-black text-left shadow-xl transition-all sm:my-8",
   sizeClass: "sm:max-w-prose lg:max-w-screen-md xl:max-w-screen-lg 2xl:max-w-screen-xl sm:w-full"
 }, Ue = {
   panelClass(e = "slideOver") {
@@ -1379,7 +1380,7 @@ const rl = {
   form: Ue,
   grid: oe,
   input: ot,
-  modal: os,
+  modal: Rl,
   slideOver: jt
 }, Symbol.toStringTag, { value: "Module" })), Io = /* @__PURE__ */ Y({
   __name: "TextLink",
@@ -1572,7 +1573,7 @@ function oi(e) {
   var l;
   return (((l = ne.user.value) == null ? void 0 : l.permissions) || []).indexOf(e) >= 0;
 }
-function an() {
+function on() {
   return is("Admin");
 }
 function sl(e) {
@@ -1583,7 +1584,7 @@ function sl(e) {
   const l = ne.user.value;
   if (!l)
     return !1;
-  if (an())
+  if (on())
     return !0;
   let [t, a] = [l.roles || [], l.permissions || []], [i, r, d, v] = [
     e.requiredRoles || [],
@@ -1599,7 +1600,7 @@ function ii(e) {
   const l = ne.user.value;
   if (!l)
     return `<b>${e.request.name}</b> requires Authentication`;
-  if (an())
+  if (on())
     return null;
   let [t, a] = [l.roles || [], l.permissions || []], [i, r, d, v] = [
     e.requiredRoles || [],
@@ -1612,9 +1613,9 @@ function ii(e) {
   let m = r.filter((g) => a.indexOf(g) < 0);
   return m.length > 0 ? `Requires ${m.map((g) => "<b>" + g + "</b>").join(", ")} Permission` + (m.length > 1 ? "s" : "") : d.length > 0 && !d.some((g) => t.indexOf(g) >= 0) ? `Requires any ${d.filter((g) => t.indexOf(g) < 0).map((g) => "<b>" + g + "</b>").join(", ")} Role` + (f.length > 1 ? "s" : "") : v.length > 0 && !v.every((g) => a.indexOf(g) >= 0) ? `Requires any ${v.filter((g) => a.indexOf(g) < 0).map((g) => "<b>" + g + "</b>").join(", ")} Permission` + (m.length > 1 ? "s" : "") : null;
 }
-function on() {
+function rn() {
   const e = c(() => ne.user.value || null), l = c(() => ne.user.value != null);
-  return { signIn: si, signOut: ai, user: e, isAuthenticated: l, hasRole: is, hasPermission: oi, isAdmin: an, canAccess: sl, invalidAccessMessage: ii };
+  return { signIn: si, signOut: ai, user: e, isAuthenticated: l, hasRole: is, hasPermission: oi, isAdmin: on, canAccess: sl, invalidAccessMessage: ii };
 }
 const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
   __name: "EnsureAccess",
@@ -1624,7 +1625,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
   },
   emits: ["done"],
   setup(e) {
-    const { isAuthenticated: l } = on(), { config: t } = wt(), a = () => {
+    const { isAuthenticated: l } = rn(), { config: t } = wt(), a = () => {
       let r = location.href.substring(location.origin.length) || "/";
       const d = Rt(t.value.redirectSignIn, { redirect: r });
       t.value.navigate(d);
@@ -1706,7 +1707,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
   })
 ], -1), Ti = [
   Ai
-], Ii = { class: "bg-gray-50 dark:bg-gray-900 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse" }, rn = /* @__PURE__ */ Y({
+], Ii = { class: "bg-gray-50 dark:bg-gray-900 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse" }, un = /* @__PURE__ */ Y({
   __name: "FilterColumn",
   props: {
     definitions: null,
@@ -1715,7 +1716,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
   },
   emits: ["done", "save"],
   setup(e, { emit: l }) {
-    const t = e, a = I(), i = I(""), r = I(""), d = I([]), v = c(() => t.column.meta.isEnum == !0), f = c(() => t.column.meta.isEnum == !0 ? sn(es(t.column.type)) : []), m = c(() => {
+    const t = e, a = I(), i = I(""), r = I(""), d = I([]), v = c(() => t.column.meta.isEnum == !0), f = c(() => t.column.meta.isEnum == !0 ? an(ts(t.column.type)) : []), m = c(() => {
       var $;
       return (($ = h(t.column.type)) == null ? void 0 : $.map((j) => ({ key: j.value, value: j.name }))) || [];
     }), g = I({ filters: [] }), p = c(() => g.value.filters);
@@ -1727,7 +1728,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
     });
     function h($) {
       let j = t.definitions;
-      return Wn($) || (j = j.filter((B) => B.types !== "string")), j;
+      return Zn($) || (j = j.filter((B) => B.types !== "string")), j;
     }
     function b($, j) {
       return h($).find((B) => B.value === j);
@@ -1743,7 +1744,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
       g.value.filters.splice($, 1);
     }
     function S($) {
-      return ss(b(t.column.type, $.key), t.column.type, $);
+      return as(b(t.column.type, $.key), t.column.type, $);
     }
     function O() {
       l("done");
@@ -1772,7 +1773,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
       }, [
         n("div", {
           class: "absolute",
-          style: El(`top:${e.topLeft.y}px;left:${e.topLeft.x}px`),
+          style: Hl(`top:${e.topLeft.y}px;left:${e.topLeft.x}px`),
           onClick: j[5] || (j[5] = je(() => {
           }, ["stop"]))
         }, [
@@ -1806,7 +1807,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
                     "onUpdate:modelValue": j[2] || (j[2] = (te) => d.value = te),
                     class: "h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                   }, null, 8, xi), [
-                    [Hl, d.value]
+                    [Nl, d.value]
                   ]),
                   n("label", {
                     for: G.key,
@@ -1911,7 +1912,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
   Gi
 ], Zi = /* @__PURE__ */ n("span", null, "Clear All", -1), Ji = [
   Zi
-], un = /* @__PURE__ */ Y({
+], dn = /* @__PURE__ */ Y({
   __name: "FilterViews",
   props: {
     definitions: null,
@@ -1926,13 +1927,13 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
     }
     function r(p) {
       let h = t.definitions;
-      return Wn(p) || (h = h.filter((b) => b.types !== "string")), h;
+      return Zn(p) || (h = h.filter((b) => b.types !== "string")), h;
     }
     function d(p, h) {
       return r(p).find((b) => b.value === h);
     }
     function v(p, h) {
-      return ss(d(p.type, h.value), p.type, h);
+      return as(d(p.type, h.value), p.type, h);
     }
     function f(p) {
       p.settings.filters = [], l("change", p);
@@ -1990,7 +1991,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
       ])
     ]));
   }
-}), Xi = { class: "bg-white dark:bg-black px-4 pt-5 pb-4 sm:p-6 sm:pb-4" }, Yi = { class: "" }, er = { class: "mt-3 text-center sm:mt-0 sm:mx-4 sm:text-left" }, tr = /* @__PURE__ */ n("h3", { class: "text-lg leading-6 font-medium text-gray-900 dark:text-gray-100" }, "Query Preferences", -1), lr = { class: "mt-4" }, nr = ["for"], sr = ["id"], ar = ["value", "selected"], or = { class: "mt-4 flex items-center py-4 border-b border-gray-200 dark:border-gray-800" }, ir = ["id", "checked"], rr = ["for"], ur = { class: "mt-4" }, dr = { class: "pb-2 px-4" }, cr = { class: "" }, fr = ["id", "value"], mr = ["for"], vr = { class: "bg-gray-50 dark:bg-gray-900 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse" }, dn = /* @__PURE__ */ Y({
+}), Xi = { class: "bg-white dark:bg-black px-4 pt-5 pb-4 sm:p-6 sm:pb-4" }, Yi = { class: "" }, er = { class: "mt-3 text-center sm:mt-0 sm:mx-4 sm:text-left" }, tr = /* @__PURE__ */ n("h3", { class: "text-lg leading-6 font-medium text-gray-900 dark:text-gray-100" }, "Query Preferences", -1), lr = { class: "mt-4" }, nr = ["for"], sr = ["id"], ar = ["value", "selected"], or = { class: "mt-4 flex items-center py-4 border-b border-gray-200 dark:border-gray-800" }, ir = ["id", "checked"], rr = ["for"], ur = { class: "mt-4" }, dr = { class: "pb-2 px-4" }, cr = { class: "" }, fr = ["id", "value"], mr = ["for"], vr = { class: "bg-gray-50 dark:bg-gray-900 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse" }, cn = /* @__PURE__ */ Y({
   __name: "QueryPrefs",
   props: {
     id: { default: "QueryPrefs" },
@@ -2069,7 +2070,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
                           "onUpdate:modelValue": m[2] || (m[2] = (k) => i.value.selectedColumns = k),
                           class: "h-4 w-4 bg-white dark:bg-black border-gray-300 dark:border-gray-700 rounded text-indigo-600 dark:text-indigo-400 focus:ring-indigo-500"
                         }, null, 8, fr), [
-                          [Hl, i.value.selectedColumns]
+                          [Nl, i.value.selectedColumns]
                         ]),
                         n("label", {
                           for: b.name,
@@ -2345,7 +2346,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
   emits: ["headerSelected", "rowSelected"],
   setup(e, { expose: l, emit: t }) {
     const a = e, { config: i, autoQueryGridDefaults: r } = wt(), d = r, v = Oe("client"), f = i.value.storage;
-    l({ update: Ge, search: vn, createRequestArgs: xl, reset: Cn, createDone: Dt, createSave: _l, editDone: Pt, editSave: Jt });
+    l({ update: Ge, search: hn, createRequestArgs: xl, reset: _n, createDone: Dt, createSave: _l, editDone: Pt, editSave: Jt });
     const m = (x) => typeof x == "string" ? x.split(",") : x || [];
     function g(x, L) {
       const ee = m(L);
@@ -2366,7 +2367,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
       const ee = !!me.value.AnyUpdate, de = ((Le = ze.value) != null && Le.name ? ce(x, ze.value.name) : null) == H.value;
       return oe.getTableRowClass(a.tableStyle, L, de, ee);
     }
-    const G = Nl(), te = c(() => {
+    const G = zl(), te = c(() => {
       var x;
       return $l(((x = me.value.AnyQuery.viewModel) == null ? void 0 : x.name) || me.value.AnyQuery.dataModel.name);
     }), T = c(() => {
@@ -2402,12 +2403,12 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
           return a.canFilter(x);
         const L = Xe.value.find((ee) => ee.name.toLowerCase() == x.toLowerCase());
         if (L)
-          return !Zn(L);
+          return !Jn(L);
       }
       return !1;
     }
     function Qe(x) {
-      _("queryString") && ql(x);
+      _("queryString") && Ql(x);
     }
     async function rt(x) {
       ae.value += x, ae.value < 0 && (ae.value = 0);
@@ -2466,18 +2467,18 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
       pe.value = !1, ge.value = x, f.setItem(kl(), JSON.stringify(x)), await Ge();
     }
     async function Ge() {
-      await vn(xl());
+      await hn(xl());
     }
     async function Ss() {
       await Ge();
     }
-    async function vn(x) {
+    async function hn(x) {
       const L = me.value.AnyQuery;
       if (!L) {
         console.error(ke.NoQuery);
         return;
       }
-      let ee = Ht(L, x), W = Fn((Se) => {
+      let ee = Ht(L, x), W = Pn((Se) => {
         P.value.response = P.value.error = void 0, Re.value = Se;
       }), de = await v.api(ee);
       W(), ul(() => P.value = de);
@@ -2522,14 +2523,14 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
       return typeof x.skip > "u" && ae.value > 0 && (x.skip = ae.value), ee.length > 0 && (x.orderBy = ee.join(",")), x;
     }
     function As() {
-      const x = hn("csv");
+      const x = gn("csv");
       Pl(x), typeof window < "u" && window.open(x);
     }
     function Ts() {
-      const x = hn("json");
+      const x = gn("json");
       Pl(x), Pe.value = !0, setTimeout(() => Pe.value = !1, 3e3);
     }
-    function hn(x = "json") {
+    function gn(x = "json") {
       var Le;
       const L = xl(), ee = `/api/${(Le = me.value.AnyQuery) == null ? void 0 : Le.request.name}`, W = Ys(v.baseUrl, Rt(ee, { ...L, jsconfig: "edv" }));
       return W.indexOf("?") >= 0 ? cl(W, "?") + "." + x + "?" + ea(W, "?") : W + ".json";
@@ -2551,20 +2552,20 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
     }, Wt = (x) => {
       var L;
       return `Column/${a.id}:${xt.value || ((L = me.value.AnyQuery) == null ? void 0 : L.dataModel.name)}.${x}`;
-    }, { metadataApi: gn, typeOf: $l, apiOf: pn, filterDefinitions: Ps } = Je(), { invalidAccessMessage: Cl } = on(), yn = c(() => a.filterDefinitions || Ps.value), me = c(() => {
+    }, { metadataApi: pn, typeOf: $l, apiOf: yn, filterDefinitions: Ps } = Je(), { invalidAccessMessage: Cl } = rn(), bn = c(() => a.filterDefinitions || Ps.value), me = c(() => {
       let x = m(a.apis);
-      return x.length > 0 ? Mt.from(x.map((L) => pn(L)).filter((L) => L != null).map((L) => L)) : Mt.forType(xt.value, gn.value);
-    }), Zt = (x) => `<span class="text-yellow-700">${x}</span>`, bn = c(() => {
-      if (!gn.value)
+      return x.length > 0 ? Mt.from(x.map((L) => yn(L)).filter((L) => L != null).map((L) => L)) : Mt.forType(xt.value, pn.value);
+    }), Zt = (x) => `<span class="text-yellow-700">${x}</span>`, wn = c(() => {
+      if (!pn.value)
         return Zt(`AppMetadata not loaded, see <a class="${rl.blue}" href="https://docs.servicestack.net/vue/use-metadata" target="_blank">useMetadata()</a>`);
-      let L = m(a.apis).map((W) => pn(W) == null ? W : null).filter((W) => W != null);
+      let L = m(a.apis).map((W) => yn(W) == null ? W : null).filter((W) => W != null);
       if (L.length > 0)
         return Zt(`Unknown API${L.length > 1 ? "s" : ""}: ${L.join(", ")}`);
       let ee = me.value;
       return ee.empty ? Zt("Mising DataModel in property 'type' or AutoQuery APIs to use in property 'apis'") : ee.AnyQuery ? null : Zt(ke.NoQuery);
-    }), wn = c(() => me.value.AnyQuery && Cl(me.value.AnyQuery)), xn = c(() => me.value.Create && Cl(me.value.Create)), kn = c(() => me.value.AnyUpdate && Cl(me.value.AnyUpdate)), Ds = c(() => sl(me.value.Create));
+    }), xn = c(() => me.value.AnyQuery && Cl(me.value.AnyQuery)), kn = c(() => me.value.Create && Cl(me.value.Create)), $n = c(() => me.value.AnyUpdate && Cl(me.value.AnyUpdate)), Ds = c(() => sl(me.value.Create));
     c(() => sl(me.value.AnyUpdate));
-    const $n = c(() => sl(me.value.Delete));
+    const Cn = c(() => sl(me.value.Delete));
     function Pt() {
       J.value = null, H.value = null, Qe({ edit: void 0 });
     }
@@ -2577,7 +2578,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
     async function _l() {
       await Ge(), Dt();
     }
-    function Cn() {
+    function _n() {
       var ee;
       P.value = new Ze(), ue.value = new Ze(), se.value = !1, H.value = null, J.value = null, pe.value = !1, _e.value = null, ae.value = a.skip, Pe.value = !1, ge.value = { take: Ae }, Re.value = !1;
       const x = a.prefs || il(f.getItem(kl()));
@@ -2600,19 +2601,19 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
       a.create === !0 && (se.value = !0), L && a.edit != null && Ft(L, a.edit);
     }
     return lt(async () => {
-      Cn(), await Ge();
+      _n(), await Ge();
     }), (x, L) => {
-      const ee = U("Alert"), W = U("EnsureAccessDialog"), de = U("AutoCreateForm"), Le = U("AutoEditForm"), Se = U("ErrorSummary"), ut = U("Loading"), _n = U("SettingsIcons"), Xt = U("DataGrid");
-      return s(bn) ? (o(), u("div", hr, [
-        fe(ee, { innerHTML: s(bn) }, null, 8, ["innerHTML"])
-      ])) : s(wn) ? (o(), u("div", gr, [
-        fe(rs, { "invalid-access": s(wn) }, null, 8, ["invalid-access"])
+      const ee = U("Alert"), W = U("EnsureAccessDialog"), de = U("AutoCreateForm"), Le = U("AutoEditForm"), Se = U("ErrorSummary"), ut = U("Loading"), Ln = U("SettingsIcons"), Xt = U("DataGrid");
+      return s(wn) ? (o(), u("div", hr, [
+        fe(ee, { innerHTML: s(wn) }, null, 8, ["innerHTML"])
+      ])) : s(xn) ? (o(), u("div", gr, [
+        fe(rs, { "invalid-access": s(xn) }, null, 8, ["invalid-access"])
       ])) : (o(), u("div", pr, [
         se.value && s(me).Create ? (o(), u("div", yr, [
-          s(xn) ? (o(), X(W, {
+          s(kn) ? (o(), X(W, {
             key: 0,
             title: `Create ${s(st)}`,
-            "invalid-access": s(xn),
+            "invalid-access": s(kn),
             "alert-class": "text-yellow-700",
             onDone: Dt
           }, null, 8, ["title", "invalid-access"])) : s(G).createform ? Z(x.$slots, "createform", {
@@ -2645,17 +2646,17 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
             _: 3
           }, 8, ["type", "configure"]))
         ])) : J.value && s(me).AnyUpdate ? (o(), u("div", br, [
-          s(kn) ? (o(), X(W, {
+          s($n) ? (o(), X(W, {
             key: 0,
             title: `Update ${s(st)}`,
-            "invalid-access": s(kn),
+            "invalid-access": s($n),
             "alert-class": "text-yellow-700",
             onDone: Pt
           }, null, 8, ["title", "invalid-access"])) : s(G).editform ? Z(x.$slots, "editform", {
             key: 1,
             model: J.value,
             type: s(me).AnyUpdate.request.name,
-            deleteType: s($n) ? s(me).Delete.request.name : null,
+            deleteType: s(Cn) ? s(me).Delete.request.name : null,
             configure: e.configureField,
             done: Pt,
             save: Jt
@@ -2664,7 +2665,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
             modelValue: J.value,
             "onUpdate:modelValue": L[0] || (L[0] = (Ve) => J.value = Ve),
             type: s(me).AnyUpdate.request.name,
-            deleteType: s($n) ? s(me).Delete.request.name : null,
+            deleteType: s(Cn) ? s(me).Delete.request.name : null,
             configure: e.configureField,
             onDone: Pt,
             onSave: Jt,
@@ -2692,7 +2693,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
           }, 8, ["modelValue", "type", "deleteType", "configure"]))
         ])) : C("", !0),
         s(G).toolbar ? Z(x.$slots, "toolbar", { key: 2 }) : S("toolbar") ? (o(), u("div", wr, [
-          pe.value ? (o(), X(dn, {
+          pe.value ? (o(), X(cn, {
             key: 0,
             columns: s(A),
             prefs: ge.value,
@@ -2817,10 +2818,10 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
             ])
           ])
         ])) : C("", !0),
-        ie.value == "filters" ? (o(), X(un, {
+        ie.value == "filters" ? (o(), X(dn, {
           key: 4,
           class: "border-y border-gray-200 dark:border-gray-800 py-8 my-2",
-          definitions: s(yn),
+          definitions: s(bn),
           columns: M.value,
           onDone: L[8] || (L[8] = (Ve) => ie.value = null),
           onChange: Vs
@@ -2833,8 +2834,8 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
           class: "p-2"
         })) : C("", !0),
         _e.value ? (o(), u("div", xu, [
-          fe(rn, {
-            definitions: s(yn),
+          fe(un, {
+            definitions: s(bn),
             column: _e.value.column,
             "top-left": _e.value.topLeft,
             onDone: _s,
@@ -2866,13 +2867,13 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
           headerTitles: e.headerTitles,
           visibleFrom: e.visibleFrom,
           onHeaderSelected: Cs
-        }, zl({
+        }, Ul({
           header: ve(({ column: Ve, label: ct }) => {
             var Ot;
             return [
               _("filtering") && Ee(Ve) ? (o(), u("div", ku, [
                 n("span", $u, V(ct), 1),
-                fe(_n, {
+                fe(Ln, {
                   column: M.value.find((Os) => Os.name.toLowerCase() === Ve.toLowerCase()),
                   "is-open": ((Ot = _e.value) == null ? void 0 : Ot.column.name) === Ve
                 }, null, 8, ["column", "is-open"])
@@ -2978,7 +2979,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
         title: e.title,
         onDone: t[0] || (t[0] = (r) => l.$emit("done")),
         "content-class": "relative flex-1"
-      }, zl({
+      }, Ul({
         default: ve(() => [
           fe(a, {
             alertClass: e.alertClass,
@@ -3478,7 +3479,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
       }, V(e.help), 9, Rd)) : C("", !0)
     ], 10, bd));
   }
-}), Nd = { class: "relative w-full" }, zd = ["for"], Ud = { class: "block mt-2" }, qd = /* @__PURE__ */ n("span", { class: "sr-only" }, "help ?? useLabel", -1), Qd = ["multiple", "name", "id", "placeholder", "aria-invalid", "aria-describedby"], Kd = {
+}), Nd = { class: "relative flex-grow mr-2 sm:mr-4" }, zd = ["for"], Ud = { class: "block mt-2" }, qd = { class: "sr-only" }, Qd = ["multiple", "name", "id", "placeholder", "aria-invalid", "aria-describedby"], Kd = {
   key: 0,
   class: "absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
 }, Gd = /* @__PURE__ */ n("svg", {
@@ -3539,7 +3540,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
       let j = $.target;
       d.value = "", v.value = Array.from(j.files || []).map((B) => ({
         fileName: B.name,
-        filePath: Jl(B),
+        filePath: Xl(B),
         contentLength: B.size,
         contentType: B.type || Ol(B.name)
       }));
@@ -3555,7 +3556,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
     function q($) {
       d.value = i(O.value);
     }
-    return Ut(qn), ($, j) => (o(), u("div", {
+    return Ut(Qn), ($, j) => (o(), u("div", {
       class: w(["flex", e.multiple ? "flex-col" : "justify-between"])
     }, [
       n("div", Nd, [
@@ -3565,7 +3566,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
           class: w(`block text-sm font-medium text-gray-700 dark:text-gray-300 ${e.labelClass ?? ""}`)
         }, V(s(m)), 11, zd)) : C("", !0),
         n("div", Ud, [
-          qd,
+          n("span", qd, V(e.help ?? s(m)), 1),
           n("input", Ce({
             ref_key: "input",
             ref: t,
@@ -3612,7 +3613,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
               ], 8, sc)
             ]),
             n("td", rc, [
-              B.contentLength && B.contentLength > 0 ? (o(), u("span", uc, V(s(Yl)(B.contentLength)), 1)) : C("", !0)
+              B.contentLength && B.contentLength > 0 ? (o(), u("span", uc, V(s(en)(B.contentLength)), 1)) : C("", !0)
             ])
           ]))), 256))
         ])
@@ -3625,7 +3626,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
           n("img", {
             onClick: _,
             class: w(["h-16 w-16", N(s(O))]),
-            alt: `Current ${s(m)}`,
+            alt: `Current ${s(m) ?? ""}`,
             src: d.value || s(a)(s(O)),
             onError: q
           }, null, 42, ec)
@@ -3950,7 +3951,7 @@ const ri = { key: 0 }, ui = { class: "md:p-4" }, rs = /* @__PURE__ */ Y({
   setup(e, { emit: l }) {
     const t = e, a = c(() => t.input.type || "text"), i = "ignore,css,options,meta,allowableValues,allowableEntries,op,prop,type,id,name".split(","), r = c(() => nt(t.input, i)), d = I(De(
       t.modelValue[t.input.id],
-      (f) => t.input.type === "file" ? null : t.input.type === "date" && f instanceof Date ? ml(f) : t.input.type === "time" ? On(f) : f
+      (f) => t.input.type === "file" ? null : t.input.type === "date" && f instanceof Date ? ml(f) : t.input.type === "time" ? jn(f) : f
     ));
     At(d, () => {
       t.modelValue[t.input.id] = d.value, l("update:modelValue", t.modelValue);
@@ -4319,7 +4320,7 @@ function yl() {
     return b || (b = "Exception"), _ || (_ = []), l.value = k ? new Ll({
       errorCode: b,
       message: h,
-      errors: [new Ln({ fieldName: k, errorCode: b, message: h })]
+      errors: [new Vn({ fieldName: k, errorCode: b, message: h })]
     }) : new Ll({ errorCode: b, message: h, errors: _ });
   }
   function r({ fieldName: h, message: b, errorCode: k }) {
@@ -4332,7 +4333,7 @@ function yl() {
           var O;
           return ((O = S.fieldName) == null ? void 0 : O.toLowerCase()) !== (h == null ? void 0 : h.toLowerCase());
         }),
-        new Ln({ fieldName: h, message: b, errorCode: k })
+        new Vn({ fieldName: h, message: b, errorCode: k })
       ], l.value = _;
     }
   }
@@ -4357,9 +4358,9 @@ function yl() {
     return e.value = !1, t.value = S.response, l.value = S.error, S;
   }
   async function g(h, b, k, _) {
-    return En(a, h, b, k, _);
+    return Hn(a, h, b, k, _);
   }
-  let p = { setError: i, addFieldError: r, loading: e, error: l, api: d, apiVoid: v, apiForm: f, apiFormVoid: m, swr: g, unRefs: kt, setRef: jn };
+  let p = { setError: i, addFieldError: r, loading: e, error: l, api: d, apiVoid: v, apiForm: f, apiFormVoid: m, swr: g, unRefs: kt, setRef: Bn };
   return qt("ApiState", p), p;
 }
 const Gc = ["onSubmit"], Wc = { key: 0 }, Zc = { key: 2 }, Jc = ["innerHTML"], Xc = /* @__PURE__ */ n("input", {
@@ -4412,7 +4413,7 @@ const Gc = ["onSubmit"], Wc = { key: 0 }, Zc = { key: 2 }, Jc = ["innerHTML"], X
       const K = j();
       let G = De(K == null ? void 0 : K.getMethod, (y) => typeof y == "function" ? y() : null) || "POST", te = De(K == null ? void 0 : K.createResponse, (y) => typeof y == "function" ? y() : null) == null;
       const T = t.jsconfig;
-      if (Ul.hasRequestBody(G)) {
+      if (ql.hasRequestBody(G)) {
         let y = new K.constructor(), A = new FormData(E);
         console.debug("AutoForm.submitForm", y, A), te ? b.value = await f.apiFormVoid(y, A, { jsconfig: T }) : b.value = await f.apiForm(y, A, { jsconfig: T });
       } else {
@@ -4548,7 +4549,7 @@ const Gc = ["onSubmit"], Wc = { key: 0 }, Zc = { key: 2 }, Jc = ["innerHTML"], X
         return;
       }
       let ue = De((se = S.value) == null ? void 0 : se.getMethod, (J) => typeof J == "function" ? J() : null) || "POST", ie = De((H = S.value) == null ? void 0 : H.createResponse, (J) => typeof J == "function" ? J() : null) == null;
-      if (Ul.hasRequestBody(ue)) {
+      if (ql.hasRequestBody(ue)) {
         let J = new S.value.constructor(), pe = new FormData(P);
         ie ? D.value = await F.apiFormVoid(J, pe, { jsconfig: "eccn" }) : D.value = await F.apiForm(J, pe, { jsconfig: "eccn" });
       } else {
@@ -4808,7 +4809,7 @@ const Gc = ["onSubmit"], Wc = { key: 0 }, Zc = { key: 2 }, Jc = ["innerHTML"], X
         return;
       }
       let pe = De((Pe = q.value) == null ? void 0 : Pe.getMethod, (ge) => typeof ge == "function" ? ge() : null) || "POST", _e = De((Ae = q.value) == null ? void 0 : Ae.createResponse, (ge) => typeof ge == "function" ? ge() : null) == null, ae = te();
-      if (Ul.hasRequestBody(pe)) {
+      if (ql.hasRequestBody(pe)) {
         let ge = new q.value.constructor(), Re = ce(t.modelValue, ae.name), Me = new FormData(J);
         ae && !Array.from(Me.keys()).some((R) => R.toLowerCase() == ae.name.toLowerCase()) && Me.append(ae.name, Re);
         let Ne = [];
@@ -5070,9 +5071,9 @@ const Gc = ["onSubmit"], Wc = { key: 0 }, Zc = { key: 2 }, Jc = ["innerHTML"], X
         id: "confirmDelete",
         type: "checkbox",
         class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:ring-offset-black",
-        "onUpdate:modelValue": d[0] || (d[0] = (v) => Tn(t) ? t.value = v : t = v)
+        "onUpdate:modelValue": d[0] || (d[0] = (v) => In(t) ? t.value = v : t = v)
       }, null, 512), [
-        [Hl, s(t)]
+        [Nl, s(t)]
       ]),
       G0,
       n("span", Ce({
@@ -5139,10 +5140,10 @@ const Gc = ["onSubmit"], Wc = { key: 0 }, Zc = { key: 2 }, Jc = ["innerHTML"], X
   },
   emits: ["headerSelected", "rowSelected"],
   setup(e, { emit: l }) {
-    const t = e, a = I(), i = I(null), r = (M) => i.value === M, d = Nl(), v = (M) => Object.keys(d).find((P) => P.toLowerCase() == M.toLowerCase() + "-header"), f = (M) => Object.keys(d).find((P) => P.toLowerCase() == M.toLowerCase()), m = c(() => Il(t.items).filter((M) => !!(d[M] || d[M + "-header"]))), { typeOf: g, typeProperties: p } = Je(), h = c(() => Tt(t.type)), b = c(() => g(h.value)), k = c(() => p(b.value));
+    const t = e, a = I(), i = I(null), r = (M) => i.value === M, d = zl(), v = (M) => Object.keys(d).find((P) => P.toLowerCase() == M.toLowerCase() + "-header"), f = (M) => Object.keys(d).find((P) => P.toLowerCase() == M.toLowerCase()), m = c(() => Il(t.items).filter((M) => !!(d[M] || d[M + "-header"]))), { typeOf: g, typeProperties: p } = Je(), h = c(() => Tt(t.type)), b = c(() => g(h.value)), k = c(() => p(b.value));
     function _(M) {
       const P = t.headerTitles && ce(t.headerTitles, M) || M;
-      return t.headerTitle ? t.headerTitle(P) : Pn(P);
+      return t.headerTitle ? t.headerTitle(P) : Dn(P);
     }
     function S(M) {
       const P = M.toLowerCase();
@@ -5239,7 +5240,7 @@ const Gc = ["onSubmit"], Wc = { key: 0 }, Zc = { key: 2 }, Jc = ["innerHTML"], X
                 }, [
                   (o(!0), u(be, null, $e(e.items, (se, H) => (o(), u("tr", {
                     class: w(te(se, H)),
-                    style: El(T(se, H)),
+                    style: Hl(T(se, H)),
                     onClick: (J) => le(J, H, se)
                   }, [
                     (o(!0), u(be, null, $e(s(y), (J) => (o(), u("td", {
@@ -5266,7 +5267,7 @@ const Gc = ["onSubmit"], Wc = { key: 0 }, Zc = { key: 2 }, Jc = ["innerHTML"], X
     };
   }
 });
-let Rl = () => new Date().getTime(), uf = ["/", "T", ":", "-"], tt = {
+let El = () => new Date().getTime(), uf = ["/", "T", ":", "-"], tt = {
   //locale: null,
   assumeUtc: !0,
   //number: null,
@@ -5277,9 +5278,9 @@ let Rl = () => new Date().getTime(), uf = ["/", "T", ":", "-"], tt = {
   maxFieldLength: 150,
   maxNestedFields: 2,
   maxNestedFieldLength: 30
-}, df = new Intl.RelativeTimeFormat(tt.locale, {}), An = 24 * 60 * 60 * 1e3 * 365, Vl = {
-  year: An,
-  month: An / 12,
+}, df = new Intl.RelativeTimeFormat(tt.locale, {}), Tn = 24 * 60 * 60 * 1e3 * 365, Vl = {
+  year: Tn,
+  month: Tn / 12,
   day: 24 * 60 * 60 * 1e3,
   hour: 60 * 60 * 1e3,
   minute: 60 * 1e3,
@@ -5295,10 +5296,10 @@ let Rl = () => new Date().getTime(), uf = ["/", "T", ":", "-"], tt = {
   attachment: gs,
   hidden: ps,
   time: ys,
-  relativeTime: fn,
+  relativeTime: mn,
   relativeTimeFromMs: bl,
   formatDate: It,
-  formatNumber: cn
+  formatNumber: fn
 };
 "iconOnError" in globalThis || (globalThis.iconOnError = hl);
 class Be {
@@ -5320,7 +5321,7 @@ function us(e, l) {
   return Gt(new Intl.NumberFormat(void 0, { style: "currency", currency: (l == null ? void 0 : l.currency) || "USD" }).format(e), t);
 }
 function ds(e, l) {
-  return Gt(Yl(e), l);
+  return Gt(en(e), l);
 }
 function cs(e, l) {
   return et("a", e, vl({ ...l, href: e }));
@@ -5340,7 +5341,7 @@ function hs(e, l) {
   return et("img", void 0, Object.assign({ class: "w-8 h-8 rounded-full", title: e, src: Ct(e), onerror: "iconOnError(this)" }, l));
 }
 function gs(e, l) {
-  let t = Zl(e), i = Qt(t) == null || Xl(e) ? Ct(e) : en(e);
+  let t = Jl(e), i = Qt(t) == null || Yl(e) ? Ct(e) : tn(e);
   const r = Ct(i);
   let d = l && (l["icon-class"] || l.iconClass), v = et("img", void 0, Object.assign({ class: "w-6 h-6", src: r, onerror: "iconOnError(this,'att')" }, d ? { class: d } : null)), f = `<span class="pl-1">${t}</span>`;
   return et("a", v + f, Object.assign({ class: "flex", href: Ct(e), title: e }, l ? nt(l, ["icon-class", "iconClass"]) : null));
@@ -5349,7 +5350,7 @@ function ps(e) {
   return "";
 }
 function ys(e, l) {
-  let t = typeof e == "string" ? new Date(Dn(e) * 1e3) : fl(e) ? bt(e) : null;
+  let t = typeof e == "string" ? new Date(On(e) * 1e3) : fl(e) ? bt(e) : null;
   return Gt(t ? na(t) : e, l);
 }
 function It(e, l) {
@@ -5359,9 +5360,9 @@ function It(e, l) {
   if (!fl(t))
     return console.warn(`${t} is not a Date value`), e == null ? "" : `${e}`;
   let a = tt.date ? wl(tt.date) : null;
-  return Gt(typeof a == "function" ? a(t) : In(t), l);
+  return Gt(typeof a == "function" ? a(t) : Fn(t), l);
 }
-function cn(e, l) {
+function fn(e, l) {
   if (typeof e != "number")
     return e;
   let t = tt.number ? wl(tt.number) : null, a = typeof t == "function" ? t(e) : `${e}`;
@@ -5373,13 +5374,13 @@ function bs(e, l, t) {
     let d = t;
     if (l != null && l.options)
       try {
-        d = Ql(l.options, t);
+        d = Kl(l.options, t);
       } catch (v) {
         console.error(`Could not evaluate '${l.options}'`, v, ", with scope:", t);
       }
     return i(e, d);
   }
-  let r = a != null ? fl(a) ? It(a, t) : typeof a == "number" ? cn(a, t) : a : null;
+  let r = a != null ? fl(a) ? It(a, t) : typeof a == "number" ? fn(a, t) : a : null;
   return r ?? "";
 }
 function zt(e, l, t) {
@@ -5391,15 +5392,15 @@ function mf(e) {
   if (typeof e == "number")
     return e;
   if (fl(e))
-    return e.getTime() - Rl();
+    return e.getTime() - El();
   if (typeof e == "string") {
     let l = Number(e);
     if (!isNaN(l))
       return l;
     if (e[0] === "P" || e.startsWith("-P"))
-      return Dn(e) * 1e3 * -1;
+      return On(e) * 1e3 * -1;
     if (aa(e, uf) >= 0)
-      return bt(e).getTime() - Rl();
+      return bt(e).getTime() - El();
   }
   return NaN;
 }
@@ -5408,12 +5409,12 @@ function bl(e, l) {
     if (Math.abs(e) > Vl[t] || t === "second")
       return (l || df).format(Math.round(e / Vl[t]), t);
 }
-function fn(e, l) {
+function mn(e, l) {
   let t = mf(e);
   return isNaN(t) ? "" : bl(t, l);
 }
 function vf(e, l) {
-  return bl(e.getTime() - (l ? l.getTime() : Rl()));
+  return bl(e.getTime() - (l ? l.getTime() : El()));
 }
 function wl(e) {
   if (!e)
@@ -5426,7 +5427,7 @@ function wl(e) {
     let d = r ? `'${r}'` : "undefined", v = `return new ${l}(${d},${t || "undefined"})`;
     try {
       let f = Function(v)();
-      return i = l === "Intl.DateTimeFormat" ? (m) => f.format(bt(m)) : l === "Intl.NumberFormat" ? (m) => f.format(Number(m)) : l === "Intl.RelativeTimeFormat" ? (m) => fn(m, f) : (m) => f.format(m), $t[a] = i;
+      return i = l === "Intl.DateTimeFormat" ? (m) => f.format(bt(m)) : l === "Intl.NumberFormat" ? (m) => f.format(Number(m)) : l === "Intl.RelativeTimeFormat" ? (m) => mn(m, f) : (m) => f.format(m), $t[a] = i;
     } catch (f) {
       console.error(`Invalid format: ${v}`, f);
     }
@@ -5447,7 +5448,7 @@ function xs(e) {
   return e.substring(0, 6) === "/Date(" ? It(bt(e)) : e;
 }
 function hf(e) {
-  return mn(St(e)).replace(/"/g, "");
+  return vn(St(e)).replace(/"/g, "");
 }
 function ks(e) {
   if (e == null || e === "")
@@ -5460,11 +5461,11 @@ function ks(e) {
     }
   return e;
 }
-function mn(e, l = 4) {
+function vn(e, l = 4) {
   return e = ks(e), typeof e != "object" ? typeof e == "string" ? e : `${e}` : JSON.stringify(e, void 0, l);
 }
 function gf(e) {
-  return e = ks(e), typeof e != "object" ? typeof e == "string" ? e : `${e}` : (e = Object.assign({}, e), e = St(e), mn(e));
+  return e = ks(e), typeof e != "object" ? typeof e == "string" ? e : `${e}` : (e = Object.assign({}, e), e = St(e), vn(e));
 }
 function St(e) {
   if (e == null)
@@ -5521,12 +5522,12 @@ function jm() {
     attachment: gs,
     hidden: ps,
     time: ys,
-    relativeTime: fn,
+    relativeTime: mn,
     relativeTimeFromDate: vf,
     relativeTimeFromMs: bl,
     formatDate: It,
-    formatNumber: cn,
-    indentJson: mn,
+    formatNumber: fn,
+    indentJson: vn,
     prettyJson: gf,
     scrub: St,
     truncate: ws,
@@ -5559,7 +5560,7 @@ const yf = Y({
       const h = ce(e.modelValue, p.name), b = h && m.refLabel && ce(h, m.refLabel);
       if (!b)
         return f;
-      const k = t(m.model), _ = k == null ? void 0 : k.icon, S = _ ? ft(as, { image: _, class: "w-5 h-5 mr-1" }) : null;
+      const k = t(m.model), _ = k == null ? void 0 : k.icon, S = _ ? ft(os, { image: _, class: "w-5 h-5 mr-1" }) : null;
       return ft("span", { class: "flex", title: `${m.model} ${r}` }, [
         S,
         b
@@ -5604,7 +5605,7 @@ const yf = Y({
     classes: { type: Function, default: (e, l, t, a, i) => a }
   },
   setup(e) {
-    const l = e, t = c(() => yt(l.value)), a = c(() => Array.isArray(l.value)), i = (f) => Pn(f), r = (f) => l.fieldAttrs ? l.fieldAttrs(f) : null, d = c(() => Il(l.value)), v = (f) => f ? Object.keys(f).map((m) => ({ key: i(m), val: f[m] })) : [];
+    const l = e, t = c(() => yt(l.value)), a = c(() => Array.isArray(l.value)), i = (f) => Dn(f), r = (f) => l.fieldAttrs ? l.fieldAttrs(f) : null, d = c(() => Il(l.value)), v = (f) => f ? Object.keys(f).map((m) => ({ key: i(m), val: f[m] })) : [];
     return (f, m) => {
       const g = U("HtmlFormat", !0);
       return o(), u("div", {
@@ -5827,7 +5828,8 @@ const yf = Y({
   __name: "ModalDialog",
   props: {
     id: { default: "ModalDialog" },
-    sizeClass: { default: os.sizeClass }
+    modalClass: { default: Rl.modalClass },
+    sizeClass: { default: Rl.sizeClass }
   },
   emits: ["done"],
   setup(e, { emit: l }) {
@@ -5873,7 +5875,7 @@ const yf = Y({
         n("div", Zf, [
           n("div", Jf, [
             n("div", {
-              class: w(["relative transform overflow-hidden rounded-lg bg-white dark:bg-black text-left shadow-xl transition-all sm:my-8", e.sizeClass, r.value]),
+              class: w([e.modalClass, e.sizeClass, r.value]),
               onMousedown: _[0] || (_[0] = je(() => {
               }, ["stop"]))
             }, [
@@ -6045,7 +6047,7 @@ const yf = Y({
   },
   emits: ["done"],
   setup(e, { emit: l }) {
-    const t = e, a = Nl(), { config: i } = wt(), { metadataApi: r, filterDefinitions: d } = Je(), v = Oe("client"), f = i.value.storage, m = c(() => t.toolbarButtonClass ?? oe.toolbarButtonClass), g = c(() => d.value), p = 25, h = I({ take: p }), b = I(new Ze()), k = I(t.skip), _ = I(!1), S = I(), O = (R) => typeof R == "string" ? R.split(",") : R || [];
+    const t = e, a = zl(), { config: i } = wt(), { metadataApi: r, filterDefinitions: d } = Je(), v = Oe("client"), f = i.value.storage, m = c(() => t.toolbarButtonClass ?? oe.toolbarButtonClass), g = c(() => d.value), p = 25, h = I({ take: p }), b = I(new Ze()), k = I(t.skip), _ = I(!1), S = I(), O = (R) => typeof R == "string" ? R.split(",") : R || [];
     function N(R, z) {
       return oe.getTableRowClass("fullWidth", z, !1, !0);
     }
@@ -6121,7 +6123,7 @@ const yf = Y({
         console.error(`No Query API was found for ${t.refInfo.model}`);
         return;
       }
-      let re = Ht(z, R), xe = Fn((qe) => {
+      let re = Ht(z, R), xe = Pn((qe) => {
         b.value.response = b.value.error = void 0, _.value = qe;
       }), we = await v.api(re);
       xe(), ul(() => b.value = we);
@@ -6254,7 +6256,7 @@ const yf = Y({
                   ])) : C("", !0)
                 ])
               ]),
-              S.value == "filters" ? (o(), X(un, {
+              S.value == "filters" ? (o(), X(dn, {
                 key: 0,
                 class: "border-y border-gray-200 dark:border-gray-800 py-8 my-2",
                 definitions: s(g),
@@ -6263,7 +6265,7 @@ const yf = Y({
                 onChange: ge
               }, null, 8, ["definitions", "columns"])) : C("", !0),
               ie.value ? (o(), u("div", H1, [
-                fe(rn, {
+                fe(un, {
                   definitions: s(g),
                   column: ie.value.column,
                   "top-left": ie.value.topLeft,
@@ -6286,7 +6288,7 @@ const yf = Y({
                     rowClass: N,
                     onRowSelected: pe,
                     onHeaderSelected: ae
-                  }, zl({
+                  }, Ul({
                     header: ve(({ column: ke, label: Ee }) => {
                       var Qe;
                       return [
@@ -6316,7 +6318,7 @@ const yf = Y({
           ]),
           _: 3
         }, 8, ["id"])) : C("", !0),
-        ue.value ? (o(), X(dn, {
+        ue.value ? (o(), X(cn, {
           key: 1,
           columns: s($),
           prefs: h.value,
@@ -6346,7 +6348,7 @@ const yf = Y({
     function v(g) {
       if (d.value = g, l.url) {
         const p = t.value[0];
-        ql({ tab: g === p ? void 0 : g });
+        Ql({ tab: g === p ? void 0 : g });
       }
     }
     function f(g) {
@@ -6385,7 +6387,7 @@ const yf = Y({
             (o(!0), u(be, null, $e(s(t), (h) => (o(), u("a", {
               href: "#",
               onClick: je((b) => v(h), ["prevent"]),
-              style: El({ width: s(m) }),
+              style: Hl({ width: s(m) }),
               class: w([f(h) ? "border-indigo-500 text-indigo-600 py-4 px-1 text-center border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-4 px-1 text-center border-b-2 font-medium text-sm", e.tabClass])
             }, V(a(h)), 15, lm))), 256))
           ])
@@ -6484,7 +6486,7 @@ const yf = Y({
   },
   emits: ["login"],
   setup(e, { emit: l }) {
-    const t = e, { getMetadata: a, createDto: i } = Je(), r = yl(), { signIn: d } = on(), v = a({ assert: !0 }), f = v.plugins.auth, m = document.baseURI, g = v.app.baseUrl, p = I(i("Authenticate")), h = I(new Ze());
+    const t = e, { getMetadata: a, createDto: i } = Je(), r = yl(), { signIn: d } = rn(), v = a({ assert: !0 }), f = v.plugins.auth, m = document.baseURI, g = v.app.baseUrl, p = I(i("Authenticate")), h = I(new Ze());
     lt(() => {
       f == null || f.authProviders.map((D) => D.formLayout).filter((D) => D).forEach((D) => D.forEach((F) => p.value[F.id] = ""));
     });
@@ -6599,7 +6601,7 @@ const yf = Y({
   AlertSuccess: Fa,
   ErrorSummary: Ba,
   InputDescription: Ea,
-  Icon: as,
+  Icon: os,
   Loading: ko,
   OutlineButton: _o,
   PrimaryButton: Mo,
@@ -6611,9 +6613,9 @@ const yf = Y({
   NavListItem: ni,
   AutoQueryGrid: Lu,
   SettingsIcons: Eu,
-  FilterViews: un,
-  FilterColumn: rn,
-  QueryPrefs: dn,
+  FilterViews: dn,
+  FilterColumn: un,
+  QueryPrefs: cn,
   EnsureAccess: rs,
   EnsureAccessDialog: Hu,
   TextInput: Ju,
@@ -6671,7 +6673,7 @@ const yf = Y({
 export {
   Om as css,
   Bm as default,
-  on as useAuth,
+  rn as useAuth,
   yl as useClient,
   wt as useConfig,
   Dm as useFiles,
