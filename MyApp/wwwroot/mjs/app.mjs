@@ -1,9 +1,13 @@
 import { createApp, reactive, nextTick } from "vue"
-import { JsonApiClient, ApiResult, $1, $$, queryString } from "@servicestack/client"
+import { JsonApiClient, ApiResult, $1, $$, queryString, combinePaths } from "@servicestack/client"
 import ServiceStackVue, { useConfig, useClient, useAuth } from "@servicestack/vue"
-import { AlbumTitle, ArtifactLikeIcon, ArtifactExploreIcon, ArtifactGallery, ArtifactModal, ArtifactImage } from "./components/Artifacts.mjs"
+import { 
+    AlbumTitle, ArtifactMenu, NewReport, NewAlbum,
+    ArtifactDialogs, ArtifactLikeIcon, ArtifactExploreIcon, ArtifactMenuIcon, 
+    ArtifactGallery, ArtifactModal, ArtifactImage 
+} from "./components/Artifacts.mjs"
 import { SignInDialog, SignUpDialog, SignInLink, AvatarImage } from "./components/Auth.mjs"
-import { BaseUrl, Store } from "./store.mjs"
+import { AssetsBasePath, BaseUrl, FallbackAssetsBasePath, Store } from "./store.mjs"
 import { Authenticate } from "./dtos.mjs"
 
 let client = null, store = null, Apps = []
@@ -15,8 +19,13 @@ export { client, Apps }
 /** Shared Components */
 const Components = {
     AlbumTitle,
+    ArtifactMenu,
+    NewReport,
+    NewAlbum,
+    ArtifactDialogs,
     ArtifactLikeIcon,
     ArtifactExploreIcon,
+    ArtifactMenuIcon,
     ArtifactGallery,
     ArtifactModal,
     ArtifactImage,
@@ -31,7 +40,17 @@ setConfig({
     navigate: url => {
         console.log('navigating to ', url)
         location.href = url
-    }
+    },
+    assetsPathResolver: path => {
+        return path.includes('://')
+            ? path
+            : combinePaths(store.AssetsBasePath, path)
+    },
+    fallbackPathResolver: path => {
+        return path.includes('://')
+            ? path
+            : combinePaths(store.FallbackAssetsBasePath, path)
+    },
 })
 
 const alreadyMounted = el => el.__vue_app__ 
@@ -96,6 +115,10 @@ export function init(exports) {
             store.signIn(api.response)
         } else {
             store.signOut()
+            const protectedPages = ['/create','/favorites']
+            if (protectedPages.some(path => path === location.pathname)) {
+                location.href = '/'
+            }
         }
     })
     mountAll()

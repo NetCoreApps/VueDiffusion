@@ -59,7 +59,7 @@ export class Store {
     /** @type {UserDataResponse|null} */
     userData = null
     
-    signIn(auth) {
+    async signIn(auth) {
         const { signIn } = useAuth()
         this.auth = auth
         signIn(auth)
@@ -67,12 +67,16 @@ export class Store {
         localStorage.setItem(this.authKey, JSON.stringify(auth))
         this.userAlbumArtifactsKey = `swr[${this.auth.userId}].userAlbumArtifacts`
         this.userLikesKey = `swr[${this.auth.userId}].userLikedArtifacts`
+        await this.loadUserData()
     }
     signOut() {
-        const { signOut } = useAuth()
-        this.auth = null
-        signOut()
         localStorage.removeItem(this.authKey)
+        localStorage.removeItem(this.userDataKey)
+        this.auth = null
+        this.userData = null
+        this.userAlbumArtifactsKey = this.userLikesKey = null
+        const { signOut } = useAuth()
+        signOut()
     }
     async load() {
         await Promise.all([
@@ -169,11 +173,6 @@ export class Store {
                 this.userRefsMap[result.refId] = result
             return result
         }
-    }
-    
-    signOut() {
-        this.userData = null
-        this.userAlbumArtifactsKey = this.userLikesKey = null
     }
 
     /** @param {number[]} ids */
@@ -320,7 +319,7 @@ export class Store {
     searchByUserUrl(userRef) {
         return `/?user=${userRef}`
     }
-    get searchByCurrentUserUrl() { return this.searchByUserUrl(this.userData.user.refId) }
+    get searchByCurrentUserUrl() { return this.searchByUserUrl(this.userData?.user.refId) }
     
     /** @param {String} albumRef
      *  @param {string} source
@@ -362,13 +361,13 @@ export class Store {
     }
     /** @param {UserResult} user
      *  @param {string} [lastImageSrc] */
-    getImageErrorUrl(user, lastImageSrc) {
+    getUserImageErrorUrl(user, lastImageSrc) {
         const failedImg = this.solidImageDataUri('#000')
         if (!lastImageSrc)
             return this.getUserFallbackUrl(user) || failedImg
         if (lastImageSrc === this.getUserFallbackUrl(user))
             return setQueryString(this.getUserPublicUrl(user), { r: 1 })
-        
+
         const qs = queryString(lastImageSrc)
         let r = parseInt(qs.r) || 1
         if (r > 5)
@@ -378,7 +377,27 @@ export class Store {
             ? setQueryString(this.getUserFallbackUrl(user), { r })
             : setQueryString(this.getUserPublicUrl(user), { r })
     }
-    
+
+    /** @param {Artifact} artifact
+     *  @param {string} [lastImageSrc] */
+    getArtifactImageErrorUrl(artifact, lastImageSrc) {
+        let publicUrl = this.AssetsBasePath + artifact.filePath
+        let fallbackUrl = this.FallbackAssetsBasePath + artifact.filePath
+        if (!lastImageSrc)
+            return fallbackUrl
+        if (lastImageSrc === fallbackUrl)
+            return setQueryString(publicUrl, { r: 1 })
+
+        const qs = queryString(lastImageSrc)
+        let r = parseInt(qs.r) || 1
+        if (r > 5)
+            return this.solidImageDataUri('#000')
+        r++
+        return r % 2 === 0
+            ? setQueryString(fallbackUrl, { r })
+            : setQueryString(publicUrl, { r })
+    }
+
     /** @param {Artifact} artifact */
     getPublicUrl(artifact) {
         return this.AssetsBasePath + artifact.filePath
@@ -444,6 +463,12 @@ export class Store {
         return to
     }
 
+    /** @param {number} artifactId */
+    allArtifacts(artifactId) {
+        return [this.artifactsMap[artifactId]]
+            .filter(x => !!x)
+    }
+
     /** @param {Creative} creative
      *  @param {number|null} artifactId,
      *  @param {Creative[]|null} creatives
@@ -468,7 +493,36 @@ export class Store {
                     album.artifactIds = [artifactId, ...album.artifactIds.filter(id => id !== artifactId)]
                 }
             })
-    } 
+    }
+
+    /** @param {AlbumResult} album
+     *  @param {Artifact} artifact */
+    addArtifactToAlbum(album, artifact) {
+        const userAlbum = this.userAlbums.find(x => x.id === album.id)
+        if (userAlbum) {
+            if (!album.artifactIds.includes(artifact.id)) {
+                album.artifactIds.unshift(artifact.id)
+                if (album.primaryArtifactId) {
+                    album.artifactIds = album.artifactIds.filter(id => id !== album.primaryArtifactId)
+                    album.artifactIds.unshift(album.primaryArtifactId)
+                }
+            }
+        }
+    }
+
+    /** @param {AlbumResult} album
+     *  @param {Artifact} artifact */
+    removeArtifactFromAlbum(album, artifact) {
+        const userAlbum = this.userAlbums.find(x => x.id === album.id)
+        if (userAlbum) {
+            if (album.artifactIds.includes(artifact.id)) {
+                album.artifactIds = album.artifactIds.filter(id => id !== artifact.id)
+                if (album.artifactIds.length === 0) {
+                    this.userData.user.albums = this.userAlbums.filter(x => x.id !== album.id)
+                }
+            }
+        }
+    }
 
     /** @param {Artifact} artifact */
     isModerated(artifact) {
