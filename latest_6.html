@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
-                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
-                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
-                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:justify-end">
             <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </header>
 
 <script>
@@ -92,7 +94,7 @@ const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null)
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
 </script>
@@ -100,11 +102,24 @@ if (cachedAuth?.profileUrl) {
 <script type="module">
 import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
 
 const HeaderNav = {
     setup() {
         const showMobileNav = ref(false)
-        return { showMobileNav }
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
     }
 }
 mount('#header', HeaderNav)
@@ -162,6 +177,72 @@ mountAll()
 
     
 <div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(49989)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5A3C62FF">
+        <img alt="Detailed illustration of a cyberpunk Beneath a Steel Sky city at night, 8k, Intricate Details, Trending on Artstation, Epic, Comic, Sharp Focus, Deviantart, Beautifully Lit" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/25/18108930/output_2117772345.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/49/49989_detailed-illustration-of-a-cyberpunk-beneath-a-steel-sky-city-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(49984)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F3C73FF">
+        <img alt="Detailed illustration of a cyberpunk Beneath a Steel Sky city at night, 8k, Intricate Details, Trending on Artstation, Epic, Comic, Sharp Focus, Deviantart, Beautifully Lit by Alena Aenami" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/25/18046066/output_1000157838.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/49/49984_detailed-illustration-of-a-cyberpunk-beneath-a-steel-sky-city-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(49974)">
+        
+        <div class="relative overflow-hidden" style="background-color:#49416CFF">
+        <img alt="Detailed illustration of a cyberpunk Beneath a Steel Sky city at night, 8k, Intricate Details, Epic, Comic, Sharp Focus, Beautifully Lit by Alena Aenami" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/25/17958695/output_1271802507.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/49/49974_detailed-illustration-of-a-cyberpunk-beneath-a-steel-sky-city-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(49965)">
+        
+        <div class="relative overflow-hidden" style="background-color:#36565FFF">
+        <img alt="Detailed illustration of a cyberpunk Beneath a Steel Sky city at night, 8k, Intricate Details, Epic, Comic, Sharp Focus, Beautifully Lit by Alena Aenami" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/25/17893939/output_110823068.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/49/49965_detailed-illustration-of-a-cyberpunk-beneath-a-steel-sky-city-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(49956)">
+        
+        <div class="relative overflow-hidden" style="background-color:#913263FF">
+        <img alt="Detailed illustration of a cyberpunk Beneath a Steel Sky city at night, 8k, Intricate Details, Epic, Comic, Sharp Focus, Beautifully Lit by Alena Aenami" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/25/17605450/output_1538879643.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/49/49956_detailed-illustration-of-a-cyberpunk-beneath-a-steel-sky-city-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(49946)">
+        
+        <div class="relative overflow-hidden" style="background-color:#68234BFF">
+        <img alt="Detailed illustration of a cyberpunk Beneath a Steel Sky city at night, 8k, Intricate Details, Epic, Comic, Sharp Focus, Beautifully Lit by Alena Aenami" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/25/17530300/output_2270554200.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/49/49946_detailed-illustration-of-a-cyberpunk-beneath-a-steel-sky-city-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(49938)">
         
         <div class="relative overflow-hidden" style="background-color:#444868FF">
@@ -2681,23 +2762,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(46865)">
-        
-        <div class="relative overflow-hidden" style="background-color:#576365FF">
-        <img alt="Beautiful elf in a magical forest, 4k, Highly Detailed, Hyper Detailed, Masterpiece, Full Body, Cosmic Nebulae, Full Lips, Pretty Face, Tattoos, Wings, Digital Illustration, Bloom light effect, Cinematic Lighting, Realistic, Sharp Focus, Deviantart, Centered, Beautifully Lit, Bioluminescent, Radiant, Vibrant Colors by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski, Stefan Kostic" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/17/63351968/output_4007924203.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/46/46865_beautiful-elf-in-a-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(46836)">
         
         <div class="relative overflow-hidden" style="background-color:#645551FF">
         <img alt="Alluring matte portrait of a beautiful Sona with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/17/62949686/output_3373167986.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/46/46836_alluring-matte-portrait-of-a-beautiful-sona-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(46865)">
+        
+        <div class="relative overflow-hidden" style="background-color:#576365FF">
+        <img alt="Beautiful elf in a magical forest, 4k, Highly Detailed, Hyper Detailed, Masterpiece, Full Body, Cosmic Nebulae, Full Lips, Pretty Face, Tattoos, Wings, Digital Illustration, Bloom light effect, Cinematic Lighting, Realistic, Sharp Focus, Deviantart, Centered, Beautifully Lit, Bioluminescent, Radiant, Vibrant Colors by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski, Stefan Kostic" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/17/63351968/output_4007924203.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/46/46865_beautiful-elf-in-a-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3000,28 +3081,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(46436)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7D4589FF">
-        <img alt="Fairy Wizard, 4k, Eldritch, Glass, Hallucinogenic, Hyper Detailed, Full Body, Cosmic Nebulae, Ethereal, Glowwave, Full Lips, Pretty Face, Purple Hair, Tattoos, Wings, Digital Illustration, Overgrown, D&amp;D, DnD, Elden Ring, LOTR, Bloom light effect, Cinematic Lighting, Realistic, Sharp Focus, Deviantart, Octane Render, Unreal Engine, Centered, Beautifully Lit, Bioluminescent, Radiant, Prismatic, Vibrant Colors, Hideous by Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/15/22475155/output_627985984.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/46/46436_fairy-wizard.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(46428)">
-        
-        <div class="relative overflow-hidden" style="background-color:#68586FFF">
-        <img alt="Fairy Wizard, 4k, Eldritch, Glass, Hallucinogenic, Hyper Detailed, Full Body, Cosmic Nebulae, Ethereal, Glowwave, Full Lips, Pretty Face, Purple Hair, Tattoos, Wings, Digital Illustration, Overgrown, D&amp;D, DnD, Elden Ring, LOTR, Bloom light effect, Cinematic Lighting, Realistic, Deviantart, Octane Render, Unreal Engine, Centered, Beautifully Lit, Bioluminescent, Radiant, Prismatic, Vibrant Colors, Hideous by Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/15/22423653/output_2659834441.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/46/46428_fairy-wizard.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(46467)">
         
         <div class="relative overflow-hidden" style="background-color:#555D68FF">
@@ -3039,6 +3098,50 @@ mountAll()
         <img alt="Fairy Wizard in a forest, 4k, Eldritch, Glass, Hallucinogenic, Hyper Detailed, Full Body, Cosmic Nebulae, Ethereal, Glowwave, Full Lips, Pretty Face, Purple Hair, Tattoos, Wings, Digital Illustration, Overgrown, D&amp;D, DnD, Elden Ring, LOTR, Bloom light effect, Cinematic Lighting, Realistic, Sharp Focus, Deviantart, Octane Render, Centered, Beautifully Lit, Bioluminescent, Radiant, Contrasting Colors, Prismatic, Vibrant Colors, Hideous by Greg Rutkowski" width="512" height="896"
              src="https://cdn.diffusion.works/artifacts/2023/01/15/22740193/output_1408835223.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/46/46457_fairy-wizard-in-a-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(44222)">
+        
+        <div class="relative overflow-hidden" style="background-color:#706667FF">
+        <img alt="Alluring portrait of a beautiful Donald Trump, 8k, Highly Detailed, Intricate, Full Body, Realistic, Beautifully Lit, Volumetric Lighting, Passionate by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2023/01/10/64972815/output_275848759.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/44/44222_alluring-portrait-of-a-beautiful-donald-trump.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(43634)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A6256FF">
+        <img alt="Colorful portrait of a tattooed Irina Shayk with a grey scale face, 4k, Highly Detailed, Hyper Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2023/01/10/37350402/output_1687601143.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/43/43634_colorful-portrait-of-a-tattooed-irina-shayk-with-a-grey-scale-face.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(46436)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D4589FF">
+        <img alt="Fairy Wizard, 4k, Eldritch, Glass, Hallucinogenic, Hyper Detailed, Full Body, Cosmic Nebulae, Ethereal, Glowwave, Full Lips, Pretty Face, Purple Hair, Tattoos, Wings, Digital Illustration, Overgrown, D&amp;D, DnD, Elden Ring, LOTR, Bloom light effect, Cinematic Lighting, Realistic, Sharp Focus, Deviantart, Octane Render, Unreal Engine, Centered, Beautifully Lit, Bioluminescent, Radiant, Prismatic, Vibrant Colors, Hideous by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/15/22475155/output_627985984.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/46/46436_fairy-wizard.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(46428)">
+        
+        <div class="relative overflow-hidden" style="background-color:#68586FFF">
+        <img alt="Fairy Wizard, 4k, Eldritch, Glass, Hallucinogenic, Hyper Detailed, Full Body, Cosmic Nebulae, Ethereal, Glowwave, Full Lips, Pretty Face, Purple Hair, Tattoos, Wings, Digital Illustration, Overgrown, D&amp;D, DnD, Elden Ring, LOTR, Bloom light effect, Cinematic Lighting, Realistic, Deviantart, Octane Render, Unreal Engine, Centered, Beautifully Lit, Bioluminescent, Radiant, Prismatic, Vibrant Colors, Hideous by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/15/22423653/output_2659834441.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/46/46428_fairy-wizard.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4738,6 +4841,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(44267)">
+        
+        <div class="relative overflow-hidden" style="background-color:#695F5DFF">
+        <img alt="rcsi college building in Dublin city, 8k, Highly Detailed, Intricate, Stormy Day, Realistic, Beautifully Lit, Volumetric Lighting, Fantasy by Sarah Andersen" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/11/32324264/output_2570628234.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/44/44267_rcsi-college-building-in-dublin-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(44248)">
         
         <div class="relative overflow-hidden" style="background-color:#855E3AFF">
@@ -4749,12 +4863,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(44267)">
+    <div v-on:click.prevent.stop="loadArtifact(44264)">
         
-        <div class="relative overflow-hidden" style="background-color:#695F5DFF">
-        <img alt="rcsi college building in Dublin city, 8k, Highly Detailed, Intricate, Stormy Day, Realistic, Beautifully Lit, Volumetric Lighting, Fantasy by Sarah Andersen" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/11/32324264/output_2570628234.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/44/44267_rcsi-college-building-in-dublin-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#585B66FF">
+        <img alt="dublin city, 8k, Highly Detailed, Intricate, Stormy Day, Realistic, Beautifully Lit, Volumetric Lighting, Fantasy by Sarah Andersen" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/11/32273028/output_1712129817.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/44/44264_dublin-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4782,12 +4896,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(44264)">
+    <div v-on:click.prevent.stop="loadArtifact(44257)">
         
-        <div class="relative overflow-hidden" style="background-color:#585B66FF">
-        <img alt="dublin city, 8k, Highly Detailed, Intricate, Stormy Day, Realistic, Beautifully Lit, Volumetric Lighting, Fantasy by Sarah Andersen" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/11/32273028/output_1712129817.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/44/44264_dublin-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#56452DFF">
+        <img alt="dublin city, 8k, Highly Detailed, Intricate, Blade Runner 2049, Realistic, Beautifully Lit, Volumetric Lighting, Fantasy by Sarah Andersen" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/11/32227458/output_698500010.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/44/44257_dublin-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4815,23 +4929,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(44222)">
+    <div v-on:click.prevent.stop="loadArtifact(44255)">
         
-        <div class="relative overflow-hidden" style="background-color:#706667FF">
-        <img alt="Alluring portrait of a beautiful Donald Trump, 8k, Highly Detailed, Intricate, Full Body, Realistic, Beautifully Lit, Volumetric Lighting, Passionate by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2023/01/10/64972815/output_275848759.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/44/44222_alluring-portrait-of-a-beautiful-donald-trump.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(44257)">
-        
-        <div class="relative overflow-hidden" style="background-color:#56452DFF">
-        <img alt="dublin city, 8k, Highly Detailed, Intricate, Blade Runner 2049, Realistic, Beautifully Lit, Volumetric Lighting, Fantasy by Sarah Andersen" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/11/32227458/output_698500010.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/44/44257_dublin-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#6F4829FF">
+        <img alt="dublin city, 8k, Highly Detailed, Intricate, Full Body, Realistic, Beautifully Lit, Volumetric Lighting, Fantasy, Passionate by Sarah Andersen" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/11/32164787/output_332752126.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/44/44255_dublin-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4843,17 +4946,6 @@ mountAll()
         <img alt="Alluring portrait of a beautiful skimpy Kassandra, 8k, Highly Detailed, Intricate, Full Body, Sunny Day, Realistic, Beautifully Lit, Volumetric Lighting, Fantasy, Passionate by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/10/64775763/output_918445539.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/44/44201_alluring-portrait-of-a-beautiful-skimpy-kassandra.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(44255)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6F4829FF">
-        <img alt="dublin city, 8k, Highly Detailed, Intricate, Full Body, Realistic, Beautifully Lit, Volumetric Lighting, Fantasy, Passionate by Sarah Andersen" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/11/32164787/output_332752126.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/44/44255_dublin-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5398,17 +5490,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(43634)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6A6256FF">
-        <img alt="Colorful portrait of a tattooed Irina Shayk with a grey scale face, 4k, Highly Detailed, Hyper Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2023/01/10/37350402/output_1687601143.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/43/43634_colorful-portrait-of-a-tattooed-irina-shayk-with-a-grey-scale-face.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(43628)">
         
         <div class="relative overflow-hidden" style="background-color:#574A40FF">
@@ -5431,23 +5512,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(43610)">
-        
-        <div class="relative overflow-hidden" style="background-color:#807975FF">
-        <img alt="Colorful portrait of a tattooed Irina Shayk with a grey scale face, 4k, Highly Detailed, Hyper Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/10/36673837/output_1709403808.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/43/43610_colorful-portrait-of-a-tattooed-irina-shayk-with-a-grey-scale-face.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(43613)">
         
         <div class="relative overflow-hidden" style="background-color:#867976FF">
         <img alt="Colorful portrait of a tattooed Irina Shayk with a grey scale face, 4k, Highly Detailed, Hyper Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/10/36990842/output_278209180.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/43/43613_colorful-portrait-of-a-tattooed-irina-shayk-with-a-grey-scale-face.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(43610)">
+        
+        <div class="relative overflow-hidden" style="background-color:#807975FF">
+        <img alt="Colorful portrait of a tattooed Irina Shayk with a grey scale face, 4k, Highly Detailed, Hyper Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/10/36673837/output_1709403808.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/43/43610_colorful-portrait-of-a-tattooed-irina-shayk-with-a-grey-scale-face.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5591,72 +5672,6 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful A2 wearing white, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/10/5941165/output_4152204145.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/43/43484_alluring-matte-portrait-of-a-beautiful-a2-wearing-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(43476)">
-        
-        <div class="relative overflow-hidden" style="background-color:#827A72FF">
-        <img alt="Alluring matte portrait of a beautiful A2 wearing black, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/10/5882023/output_2330997831.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/43/43476_alluring-matte-portrait-of-a-beautiful-a2-wearing-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(43468)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6A3A3EFF">
-        <img alt="Alluring matte portrait of a beautiful A2 wearing dark red, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/10/5804366/output_2451930241.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/43/43468_alluring-matte-portrait-of-a-beautiful-a2-wearing-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(43456)">
-        
-        <div class="relative overflow-hidden" style="background-color:#61726EFF">
-        <img alt="Alluring matte portrait of a beautiful A2 wearing dark blue, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/10/5728439/output_1987922708.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/43/43456_alluring-matte-portrait-of-a-beautiful-a2-wearing-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(43449)">
-        
-        <div class="relative overflow-hidden" style="background-color:#58656AFF">
-        <img alt="Alluring matte portrait of a beautiful Ciri wearing dark blue, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/09/35777965/output_4061449813.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/43/43449_alluring-matte-portrait-of-a-beautiful-ciri-wearing-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(43437)">
-        
-        <div class="relative overflow-hidden" style="background-color:#675F60FF">
-        <img alt="Alluring matte portrait of a beautiful Mai Shiranui wearing dark blue, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/09/35706251/output_2681429761.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/43/43437_alluring-matte-portrait-of-a-beautiful-mai-shiranui-wearing-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(43429)">
-        
-        <div class="relative overflow-hidden" style="background-color:#676F77FF">
-        <img alt="Alluring matte portrait of a beautiful Ada Wong wearing dark blue, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/09/35648567/output_378684850.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/43/43429_alluring-matte-portrait-of-a-beautiful-ada-wong-wearing-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>

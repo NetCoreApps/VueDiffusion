@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
-                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
-                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
-                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:justify-end">
             <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </header>
 
 <script>
@@ -92,7 +94,7 @@ const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null)
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
 </script>
@@ -100,11 +102,24 @@ if (cachedAuth?.profileUrl) {
 <script type="module">
 import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
 
 const HeaderNav = {
     setup() {
         const showMobileNav = ref(false)
-        return { showMobileNav }
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
     }
 }
 mount('#header', HeaderNav)
@@ -162,6 +177,72 @@ mountAll()
 
     
 <div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(27970)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5F5542FF">
+        <img alt="close up shapeshifter, 4k, Highly Detailed, Hyper Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/34594516/output_686665948.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27970_close-up-shapeshifter.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27965)">
+        
+        <div class="relative overflow-hidden" style="background-color:#595C54FF">
+        <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/34581506/output_89620052.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27965_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27956)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A4C4FFF">
+        <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/34531057/output_3072701789.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27956_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27950)">
+        
+        <div class="relative overflow-hidden" style="background-color:#634C43FF">
+        <img alt="close up eldery aggressive looking sorcerer wielding ball lightning, 4k, Highly Detailed, Hyper Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/34509771/output_835145127.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27950_close-up-eldery-aggressive-looking-sorcerer-wielding-ball-lightning.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27939)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7A6669FF">
+        <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/34474014/output_4236801894.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27939_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27934)">
+        
+        <div class="relative overflow-hidden" style="background-color:#604C4AFF">
+        <img alt="close up female sorcerer wielding ball lightning, 4k, Highly Detailed, Hyper Detailed, Powerful, Artstation, Vintage Illustration, Digital Painting, Sharp Focus, Smooth, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/34438874/output_2316314272.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27934_close-up-female-sorcerer-wielding-ball-lightning.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(27933)">
         
         <div class="relative overflow-hidden" style="background-color:#596064FF">
@@ -877,17 +958,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(27348)">
-        
-        <div class="relative overflow-hidden" style="background-color:#76625DFF">
-        <img alt="batman eating paella on top eiffel tower, GLaDOS, Retro-Futurism" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/26/30542387/output_1335183869.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27348_batman-eating-paella-on-top-eiffel-tower.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(27334)">
         
         <div class="relative overflow-hidden" style="background-color:#757D8BFF">
@@ -899,12 +969,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(27342)">
+    <div v-on:click.prevent.stop="loadArtifact(27348)">
         
-        <div class="relative overflow-hidden" style="background-color:#967246FF">
-        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/26/30462017/output_3842926100.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27342_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#76625DFF">
+        <img alt="batman eating paella on top eiffel tower, GLaDOS, Retro-Futurism" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/26/30542387/output_1335183869.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27348_batman-eating-paella-on-top-eiffel-tower.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -932,12 +1002,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(27340)">
+    <div v-on:click.prevent.stop="loadArtifact(27342)">
         
-        <div class="relative overflow-hidden" style="background-color:#8F8469FF">
-        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism by Pablo Picasso" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/26/30421707/output_3358622358.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27340_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#967246FF">
+        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/26/30462017/output_3842926100.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27342_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -960,6 +1030,17 @@ mountAll()
         <img alt="Closeup portrait of a fierce dragon in a fantasy world of dragons, 4k, Highly Detailed, Sharp Focus, Octane Render, Volumetric Lighting by Stanley Artgerm Lau, Frank Frazetta, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/25/13780875/output_4211805383.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/27/27304_closeup-portrait-of-a-fierce-dragon-in-a-fantasy-world-of-dragons.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27340)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8F8469FF">
+        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism by Pablo Picasso" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/26/30421707/output_3358622358.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27340_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5376,17 +5457,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(23931)">
-        
-        <div class="relative overflow-hidden" style="background-color:#696782FF">
-        <img alt="moon in the background, side portrait dark witch, adventurer outfit large cloak, fantasy forest landscape, dragon scales, fantasy magic, undercut hairstyle, short purple black fade hair, dark light night, intricate, elegant, sharp focus, illustration, highly detailed, digital painting, concept art, matte, art by WLOP and Artgerm and Greg Rutkowski and Alphonse Mucha, masterpiece&#xFFFC;Copy Text Prompt, 8k" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/12/19/14259058/output_161418881.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/23/23931_moon-in-the-background-side-portrait-dark-witch-adventurer-outfit-large-cloak-fantasy-forest-land.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(23914)">
         
         <div class="relative overflow-hidden" style="background-color:#865A51FF">
@@ -5404,6 +5474,17 @@ mountAll()
         <img alt="Matte portrait of Quinn from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/18/54253911/output_1395894922.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/23/23899_matte-portrait-of-quinn-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(23931)">
+        
+        <div class="relative overflow-hidden" style="background-color:#696782FF">
+        <img alt="moon in the background, side portrait dark witch, adventurer outfit large cloak, fantasy forest landscape, dragon scales, fantasy magic, undercut hairstyle, short purple black fade hair, dark light night, intricate, elegant, sharp focus, illustration, highly detailed, digital painting, concept art, matte, art by WLOP and Artgerm and Greg Rutkowski and Alphonse Mucha, masterpiece&#xFFFC;Copy Text Prompt, 8k" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/19/14259058/output_161418881.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/23/23931_moon-in-the-background-side-portrait-dark-witch-adventurer-outfit-large-cloak-fantasy-forest-land.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5591,72 +5672,6 @@ mountAll()
         <img alt="Matte portrait of Fiora from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/18/51730089/output_3894169841.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/23/23730_matte-portrait-of-fiora-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(23721)">
-        
-        <div class="relative overflow-hidden" style="background-color:#8E7260FF">
-        <img alt="Matte portrait of Fiora from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/18/48603937/output_2212455493.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/23/23721_matte-portrait-of-fiora-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(23712)">
-        
-        <div class="relative overflow-hidden" style="background-color:#665037FF">
-        <img alt="Matte portrait of Fiora from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/18/48534376/output_2849800939.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/23/23712_matte-portrait-of-fiora-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(23686)">
-        
-        <div class="relative overflow-hidden" style="background-color:#58433AFF">
-        <img alt="Matte portrait of Katarina from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/18/31634624/output_4016473172.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/23/23686_matte-portrait-of-katarina-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(23671)">
-        
-        <div class="relative overflow-hidden" style="background-color:#8C716DFF">
-        <img alt="Matte portrait of Katarina from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/18/31531712/output_4045571579.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/23/23671_matte-portrait-of-katarina-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(23663)">
-        
-        <div class="relative overflow-hidden" style="background-color:#8D7B64FF">
-        <img alt="Matte portrait of Katarina from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/18/31461906/output_739602045.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/23/23663_matte-portrait-of-katarina-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(23660)">
-        
-        <div class="relative overflow-hidden" style="background-color:#746A72FF">
-        <img alt="Matte portrait of Katarina from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/18/31208436/output_724882930.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/23/23660_matte-portrait-of-katarina-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>

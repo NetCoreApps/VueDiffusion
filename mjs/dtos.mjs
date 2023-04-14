@@ -1,5 +1,5 @@
 /* Options:
-Date: 2023-04-03 12:02:40
+Date: 2023-04-12 21:18:31
 Version: 6.81
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: https://localhost:5001
@@ -824,11 +824,23 @@ export class GetAlbumRefsResponse {
     /** @type {AlbumRef[]} */
     results;
 }
+export class UserProfile {
+    /** @param {{displayName?:string,avatar?:string,handle?:string}} [init] */
+    constructor(init) { Object.assign(this, init) }
+    /** @type {string} */
+    displayName;
+    /** @type {?string} */
+    avatar;
+    /** @type {?string} */
+    handle;
+}
 export class UserDataResponse {
-    /** @param {{user?:UserResult,signups?:SignupType[],roles?:string[],responseStatus?:ResponseStatus}} [init] */
+    /** @param {{user?:UserResult,profile?:UserProfile,signups?:SignupType[],roles?:string[],responseStatus?:ResponseStatus}} [init] */
     constructor(init) { Object.assign(this, init) }
     /** @type {UserResult} */
     user;
+    /** @type {UserProfile} */
+    profile;
     /** @type {SignupType[]} */
     signups;
     /** @type {string[]} */
@@ -847,16 +859,6 @@ export class EmptyResponse {
     constructor(init) { Object.assign(this, init) }
     /** @type {ResponseStatus} */
     responseStatus;
-}
-export class UserProfile {
-    /** @param {{displayName?:string,avatar?:string,handle?:string}} [init] */
-    constructor(init) { Object.assign(this, init) }
-    /** @type {string} */
-    displayName;
-    /** @type {?string} */
-    avatar;
-    /** @type {?string} */
-    handle;
 }
 export class GetUserProfileResponse {
     /** @param {{result?:UserProfile,responseStatus?:ResponseStatus}} [init] */

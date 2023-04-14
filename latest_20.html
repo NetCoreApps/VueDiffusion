@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
-                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
-                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
-                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:justify-end">
             <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </header>
 
 <script>
@@ -92,7 +94,7 @@ const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null)
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
 </script>
@@ -100,11 +102,24 @@ if (cachedAuth?.profileUrl) {
 <script type="module">
 import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
 
 const HeaderNav = {
     setup() {
         const showMobileNav = ref(false)
-        return { showMobileNav }
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
     }
 }
 mount('#header', HeaderNav)
@@ -162,6 +177,72 @@ mountAll()
 
     
 <div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(14817)">
+        
+        <div class="relative overflow-hidden" style="background-color:#917A6CFF">
+        <img alt="Alluring matte portrait of a beautiful Rita Ora, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/23005197/output_2085441035.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14817_alluring-matte-portrait-of-a-beautiful-rita-ora.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14809)">
+        
+        <div class="relative overflow-hidden" style="background-color:#825A48FF">
+        <img alt="Alluring matte portrait of a beautiful Alicia Vikander, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/22850221/output_4095536053.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14809_alluring-matte-portrait-of-a-beautiful-alicia-vikander.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14796)">
+        
+        <div class="relative overflow-hidden" style="background-color:#726C5FFF">
+        <img alt="Alluring matte portrait of a beautiful Alicia Vikander, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/22914806/output_467192724.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14796_alluring-matte-portrait-of-a-beautiful-alicia-vikander.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14785)">
+        
+        <div class="relative overflow-hidden" style="background-color:#868683FF">
+        <img alt="Alluring matte portrait of a beautiful Kate Beckinsale, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/22906822/output_636797358.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14785_alluring-matte-portrait-of-a-beautiful-kate-beckinsale.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14775)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F6364FF">
+        <img alt="Alluring matte portrait of a beautiful Eiza Gonz&#xE1;lez, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/22813726/output_731327831.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14775_alluring-matte-portrait-of-a-beautiful-eiza-gonzlez.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14768)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5A4737FF">
+        <img alt="Alluring matte portrait of a beautiful Eiza Gonz&#xE1;lez, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/22690820/output_2166037902.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14768_alluring-matte-portrait-of-a-beautiful-eiza-gonzlez.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(14760)">
         
         <div class="relative overflow-hidden" style="background-color:#786051FF">
@@ -2054,50 +2135,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(13072)">
-        
-        <div class="relative overflow-hidden" style="background-color:#657C90FF">
-        <img alt="A mushroom cloud with shockwave in the distance with a modern city in the forground, wide shot, 8k, Hyper Detailed, Intricate, Intricate Details, Trending on Artstation, Digital Illustration, Anime" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/07/82345438/output_281405080.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/13/13072_a-mushroom-cloud-with-shockwave-in-the-distance-with-a-modern-city-in-the-forground-wide-shot.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(13070)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6A776DFF">
-        <img alt="A nuclear explosion muchroom cloud in the distance with a modern city in the forground, 8k, Hyper Detailed, Intricate, Intricate Details, Pixiv, Trending on Artstation, Digital Illustration, Cloudy Day, Anime" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/07/82270950/output_3379286952.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/13/13070_a-nuclear-explosion-muchroom-cloud-in-the-distance-with-a-modern-city-in-the-forground.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(13065)">
-        
-        <div class="relative overflow-hidden" style="background-color:#598B9AFF">
-        <img alt="A nuclear explosion in the distance with a modern city in the forground, 8k, Hyper Detailed, Intricate, Intricate Details, Pixiv, Trending on Artstation, Digital Illustration, Cloudy Day, Anime" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/07/82224184/output_4272399957.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/13/13065_a-nuclear-explosion-in-the-distance-with-a-modern-city-in-the-forground.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(13059)">
-        
-        <div class="relative overflow-hidden" style="background-color:#535341FF">
-        <img alt="Environmental illustration of a cloister garden in a late renaissance city, 8k, Hyper Detailed, Intricate, Intricate Details, Pixiv, Trending on Artstation, Digital Illustration, Cinematic Lighting, Anime, Crepuscular Rays" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/07/82056183/output_3382432802.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/13/13059_environmental-illustration-of-a-cloister-garden-in-a-late-renaissance-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(13096)">
         
         <div class="relative overflow-hidden" style="background-color:#6B5431FF">
@@ -2120,12 +2157,56 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(13072)">
+        
+        <div class="relative overflow-hidden" style="background-color:#657C90FF">
+        <img alt="A mushroom cloud with shockwave in the distance with a modern city in the forground, wide shot, 8k, Hyper Detailed, Intricate, Intricate Details, Trending on Artstation, Digital Illustration, Anime" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/07/82345438/output_281405080.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13072_a-mushroom-cloud-with-shockwave-in-the-distance-with-a-modern-city-in-the-forground-wide-shot.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(13070)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A776DFF">
+        <img alt="A nuclear explosion muchroom cloud in the distance with a modern city in the forground, 8k, Hyper Detailed, Intricate, Intricate Details, Pixiv, Trending on Artstation, Digital Illustration, Cloudy Day, Anime" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/07/82270950/output_3379286952.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13070_a-nuclear-explosion-muchroom-cloud-in-the-distance-with-a-modern-city-in-the-forground.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(13075)">
         
         <div class="relative overflow-hidden" style="background-color:#696150FF">
         <img alt="man with beard, Art Deco" width="512" height="896"
              src="https://cdn.diffusion.works/artifacts/2022/12/08/42123432/output_3256149447.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/13/13075_man-with-beard.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(13065)">
+        
+        <div class="relative overflow-hidden" style="background-color:#598B9AFF">
+        <img alt="A nuclear explosion in the distance with a modern city in the forground, 8k, Hyper Detailed, Intricate, Intricate Details, Pixiv, Trending on Artstation, Digital Illustration, Cloudy Day, Anime" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/07/82224184/output_4272399957.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13065_a-nuclear-explosion-in-the-distance-with-a-modern-city-in-the-forground.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(13059)">
+        
+        <div class="relative overflow-hidden" style="background-color:#535341FF">
+        <img alt="Environmental illustration of a cloister garden in a late renaissance city, 8k, Hyper Detailed, Intricate, Intricate Details, Pixiv, Trending on Artstation, Digital Illustration, Cinematic Lighting, Anime, Crepuscular Rays" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/07/82056183/output_3382432802.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13059_environmental-illustration-of-a-cloister-garden-in-a-late-renaissance-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2186,6 +2267,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(13030)">
+        
+        <div class="relative overflow-hidden" style="background-color:#677453FF">
+        <img alt="Landscape of epic egyptian pyramids in a lush green forest, surreal, dreamlike, lucid dream, 8k, Highly Detailed, Intricate, Artstation, Bokeh effect, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/07/10880915/output_886918699.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13030_landscape-of-epic-egyptian-pyramids-in-a-lush-green-forest-surreal-dreamlike-lucid-dream.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(13016)">
         
         <div class="relative overflow-hidden" style="background-color:#544E3EFF">
@@ -2197,12 +2289,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(13030)">
+    <div v-on:click.prevent.stop="loadArtifact(13023)">
         
-        <div class="relative overflow-hidden" style="background-color:#677453FF">
-        <img alt="Landscape of epic egyptian pyramids in a lush green forest, surreal, dreamlike, lucid dream, 8k, Highly Detailed, Intricate, Artstation, Bokeh effect, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Greg Rutkowski" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/07/10880915/output_886918699.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/13/13030_landscape-of-epic-egyptian-pyramids-in-a-lush-green-forest-surreal-dreamlike-lucid-dream.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#5D6E3FFF">
+        <img alt="Beautiful landscape of egyptian pyramids in a lush green forest, surreal, dreamlike, lucid dream, 8k, Highly Detailed, Intricate, Artstation, Bokeh effect, Sharp Focus, Concept Art by Stanley Artgerm Lau, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/07/10796465/output_3949701900.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13023_beautiful-landscape-of-egyptian-pyramids-in-a-lush-green-forest-surreal-dreamlike-lucid-dream.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2225,17 +2317,6 @@ mountAll()
         <img alt="Visionary painting of a mystical tribal goddess surrounded by feathers and gemstones, 8k, Highly Detailed, Intricate, Artstation, Matte Painting, Sharp Focus, Vibrant Colors, Concept Art by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/07/10296575/output_294198499.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/12/12991_visionary-painting-of-a-mystical-tribal-goddess-surrounded-by-feathers-and-gemstones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(13023)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5D6E3FFF">
-        <img alt="Beautiful landscape of egyptian pyramids in a lush green forest, surreal, dreamlike, lucid dream, 8k, Highly Detailed, Intricate, Artstation, Bokeh effect, Sharp Focus, Concept Art by Stanley Artgerm Lau, Greg Rutkowski" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/07/10796465/output_3949701900.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/13/13023_beautiful-landscape-of-egyptian-pyramids-in-a-lush-green-forest-surreal-dreamlike-lucid-dream.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2340,23 +2421,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(12851)">
-        
-        <div class="relative overflow-hidden" style="background-color:#717A7DFF">
-        <img alt="Portrait of a tattoed ninja gaiden white hair girl, 8k, Hyper Detailed, Intricate, Digital Painting, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/07/8119958/output_3113517690.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/12/12851_portrait-of-a-tattoed-ninja-gaiden-white-hair-girl.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(12860)">
         
         <div class="relative overflow-hidden" style="background-color:#4D7291FF">
         <img alt="Realistic landscape of a futuristic city, 8k, Octane Render, Unreal Engine, Volumetric Lighting" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/07/8343325/output_249237390.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/12/12860_realistic-landscape-of-a-futuristic-city.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12851)">
+        
+        <div class="relative overflow-hidden" style="background-color:#717A7DFF">
+        <img alt="Portrait of a tattoed ninja gaiden white hair girl, 8k, Hyper Detailed, Intricate, Digital Painting, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/07/8119958/output_3113517690.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12851_portrait-of-a-tattoed-ninja-gaiden-white-hair-girl.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2417,23 +2498,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(12781)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7F91A7FF">
-        <img alt="Angel knight girl, 8k, Hyper Detailed, Fractal, Matte Painting, Cinematic Lighting, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/07/7102507/output_2346475350.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/12/12781_angel-knight-girl.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(12786)">
         
         <div class="relative overflow-hidden" style="background-color:#637049FF">
         <img alt="Beautiful matte painting of an overgrown elven forest temple in the misty mountains,, 8k, Hyper Detailed, Intricate, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/07/7293026/output_3698413768.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/12/12786_beautiful-matte-painting-of-an-overgrown-elven-forest-temple-in-the-misty-mountains.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12781)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7F91A7FF">
+        <img alt="Angel knight girl, 8k, Hyper Detailed, Fractal, Matte Painting, Cinematic Lighting, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/07/7102507/output_2346475350.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12781_angel-knight-girl.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2681,6 +2762,28 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(12559)">
+        
+        <div class="relative overflow-hidden" style="background-color:#808661FF">
+        <img alt="art of a medieval woman, wearing tight simple medival clothes, holding a flower while sitting in a lush medow | | cute - fine - fine details, Trending on Artstation, Perfect Face, Soft Details, Symmetrical Face, Concept Art, Soft by Stanley Artgerm Lau, James Jean, Marc Simonetti, WLOP" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/85277632/output_3112222336.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12559_art-of-a-medieval-woman-wearing-tight-simple-medival-clothes-holding-a-flower-while-sitting-in-a-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12545)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D8369FF">
+        <img alt="art of a medival girl, wearing tight simple medival clothes, holding a flower while sitting in a lush medow | | cute - fine - fine details, Trending on Artstation, Perfect Face, Soft Details, Symmetrical Face, Concept Art, Soft by Stanley Artgerm Lau, James Jean, Marc Simonetti, WLOP" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/85221241/output_2307236163.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12545_art-of-a-medival-girl-wearing-tight-simple-medival-clothes-holding-a-flower-while-sitting-in-a-lus.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(12528)">
         
         <div class="relative overflow-hidden" style="background-color:#766059FF">
@@ -2698,6 +2801,17 @@ mountAll()
         <img alt="art of a medival girl, wearing tight simple medival clothes, holding a flower while sitting in a lush medow | | cute - fine - fine details, Trending on Artstation, Perfect Face, Soft Details, Symmetrical Face, Concept Art, Soft by Stanley Artgerm Lau, James Jean, Marc Simonetti, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/02/85056940/output_3116957876.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/12/12519_art-of-a-medival-girl-wearing-tight-simple-medival-clothes-holding-a-flower-while-sitting-in-a-lus.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12539)">
+        
+        <div class="relative overflow-hidden" style="background-color:#917475FF">
+        <img alt="art of a medival girl, wearing tight simple medival clothes, holding a flower while sitting in a lush medow | | cute - fine - fine details, Trending on Artstation, Perfect Face, Soft Details, Symmetrical Face, Concept Art, Soft by Stanley Artgerm Lau, James Jean, Marc Simonetti, WLOP" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/85145690/output_4154794965.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12539_art-of-a-medival-girl-wearing-tight-simple-medival-clothes-holding-a-flower-while-sitting-in-a-lus.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2725,45 +2839,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(12559)">
-        
-        <div class="relative overflow-hidden" style="background-color:#808661FF">
-        <img alt="art of a medieval woman, wearing tight simple medival clothes, holding a flower while sitting in a lush medow | | cute - fine - fine details, Trending on Artstation, Perfect Face, Soft Details, Symmetrical Face, Concept Art, Soft by Stanley Artgerm Lau, James Jean, Marc Simonetti, WLOP" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/12/02/85277632/output_3112222336.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/12/12559_art-of-a-medieval-woman-wearing-tight-simple-medival-clothes-holding-a-flower-while-sitting-in-a-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(12545)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7D8369FF">
-        <img alt="art of a medival girl, wearing tight simple medival clothes, holding a flower while sitting in a lush medow | | cute - fine - fine details, Trending on Artstation, Perfect Face, Soft Details, Symmetrical Face, Concept Art, Soft by Stanley Artgerm Lau, James Jean, Marc Simonetti, WLOP" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/12/02/85221241/output_2307236163.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/12/12545_art-of-a-medival-girl-wearing-tight-simple-medival-clothes-holding-a-flower-while-sitting-in-a-lus.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(12539)">
-        
-        <div class="relative overflow-hidden" style="background-color:#917475FF">
-        <img alt="art of a medival girl, wearing tight simple medival clothes, holding a flower while sitting in a lush medow | | cute - fine - fine details, Trending on Artstation, Perfect Face, Soft Details, Symmetrical Face, Concept Art, Soft by Stanley Artgerm Lau, James Jean, Marc Simonetti, WLOP" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/12/02/85145690/output_4154794965.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/12/12539_art-of-a-medival-girl-wearing-tight-simple-medival-clothes-holding-a-flower-while-sitting-in-a-lus.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(12497)">
         
         <div class="relative overflow-hidden" style="background-color:#64626CFF">
         <img alt="art of a medival girl, wearing tight simple medival clothes, holding a flower while sitting in a lush medow | | cute - fine - fine details, Trending on Artstation, Perfect Face, Soft Details, Symmetrical Face, Concept Art, Soft by Stanley Artgerm Lau, James Jean, Marc Simonetti, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/02/84922230/output_1986363208.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/12/12497_art-of-a-medival-girl-wearing-tight-simple-medival-clothes-holding-a-flower-while-sitting-in-a-lus.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12489)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2C5B80FF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Masterpiece, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/54071241/output_437950114.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12489_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2830,17 +2922,6 @@ mountAll()
         <img alt="A huge magical pond surrounded by a dense forest, Highly Detailed, Intricate, Artstation, Gothic and Fantasy, Vintage Illustration, Digital Painting, Matte Painting, D&amp;D, Hearthstone, Sharp Focus, Concept Art, Elegant" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/02/52127905/output_1065614279.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/12/12430_a-huge-magical-pond-surrounded-by-a-dense-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(12489)">
-        
-        <div class="relative overflow-hidden" style="background-color:#2C5B80FF">
-        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Masterpiece, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/02/54071241/output_437950114.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/12/12489_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5508,23 +5589,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(10119)">
-        
-        <div class="relative overflow-hidden" style="background-color:#826860FF">
-        <img alt="Steampunk portrait of Beyonce, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/24/59257515/output_2108493877.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/10/10119_steampunk-portrait-of-beyonce.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(10135)">
         
         <div class="relative overflow-hidden" style="background-color:#6A5146FF">
         <img alt="A highly detailed matte painting of a camp fire in an epic mountain forest, 4k resolution, Masterpiece, Trending on Artstation, Cyberpunk, Octane Render, Volumetric Lighting" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/11/25/21309054/output_1246335503.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/10/10135_a-highly-detailed-matte-painting-of-a-camp-fire-in-an-epic-mountain-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(10119)">
+        
+        <div class="relative overflow-hidden" style="background-color:#826860FF">
+        <img alt="Steampunk portrait of Beyonce, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/24/59257515/output_2108493877.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/10/10119_steampunk-portrait-of-beyonce.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5591,72 +5672,6 @@ mountAll()
         <img alt="Cassandra cain in a wedding dress, riot entertainment, Realistic,Artgerm,Concept Art,Portrait, by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/11/24/14955803/output_941457993.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/10/10090_cassandra-cain-in-a-wedding-dress-riot-entertainment.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(10087)">
-        
-        <div class="relative overflow-hidden" style="background-color:#696C5DFF">
-        <img alt="Cassandra cain in a wedding dress, riot entertainment, Realistic,Artgerm,Concept Art,Portrait, by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/24/14940164/output_3515029825.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/10/10087_cassandra-cain-in-a-wedding-dress-riot-entertainment.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(10084)">
-        
-        <div class="relative overflow-hidden" style="background-color:#735F51FF">
-        <img alt="Cassandra cain in a wedding dress, riot entertainment, Realistic,Artgerm,Concept Art,Portrait, by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/24/14924855/output_371751034.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/10/10084_cassandra-cain-in-a-wedding-dress-riot-entertainment.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(10078)">
-        
-        <div class="relative overflow-hidden" style="background-color:#937C5FFF">
-        <img alt="Cassandra cain in a wedding dress, riot entertainment, Realistic,Artgerm,Concept Art,Portrait, by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/24/14911908/output_1221103565.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/10/10078_cassandra-cain-in-a-wedding-dress-riot-entertainment.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(10076)">
-        
-        <div class="relative overflow-hidden" style="background-color:#917960FF">
-        <img alt="Cassandra cain in a wedding dress, riot entertainment, Realistic,Artgerm,Concept Art,Portrait, by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/24/14898260/output_2362554173.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/10/10076_cassandra-cain-in-a-wedding-dress-riot-entertainment.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(10071)">
-        
-        <div class="relative overflow-hidden" style="background-color:#806B59FF">
-        <img alt="Cassandra cain in a wedding dress, riot entertainment, Realistic,Artgerm,Concept Art,Portrait, by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/24/14883147/output_454730794.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/10/10071_cassandra-cain-in-a-wedding-dress-riot-entertainment.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(10068)">
-        
-        <div class="relative overflow-hidden" style="background-color:#76634CFF">
-        <img alt="Cassandra cain in a wedding dress, riot entertainment, Realistic,Artgerm,Concept Art,Portrait, by Alphonse Mucha,by Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/24/14865241/output_2443061079.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/10/10068_cassandra-cain-in-a-wedding-dress-riot-entertainment.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>

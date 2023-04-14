@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
-                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
-                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
-                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:justify-end">
             <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </header>
 
 <script>
@@ -92,7 +94,7 @@ const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null)
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
 </script>
@@ -100,11 +102,24 @@ if (cachedAuth?.profileUrl) {
 <script type="module">
 import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
 
 const HeaderNav = {
     setup() {
         const showMobileNav = ref(false)
-        return { showMobileNav }
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
     }
 }
 mount('#header', HeaderNav)
@@ -162,6 +177,72 @@ mountAll()
 
     
 <div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(54611)">
+        
+        <div class="relative overflow-hidden" style="background-color:#685D4DFF">
+        <img alt="Portrait of a Samurai, Masterpiece, Cyberpunk, Illustration, RPG" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/05/20595655/output_348711338.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/54/54611_portrait-of-a-samurai.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(54608)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4A5556FF">
+        <img alt="Portrait of a Samurai, 4k, Cyberpunk, RPG" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/05/20521354/output_3831600402.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/54/54608_portrait-of-a-samurai.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(54605)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B4728FF">
+        <img alt="Portrait of a Samurai, NES Style, Cyberpunk, RPG" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/05/20498317/output_466232986.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/54/54605_portrait-of-a-samurai.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(54600)">
+        
+        <div class="relative overflow-hidden" style="background-color:#353740FF">
+        <img alt="Samurai, Cyberpunk, RPG" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/05/20445293/output_3431274140.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/54/54600_samurai.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(54597)">
+        
+        <div class="relative overflow-hidden" style="background-color:#795262FF">
+        <img alt="Logo for the title &quot;Neverwin : The Game&quot;, 4k, Oil on Canvas, RPG" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/02/77579592/output_2208218009.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/54/54597_logo-for-the-title-neverwin-the-game.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(54577)">
+        
+        <div class="relative overflow-hidden" style="background-color:#855729FF">
+        <img alt="Logo for the title &quot;Neverwin:The Game&quot;, 4k, Oil on Canvas, RPG" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/02/77473021/output_3139723479.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/54/54577_logo-for-the-title-neverwin-the-game.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(54568)">
         
         <div class="relative overflow-hidden" style="background-color:#55767BFF">
@@ -745,6 +826,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(54259)">
+        
+        <div class="relative overflow-hidden" style="background-color:#756962FF">
+        <img alt="15 year old beautiful Cassandra Cain., High Resolution, Highly Detailed" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2023/03/01/59947227/output_3455064203.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/54/54259_15-year-old-beautiful-cassandra-cain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(54222)">
         
         <div class="relative overflow-hidden" style="background-color:#888C87FF">
@@ -773,17 +865,6 @@ mountAll()
         <img alt="A Time Machine designed by Dieter Rams. stunning industrial design. Natural colors, mid century modern design, 8k, Highly Detailed, Hyper Detailed, Vintage Illustration, Sharp Focus, Smooth, Octane Render, Vector Art" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/28/32685705/output_468203308.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/54/54214_a-time-machine-designed-by-dieter-rams-stunning-industrial-design-natural-colors-mid-century-mode.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(54259)">
-        
-        <div class="relative overflow-hidden" style="background-color:#756962FF">
-        <img alt="15 year old beautiful Cassandra Cain., High Resolution, Highly Detailed" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2023/03/01/59947227/output_3455064203.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/54/54259_15-year-old-beautiful-cassandra-cain.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2329,17 +2410,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(53289)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5D6D71FF">
-        <img alt="black dragon, soft lighting, looking into camera, 8k, High Definition, Highly Detailed, Ethereal, Symmetrical Face, Digital Painting, Sharp Focus, Volumetric light effect, Concept Art" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/19/7783692/output_3662206785.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53289_black-dragon-soft-lighting-looking-into-camera.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(53228)">
         
         <div class="relative overflow-hidden" style="background-color:#515548FF">
@@ -2351,12 +2421,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(53280)">
+    <div v-on:click.prevent.stop="loadArtifact(53289)">
         
-        <div class="relative overflow-hidden" style="background-color:#78524FFF">
-        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by WLOP" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/78542166/output_1179276028.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53280_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#5D6D71FF">
+        <img alt="black dragon, soft lighting, looking into camera, 8k, High Definition, Highly Detailed, Ethereal, Symmetrical Face, Digital Painting, Sharp Focus, Volumetric light effect, Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/19/7783692/output_3662206785.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53289_black-dragon-soft-lighting-looking-into-camera.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2384,12 +2454,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(53265)">
+    <div v-on:click.prevent.stop="loadArtifact(53280)">
         
-        <div class="relative overflow-hidden" style="background-color:#7D705FFF">
-        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Greg Rutkowski" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/78508612/output_697782256.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53265_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#78524FFF">
+        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by WLOP" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/78542166/output_1179276028.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53280_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2417,12 +2487,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(53258)">
+    <div v-on:click.prevent.stop="loadArtifact(53265)">
         
-        <div class="relative overflow-hidden" style="background-color:#8A5239FF">
-        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/78471947/output_439563466.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53258_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#7D705FFF">
+        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/78508612/output_697782256.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53265_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2450,12 +2520,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(53254)">
+    <div v-on:click.prevent.stop="loadArtifact(53258)">
         
-        <div class="relative overflow-hidden" style="background-color:#656E55FF">
-        <img alt="digital blasphemy, Iridescent, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/78409234/output_1034014224.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53254_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#8A5239FF">
+        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/78471947/output_439563466.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53258_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2483,12 +2553,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(53243)">
+    <div v-on:click.prevent.stop="loadArtifact(53254)">
         
-        <div class="relative overflow-hidden" style="background-color:#7D4B4FFF">
+        <div class="relative overflow-hidden" style="background-color:#656E55FF">
         <img alt="digital blasphemy, Iridescent, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/78348138/output_1398131905.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53243_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/78409234/output_1034014224.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53254_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2511,6 +2581,17 @@ mountAll()
         <img alt="evil god, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Hyper Detailed, Intricate Artwork, Ultra Detailed, Half Body, Matte Painting, Sharp Focus, Fantasy" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/16/12316335/output_3784611903.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/53/53186_evil-god.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(53243)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D4B4FFF">
+        <img alt="digital blasphemy, Iridescent, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/78348138/output_1398131905.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53243_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3011,6 +3092,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(52910)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8B5345FF">
+        <img alt="digital blasphemy, Iridescent landscape, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/15/56349914/output_1108904893.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/52/52910_digital-blasphemy-iridescent-landscape-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(52897)">
         
         <div class="relative overflow-hidden" style="background-color:#616269FF">
@@ -3022,12 +3114,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(52910)">
+    <div v-on:click.prevent.stop="loadArtifact(52898)">
         
-        <div class="relative overflow-hidden" style="background-color:#8B5345FF">
-        <img alt="digital blasphemy, Iridescent landscape, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Greg Rutkowski" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/15/56349914/output_1108904893.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52910_digital-blasphemy-iridescent-landscape-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#846367FF">
+        <img alt="digital blasphemy, Iridescent landscape, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/15/56290571/output_3913875418.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/52/52898_digital-blasphemy-iridescent-landscape-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3050,17 +3142,6 @@ mountAll()
         <img alt="digital blasphemy desktop wallpaper, scorched earth, fog of war in the style of Stefan Kostic, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Digital Painting, Sharp Focus by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/15/55425039/output_974803068.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/52/52874_digital-blasphemy-desktop-wallpaper-scorched-earth-fog-of-war-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(52898)">
-        
-        <div class="relative overflow-hidden" style="background-color:#846367FF">
-        <img alt="digital blasphemy, Iridescent landscape, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau, Greg Rutkowski" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/15/56290571/output_3913875418.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52898_digital-blasphemy-iridescent-landscape-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3253,23 +3334,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(52672)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7E5D3DFF">
-        <img alt="digital blasphemy desktop wallpaper, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Digital Painting, Sharp Focus by Stefan Kostic" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/15/53916580/output_3549018097.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52672_digital-blasphemy-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(52658)">
         
         <div class="relative overflow-hidden" style="background-color:#575F38FF">
         <img alt="Alluring matte portrait of Poison Ivy in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Half Body, Matte Painting, Realistic, Sharp Focus, Fantasy by Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/15/27648611/output_4133056271.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/52/52658_alluring-matte-portrait-of-poison-ivy-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(52672)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7E5D3DFF">
+        <img alt="digital blasphemy desktop wallpaper, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Digital Painting, Sharp Focus by Stefan Kostic" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/15/53916580/output_3549018097.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/52/52672_digital-blasphemy-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3330,17 +3411,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(52589)">
-        
-        <div class="relative overflow-hidden" style="background-color:#814B21FF">
-        <img alt="c&#x2B;&#x2B;, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Digital Painting, Sharp Focus" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/15/26866315/output_4016694217.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52589_cpp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(52581)">
         
         <div class="relative overflow-hidden" style="background-color:#757239FF">
@@ -3352,12 +3422,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(52587)">
+    <div v-on:click.prevent.stop="loadArtifact(52589)">
         
-        <div class="relative overflow-hidden" style="background-color:#72552FFF">
-        <img alt="digitalblasphemy.com desktop wallpaper , 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Digital Painting, Sharp Focus" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/15/26610688/output_435330635.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52587_digitalblasphemy-com-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#814B21FF">
+        <img alt="c&#x2B;&#x2B;, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Digital Painting, Sharp Focus" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/15/26866315/output_4016694217.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/52/52589_cpp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3369,6 +3439,17 @@ mountAll()
         <img alt="digital blasphemy desktop wallpaper , 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Digital Painting, Sharp Focus" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/15/26570189/output_34103028.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/52/52574_digital-blasphemy-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(52587)">
+        
+        <div class="relative overflow-hidden" style="background-color:#72552FFF">
+        <img alt="digitalblasphemy.com desktop wallpaper , 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Digital Painting, Sharp Focus" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/15/26610688/output_435330635.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/52/52587_digitalblasphemy-com-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4045,23 +4126,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(52159)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7B5B6CFF">
-        <img alt="Kiki the witch, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Stanley Artgerm Lau, Stefan Kostic" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/15/1150860/output_3263024121.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52159_kiki-the-witch.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(52155)">
         
         <div class="relative overflow-hidden" style="background-color:#704D3CFF">
         <img alt="Large vicious dragon with red eyes, emerging from a fire, preparing to attack, 4k, 4k resolution, 8k, Eldritch, Foreboding, HD, High Definition, High Resolution, Highly Detailed, HQ, Digital Illustration, Matte Painting, Spring, Fantasy, Apocalyptic, Doom, Ominous, Terrifying, Threatening, Unnerving by Stefan Kostic" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/14/50134891/output_2128972572.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/52/52155_large-vicious-dragon-with-red-eyes-emerging-from-a-fire-preparing-to-attack.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(52159)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7B5B6CFF">
+        <img alt="Kiki the witch, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Stanley Artgerm Lau, Stefan Kostic" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/15/1150860/output_3263024121.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/52/52159_kiki-the-witch.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5178,17 +5259,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(51601)">
-        
-        <div class="relative overflow-hidden" style="background-color:#67495BFF">
-        <img alt="Kiki the witch and Jiji the cat, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Stefan Kostic, Studio Ghibli" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/14/17585773/output_2238851837.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51601_kiki-the-witch-and-jiji-the-cat.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(51592)">
         
         <div class="relative overflow-hidden" style="background-color:#3C6560FF">
@@ -5200,12 +5270,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(51595)">
+    <div v-on:click.prevent.stop="loadArtifact(51601)">
         
-        <div class="relative overflow-hidden" style="background-color:#798391FF">
-        <img alt="Princess Nausicaa, Princess Mononoke, Sophie, Wizard Howl, Calcifer, Ashitaka, Dola, Kiki and Jiji, Totoro, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Stefan Kostic, Studio Ghibli" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/14/17527785/output_2436056707.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51595_princess-nausicaa-princess-mononoke-sophie-wizard-howl-calcifer-ashitaka-dola-kiki-and-jiji.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#67495BFF">
+        <img alt="Kiki the witch and Jiji the cat, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Stefan Kostic, Studio Ghibli" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/14/17585773/output_2238851837.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/51/51601_kiki-the-witch-and-jiji-the-cat.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5228,6 +5298,17 @@ mountAll()
         <img alt="portrait of princess nausicaa, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Stefan Kostic" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/14/17269649/output_419050794.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/51/51585_portrait-of-princess-nausicaa.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(51595)">
+        
+        <div class="relative overflow-hidden" style="background-color:#798391FF">
+        <img alt="Princess Nausicaa, Princess Mononoke, Sophie, Wizard Howl, Calcifer, Ashitaka, Dola, Kiki and Jiji, Totoro, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Stefan Kostic, Studio Ghibli" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/14/17527785/output_2436056707.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/51/51595_princess-nausicaa-princess-mononoke-sophie-wizard-howl-calcifer-ashitaka-dola-kiki-and-jiji.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5288,23 +5369,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(51555)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7A4F3FFF">
-        <img alt="terminator for president, intricate soviet propaganda poster, Cyrillic text, Boris kriukov, vote for terminator, sharp focus, text at bottom, Cyrillic, no blur, terminator, Dystopian, Intricate Details, Half Body, Cyberpunk, Futuristic, Psychedelic, Retro-Futurism, Soviet Poster, Digital Painting, Poster, Propaganda Poster, Sharp Focus, Artgerm, Futurism by Beeple, Alex Grey, Alphonse Mucha" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/14/15602538/output_403835377.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51555_terminator-for-president-intricate-soviet-propaganda-poster-cyrillic-text-boris-kriukov-vote-for.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(51549)">
         
         <div class="relative overflow-hidden" style="background-color:#6B544CFF">
         <img alt="terminator for president, intricate soviet propaganda poster, Cyrillic text, Boris kriukov, vote for terminator, sharp focus, text at bottom, Cyrillic, no blur, terminator, Dystopian, Intricate Details, Half Body, Cyberpunk, Futuristic, Psychedelic, Retro-Futurism, Soviet Poster, Digital Painting, Poster, Propaganda Poster, Sharp Focus, Artgerm, Futurism by Beeple, Alex Grey, Alphonse Mucha" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/14/15459281/output_2655426597.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/51/51549_terminator-for-president-intricate-soviet-propaganda-poster-cyrillic-text-boris-kriukov-vote-for.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(51555)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7A4F3FFF">
+        <img alt="terminator for president, intricate soviet propaganda poster, Cyrillic text, Boris kriukov, vote for terminator, sharp focus, text at bottom, Cyrillic, no blur, terminator, Dystopian, Intricate Details, Half Body, Cyberpunk, Futuristic, Psychedelic, Retro-Futurism, Soviet Poster, Digital Painting, Poster, Propaganda Poster, Sharp Focus, Artgerm, Futurism by Beeple, Alex Grey, Alphonse Mucha" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/14/15602538/output_403835377.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/51/51555_terminator-for-president-intricate-soviet-propaganda-poster-cyrillic-text-boris-kriukov-vote-for.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5591,72 +5672,6 @@ mountAll()
         <img alt="I am a stable genius, Big Smile, Blonde Hair, Digital Illustration" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/13/80332383/output_753138563.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/51/51345_i-am-a-stable-genius.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51332)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7F6C7FFF">
-        <img alt="portrait of princess mononoke, 4k, 4k resolution, 8k, Hyper Detailed, Anime by Stefan Kostic, Studio Ghibli" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/13/80243149/output_1877395677.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51332_portrait-of-princess-mononoke.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51330)">
-        
-        <div class="relative overflow-hidden" style="background-color:#766E78FF">
-        <img alt="portrait of princess mononoke, 4k, 4k resolution, 8k, Hyper Detailed, Anime by WLOP" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/13/80164803/output_620586584.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51330_portrait-of-princess-mononoke.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51318)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5D6B7BFF">
-        <img alt="portrait of princess mononoke, 4k, 4k resolution, 8k, Hyper Detailed, Anime by Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/13/79969646/output_2365786256.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51318_portrait-of-princess-mononoke.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51312)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5C675AFF">
-        <img alt="portrait of princess mononoke, 4k, 4k resolution, 8k, Hyper Detailed, Anime by Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/13/79859573/output_4253518129.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51312_portrait-of-princess-mononoke.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51299)">
-        
-        <div class="relative overflow-hidden" style="background-color:#574749FF">
-        <img alt="portrait of princess mononoke, 4k, 4k resolution, 8k, Hyper Detailed, Anime by Stanley Artgerm Lau" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/13/79175012/output_1694545592.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51299_portrait-of-princess-mononoke.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51287)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7B8785FF">
-        <img alt="portrait of princess mononoke, 4k, 4k resolution, 8k, Hyper Detailed, Anime by Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/13/79116967/output_3186128397.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51287_portrait-of-princess-mononoke.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>

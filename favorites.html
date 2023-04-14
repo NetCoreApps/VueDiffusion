@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
-                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
-                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
-                    <a href="favorites" class="text-lg font-semibold leading-6 text-white border-b-2">Favorites</a>
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white border-b-2">Favorites</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:justify-end">
             <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </header>
 
 <script>
@@ -92,7 +94,7 @@ const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null)
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
 </script>
@@ -100,11 +102,24 @@ if (cachedAuth?.profileUrl) {
 <script type="module">
 import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
 
 const HeaderNav = {
     setup() {
         const showMobileNav = ref(false)
-        return { showMobileNav }
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
     }
 }
 mount('#header', HeaderNav)
@@ -127,11 +142,10 @@ mountAll()
 </div>
 
 <div id="app">
-    <div class="flex mt-3">
+    <div v-if="user" class="flex mt-3">
         <div class="z-10 flex-shrink mr-1 sm:mr-2">
             <div class="ml-2 flex flex-col sm:-mt-8 justify-center items-center">
-                <img class="hidden h-16 w-16 sm:h-24 sm:w-24 rounded-full" :src="user.profileUrl" alt="">
-                <div>
+                <div class="mb-2">
                     <a v-on:click.prevent="navTo({ album: undefined })" href="/favorites">
                         <svg :class="['h-16 w-16 sm:h-24 sm:w-24', selectedAlbum == null ? 'text-red-600 hover:text-red-400' : 'text-cyan-600 hover:text-cyan-400 cursor-pointer']"
                              xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
@@ -140,19 +154,9 @@ mountAll()
                     </a>
                 </div>
 
-                <div class="mb-1" v-on:click.stop="openNewAlbum"
-                     :title="activeArtifact == null ? 'select image to include' : ''">
-                    <div class="['sm:mt-4 h-16 w-16 sm:h-24 sm:w-24 text-center rounded sm:rounded-lg overflow-hidden font-semibold',
-                         activeArtifact != null ? 'text-gray-200 hover:text-white cursor-pointer' : 'text-gray-700']"
-                         :style="`background-image:url(data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%23{SelectedColor}' stroke-width='4' stroke-dasharray='5' stroke-dashoffset='8' /%3E%3C/svg%3E)`">
-                        <div class="text-sm sm:text-lg pt-2.5 sm:pt-4 sm:mt-0.5">New</div>
-                        <div class="text-sm sm:text-lg">Album</div>
-                    </div>
-                </div>
-
                 <a v-for="album in store.userAlbums" v-on:click.prevent="navTo({ album: album.id })" :href="'/favorites?album='+album.id">
                     <div :class="['sm:mt-2 hover:opacity-80 cursor-pointer h-16 w-16 sm:h-24 sm:w-24 overflow-hidden rounded sm:rounded-lg border-2',
-                                  selectedAlbum?.id == album.id ? 'border-yellow-400' : 'border-transparent']">
+                                  selectedAlbum?.id === album.id ? 'border-yellow-400' : 'border-transparent']">
                         <artifact-image :artifact="store.albumCover(album)" class="flex w-full h-full" image-class="object-cover"></artifact-image>
                     </div>
                 </a>
@@ -165,20 +169,37 @@ mountAll()
                     <div class="w-full sm:w-1/3 sm:pl-2 flex justify-center sm:justify-start items-center whitespace-nowrap">
                         <album-title class="-ml-16 sm:ml-0" :album="selectedAlbum"></album-title>
                     </div>
-                    <edit-profile></edit-profile>
+                    <div class="z-10 w-full sm:w-1/3 pr-2 -mt-20 flex justify-end">
+                          <div class="flex flex-col mb-1 items-center">
+                              <a v-if="store.userData" class="mb-2" :href="store.searchByCurrentUserUrl">
+                                  <avatar-image class="h-16 w-16 sm:h-24 sm:w-24 p-1" :user="store.userData.profile"></avatar-image>
+                              </a>
+                              <secondary-button v-on:click="showProfileModal=!showProfileModal">Edit Profile</secondary-button>
+                          </div>
+                    </div>
                 </div>
-                <artifact-gallery ref="gallery" :results="results" :resolve-border-color="albumBorderColor" v-on:change="onGalleryChange" columns-slider-class="-ml-16">
+                <artifact-gallery ref="gallery" :results="results" :resolve-border-color="albumBorderColor" v-on:changed="onGalleryChange" v-on:contextmenu="artifactMenu=$event">
                     <template #icons="artifact">
-                        <div class="p-3 flex flex-col h-full justify-between">
-                            <pin-album-icon :album="selectedAlbum" :artifact="artifact" v-on:changed="update()"></pin-album-icon>
-                            <artifact-like-icon :artifact="artifact" v-on:changed="update()"></artifact-like-icon>
+                        <div v-if="artifact" class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                            <div class="flex flex-col h-full justify-between">
+                                <div class="flex justify-between flex-none">
+                                    <pin-album-icon :album="selectedAlbum" :artifact="artifact" v-on:changed="update"></pin-album-icon>
+                                    <artifact-menu-icon :artifact="artifact" v-on:show-artifact-menu="artifactMenu=artifact"></artifact-menu-icon>
+                                </div>
+                                <artifact-like-icon :artifact="artifact" v-on:changed="update"></artifact-like-icon>
+                            </div>
                         </div>
                     </template>
-                    <template #topmenu>
-                        <div v-on:click="_ => moveToTop(context)" class="group whitespace-nowrap flex items-center cursor-pointer text-gray-700 dark:text-gray-300 dark:text-gray-300 dark:hover:bg-gray-800 px-4 py-2 text-sm" role="menuitem" tabindex="-1">
-                            <svg class="mr-2 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M11 21V10.8l-2.6 2.6L7 12l5-5l5 5l-1.4 1.4l-2.6-2.6V21ZM4 5V3h16v2Z"/></svg>
-                            Move to Top
-                        </div>
+                    <template #contextmenu="artifact">
+                        <artifact-menu v-if="artifact && artifactMenu?.id === artifact.id" :artifact="artifactMenu" menu-class="justify-end"
+                                       v-on:changed="notifyChanged" v-on:done="artifactMenu=null" v-on:open="openDialog">
+                            <template #topmenu="artifact">
+                                <div v-on:click.stop="moveToTop(artifact)" class="group whitespace-nowrap flex items-center cursor-pointer text-gray-700 dark:text-gray-300 dark:text-gray-300 dark:hover:bg-gray-800 px-4 py-2 text-sm" role="menuitem" tabindex="-1">
+                                    <svg class="mr-2 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M11 21V10.8l-2.6 2.6L7 12l5-5l5 5l-1.4 1.4l-2.6-2.6V21ZM4 5V3h16v2Z"/></svg>
+                                    Move to Top
+                                </div>
+                            </template>
+                        </artifact-menu>
                     </template>
                 </artifact-gallery>
             </div>
@@ -187,55 +208,108 @@ mountAll()
                     <div class="w-full sm:w-1/3 sm:pl-2 flex justify-center sm:justify-start items-center whitespace-nowrap">
                         <div class="text-xl -ml-16 sm:ml-0">Likes</div>
                     </div>
-                    <edit-profile></edit-profile>
+                    <div class="z-10 w-full sm:w-1/3 pr-2 -mt-20 flex justify-end">
+                          <div class="flex flex-col mb-1 items-center">
+                              <a v-if="store.userData" class="mb-2" :href="store.searchByCurrentUserUrl">
+                                  <avatar-image class="h-16 w-16 sm:h-24 sm:w-24 p-1" :user="store.userData.profile"></avatar-image>
+                              </a>
+                              <secondary-button v-on:click="showProfileModal=!showProfileModal">Edit Profile</secondary-button>
+                          </div>
+                    </div>
                 </div>
-                <artifact-gallery ref="gallery" :results="results" :resolve-border-color="likesBorderColor" v-on:changed="onGalleryChange" columns-slider-class="-ml-16">
+                <artifact-gallery ref="gallery" :results="results" :resolve-border-color="likesBorderColor" v-on:changed="onGalleryChange" v-on:contextmenu="artifactMenu=$event">
                     <template #icons="artifact">
-                        <div class="p-3 flex flex-col h-full justify-between">
-                            <artifact-like-icon :artifact="artifact" v-on:changed="update()"></artifact-like-icon>
-                            <artifact-explore-icon :artifact="artifact" v-on:click.stop></artifact-explore-icon>
+                        <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                            <div class="flex flex-col h-full justify-between">
+                                <div class="flex justify-between flex-none">
+                                    <artifact-like-icon :artifact="artifact" v-on:changed="update"></artifact-like-icon>
+                                    <artifact-menu-icon :artifact="artifact" v-on:show-artifact-menu="artifactMenu=artifact"></artifact-menu-icon>
+                                </div>
+                                <artifact-explore-icon :artifact="artifact" v-on:changed="update"></artifact-explore-icon>
+                            </div>
                         </div>
+                    </template>
+                    <template #contextmenu="artifact">
+                        <artifact-menu v-if="artifactMenu?.id === artifact.id" :artifact="artifactMenu" menu-class="justify-end"
+                                       v-on:changed="notifyChanged" v-on:done="artifactMenu=null" v-on:open="openDialog">
+                        </artifact-menu>
                     </template>
                 </artifact-gallery>
             </div>
-        </div>        
-        
+        </div>
     </div>
 
     <div class="mt-12 flex justify-center">
         <loading v-if="loadingMore" class="text-gray-400">loading...</loading>
         <span ref="bottom"></span>
     </div>
+    <edit-profile-dialog v-if="showProfileModal" v-on:done="profileModalDone"></edit-profile-dialog>
+    <artifact-dialogs :show="open" :artifact="activeArtifact" v-on:done="closeDialog"></artifact-dialogs>
 </div>
 
 <script type="module">
 import { ref, inject, onMounted, onUnmounted, computed, getCurrentInstance, nextTick } from "vue"
 import { ApiResult, queryString, pick, map } from "@servicestack/client"
-import { useClient, useUtils } from "@servicestack/vue"
+import { useClient, useAuth, useUtils } from "@servicestack/vue"
 import { mount } from "app.mjs"
 import { Store } from "store.mjs"
-import { SearchArtifacts, AnonData, QueryArtifacts, UpdateAlbum } from "dtos.mjs"
+import { SearchArtifacts, AnonData, QueryArtifacts, UpdateAlbum, UpdateUserProfile } from "dtos.mjs" 
 
-const EditProfile = {
-    template:`<div class="z-10 w-full sm:w-1/3 pr-2 -mt-20 flex justify-end">
-          <div class="flex flex-col mb-1 items-center">
-              <a class="mb-2" :href="store.searchByCurrentUserUrl">
-                  <avatar-image class="h-16 w-16 sm:h-24 sm:w-24 p-1" :user="store.auth"></avatar-image>
-              </a>
-              <secondary-button v-on:click="openEditProfile">Edit Profile</secondary-button>
-          </div>
-      </div>`,
-    setup(props) {
+const EditProfileDialog = {
+    template:`<ModalDialog sizeClass="sm:max-w-prose sm:w-full" v-on:done="done">
+        <form class="" v-on:submit.prevent="submit">
+            <div class="shadow overflow-hidden sm:rounded-md bg-white dark:bg-black">
+                <div class="relative px-4 py-5 sm:p-6">
+                    <fieldset>
+                        <legend class="text-base font-medium text-gray-900 dark:text-gray-100 text-center mb-4">Edit Profile</legend>
+                        <ErrorSummary except="displayName,avatar,handle" />
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6">
+                                <TextInput id="displayName" v-model="request.displayName" help="What should we call you? (Private)" spellcheck="false" />
+                            </div>
+                            <div class="col-span-6 pr-8">
+                                <FileInput id="avatar" v-model="request.avatar" />
+                            </div>
+                            <div class="col-span-6">
+                                <TextInput id="handle" v-model="request.handle" help="Public visible username for your profile" pattern="^[A-Za-z0-9_]+" placeholder="@" spellcheck="false" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="mt-4 px-4 py-3 bg-gray-50 dark:bg-gray-900 text-right sm:px-6">
+                    <div class="flex justify-end items-center">
+                        <SecondaryButton class="mr-2" v-on:click="done">Cancel</SecondaryButton>
+                        <PrimaryButton type="submit">Submit</PrimaryButton>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ModalDialog>`,
+    emits:['done'],
+    setup(props, { emit }) {
         const store = inject('store')
-        function openEditProfile() {
-            
+        const client = useClient()        
+
+        const request = ref(new UpdateUserProfile(store.userData.profile))
+        
+        async function submit(e) {
+            const api = await client.apiForm(new UpdateUserProfile(), new FormData(e.target))
+            if (api.succeeded) {
+                store.userData.profile = api.response
+                Object.assign(store.userData.user, api.response)
+                done()
+            }
         }
-        return { store, openEditProfile }
+        function done() {
+            emit('done')
+        }
+                                    
+        return { store, request, submit, done }
     }
 }
 
 const PinAlbumIcon = {
-    template:`<svg v-if="album.primaryArtifactId == artifact.id" v-on:click.stop="unpinArtifact"
+    template:`<svg v-if="album.primaryArtifactId === artifact.id" v-on:click.stop="unpinArtifact"
         class="w-4 h-4 sm:w-6 sm:h-6 text-cyan-600 hover:text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
         <title>unpin</title>
         <path fill="#ffce31" d="M62 25.2H39.1L32 3l-7.1 22.2H2l18.5 13.7l-7 22.1L32 47.3L50.5 61l-7.1-22.2L62 25.2z"/>
@@ -246,7 +320,12 @@ const PinAlbumIcon = {
         <path fill="currentColor" d="M18.27 9.81h-2.82L9.77 4.13l.71-.71l-1.42-1.41l-7.07 7.07l1.42 1.41l.71-.71l5.67 5.68h-.01v2.83l1.42 1.42l3.54-3.55l4.77 4.77l1.41-1.41l-4.77-4.77l3.53-3.53l-1.41-1.41z"/>
     </svg>`,
     emits:['changed'],
-    props:['album','artifact'],
+    props: {
+        /** @type {import('vue').PropType<Album>} */
+        album:Object,
+        /** @type {import('vue').PropType<Artifact>} */
+        artifact:Object,
+    },
     setup(props, { emit }) {
         const client = useClient()
 
@@ -271,6 +350,7 @@ const PinAlbumIcon = {
                 store.updateAlbumPrimaryArtifact(props.album.id, hold)
             }
             emit('changed', api.response)
+            document.documentElement.scrollIntoView({ behavior: "smooth" })
         }
         
         return { unpinArtifact, pinArtifact }
@@ -278,19 +358,38 @@ const PinAlbumIcon = {
 }
 
 const App = {
-    components: { EditProfile, PinAlbumIcon },
+    components: { EditProfileDialog, PinAlbumIcon },
     setup() {
         const store = inject('store')
         const client = useClient()
+        const { user } = useAuth()
         const { pushState } = useUtils()
         const qs = queryString(location.search)
 
         const gallery = ref()
         const selectedAlbum = ref()
-        const user = computed(() => store.userData?.user)
         const results = ref([])
-        const activeArtifact = ref()
+        const showProfileModal = ref(false)
+
         const instance = getCurrentInstance()
+        const artifactMenu = ref()
+        const activeArtifact = ref()
+        const open = ref('')
+        function openDialog(dialog, artifact) {
+            artifactMenu.value = null
+            open.value = dialog
+            activeArtifact.value = artifact
+        }
+        function closeDialog() {
+            open.value = ''
+            activeArtifact.value = null
+        }
+        function notifyChanged() {
+            artifactMenu.value = null
+            forceUpdate()
+            update() 
+        }
+        function forceUpdate() { instance?.proxy?.$forceUpdate() }
         
         function openNewAlbum() {}
 
@@ -299,18 +398,28 @@ const App = {
                 ? "border-gray-500"
                 : store.hasArtifactInAlbum(artifact)
                   ? "border-green-700"
-                  : artifact.background != null ? "border-black" : "border-transparent";
+                  : artifact.background != null ? "border-black" : "border-transparent"
         }
 
         function albumBorderColor(artifact) {
-            return store.isModerator && store.isModerated(artifact)
-                ? "border-gray-500"
-                : store.hasArtifactInAlbum(artifact)
-                  ? "border-green-700"
-                  : artifact.background != null ? "border-black" : "border-transparent";
+            return selectedAlbum.value.primaryArtifactId === artifact.id
+                ? "border-yellow-400"
+                :  store.isModerator && store.isModerated(artifact)
+                    ? "border-gray-500"
+                    : store.hasArtifactInAlbum(artifact)
+                      ? "border-green-700"
+                      : artifact.background != null ? "border-black" : "border-transparent"
         }
         
-        function onGalleryChange() { update() }
+        function onGalleryChange() {
+            console.log('onGalleryChange')
+            update() 
+        }
+        function profileModalDone() {
+            showProfileModal.value = false
+            forceUpdate()
+            store.loadUserData().then(forceUpdate)
+        }
         
         const bottom = ref()
         const loadingMore = ref(false)
@@ -318,6 +427,7 @@ const App = {
         const title = ref('')
         
         function navTo(args) {
+            artifactMenu.value = null
             selectedAlbum.value = args.album && store.userData.user?.albums.find(x => x.id === args.album)
             pushState(args)
             update()
@@ -333,8 +443,8 @@ const App = {
                 : await store.getLikedArtifacts(count)
             hasMore.value = nextResults.length >= count
             results.value = nextResults
-            console.log('fetchResults', selectedAlbum.value || 'likes', count,  hasMore.value, nextResults.length)
-            instance?.proxy?.$forceUpdate()    
+            //console.log('fetchResults', selectedAlbum.value || 'likes', count,  hasMore.value, nextResults.length)
+            forceUpdate()
         }
         
         async function loadMore() {
@@ -342,6 +452,21 @@ const App = {
             if (hasMore.value) {
                 await fetchResults(results.value.length + store.NextPage)
             }
+        }
+
+        async function moveToTop(artifact) {
+            if (selectedAlbum.value.primaryArtifactId !== artifact.id) {
+                const api = await client.api(new UpdateAlbum({
+                    id: selectedAlbum.value.id,
+                    removeArtifactIds: [artifact.id],
+                    addArtifactIds: [artifact.id],
+                }))
+                if (api.succeeded) {
+                    store.removeArtifactFromAlbum(selectedAlbum.value, artifact)
+                    store.addArtifactToAlbum(selectedAlbum.value, artifact)
+                }
+            }
+            notifyChanged()
         }
         
         let observer = null
@@ -356,10 +481,10 @@ const App = {
                 update()
             ])
                         
-            instance?.proxy?.$forceUpdate()    
+            forceUpdate()    
             nextTick(async () => {
                 await store.loadUserArtifacts()
-                instance?.proxy?.$forceUpdate()    
+                forceUpdate()    
             })
                         
             setTimeout(() => {
@@ -374,7 +499,8 @@ const App = {
         
         return { 
             store, user, title, selectedAlbum, results, gallery, activeArtifact, hasMore, bottom, loadingMore, 
-            navTo, update, openNewAlbum, onGalleryChange, likesBorderColor, albumBorderColor, 
+            showProfileModal, artifactMenu, open, openDialog, closeDialog, notifyChanged,
+            navTo, update, openNewAlbum, onGalleryChange, likesBorderColor, albumBorderColor, profileModalDone, moveToTop,
         }
     }
 }

@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
-                    <a href="" class="text-lg font-semibold leading-6 text-white border-b-2">Search</a>
-                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
-                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white border-b-2">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:justify-end">
             <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </header>
 
 <script>
@@ -92,7 +94,7 @@ const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null)
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
 </script>
@@ -100,11 +102,24 @@ if (cachedAuth?.profileUrl) {
 <script type="module">
 import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
 
 const HeaderNav = {
     setup() {
         const showMobileNav = ref(false)
-        return { showMobileNav }
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
     }
 }
 mount('#header', HeaderNav)
@@ -135,7 +150,7 @@ mountAll()
                     <div class="-mt-1 sm:mt-0 text-xs sm:text-sm text-gray-500 whitespace-nowrap w-16 sm:w-24 text-center pb-1">top albums</div>
                     <a :key="album.slug" v-for="album in topAlbums" :href="`/albums/${album.slug}`">
                         <div :class="['sm:mt-2 hover:opacity-80 cursor-pointer h-16 w-16 sm:h-24 sm:w-24 overflow-hidden rounded sm:rounded-lg border-2',
-                                      album == album.albumRef ? 'border-yellow-400' : 'border-transparent']">
+                                      album === album.albumRef ? 'border-yellow-400' : 'border-transparent']">
                             <artifact-image :artifact="store.albumCover(album)" class="flex w-full h-full" image-class="object-cover"></artifact-image>
                         </div>
                     </a>
@@ -145,12 +160,22 @@ mountAll()
         </div>
         <div v-cloak>
             <h3 v-if="title" class="text-xl absolute -mt-8 ml-4">{{title}}</h3>
-            <artifact-gallery ref="gallery" :results="results">
+            <artifact-gallery ref="gallery" :results="results" v-on:contextmenu="artifactMenu=$event">
                 <template #icons="artifact">
-                    <div class="p-3 flex flex-col h-full justify-between">
-                        <artifact-like-icon :artifact="artifact" v-on:changed="gallery?.forceUpdate()"></artifact-like-icon>
-                        <artifact-explore-icon :artifact="artifact" v-on:click.stop></artifact-explore-icon>
+                    <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                        <div class="flex flex-col h-full justify-between">
+                            <div class="flex justify-between flex-none">
+                                <artifact-like-icon :artifact="artifact" v-on:changed="update" v-on:open="openDialog"></artifact-like-icon>
+                                <artifact-menu-icon :artifact="artifact" v-on:show-artifact-menu="artifactMenu=artifact" v-on:open="open"></artifact-menu-icon>
+                            </div>
+                            <artifact-explore-icon :artifact="artifact" v-on:changed="update"></artifact-explore-icon>
+                        </div>
                     </div>
+                </template>
+                <template #contextmenu="artifact">
+                    <artifact-menu v-if="artifactMenu?.id === artifact.id" :artifact="artifactMenu" menu-class="justify-end"
+                                   v-on:changed="notifyChanged" v-on:done="artifactMenu=null" v-on:open="openDialog">
+                    </artifact-menu>
                 </template>
             </artifact-gallery>
         </div>
@@ -159,10 +184,11 @@ mountAll()
         <loading v-if="loadingMore" class="text-gray-400">loading...</loading>
         <span ref="bottom"></span>
     </div>
+    <artifact-dialogs :show="open" :artifact="activeArtifact" v-on:done="closeDialog"></artifact-dialogs>
 </div>
 
 <script type="module">
-import { ref, inject, onMounted, onUnmounted, computed, nextTick } from "vue"
+import { ref, inject, onMounted, onUnmounted, getCurrentInstance } from "vue"
 import { ApiResult, queryString, pick, map } from "@servicestack/client"
 import { useClient, useUtils } from "@servicestack/vue"
 import { mount } from "app.mjs"
@@ -188,6 +214,26 @@ const Search = {
         let hasMore = false
         const title = ref('')
         
+        const instance = getCurrentInstance()
+        const artifactMenu = ref()
+        const activeArtifact = ref()
+        const open = ref('')
+        function openDialog(dialog, artifact) {
+            artifactMenu.value = null
+            open.value = dialog
+            activeArtifact.value = artifact
+        }
+        function closeDialog() {
+            open.value = ''
+            activeArtifact.value = null
+        }
+        function notifyChanged() {
+            artifactMenu.value = null
+            forceUpdate()
+            update() 
+        }
+        function forceUpdate() { instance?.proxy?.$forceUpdate() }
+
         async function update() {
             request.value.skip = 0
             request.value.take = 50
@@ -257,6 +303,7 @@ const Search = {
         
         return { 
             store, request, api, topAlbums, results, update, bottom, loadingMore, title, gallery,
+            artifactMenu, activeArtifact, open, openDialog, closeDialog, notifyChanged,
         }
     }
 }

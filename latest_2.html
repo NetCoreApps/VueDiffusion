@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
-                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
-                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
-                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:justify-end">
             <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </header>
 
 <script>
@@ -92,7 +94,7 @@ const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null)
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
 </script>
@@ -100,11 +102,24 @@ if (cachedAuth?.profileUrl) {
 <script type="module">
 import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
 
 const HeaderNav = {
     setup() {
         const showMobileNav = ref(false)
-        return { showMobileNav }
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
     }
 }
 mount('#header', HeaderNav)
@@ -162,6 +177,72 @@ mountAll()
 
     
 <div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(56540)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7A6C5FFF">
+        <img alt="full frame landscape next to the river in winter time, white rocks, silence, 8k, Aesthetic, High Resolution, Highly Detailed, Wallpaper, Autumn by Edwin Austin Abbey" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/20/62225443/output_1051344987.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56540_full-frame-landscape-next-to-the-river-in-winter-time-white-rocks-silence.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56531)">
+        
+        <div class="relative overflow-hidden" style="background-color:#86735FFF">
+        <img alt="Alluring portrait of the perfect woman, with beautiful face in the style of Stefan Kostic, 8k, High Resolution, HQ, Ultra Detailed, Artstation, Perfect Face, Matte Painting by WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/19/33555689/output_689765359.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56531_alluring-portrait-of-the-perfect-woman-with-beautiful-face-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56527)">
+        
+        <div class="relative overflow-hidden" style="background-color:#83787AFF">
+        <img alt="Alluring portrait of the perfect woman, with beautiful face in the style of Stefan Kostic, 8k, High Resolution, HQ, Ultra Detailed, Artstation, Perfect Face, Matte Painting by Beeple" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/19/33496378/output_3362306689.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56527_alluring-portrait-of-the-perfect-woman-with-beautiful-face-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56513)">
+        
+        <div class="relative overflow-hidden" style="background-color:#86786BFF">
+        <img alt="Alluring portrait of the perfect woman, with beautiful face in the style of Stefan Kostic, 8k, High Resolution, HQ, Ultra Detailed, Artstation, Perfect Face, Matte Painting by Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/19/33479129/output_2702324390.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56513_alluring-portrait-of-the-perfect-woman-with-beautiful-face-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56510)">
+        
+        <div class="relative overflow-hidden" style="background-color:#79776CFF">
+        <img alt="Alluring portrait of the perfect woman, with beautiful face in the style of Stefan Kostic, 8k, High Resolution, HQ, Ultra Detailed, Artstation, Perfect Face, Matte Painting by Stanley Artgerm Lau" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/19/33413895/output_1434825904.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56510_alluring-portrait-of-the-perfect-woman-with-beautiful-face-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56486)">
+        
+        <div class="relative overflow-hidden" style="background-color:#704E48FF">
+        <img alt="Alluring portrait of the perfect woman, with beautiful face, 8k, High Resolution, HQ, Ultra Detailed, Artstation, Perfect Face, Matte Painting by Stanley Artgerm Lau, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/19/33309888/output_3277442460.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56486_alluring-portrait-of-the-perfect-woman-with-beautiful-face.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(56475)">
         
         <div class="relative overflow-hidden" style="background-color:#886F67FF">
@@ -382,155 +463,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(56045)">
-        
-        <div class="relative overflow-hidden" style="background-color:#636047FF">
-        <img alt="Nightime scene, An Extremely large castle with tower, A lightning storm is occuring. and there is a campire with 5 shadowy people far away from the castle, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50901228/output_1893731227.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56045_nightime-scene-an-extremely-large-castle-with-tower-a-lightning-storm-is-occuring-and-there-is-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56041)">
-        
-        <div class="relative overflow-hidden" style="background-color:#618090FF">
-        <img alt="Nightime scene, An Extremely large castle with tower, A lightning storm is occuring. and there is a campire with 5 shadowy people far away from the castle, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50692814/output_274182309.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56041_nightime-scene-an-extremely-large-castle-with-tower-a-lightning-storm-is-occuring-and-there-is-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56037)">
-        
-        <div class="relative overflow-hidden" style="background-color:#75677AFF">
-        <img alt="Nightime scene, An Extremely large castle with tower, A lightning storm is occuring. and there is a campire with 5 shadowy people far away from the castle, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50537398/output_977905464.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56037_nightime-scene-an-extremely-large-castle-with-tower-a-lightning-storm-is-occuring-and-there-is-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56032)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6C676FFF">
-        <img alt="Nightime scene, An Extremely large castle with tower, A lightning storm is occuring. and there is a campire with 5 shadowy people far away from the castle, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50510325/output_2464789292.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56032_nightime-scene-an-extremely-large-castle-with-tower-a-lightning-storm-is-occuring-and-there-is-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56030)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6D6957FF">
-        <img alt="Nightime scene, An Extremely large castle with tower, A lightning storm is occuring. and there is a campire with 5 shadowy people nearby, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50480854/output_839071717.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56030_nightime-scene-an-extremely-large-castle-with-tower-a-lightning-storm-is-occuring-and-there-is-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56024)">
-        
-        <div class="relative overflow-hidden" style="background-color:#506760FF">
-        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 shadowy people nearby, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50452722/output_3917943853.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56024_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56020)">
-        
-        <div class="relative overflow-hidden" style="background-color:#4F4F46FF">
-        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 shadowy people nearby, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50410372/output_3450413413.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56020_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56018)">
-        
-        <div class="relative overflow-hidden" style="background-color:#586B74FF">
-        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 shadowy people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50315641/output_1514371396.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56018_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56014)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6A5759FF">
-        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50267812/output_67749609.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56014_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56009)">
-        
-        <div class="relative overflow-hidden" style="background-color:#514E51FF">
-        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50242778/output_203714738.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56009_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56006)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5C7E8EFF">
-        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50221962/output_2099418086.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56006_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56002)">
-        
-        <div class="relative overflow-hidden" style="background-color:#77655DFF">
-        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50201432/output_1785246399.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56002_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(55998)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5B6161FF">
-        <img alt="A Tower in the backround that is too tall to see, A lightning storm is occuring. and there is a campire with 5 people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/16/50146253/output_2871802319.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/55/55998_a-tower-in-the-backround-that-is-too-tall-to-see-a-lightning-storm-is-occuring-and-there-is-a-camp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(55915)">
         
         <div class="relative overflow-hidden" style="background-color:#668C94FF">
         <img alt="Nicki Minaj in the beach, 8k, High Definition, Hyper Detailed, Full Body, Beautiful, HDR Render, Centered" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/03/16/5038193/output_95466539.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/55/55915_nicki-minaj-in-the-beach.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56045)">
+        
+        <div class="relative overflow-hidden" style="background-color:#636047FF">
+        <img alt="Nightime scene, An Extremely large castle with tower, A lightning storm is occuring. and there is a campire with 5 shadowy people far away from the castle, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50901228/output_1893731227.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56045_nightime-scene-an-extremely-large-castle-with-tower-a-lightning-storm-is-occuring-and-there-is-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -558,6 +507,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(56041)">
+        
+        <div class="relative overflow-hidden" style="background-color:#618090FF">
+        <img alt="Nightime scene, An Extremely large castle with tower, A lightning storm is occuring. and there is a campire with 5 shadowy people far away from the castle, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50692814/output_274182309.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56041_nightime-scene-an-extremely-large-castle-with-tower-a-lightning-storm-is-occuring-and-there-is-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(55906)">
         
         <div class="relative overflow-hidden" style="background-color:#9D7E61FF">
@@ -575,6 +535,17 @@ mountAll()
         <img alt="Nicki Minaj in the beach, 8k, High Definition, Hyper Detailed, Intricate Details, Full Body, Beautiful" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/03/16/4552899/output_3568693825.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/55/55902_nicki-minaj-in-the-beach.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56037)">
+        
+        <div class="relative overflow-hidden" style="background-color:#75677AFF">
+        <img alt="Nightime scene, An Extremely large castle with tower, A lightning storm is occuring. and there is a campire with 5 shadowy people far away from the castle, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50537398/output_977905464.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56037_nightime-scene-an-extremely-large-castle-with-tower-a-lightning-storm-is-occuring-and-there-is-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -602,6 +573,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(56032)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C676FFF">
+        <img alt="Nightime scene, An Extremely large castle with tower, A lightning storm is occuring. and there is a campire with 5 shadowy people far away from the castle, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50510325/output_2464789292.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56032_nightime-scene-an-extremely-large-castle-with-tower-a-lightning-storm-is-occuring-and-there-is-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(55874)">
         
         <div class="relative overflow-hidden" style="background-color:#9A8578FF">
@@ -619,6 +601,17 @@ mountAll()
         <img alt="sandra, Blonde Hair" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/03/15/17222303/output_4259227632.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/55/55865_sandra.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56030)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D6957FF">
+        <img alt="Nightime scene, An Extremely large castle with tower, A lightning storm is occuring. and there is a campire with 5 shadowy people nearby, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50480854/output_839071717.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56030_nightime-scene-an-extremely-large-castle-with-tower-a-lightning-storm-is-occuring-and-there-is-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -646,6 +639,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(56024)">
+        
+        <div class="relative overflow-hidden" style="background-color:#506760FF">
+        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 shadowy people nearby, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50452722/output_3917943853.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56024_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(55854)">
         
         <div class="relative overflow-hidden" style="background-color:#8E726CFF">
@@ -663,6 +667,17 @@ mountAll()
         <img alt="cube ball, Modern, Cubo-Futurism" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/03/15/17079997/output_4017681800.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/55/55848_cube-ball.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56020)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F4F46FF">
+        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 shadowy people nearby, Gothic and Fantasy, Steampunk, Stormy Day, RPG, Fantasy, Bleak, Dark, Ominous" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50410372/output_3450413413.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56020_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -690,6 +705,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(56018)">
+        
+        <div class="relative overflow-hidden" style="background-color:#586B74FF">
+        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 shadowy people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50315641/output_1514371396.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56018_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(55835)">
         
         <div class="relative overflow-hidden" style="background-color:#7A686DFF">
@@ -707,6 +733,17 @@ mountAll()
         <img alt="sad cat cry, Big Smile" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/03/15/16898595/output_1104454773.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/55/55833_sad-cat-cry.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56014)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A5759FF">
+        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50267812/output_67749609.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56014_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -734,6 +771,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(56009)">
+        
+        <div class="relative overflow-hidden" style="background-color:#514E51FF">
+        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50242778/output_203714738.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56009_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(55820)">
         
         <div class="relative overflow-hidden" style="background-color:#7E645EFF">
@@ -751,6 +799,17 @@ mountAll()
         <img alt="tree cats and one spider, Big Smile" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/03/15/16686953/output_2295718151.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/55/55815_tree-cats-and-one-spider.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56006)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C7E8EFF">
+        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50221962/output_2099418086.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56006_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -778,6 +837,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(56002)">
+        
+        <div class="relative overflow-hidden" style="background-color:#77655DFF">
+        <img alt="Nightime scene, A Tower in the backround that is too tall to see the top, A lightning storm is occuring. and there is a campire with 5 people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50201432/output_1785246399.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56002_nightime-scene-a-tower-in-the-backround-that-is-too-tall-to-see-the-top-a-lightning-storm-is-occur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(55803)">
         
         <div class="relative overflow-hidden" style="background-color:#746A59FF">
@@ -795,6 +865,17 @@ mountAll()
         <img alt="a cat and dog eat  ice cream, HD" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/03/15/16442146/output_1363168884.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/55/55801_a-cat-and-dog-eat-ice-cream.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(55998)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B6161FF">
+        <img alt="A Tower in the backround that is too tall to see, A lightning storm is occuring. and there is a campire with 5 people nearby, Gothic and Fantasy, Steampunk" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/16/50146253/output_2871802319.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/55/55998_a-tower-in-the-backround-that-is-too-tall-to-see-a-lightning-storm-is-occuring-and-there-is-a-camp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3517,6 +3598,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(54214)">
+        
+        <div class="relative overflow-hidden" style="background-color:#88867EFF">
+        <img alt="A Time Machine designed by Dieter Rams. stunning industrial design. Natural colors, mid century modern design, 8k, Highly Detailed, Hyper Detailed, Vintage Illustration, Sharp Focus, Smooth, Octane Render, Vector Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/28/32685705/output_468203308.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/54/54214_a-time-machine-designed-by-dieter-rams-stunning-industrial-design-natural-colors-mid-century-mode.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(54259)">
         
         <div class="relative overflow-hidden" style="background-color:#756962FF">
@@ -3644,17 +3736,6 @@ mountAll()
         <img alt="Closeup of a mystical tribal goddess surrounded by vibrant feathers and gemstones, 8k, Highly Detailed, Intricate, Artstation, Matte Painting, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="896"
              src="https://cdn.diffusion.works/artifacts/2023/02/16/14290720/output_1036203333.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/53/53232_closeup-of-a-mystical-tribal-goddess-surrounded-by-vibrant-feathers-and-gemstones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(54214)">
-        
-        <div class="relative overflow-hidden" style="background-color:#88867EFF">
-        <img alt="A Time Machine designed by Dieter Rams. stunning industrial design. Natural colors, mid century modern design, 8k, Highly Detailed, Hyper Detailed, Vintage Illustration, Sharp Focus, Smooth, Octane Render, Vector Art" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/28/32685705/output_468203308.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/54/54214_a-time-machine-designed-by-dieter-rams-stunning-industrial-design-natural-colors-mid-century-mode.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4419,23 +4500,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(53767)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6F646FFF">
-        <img alt="32K CG art that portrays a one person perfect fusion of ekko from league of legends and judge dredd holding a gun, cinestill, The background is an extremely detailed arcanepunk city, full body, uhd, hi-end, photographic, hyper realistic, concept art, by marek okon and eddie mendoza and dave rapoza and dennis fr&#xF6;hlich and artgerm and greg staples and maciej kuciara and aleksi briclot, sci-fi, futuristic, masterpiece, trending on artstation, cryengine, corona render, unreal engine 5, 4k resolution, 8k, Award-Winning, Contest Winner, HDR, High Resolution, HQ, Hyper Detailed, Infectious, Intricate Artwork, Nvidia RTX, Powerful, Ultra Detailed, Behance, Cgsociety, Full Body, Modern, Trending on Artstation, Futuristic, Sci-Fi, Stunning, Digital Painting, Illustration, Blade Runner 2049, Bloodborne, RPG, League of Legends by Steve Argyle" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/21/34006200/output_841209110.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53767_32k-cg-art-that-portrays-a-one-person-perfect-fusion-of-ekko-from-league-of-legends-and-judge-dredd.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(53773)">
         
         <div class="relative overflow-hidden" style="background-color:#586C66FF">
         <img alt="Beautiful landscape of a swedish forest from the view of a mountain, misty, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by James Gurney, Greg Rutkowski" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/23/34983645/output_935089463.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/53/53773_beautiful-landscape-of-a-swedish-forest-from-the-view-of-a-mountain-misty.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(53767)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F646FFF">
+        <img alt="32K CG art that portrays a one person perfect fusion of ekko from league of legends and judge dredd holding a gun, cinestill, The background is an extremely detailed arcanepunk city, full body, uhd, hi-end, photographic, hyper realistic, concept art, by marek okon and eddie mendoza and dave rapoza and dennis fr&#xF6;hlich and artgerm and greg staples and maciej kuciara and aleksi briclot, sci-fi, futuristic, masterpiece, trending on artstation, cryengine, corona render, unreal engine 5, 4k resolution, 8k, Award-Winning, Contest Winner, HDR, High Resolution, HQ, Hyper Detailed, Infectious, Intricate Artwork, Nvidia RTX, Powerful, Ultra Detailed, Behance, Cgsociety, Full Body, Modern, Trending on Artstation, Futuristic, Sci-Fi, Stunning, Digital Painting, Illustration, Blade Runner 2049, Bloodborne, RPG, League of Legends by Steve Argyle" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/21/34006200/output_841209110.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53767_32k-cg-art-that-portrays-a-one-person-perfect-fusion-of-ekko-from-league-of-legends-and-judge-dredd.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4661,23 +4742,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(53560)">
-        
-        <div class="relative overflow-hidden" style="background-color:#75B6A6FF">
-        <img alt="Stunning landscape painting from Studio Ghibli film, by Noriyuki Morimoto, rolling hills and valleys, towering mountains, sprawling fields, expansive sky, sense of adventure, Epic, Stunning, Digital Art by Studio Ghibli" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/19/36347726/output_2594550671.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53560_stunning-landscape-painting-from-studio-ghibli-film-by-noriyuki-morimoto-rolling-hills-and-valleys.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(53562)">
         
         <div class="relative overflow-hidden" style="background-color:#7BA788FF">
         <img alt="Stunning landscape painting from Studio Ghibli film, by Noriyuki Morimoto, rolling hills and valleys, towering mountains, sprawling fields, expansive sky, sense of adventure, Epic, Stunning, Oil on Canvas, Digital Art by Studio Ghibli" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/19/36401363/output_170959681.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/53/53562_stunning-landscape-painting-from-studio-ghibli-film-by-noriyuki-morimoto-rolling-hills-and-valleys.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(53560)">
+        
+        <div class="relative overflow-hidden" style="background-color:#75B6A6FF">
+        <img alt="Stunning landscape painting from Studio Ghibli film, by Noriyuki Morimoto, rolling hills and valleys, towering mountains, sprawling fields, expansive sky, sense of adventure, Epic, Stunning, Digital Art by Studio Ghibli" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/19/36347726/output_2594550671.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53560_stunning-landscape-painting-from-studio-ghibli-film-by-noriyuki-morimoto-rolling-hills-and-valleys.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4914,23 +4995,45 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(53314)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7287ACFF">
-        <img alt="closeup of a futuristic weapon from fortnite, 8k, High Definition, Highly Detailed, Sharp Focus, Volumetric light effect" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/19/8062982/output_2200724079.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53314_closeup-of-a-futuristic-weapon-from-fortnite.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(53341)">
         
         <div class="relative overflow-hidden" style="background-color:#748D62FF">
         <img alt="The first panel could show Pikachu as a baby pokemon, curious and adventurous, while exploring the forest near its home, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Stefan Kostic" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/19/8403354/output_3791545507.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/53/53341_the-first-panel-could-show-pikachu-as-a-baby-pokemon-curious-and-adventurous-while-exploring-the-f.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(53333)">
+        
+        <div class="relative overflow-hidden" style="background-color:#767D5AFF">
+        <img alt="The first panel could show Pikachu as a baby pokemon, curious and adventurous, while exploring the forest near its home, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Studio Ghibli" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/19/8342402/output_1902067847.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53333_the-first-panel-could-show-pikachu-as-a-baby-pokemon-curious-and-adventurous-while-exploring-the-f.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(53318)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7B7953FF">
+        <img alt="closeup of a futuristic weapon from fortnite, 8k, High Definition, Highly Detailed, Sharp Focus, Volumetric light effect" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/19/8134323/output_2246732043.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53318_closeup-of-a-futuristic-weapon-from-fortnite.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(53314)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7287ACFF">
+        <img alt="closeup of a futuristic weapon from fortnite, 8k, High Definition, Highly Detailed, Sharp Focus, Volumetric light effect" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/19/8062982/output_2200724079.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53314_closeup-of-a-futuristic-weapon-from-fortnite.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4958,12 +5061,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(53333)">
+    <div v-on:click.prevent.stop="loadArtifact(53228)">
         
-        <div class="relative overflow-hidden" style="background-color:#767D5AFF">
-        <img alt="The first panel could show Pikachu as a baby pokemon, curious and adventurous, while exploring the forest near its home, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Studio Ghibli" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/19/8342402/output_1902067847.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53333_the-first-panel-could-show-pikachu-as-a-baby-pokemon-curious-and-adventurous-while-exploring-the-f.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#515548FF">
+        <img alt="Captain Harlock, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Hyper Detailed, Intricate Artwork, Ultra Detailed, Half Body, Matte Painting, Realistic, Sharp Focus, Fantasy by Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/13723801/output_2968062509.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53228_captain-harlock.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4975,83 +5078,6 @@ mountAll()
         <img alt="black dragon, soft lighting, looking into camera, 8k, High Definition, Highly Detailed, Ethereal, Symmetrical Face, Digital Painting, Sharp Focus, Volumetric light effect, Concept Art" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/19/7783692/output_3662206785.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/53/53289_black-dragon-soft-lighting-looking-into-camera.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(53318)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7B7953FF">
-        <img alt="closeup of a futuristic weapon from fortnite, 8k, High Definition, Highly Detailed, Sharp Focus, Volumetric light effect" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/19/8134323/output_2246732043.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53318_closeup-of-a-futuristic-weapon-from-fortnite.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(53280)">
-        
-        <div class="relative overflow-hidden" style="background-color:#78524FFF">
-        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by WLOP" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/78542166/output_1179276028.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53280_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(53265)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7D705FFF">
-        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Greg Rutkowski" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/78508612/output_697782256.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53265_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(53258)">
-        
-        <div class="relative overflow-hidden" style="background-color:#8A5239FF">
-        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/78471947/output_439563466.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53258_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(53254)">
-        
-        <div class="relative overflow-hidden" style="background-color:#656E55FF">
-        <img alt="digital blasphemy, Iridescent, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/78409234/output_1034014224.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53254_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(53243)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7D4B4FFF">
-        <img alt="digital blasphemy, Iridescent, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/78348138/output_1398131905.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53243_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(53228)">
-        
-        <div class="relative overflow-hidden" style="background-color:#515548FF">
-        <img alt="Captain Harlock, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Hyper Detailed, Intricate Artwork, Ultra Detailed, Half Body, Matte Painting, Realistic, Sharp Focus, Fantasy by Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/13723801/output_2968062509.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/53/53228_captain-harlock.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5079,6 +5105,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(53280)">
+        
+        <div class="relative overflow-hidden" style="background-color:#78524FFF">
+        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by WLOP" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/78542166/output_1179276028.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53280_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(53215)">
         
         <div class="relative overflow-hidden" style="background-color:#4B5351FF">
@@ -5096,6 +5133,17 @@ mountAll()
         <img alt="Professor Archimedes Q. Porter, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Hyper Detailed, Intricate Artwork, Ultra Detailed, Half Body, Beautiful, Gorgeous, Unimaginable Beauty, Matte Painting, Sharp Focus, Fantasy" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/16/13074285/output_2682743293.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/53/53212_professor-archimedes-q-porter.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(53265)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D705FFF">
+        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/78508612/output_697782256.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53265_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5123,6 +5171,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(53258)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8A5239FF">
+        <img alt="digital blasphemy, warm tones desktop wallpaper, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/78471947/output_439563466.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53258_digital-blasphemy-warm-tones-desktop-wallpaper.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(53197)">
         
         <div class="relative overflow-hidden" style="background-color:#777248FF">
@@ -5145,6 +5204,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(53254)">
+        
+        <div class="relative overflow-hidden" style="background-color:#656E55FF">
+        <img alt="digital blasphemy, Iridescent, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/78409234/output_1034014224.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53254_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(53189)">
         
         <div class="relative overflow-hidden" style="background-color:#645658FF">
@@ -5162,6 +5232,17 @@ mountAll()
         <img alt="evil god, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Hyper Detailed, Intricate Artwork, Ultra Detailed, Half Body, Matte Painting, Sharp Focus, Fantasy" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/16/12316335/output_3784611903.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/53/53186_evil-god.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(53243)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D4B4FFF">
+        <img alt="digital blasphemy, Iridescent, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/02/16/78348138/output_1398131905.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/53/53243_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5591,72 +5672,6 @@ mountAll()
         <img alt="The genie from Disney&#x27;s Aladdin, blue, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Hyper Detailed, Intricate Artwork, Ultra Detailed, Digital Painting, Matte Painting, Realistic, Sharp Focus, Dim light, Fantasy by Stefan Kostic" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/16/7392164/output_1415495796.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/52/52958_the-genie-from-disney-s-aladdin-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(52952)">
-        
-        <div class="relative overflow-hidden" style="background-color:#925139FF">
-        <img alt="The genie from Disney&#x27;s Aladdin, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Hyper Detailed, Intricate Artwork, Ultra Detailed, Digital Painting, Matte Painting, Realistic, Sharp Focus, Dim light, Fantasy by Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/7364805/output_700766056.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52952_the-genie-from-disney-s-aladdin.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(52949)">
-        
-        <div class="relative overflow-hidden" style="background-color:#785146FF">
-        <img alt="The genie from Aladdin, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Hyper Detailed, Intricate Artwork, Ultra Detailed, Digital Painting, Matte Painting, Realistic, Sharp Focus, Dim light, Fantasy by Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/7334672/output_4186270204.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52949_the-genie-from-aladdin.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(52943)">
-        
-        <div class="relative overflow-hidden" style="background-color:#976B43FF">
-        <img alt="The genie, 4k, 4k resolution, 8k, HD, High Definition, High Resolution, Highly Detailed, HQ, Hyper Detailed, Intricate Artwork, Ultra Detailed, Digital Painting, Matte Painting, Realistic, Sharp Focus, Dim light by Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/16/7278414/output_1580994809.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52943_the-genie.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(52940)">
-        
-        <div class="relative overflow-hidden" style="background-color:#843D5EFF">
-        <img alt="digital blasphemy, Iridescent, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/15/56550364/output_904933052.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52940_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(52919)">
-        
-        <div class="relative overflow-hidden" style="background-color:#60402DFF">
-        <img alt="digital blasphemy, Iridescent, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/15/56434707/output_463045721.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52919_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(52928)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6F616BFF">
-        <img alt="digital blasphemy, Iridescent, warm tones desktop wallpaper in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Digital Painting, Sharp Focus, Volumetric light effect by Stanley Artgerm Lau" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/15/56498200/output_2277436427.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/52/52928_digital-blasphemy-iridescent-warm-tones-desktop-wallpaper-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>

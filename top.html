@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
-                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
-                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
-                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:justify-end">
             <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </header>
 
 <script>
@@ -92,7 +94,7 @@ const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null)
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
 </script>
@@ -100,11 +102,24 @@ if (cachedAuth?.profileUrl) {
 <script type="module">
 import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
 
 const HeaderNav = {
     setup() {
         const showMobileNav = ref(false)
-        return { showMobileNav }
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
     }
 }
 mount('#header', HeaderNav)
@@ -349,6 +364,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(21276)">
+        
+        <div class="relative overflow-hidden" style="background-color:#706853FF">
+        <img alt="Matte portrait of Irelia from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/16/52811737/output_405547293.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/21/21276_matte-portrait-of-irelia-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(35053)">
         
         <div class="relative overflow-hidden" style="background-color:#64554BFF">
@@ -459,6 +485,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(27790)">
+        
+        <div class="relative overflow-hidden" style="background-color:#936E4AFF">
+        <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/33799233/output_3216611535.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27790_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(25653)">
         
         <div class="relative overflow-hidden" style="background-color:#564F46FF">
@@ -476,17 +513,6 @@ mountAll()
         <img alt="Matte portrait of Kayle from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/16/53410645/output_1206736563.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/21/21340_matte-portrait-of-kayle-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(21276)">
-        
-        <div class="relative overflow-hidden" style="background-color:#706853FF">
-        <img alt="Matte portrait of Irelia from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/16/52811737/output_405547293.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/21/21276_matte-portrait-of-irelia-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -536,6 +562,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(15593)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6E473FFF">
+        <img alt="Matte portrait of a beautiful Akali with colored tattoos, 4k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Unreal Engine, Grayscale, Volumetric Lighting, Concept Art" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/11/53037738/output_3337654446.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15593_matte-portrait-of-a-beautiful-akali-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(34687)">
         
         <div class="relative overflow-hidden" style="background-color:#756556FF">
@@ -558,23 +595,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(19512)">
-        
-        <div class="relative overflow-hidden" style="background-color:#53484CFF">
-        <img alt="Morgana from League of Legends, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/13/39235623/output_3052277197.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/19/19512_morgana-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(20410)">
         
         <div class="relative overflow-hidden" style="background-color:#68303BFF">
         <img alt="Iridescent opalescent landscape, warm tones, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminiscent, Radiant, Volumetric Lighting by Michal Karcz" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/14/56766743/output_497005371.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/20/20410_iridescent-opalescent-landscape-warm-tones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(19512)">
+        
+        <div class="relative overflow-hidden" style="background-color:#53484CFF">
+        <img alt="Morgana from League of Legends, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/39235623/output_3052277197.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19512_morgana-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -624,28 +661,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(30289)">
-        
-        <div class="relative overflow-hidden" style="background-color:#785F52FF">
-        <img alt="Alluring matte portrait of a beautiful Lyx wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/29/17919488/output_1565717831.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/30/30289_alluring-matte-portrait-of-a-beautiful-lyx-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(27965)">
-        
-        <div class="relative overflow-hidden" style="background-color:#595C54FF">
-        <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski, WLOP" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/27/34581506/output_89620052.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27965_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(3485)">
         
         <div class="relative overflow-hidden" style="background-color:#4E513EFF">
@@ -668,12 +683,34 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(27790)">
+    <div v-on:click.prevent.stop="loadArtifact(30289)">
         
-        <div class="relative overflow-hidden" style="background-color:#936E4AFF">
-        <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/27/33799233/output_3216611535.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27790_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#785F52FF">
+        <img alt="Alluring matte portrait of a beautiful Lyx wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/17919488/output_1565717831.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30289_alluring-matte-portrait-of-a-beautiful-lyx-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(28019)">
+        
+        <div class="relative overflow-hidden" style="background-color:#71596EFF">
+        <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/34824124/output_3114340308.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/28/28019_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27965)">
+        
+        <div class="relative overflow-hidden" style="background-color:#595C54FF">
+        <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/34581506/output_89620052.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27965_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -740,17 +777,6 @@ mountAll()
         <img alt="Steampunk portrait of Fiora from League of Legends, Highly Detailed, Intricate, Artstation, Beautiful, Digital Painting, Sharp Focus, Concept Art, Elegant" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/12/42555190/output_3685427626.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/15/15915_steampunk-portrait-of-fiora-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15593)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6E473FFF">
-        <img alt="Matte portrait of a beautiful Akali with colored tattoos, 4k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Unreal Engine, Grayscale, Volumetric Lighting, Concept Art" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/11/53037738/output_3337654446.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15593_matte-portrait-of-a-beautiful-akali-with-colored-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -877,23 +903,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(18162)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7C464BFF">
-        <img alt="Alluring matte portrait of a beautiful Katarina from League of Legends in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/12/59452150/output_3501679285.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/18/18162_alluring-matte-portrait-of-a-beautiful-katarina-from-league-of-legends-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(20299)">
         
         <div class="relative overflow-hidden" style="background-color:#566A66FF">
         <img alt="Lake in mountains streams and rivers flow down slopes of mountains and rocks into the valley spring in mountains, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/14/55079389/output_1784649812.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/20/20299_lake-in-mountains-streams-and-rivers-flow-down-slopes-of-mountains-and-rocks-into-the-valley-spring.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(18162)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7C464BFF">
+        <img alt="Alluring matte portrait of a beautiful Katarina from League of Legends in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/59452150/output_3501679285.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18162_alluring-matte-portrait-of-a-beautiful-katarina-from-league-of-legends-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -954,17 +980,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(41073)">
-        
-        <div class="relative overflow-hidden" style="background-color:#626D72FF">
-        <img alt="Alluring matte portrait of the beautiful Vex in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/07/44687643/output_570428901.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/41/41073_alluring-matte-portrait-of-the-beautiful-vex-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(3376)">
         
         <div class="relative overflow-hidden" style="background-color:#5D563FFF">
@@ -987,12 +1002,34 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(41073)">
+        
+        <div class="relative overflow-hidden" style="background-color:#626D72FF">
+        <img alt="Alluring matte portrait of the beautiful Vex in white, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/07/44687643/output_570428901.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/41/41073_alluring-matte-portrait-of-the-beautiful-vex-in-white.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(38600)">
         
         <div class="relative overflow-hidden" style="background-color:#682926FF">
         <img alt="Alluring matte portrait of the beautiful goddess Selena in dark red in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/06/9135105/output_1131565604.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/38/38600_alluring-matte-portrait-of-the-beautiful-goddess-selena-in-dark-red-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(34314)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7E7A7EFF">
+        <img alt="Alluring matte portrait of a beautiful Vex wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/03/9607406/output_3714649244.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/34/34314_alluring-matte-portrait-of-a-beautiful-vex-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -1015,17 +1052,6 @@ mountAll()
         <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/27/35113583/output_2178737154.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/28/28041_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(28019)">
-        
-        <div class="relative overflow-hidden" style="background-color:#71596EFF">
-        <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Alphonse Mucha, WLOP" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/27/34824124/output_3114340308.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/28/28019_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -1141,6 +1167,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(894)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7C6E69FF">
+        <img alt="A closeup of Kassandra in white armor looking strong, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/24/54483952/output_3315322143.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0894_a-closeup-of-kassandra-in-white-armor-looking-strong.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(12430)">
         
         <div class="relative overflow-hidden" style="background-color:#6E7058FF">
@@ -1191,17 +1228,6 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful A2 wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/10/6724386/output_92387210.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/43/43570_alluring-matte-portrait-of-a-beautiful-a2-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(894)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7C6E69FF">
-        <img alt="A closeup of Kassandra in white armor looking strong, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/10/24/54483952/output_3315322143.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/0/0894_a-closeup-of-kassandra-in-white-armor-looking-strong.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -1372,6 +1398,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(36375)">
+        
+        <div class="relative overflow-hidden" style="background-color:#605446FF">
+        <img alt="Alluring matte portrait of a beautiful Akali wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/05/8284644/output_349152454.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/36/36375_alluring-matte-portrait-of-a-beautiful-akali-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(34717)">
         
         <div class="relative overflow-hidden" style="background-color:#584438FF">
@@ -1389,17 +1426,6 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful Vex wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/03/9693334/output_2437888134.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/34/34324_alluring-matte-portrait-of-a-beautiful-vex-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(34314)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7E7A7EFF">
-        <img alt="Alluring matte portrait of a beautiful Vex wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/03/9607406/output_3714649244.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/34/34314_alluring-matte-portrait-of-a-beautiful-vex-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -1455,6 +1481,17 @@ mountAll()
         <img alt="Alluring matte portrait of Sivir from League of Legends with wings, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/27/34397633/output_2913611542.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/27/27933_alluring-matte-portrait-of-sivir-from-league-of-legends-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(24994)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6E6468FF">
+        <img alt="Alluring Matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/20/50921988/output_1931742636.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/24/24994_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -1647,23 +1684,23 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(13143)">
+        
+        <div class="relative overflow-hidden" style="background-color:#644A4EFF">
+        <img alt="Alluring matte portrait of a beautiful Nidalee, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/53699093/output_4263115044.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13143_alluring-matte-portrait-of-a-beautiful-nidalee.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(11843)">
         
         <div class="relative overflow-hidden" style="background-color:#7C7C7CFF">
         <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Magical, Alluring by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/11/29/51190933/output_547823859.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/11/11843_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(456)">
-        
-        <div class="relative overflow-hidden" style="background-color:#605554FF">
-        <img alt="Closeup of Kassandra from Assassins Creed in white armor, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/10/22/39176253/output_985422402.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/0/0456_closeup-of-kassandra-from-assassins-creed-in-white-armor.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -1691,12 +1728,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(36093)">
+    <div v-on:click.prevent.stop="loadArtifact(456)">
         
-        <div class="relative overflow-hidden" style="background-color:#5E6368FF">
-        <img alt="Alluring matte portrait of a beautiful veiled Nidalee wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/04/47585763/output_3348473011.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/36/36093_alluring-matte-portrait-of-a-beautiful-veiled-nidalee-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#605554FF">
+        <img alt="Closeup of Kassandra from Assassins Creed in white armor, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/22/39176253/output_985422402.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0456_closeup-of-kassandra-from-assassins-creed-in-white-armor.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -1719,6 +1756,17 @@ mountAll()
         <img alt="Closeup of Kassandra from Assassins Creed in white armor, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant, by  Artgerm,by Alphonse Mucha,by Greg Rutkowski" width="512" height="896"
              src="https://cdn.diffusion.works/artifacts/2022/10/22/38772352/output_1163677676.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/0/0413_closeup-of-kassandra-from-assassins-creed-in-white-armor.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(36093)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E6368FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Nidalee wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/47585763/output_3348473011.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/36/36093_alluring-matte-portrait-of-a-beautiful-veiled-nidalee-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -1900,6 +1948,28 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(8575)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6E767BFF">
+        <img alt="Alluring matte portrait of a menacing Ciri in The Witcher 3 Style, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/5822875/output_3609524802.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8575_alluring-matte-portrait-of-a-menacing-ciri-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(5964)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6B595AFF">
+        <img alt="Female rouge assassin in The Witcher 3 Style, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/11/15/17835614/output_1255257597.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/5/5964_female-rouge-assassin-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(5296)">
         
         <div class="relative overflow-hidden" style="background-color:#7F7E7EFF">
@@ -1928,28 +1998,6 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful A2 in black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/10/42921265/output_3405689886.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/43/43741_alluring-matte-portrait-of-a-beautiful-a2-in-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(8575)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6E767BFF">
-        <img alt="Alluring matte portrait of a menacing Ciri in The Witcher 3 Style, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/11/19/5822875/output_3609524802.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/8/8575_alluring-matte-portrait-of-a-menacing-ciri-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(5964)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6B595AFF">
-        <img alt="Female rouge assassin in The Witcher 3 Style, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/11/15/17835614/output_1255257597.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/5/5964_female-rouge-assassin-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2049,17 +2097,6 @@ mountAll()
         <img alt="Alluring matte portrait of the beautiful Kayle in black, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/06/49142484/output_267227558.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/39/39838_alluring-matte-portrait-of-the-beautiful-kayle-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(36375)">
-        
-        <div class="relative overflow-hidden" style="background-color:#605446FF">
-        <img alt="Alluring matte portrait of a beautiful Akali wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/05/8284644/output_349152454.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/36/36375_alluring-matte-portrait-of-a-beautiful-akali-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2230,23 +2267,23 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(25527)">
+        
+        <div class="relative overflow-hidden" style="background-color:#76676DFF">
+        <img alt="Alluring Matte portrait of Lyx from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/22/36351934/output_172262563.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/25/25527_alluring-matte-portrait-of-lyx-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(25305)">
         
         <div class="relative overflow-hidden" style="background-color:#7E6D5BFF">
         <img alt="Alluring matte portrait of a beautiful Akali, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/21/72786460/output_772897802.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/25/25305_alluring-matte-portrait-of-a-beautiful-akali.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(24994)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6E6468FF">
-        <img alt="Alluring Matte portrait of a beautiful Vayne from League of Legends, 8k, Highly Detailed, Artstation, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/20/50921988/output_1931742636.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/24/24994_alluring-matte-portrait-of-a-beautiful-vayne-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2280,6 +2317,17 @@ mountAll()
         <img alt="Matte portrait of Miss Fortune from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/18/23135823/output_3126162616.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/23/23283_matte-portrait-of-miss-fortune-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(23266)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6E4742FF">
+        <img alt="Matte portrait of Miss Fortune from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/18/23011601/output_3139671946.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/23/23266_matte-portrait-of-miss-fortune-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2428,6 +2476,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(18815)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F607DFF">
+        <img alt="Irelia from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/33204690/output_2924364385.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18815_irelia-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(18338)">
         
         <div class="relative overflow-hidden" style="background-color:#886957FF">
@@ -2467,17 +2526,6 @@ mountAll()
         <img alt="Steampunk portrait of Ahri from League of Legends, Highly Detailed, Intricate, Artstation, Beautiful, Digital Painting, Sharp Focus, Concept Art, Elegant" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/12/38547784/output_1919870449.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/15/15696_steampunk-portrait-of-ahri-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(13143)">
-        
-        <div class="relative overflow-hidden" style="background-color:#644A4EFF">
-        <img alt="Alluring matte portrait of a beautiful Nidalee, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/08/53699093/output_4263115044.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/13/13143_alluring-matte-portrait-of-a-beautiful-nidalee.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2582,6 +2630,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(32922)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D584CFF">
+        <img alt="Alluring matte portrait of a beautiful Kassandra wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/02/25452111/output_2286820795.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/32/32922_alluring-matte-portrait-of-a-beautiful-kassandra-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(32359)">
         
         <div class="relative overflow-hidden" style="background-color:#4F443CFF">
@@ -2665,6 +2724,17 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful Akali in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/12/45777143/output_3733290259.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/15/15997_alluring-matte-portrait-of-a-beautiful-akali-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(13810)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7C5B43FF">
+        <img alt="Alluring matte portrait of a beautiful female tribal goddess, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/08/68867976/output_1012042029.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/13/13810_alluring-matte-portrait-of-a-beautiful-female-tribal-goddess.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -2791,23 +2861,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(953)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7A5E67FF">
-        <img alt="A closeup of Kassandra on a quest, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/10/24/63978690/output_1664368896.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/0/0953_a-closeup-of-kassandra-on-a-quest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(51299)">
         
         <div class="relative overflow-hidden" style="background-color:#574749FF">
         <img alt="portrait of princess mononoke, 4k, 4k resolution, 8k, Hyper Detailed, Anime by Stanley Artgerm Lau" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/13/79175012/output_1694545592.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/51/51299_portrait-of-princess-mononoke.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(953)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7A5E67FF">
+        <img alt="A closeup of Kassandra on a quest, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/24/63978690/output_1664368896.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/0/0953_a-closeup-of-kassandra-on-a-quest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3187,12 +3257,34 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(27708)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E4F48FF">
+        <img alt="Alluring matte portrait of Sivir from League of Legends, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/32816080/output_1046458419.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27708_alluring-matte-portrait-of-sivir-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(27620)">
         
         <div class="relative overflow-hidden" style="background-color:#505960FF">
         <img alt="Alluring matte portrait of Sivir from League of Legends, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/27/32142284/output_2260478629.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/27/27620_alluring-matte-portrait-of-sivir-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27574)">
+        
+        <div class="relative overflow-hidden" style="background-color:#696059FF">
+        <img alt="Matte portrait of Sivir from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/27/31815146/output_1478693989.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27574_matte-portrait-of-sivir-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3226,17 +3318,6 @@ mountAll()
         <img alt="Matte portrait of Sivir from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/27/10734345/output_3066538939.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/27/27414_matte-portrait-of-sivir-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(25527)">
-        
-        <div class="relative overflow-hidden" style="background-color:#76676DFF">
-        <img alt="Alluring Matte portrait of Lyx from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/22/36351934/output_172262563.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/25/25527_alluring-matte-portrait-of-lyx-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3396,17 +3477,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(23266)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6E4742FF">
-        <img alt="Matte portrait of Miss Fortune from League of Legends with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/18/23011601/output_3139671946.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/23/23266_matte-portrait-of-miss-fortune-from-league-of-legends-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(23254)">
         
         <div class="relative overflow-hidden" style="background-color:#6D493BFF">
@@ -3495,6 +3565,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(19921)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F686FFF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/53873332/output_612304166.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19921_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(19848)">
         
         <div class="relative overflow-hidden" style="background-color:#7A6E74FF">
@@ -3539,17 +3620,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(19921)">
-        
-        <div class="relative overflow-hidden" style="background-color:#4F686FFF">
-        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/12/13/53873332/output_612304166.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/19/19921_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(19356)">
         
         <div class="relative overflow-hidden" style="background-color:#67655BFF">
@@ -3578,17 +3648,6 @@ mountAll()
         <img alt="Irelia from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Alphonse Mucha" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/13/33300845/output_1639628628.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/18/18822_irelia-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(18815)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6F607DFF">
-        <img alt="Irelia from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/13/33204690/output_2924364385.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/18/18815_irelia-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3891,17 +3950,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(32922)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6D584CFF">
-        <img alt="Alluring matte portrait of a beautiful Kassandra wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/02/25452111/output_2286820795.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/32/32922_alluring-matte-portrait-of-a-beautiful-kassandra-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(32275)">
         
         <div class="relative overflow-hidden" style="background-color:#8B7170FF">
@@ -4012,6 +4060,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(15293)">
+        
+        <div class="relative overflow-hidden" style="background-color:#684D4CFF">
+        <img alt="Female rouge assassin in The Witcher 3 Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Volumetric Lighting, Closeup Portrait, Concept Art by Alphonse Mucha" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/27577884/output_1288443.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15293_female-rouge-assassin-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(14225)">
         
         <div class="relative overflow-hidden" style="background-color:#524B3DFF">
@@ -4029,28 +4088,6 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful female tribal goddess, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/08/68945531/output_4217619948.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/13/13819_alluring-matte-portrait-of-a-beautiful-female-tribal-goddess.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(13810)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7C5B43FF">
-        <img alt="Alluring matte portrait of a beautiful female tribal goddess, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/08/68867976/output_1012042029.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/13/13810_alluring-matte-portrait-of-a-beautiful-female-tribal-goddess.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15293)">
-        
-        <div class="relative overflow-hidden" style="background-color:#684D4CFF">
-        <img alt="Female rouge assassin in The Witcher 3 Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Volumetric Lighting, Closeup Portrait, Concept Art by Alphonse Mucha" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/27577884/output_1288443.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15293_female-rouge-assassin-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4089,17 +4126,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(12335)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7D5F3FFF">
-        <img alt="A beautiful temple in the mountains, forgotten valley, wide shot, horizon, 4k resolution, Atmospheric, Hyper Detailed, Trending on Artstation, Sunny Day, Golden Hour, Volumetric Lighting, Concept Art, Digital Art, Fantasy by Shinji Aramaki, Posuka Demizu" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/02/7435053/output_689457940.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/12/12335_a-beautiful-temple-in-the-mountains-forgotten-valley-wide-shot-horizon.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(8523)">
         
         <div class="relative overflow-hidden" style="background-color:#796D68FF">
@@ -4117,6 +4143,17 @@ mountAll()
         <img alt="Female rouge assassin in Witcher 3 in the style of Stefan Kostic, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="896"
              src="https://cdn.diffusion.works/artifacts/2022/11/22/20519355/output_1238931574.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/9/9680_female-rouge-assassin-in-witcher-3-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12335)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D5F3FFF">
+        <img alt="A beautiful temple in the mountains, forgotten valley, wide shot, horizon, 4k resolution, Atmospheric, Hyper Detailed, Trending on Artstation, Sunny Day, Golden Hour, Volumetric Lighting, Concept Art, Digital Art, Fantasy by Shinji Aramaki, Posuka Demizu" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/7435053/output_689457940.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12335_a-beautiful-temple-in-the-mountains-forgotten-valley-wide-shot-horizon.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4155,17 +4192,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(3816)">
-        
-        <div class="relative overflow-hidden" style="background-color:#4F6651FF">
-        <img alt="80s futuristic outdoor retro arcade, desolate, lush vegetation, Highly Detailed,Intricate,Artstation,Sharp Focus,Smooth,Octane Render,Centered,Dynamic,Elegant, by  Beeple,by Justin Gerard,by James Gilleard,by Simon Stalenhag" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/07/38356729/output_3206524199.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/3/3816_80s-futuristic-outdoor-retro-arcade-desolate-lush-vegetation.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(1955)">
         
         <div class="relative overflow-hidden" style="background-color:#6D6263FF">
@@ -4177,23 +4203,23 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(6108)">
+        
+        <div class="relative overflow-hidden" style="background-color:#695962FF">
+        <img alt="Female rouge assassin in The Witcher 3 Style, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/11/15/20347724/output_1679915251.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/6/6108_female-rouge-assassin-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(474)">
         
         <div class="relative overflow-hidden" style="background-color:#6E6563FF">
         <img alt="Closeup of Kassandra from Assassins Creed in white armor, 8k,Highly Detailed,Artstation,Beautiful,Digital Illustration,Sharp Focus,Unreal Engine,Concept Art" width="512" height="896"
              src="https://cdn.diffusion.works/artifacts/2022/10/22/39774115/output_4050683157.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/0/0474_closeup-of-kassandra-from-assassins-creed-in-white-armor.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(3192)">
-        
-        <div class="relative overflow-hidden" style="background-color:#626C66FF">
-        <img alt="A man sitting under a coolibah tree in the australian bush, near a river, Award-Winning,Hyper Detailed,Intricate,Trending on Artstation,Digital Painting,Dynamic Lighting,Concept Art,Landscape,Bright" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/04/10416363/output_3590485801.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/3/3192_a-man-sitting-under-a-coolibah-tree-in-the-australian-bush-near-a-river.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4243,6 +4269,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(3816)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F6651FF">
+        <img alt="80s futuristic outdoor retro arcade, desolate, lush vegetation, Highly Detailed,Intricate,Artstation,Sharp Focus,Smooth,Octane Render,Centered,Dynamic,Elegant, by  Beeple,by Justin Gerard,by James Gilleard,by Simon Stalenhag" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/38356729/output_3206524199.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3816_80s-futuristic-outdoor-retro-arcade-desolate-lush-vegetation.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(46659)">
         
         <div class="relative overflow-hidden" style="background-color:#4E4845FF">
@@ -4260,6 +4297,17 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful Sona in black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/15/12732440/output_919610405.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/46/46367_alluring-matte-portrait-of-a-beautiful-sona-in-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(3192)">
+        
+        <div class="relative overflow-hidden" style="background-color:#626C66FF">
+        <img alt="A man sitting under a coolibah tree in the australian bush, near a river, Award-Winning,Hyper Detailed,Intricate,Trending on Artstation,Digital Painting,Dynamic Lighting,Concept Art,Landscape,Bright" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/04/10416363/output_3590485801.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3192_a-man-sitting-under-a-coolibah-tree-in-the-australian-bush-near-a-river.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4485,6 +4533,28 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(43003)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D7161FF">
+        <img alt="Alluring matte portrait of a beautiful Kassandra wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/09/31107573/output_1968030083.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/43/43003_alluring-matte-portrait-of-a-beautiful-kassandra-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(39197)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7A5841FF">
+        <img alt="Alluring matte portrait of the beautiful goddess Selene in the style of Stefan Kostic, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/06/11715392/output_2148518198.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/39/39197_alluring-matte-portrait-of-the-beautiful-goddess-selene-in-the-style-of-stefan-kostic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(37440)">
         
         <div class="relative overflow-hidden" style="background-color:#697B84FF">
@@ -4524,6 +4594,17 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful Akali wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/05/8087385/output_612371376.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/36/36356_alluring-matte-portrait-of-a-beautiful-akali-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(36192)">
+        
+        <div class="relative overflow-hidden" style="background-color:#847868FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Nidalee wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/48511654/output_3002971616.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/36/36192_alluring-matte-portrait-of-a-beautiful-veiled-nidalee-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4584,6 +4665,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(35517)">
+        
+        <div class="relative overflow-hidden" style="background-color:#605950FF">
+        <img alt="Alluring matte portrait of a beautiful veiled Nidalee wearing a black veil, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/04/41928118/output_1757311328.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/35/35517_alluring-matte-portrait-of-a-beautiful-veiled-nidalee-wearing-a-black-veil.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(35502)">
         
         <div class="relative overflow-hidden" style="background-color:#5F4F3AFF">
@@ -4634,6 +4726,17 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful veiled Yennefer wearing a black veil with long straight hair, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/04/28517524/output_1610640261.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/35/35317_alluring-matte-portrait-of-a-beautiful-veiled-yennefer-wearing-a-black-veil-with-long-straight-hair.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(34836)">
+        
+        <div class="relative overflow-hidden" style="background-color:#553C32FF">
+        <img alt="Alluring matte portrait of a beautiful Kassandra wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/03/17860463/output_1906699825.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/34/34836_alluring-matte-portrait-of-a-beautiful-kassandra-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4700,6 +4803,17 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful Nidalee wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/01/02/13036659/output_4044801130.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/32/32240_alluring-matte-portrait-of-a-beautiful-nidalee-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(31957)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F5A62FF">
+        <img alt="Alluring matte portrait of a beautiful Katarina wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/01/01/33837699/output_3044873799.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/31/31957_alluring-matte-portrait-of-a-beautiful-katarina-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4799,28 +4913,6 @@ mountAll()
         <img alt="Alluring matte portrait of Sivir from League of Legends, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/27/33063223/output_4077177590.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/27/27750_alluring-matte-portrait-of-sivir-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(27708)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5E4F48FF">
-        <img alt="Alluring matte portrait of Sivir from League of Legends, 8k, Highly Detailed, Artstation, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art, Fantasy by Stanley Artgerm Lau, Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/27/32816080/output_1046458419.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27708_alluring-matte-portrait-of-sivir-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(27574)">
-        
-        <div class="relative overflow-hidden" style="background-color:#696059FF">
-        <img alt="Matte portrait of Sivir from League of Legends, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/27/31815146/output_1478693989.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27574_matte-portrait-of-sivir-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5200,6 +5292,28 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(18210)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7C7865FF">
+        <img alt="Alluring matte portrait of a beautiful Lyx from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/12/59466394/output_927591572.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18210_alluring-matte-portrait-of-a-beautiful-lyx-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(18701)">
+        
+        <div class="relative overflow-hidden" style="background-color:#646950FF">
+        <img alt="Void covered fields with large mountains in the distance, small medieval town, nighttime, 4k, HQ, Intricate Artwork, Ultra Detailed, Gothic and Fantasy, Oil on Canvas, Cloudy Day, Sharp Focus, Volumetric Lighting" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/19605304/output_2344874627.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18701_void-covered-fields-with-large-mountains-in-the-distance-small-medieval-town-nighttime.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(17145)">
         
         <div class="relative overflow-hidden" style="background-color:#715D54FF">
@@ -5332,28 +5446,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(8724)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6C6653FF">
-        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/19/8805189/output_1858170319.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/8/8724_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(8715)">
-        
-        <div class="relative overflow-hidden" style="background-color:#767E75FF">
-        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/19/8693543/output_1290515015.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/8/8715_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(8681)">
         
         <div class="relative overflow-hidden" style="background-color:#7A6D74FF">
@@ -5365,12 +5457,34 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(8724)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C6653FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8805189/output_1858170319.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8724_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(8586)">
         
         <div class="relative overflow-hidden" style="background-color:#8D6441FF">
         <img alt="Alluring matte portrait of a yellow cat eyed Ciri casting fire spells, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/11/19/5995887/output_1308725971.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/8/8586_alluring-matte-portrait-of-a-yellow-cat-eyed-ciri-casting-fire-spells.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(8715)">
+        
+        <div class="relative overflow-hidden" style="background-color:#767E75FF">
+        <img alt="Portrait of an alluring Witcher 3 Ciri assassin in an epic forest, 4k,Highly Detailed,Beautiful,Cinematic Lighting,Sharp Focus,Volumetric Lighting,Closeup Portrait,Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/19/8693543/output_1290515015.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/8/8715_portrait-of-an-alluring-witcher-3-ciri-assassin-in-an-epic-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5398,23 +5512,23 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(3939)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D6468FF">
+        <img alt="Anime portrait of Ciri, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/9061689/output_4273579773.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3939_anime-portrait-of-ciri.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(3927)">
         
         <div class="relative overflow-hidden" style="background-color:#65493FFF">
         <img alt="Closeup of Cirilla from The Witcher 3, Highly Detailed,Intricate,Artstation,Digital Painting,Illustration,D&amp;D,Hearthstone,Sharp Focus,Matte,Concept Art,Fantasy,Elegant" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/11/07/8882929/output_2541057789.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/3/3927_closeup-of-cirilla-from-the-witcher-3.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(3753)">
-        
-        <div class="relative overflow-hidden" style="background-color:#546C79FF">
-        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed,Intricate,Cinematic Lighting,Unreal Engine,Radiant,Fantasy" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/11/07/13077849/output_1141371604.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/3/3753_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5442,12 +5556,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(3302)">
+    <div v-on:click.prevent.stop="loadArtifact(3753)">
         
-        <div class="relative overflow-hidden" style="background-color:#687B61FF">
-        <img alt="80s futuristic outdoor retro arcade, desolate, lush vegetation, Highly Detailed,Intricate,Artstation,Sharp Focus,Smooth,Octane Render,Centered,Dynamic,Elegant, by  Beeple,by Justin Gerard,by James Gilleard,by Simon Stalenhag" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/04/14007954/output_3192253510.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/3/3302_80s-futuristic-outdoor-retro-arcade-desolate-lush-vegetation.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#546C79FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed,Intricate,Cinematic Lighting,Unreal Engine,Radiant,Fantasy" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/11/07/13077849/output_1141371604.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3753_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5486,17 +5600,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(1830)">
-        
-        <div class="relative overflow-hidden" style="background-color:#665B58FF">
-        <img alt="Closeup of Ciri in white Assasin&#x27;s Creed style, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/10/29/61220285/output_2574277645.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/1/1830_closeup-of-ciri-in-white-assasin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(51702)">
         
         <div class="relative overflow-hidden" style="background-color:#575B64FF">
@@ -5508,122 +5611,34 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(1830)">
+        
+        <div class="relative overflow-hidden" style="background-color:#665B58FF">
+        <img alt="Closeup of Ciri in white Assasin&#x27;s Creed style, Highly Detailed,Intricate,Artstation,Beautiful,Digital Painting,Sharp Focus,Concept Art,Elegant" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/10/29/61220285/output_2574277645.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/1/1830_closeup-of-ciri-in-white-assasin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(3302)">
+        
+        <div class="relative overflow-hidden" style="background-color:#687B61FF">
+        <img alt="80s futuristic outdoor retro arcade, desolate, lush vegetation, Highly Detailed,Intricate,Artstation,Sharp Focus,Smooth,Octane Render,Centered,Dynamic,Elegant, by  Beeple,by Justin Gerard,by James Gilleard,by Simon Stalenhag" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/11/04/14007954/output_3192253510.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/3/3302_80s-futuristic-outdoor-retro-arcade-desolate-lush-vegetation.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(51660)">
         
         <div class="relative overflow-hidden" style="background-color:#69858BFF">
         <img alt="a flock of evil goats monsters, 4k, 4k resolution, 8k, Eldritch, Foreboding, HD, High Definition, High Resolution, Highly Detailed, HQ, Digital Illustration, Matte Painting, Spring, Fantasy, Apocalyptic, Threatening by Stefan Kostic" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/02/14/18446293/output_3182137141.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/51/51660_a-flock-of-evil-goats-monsters.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51592)">
-        
-        <div class="relative overflow-hidden" style="background-color:#3C6560FF">
-        <img alt="princess nausicaa and princess mononoke, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Stefan Kostic, Studio Ghibli" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/14/17339656/output_1765263167.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51592_princess-nausicaa-and-princess-mononoke.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51585)">
-        
-        <div class="relative overflow-hidden" style="background-color:#856049FF">
-        <img alt="portrait of princess nausicaa, 4k, 4k resolution, 8k, Highly Detailed, Hyper Detailed, Beautiful, Digital Painting, Anime, Fantasy by Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/14/17269649/output_419050794.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51585_portrait-of-princess-nausicaa.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51538)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7A564CFF">
-        <img alt="grandmother for president, intricate soviet propaganda poster, Cyrillic text, Boris kriukov, vote for grandmother, sharp focus, text at bottom, Cyrillic, no blur, old woman, Dystopian, Intricate Details, Half Body, Cyberpunk, Psychedelic, Retro-Futurism, Soviet Poster, Digital Painting, Poster, Propaganda Poster, Sharp Focus, Artgerm by Beeple, Alex Grey, Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/14/15230728/output_4016196325.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51538_grandmother-for-president-intricate-soviet-propaganda-poster-cyrillic-text-boris-kriukov-vote-fo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51508)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6D3840FF">
-        <img alt="Donald Trump for president, intricate soviet propaganda poster, Cyrillic text, Boris kriukov, Donald Trump for president, Dystopian, Half Body, Cyberpunk, Psychedelic, Retro-Futurism, Soviet Poster, Digital Painting, Propaganda Poster, Sharp Focus, Artgerm by Beeple, Alex Grey, Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/14/14746264/output_1005028112.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51508_donald-trump-for-president-intricate-soviet-propaganda-poster-cyrillic-text-boris-kriukov-donald.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51498)">
-        
-        <div class="relative overflow-hidden" style="background-color:#895F5AFF">
-        <img alt="Donald Trump, Half Body, Propaganda Poster by WLOP, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/14/14300717/output_434900393.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51498_donald-trump.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51486)">
-        
-        <div class="relative overflow-hidden" style="background-color:#77504EFF">
-        <img alt="Donald Trump, 4k, 4k resolution, 8k, Eldritch, High Definition, High Resolution, Highly Detailed, HQ, Half Body, Trending on Artstation, Beautiful, Unimaginable Beauty, Digital Painting, Matte Painting, Sharp Focus by WLOP, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/14/14084011/output_2887564038.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51486_donald-trump.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51350)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7C515AFF">
-        <img alt="portrait of princess mononoke, 4k, 4k resolution, 8k, Hyper Detailed, Anime by Stanley Artgerm Lau, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/02/13/80425457/output_2383492902.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51350_portrait-of-princess-mononoke.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(51535)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7E3A25FF">
-        <img alt="grandmother for president, intricate soviet propaganda poster, Cyrillic text, Boris kriukov, vote for grandmother, sharp focus, text at bottom, Cyrillic, no blur, several old women, Dystopian, Intricate Details, Half Body, Cyberpunk, Psychedelic, Retro-Futurism, Soviet Poster, Digital Painting, Poster, Propaganda Poster, Sharp Focus, Artgerm by Beeple, Alex Grey, Alphonse Mucha" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2023/02/14/15176702/output_3440235889.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/51/51535_grandmother-for-president-intricate-soviet-propaganda-poster-cyrillic-text-boris-kriukov-vote-fo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(47317)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5F5E6EFF">
-        <img alt="Closeup of a beautiful witch in a magical forest, 4k, Highly Detailed, Masterpiece, Pretty Face, Digital Illustration, Cinematic Lighting, Realistic, Sharp Focus, Centered, Beautifully Lit, Bioluminescent by Stanley Artgerm Lau" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/18/45255573/output_1659334225.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/47/47317_closeup-of-a-beautiful-witch-in-a-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(34253)">
-        
-        <div class="relative overflow-hidden" style="background-color:#4E4846FF">
-        <img alt="Alluring matte portrait of a beautiful Kassandra wearing black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/01/02/38458271/output_1373628031.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/34/34253_alluring-matte-portrait-of-a-beautiful-kassandra-wearing-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>

@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
-                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
-                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
-                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:justify-end">
             <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </header>
 
 <script>
@@ -92,7 +94,7 @@ const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null)
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
 </script>
@@ -100,11 +102,24 @@ if (cachedAuth?.profileUrl) {
 <script type="module">
 import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
 
 const HeaderNav = {
     setup() {
         const showMobileNav = ref(false)
-        return { showMobileNav }
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
     }
 }
 mount('#header', HeaderNav)
@@ -162,6 +177,72 @@ mountAll()
 
     
 <div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(12424)">
+        
+        <div class="relative overflow-hidden" style="background-color:#656E4EFF">
+        <img alt="A huge magical pond surrounded by a dense forest, Highly Detailed, Intricate, Artstation, Gothic and Fantasy, Vintage Illustration, Digital Painting, Matte Painting, D&amp;D, Hearthstone, Sharp Focus, Concept Art, Elegant by Alphonse Mucha, Andreas Rocha, Greg Rutkowski" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/51939572/output_2176765202.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12424_a-huge-magical-pond-surrounded-by-a-dense-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12414)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8A7E7CFF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful white haired paladin girl in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/50042489/output_2263382669.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12414_alluring-highly-detailed-matte-portrait-of-a-beautiful-white-haired-paladin-girl-in-the-style-of-ste.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12405)">
+        
+        <div class="relative overflow-hidden" style="background-color:#869191FF">
+        <img alt="Alluring highly detailed matte portrait of a beautiful white haired paladin girl in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/32015403/output_1077288897.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12405_alluring-highly-detailed-matte-portrait-of-a-beautiful-white-haired-paladin-girl-in-the-style-of-ste.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12397)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D8691FF">
+        <img alt="White haired Paladin girl with blue eyes, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Luis Ricardo Falero" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/31786129/output_121254389.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12397_white-haired-paladin-girl-with-blue-eyes.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12387)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7F8592FF">
+        <img alt="White, bob-cut hair Paladin girl with blue eyes, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant by Stanley Artgerm Lau, Luis Ricardo Falero" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/29558250/output_2336050635.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12387_white-bob-cut-hair-paladin-girl-with-blue-eyes.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(12379)">
+        
+        <div class="relative overflow-hidden" style="background-color:#554D32FF">
+        <img alt="A beautiful humble temple in the mountains, forgotten valley, wide shot, horizon, sunrays, 4k resolution, Atmospheric, Hyper Detailed, Trending on Artstation, Sunny Day, Golden Hour, Volumetric Lighting, Concept Art, Digital Art, Fantasy by Shinji Aramaki, Posuka Demizu" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/02/7648883/output_4038664058.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/12/12379_a-beautiful-humble-temple-in-the-mountains-forgotten-valley-wide-shot-horizon-sunrays.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(12372)">
         
         <div class="relative overflow-hidden" style="background-color:#715C41FF">
@@ -5591,72 +5672,6 @@ mountAll()
         <img alt="Alluring highly detailed matte portrait of beautiful female mage wearing chainmail in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/11/18/55192110/output_1351408977.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/7/7857_alluring-highly-detailed-matte-portrait-of-beautiful-female-mage-wearing-chainmail-in-the-style-of-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(7851)">
-        
-        <div class="relative overflow-hidden" style="background-color:#4E4B47FF">
-        <img alt="Alluring highly detailed matte portrait of beautiful female assassin wearing chainmail in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/18/55071602/output_3090788763.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/7/7851_alluring-highly-detailed-matte-portrait-of-beautiful-female-assassin-wearing-chainmail-in-the-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(7840)">
-        
-        <div class="relative overflow-hidden" style="background-color:#685235FF">
-        <img alt="Alluring highly detailed matte portrait of beautiful norse goddess wearing chainmail in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/18/54902943/output_3181372581.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/7/7840_alluring-highly-detailed-matte-portrait-of-beautiful-norse-goddess-wearing-chainmail-in-the-style-of.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(7828)">
-        
-        <div class="relative overflow-hidden" style="background-color:#736A60FF">
-        <img alt="Alluring highly detailed matte portrait of beautiful norse goddess wearing chainmail in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/18/54788183/output_2579693880.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/7/7828_alluring-highly-detailed-matte-portrait-of-beautiful-norse-goddess-wearing-chainmail-in-the-style-of.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(7825)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5E5D55FF">
-        <img alt="Alluring highly detailed matte portrait of beautiful norse goddess wearing chainmail in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/18/54710913/output_3622958758.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/7/7825_alluring-highly-detailed-matte-portrait-of-beautiful-norse-goddess-wearing-chainmail-in-the-style-of.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(7815)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5A4C47FF">
-        <img alt="Alluring highly detailed matte portrait of beautiful norse goddess wearing chainmail in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/18/54620106/output_3345999361.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/7/7815_alluring-highly-detailed-matte-portrait-of-beautiful-norse-goddess-wearing-chainmail-in-the-style-of.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(7804)">
-        
-        <div class="relative overflow-hidden" style="background-color:#787373FF">
-        <img alt="Alluring highly detailed matte portrait of beautiful female druid wearing chainmail in the style of Stefan Kostic, 8k,High Definition,Highly Detailed,Intricate,Half Body,Realistic,Sharp Focus,Fantasy,Elegant" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/11/18/54529351/output_3233588363.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/7/7804_alluring-highly-detailed-matte-portrait-of-beautiful-female-druid-wearing-chainmail-in-the-style-of.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>

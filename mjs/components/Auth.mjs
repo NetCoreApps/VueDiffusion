@@ -57,7 +57,6 @@ export const SignInDialog = {
         /** @type {Store} */
         const store = inject('store')
         const client = useClient()
-        const { signIn } = useAuth()
         
         /** @type {Ref<Authenticate>} */
         const request = ref(new Authenticate({ provider:'credentials' }))
@@ -94,7 +93,7 @@ export const SignInDialog = {
         async function submit() {
             const api = await client.api(request.value)
             if (api.succeeded) {
-                signIn(api.response)
+                await store.signIn(api.response)
                 done()
             }
         }
@@ -130,10 +129,12 @@ export const SignUpDialog = {
     </ModalDialog>`,
     emits:['done','signin'],
     setup(props, { emit }) {
+        /** @type {Store} */
+        const store = inject('store')
+
         /** @type {Ref<Register>} */
         const request = ref(new Register({ autoLogin:true }))
         const client = useClient()
-        const { signIn } = useAuth()
 
         function done() {
             emit('done')
@@ -149,7 +150,7 @@ export const SignUpDialog = {
             }
             const api = await client.api(request.value)
             if (api.succeeded) {
-                signIn(api.response)
+                store.signIn(api.response)
                 done()
             }
         }
@@ -172,7 +173,7 @@ export const SignInLink = {
             <a :href="logoutUrl" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800" role="menuitem" tabindex="-1">Logout</a>
         </div>
     </div>`,
-    props:['menuClass'],
+    props: { menuClass:String },
     setup(props) {
         /** @type {Store} */
         const store = inject('store')
@@ -191,11 +192,14 @@ export const AvatarImage = {
     template:`
         <img v-if="publicUrl" :alt="user.handle" class="rounded-full overflow-hidden object-fit hover:opacity-70"
          :src="useSrc || publicUrl"
-         @error="useSrc = store.getImageErrorUrl(user, useSrc)">
+         @error="useSrc = store.getUserImageErrorUrl(user, useSrc)">
         <svg v-else class="text-cyan-600 hover:text-cyan-400 rounded-full overflow-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
             <path fill="currentColor" d="M200,100 a100,100 0 1 0 -167.3,73.9 a3.6,3.6 0 0 0 0.9,0.8 a99.9,99.9 0 0 0 132.9,0 l0.8,-0.8 A99.6,99.6 0 0 0 200,100 zm-192,0 a92,92 0 1 1 157.2,64.9 a75.8,75.8 0 0 0 -44.5,-34.1 a44,44 0 1 0 -41.4,0 a75.8,75.8 0 0 0 -44.5,34.1 A92.1,92.1 0 0 1 8,100 zm92,28 a36,36 0 1 1 36,-36 a36,36 0 0 1 -36,36 zm-59.1,42.4 a68,68 0 0 1 118.2,0 a91.7,91.7 0 0 1 -118.2,0 z" />
         </svg>`,
-    props:['user'],
+    props: {
+        /** @type {import('vue').PropType<UserResult>} */
+        user:Object 
+    },
     setup(props) {
         /** @type {Store} */
         const store = inject('store')

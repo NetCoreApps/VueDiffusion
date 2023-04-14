@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
-                    <a href="" class="text-lg font-semibold leading-6 text-white">Search</a>
-                    <a href="create" class="text-lg font-semibold leading-6 text-white">Create</a>
-                    <a href="favorites" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:justify-end">
             <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
 </header>
 
 <script>
@@ -92,7 +94,7 @@ const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null)
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
         `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
 </script>
@@ -100,11 +102,24 @@ if (cachedAuth?.profileUrl) {
 <script type="module">
 import { ref } from "vue"
 import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
 
 const HeaderNav = {
     setup() {
         const showMobileNav = ref(false)
-        return { showMobileNav }
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
     }
 }
 mount('#header', HeaderNav)
@@ -162,6 +177,72 @@ mountAll()
 
     
 <div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(30244)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F6C36FF">
+        <img alt="Alluring matte portrait of a beautiful Akali wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/17463324/output_1517641907.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30244_alluring-matte-portrait-of-a-beautiful-akali-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(30234)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6B6F62FF">
+        <img alt="Alluring matte portrait of a beautiful Quinn wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/17271347/output_806767116.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30234_alluring-matte-portrait-of-a-beautiful-quinn-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(30221)">
+        
+        <div class="relative overflow-hidden" style="background-color:#858F80FF">
+        <img alt="Alluring matte portrait of a beautiful Quinn wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/17103663/output_2124242663.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30221_alluring-matte-portrait-of-a-beautiful-quinn-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(30212)">
+        
+        <div class="relative overflow-hidden" style="background-color:#645445FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/17005348/output_4058154728.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30212_alluring-matte-portrait-of-a-beautiful-vayne-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(30205)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D6B51FF">
+        <img alt="Alluring matte portrait of a beautiful Vayne wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/16779506/output_1102469735.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30205_alluring-matte-portrait-of-a-beautiful-vayne-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(30195)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7E5C50FF">
+        <img alt="Alluring matte portrait of a beautiful Samira wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/16689273/output_2169433084.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30195_alluring-matte-portrait-of-a-beautiful-samira-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(30188)">
         
         <div class="relative overflow-hidden" style="background-color:#817155FF">
@@ -3627,6 +3708,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(27348)">
+        
+        <div class="relative overflow-hidden" style="background-color:#76625DFF">
+        <img alt="batman eating paella on top eiffel tower, GLaDOS, Retro-Futurism" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/26/30542387/output_1335183869.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27348_batman-eating-paella-on-top-eiffel-tower.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(27334)">
         
         <div class="relative overflow-hidden" style="background-color:#757D8BFF">
@@ -3638,12 +3730,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(27348)">
+    <div v-on:click.prevent.stop="loadArtifact(27342)">
         
-        <div class="relative overflow-hidden" style="background-color:#76625DFF">
-        <img alt="batman eating paella on top eiffel tower, GLaDOS, Retro-Futurism" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/26/30542387/output_1335183869.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27348_batman-eating-paella-on-top-eiffel-tower.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#967246FF">
+        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/26/30462017/output_3842926100.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27342_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3671,12 +3763,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(27342)">
+    <div v-on:click.prevent.stop="loadArtifact(27340)">
         
-        <div class="relative overflow-hidden" style="background-color:#967246FF">
-        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/26/30462017/output_3842926100.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27342_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#8F8469FF">
+        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism by Pablo Picasso" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/26/30421707/output_3358622358.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27340_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3699,17 +3791,6 @@ mountAll()
         <img alt="Closeup portrait of a fierce dragon in a fantasy world of dragons, 4k, Highly Detailed, Sharp Focus, Octane Render, Volumetric Lighting by Stanley Artgerm Lau, Frank Frazetta, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/25/13780875/output_4211805383.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/27/27304_closeup-portrait-of-a-fierce-dragon-in-a-fantasy-world-of-dragons.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(27340)">
-        
-        <div class="relative overflow-hidden" style="background-color:#8F8469FF">
-        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism by Pablo Picasso" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/26/30421707/output_3358622358.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27340_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5591,72 +5672,6 @@ mountAll()
         <img alt="Closeup portrait of a beautiful Christmas Elf, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/22/45040539/output_341764934.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/25/25830_closeup-portrait-of-a-beautiful-christmas-elf.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(25821)">
-        
-        <div class="relative overflow-hidden" style="background-color:#735E4AFF">
-        <img alt="Closeup portrait of a beautiful Christmas Elf, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/22/41007319/output_3983947157.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/25/25821_closeup-portrait-of-a-beautiful-christmas-elf.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(25815)">
-        
-        <div class="relative overflow-hidden" style="background-color:#886669FF">
-        <img alt="Closeup portrait of a beautiful Christmas Elf, 8k, Highly Detailed, Alluring, Matte Painting, Photo Realistic, Sharp Focus, Volumetric Lighting by Stanley Artgerm Lau" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/22/40900451/output_1963002168.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/25/25815_closeup-portrait-of-a-beautiful-christmas-elf.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(25798)">
-        
-        <div class="relative overflow-hidden" style="background-color:#925D4CFF">
-        <img alt="Closeup portrait of a beautiful Christmas Elf, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Volumetric Lighting by Stanley Artgerm Lau" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/22/40647613/output_813560960.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/25/25798_closeup-portrait-of-a-beautiful-christmas-elf.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(25788)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7B6668FF">
-        <img alt="Closeup portrait of a beautiful Christmas Elf, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/22/40571342/output_2930635384.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/25/25788_closeup-portrait-of-a-beautiful-christmas-elf.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(25781)">
-        
-        <div class="relative overflow-hidden" style="background-color:#725148FF">
-        <img alt="Closeup portrait of a beautiful Christmas Elf, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/22/40490441/output_3082396743.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/25/25781_closeup-portrait-of-a-beautiful-christmas-elf.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(25771)">
-        
-        <div class="relative overflow-hidden" style="background-color:#86623EFF">
-        <img alt="Closeup portrait of a beautiful Christmas Elf, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/22/40417768/output_2046111558.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/25/25771_closeup-portrait-of-a-beautiful-christmas-elf.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
