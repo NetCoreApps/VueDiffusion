@@ -94,6 +94,7 @@ export const SignInDialog = {
             const api = await client.api(request.value)
             if (api.succeeded) {
                 await store.signIn(api.response)
+                await store.loadUserData()
                 done()
             }
         }
@@ -150,7 +151,8 @@ export const SignUpDialog = {
             }
             const api = await client.api(request.value)
             if (api.succeeded) {
-                store.signIn(api.response)
+                await store.signIn(api.response)
+                await store.loadUserData()
                 done()
             }
         }
