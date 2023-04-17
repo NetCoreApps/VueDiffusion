@@ -89,7 +89,7 @@ export class Store {
         const cacheKey = this.authKey
         const json = localStorage.getItem(cacheKey)
         if (json) {
-            this.signIn(JSON.parse(json))
+            await this.signIn(JSON.parse(json))
         }
     }
     async loadUserData() {
@@ -137,7 +137,7 @@ export class Store {
             const artifacts = await this.loadArtifactsByIds(userAlbumIds)
             localStorage.setItem(this.userAlbumArtifactsKey, JSON.stringify(artifacts))
         }
-        const userLikeArtifacts = this.getLikedArtifacts()
+        const userLikeArtifacts = await this.getLikedArtifacts()
         if (userLikeArtifacts.length > 0) {
             localStorage.setItem(this.userLikesKey, JSON.stringify(userLikeArtifacts))
         }
