@@ -59,7 +59,7 @@ export class Store {
     /** @type {UserDataResponse|null} */
     userData = null
     
-    async signIn(auth) {
+    signIn(auth) {
         const { signIn } = useAuth()
         this.auth = auth
         signIn(auth)
@@ -67,7 +67,7 @@ export class Store {
         localStorage.setItem(this.authKey, JSON.stringify(auth))
         this.userAlbumArtifactsKey = `swr[${this.auth.userId}].userAlbumArtifacts`
         this.userLikesKey = `swr[${this.auth.userId}].userLikedArtifacts`
-        await this.loadUserData()
+        this.loadCachedUserData()
     }
     signOut() {
         localStorage.removeItem(this.authKey)
@@ -78,26 +78,26 @@ export class Store {
         const { signOut } = useAuth()
         signOut()
     }
-    async load() {
-        await Promise.all([
-            this.loadAuth(),
-            this.loadUserData(),
-            this.loadAlbumRefs(),
-        ])
+    loadCached() {
+        this.loadCachedAuth()
+        this.loadCachedAlbumRefs()
     }
-    async loadAuth() {
+    loadCachedAuth() {
         const cacheKey = this.authKey
         const json = localStorage.getItem(cacheKey)
         if (json) {
-            await this.signIn(JSON.parse(json))
+            this.signIn(JSON.parse(json))
         }
     }
-    async loadUserData() {
+    loadCachedUserData() {
         const cacheKey = this.userDataKey
         const json = localStorage.getItem(cacheKey)
         if (json) {
             this.userData = JSON.parse(json)
         }
+    }
+    async loadUserData() {
+        const cacheKey = this.userDataKey
         const api = await this.client.api(new UserData())
         if (api.succeeded) {
             this.userData = api.response
@@ -107,13 +107,16 @@ export class Store {
             localStorage.removeItem(cacheKey)
         }
     }
-    async loadAlbumRefs() {
+    loadCachedAlbumRefs() {
         const cacheKey = this.albumRefsKey
         const json = localStorage.getItem(cacheKey)
         if (json) {
             this.albumRefs = JSON.parse(json)
             this.albumRefs.forEach(x => this.albumRefsMap[x.refId] = x)
         }
+    }
+    async loadAlbumRefs() {
+        const cacheKey = this.albumRefsKey
         const api = await this.client.api(new GetAlbumRefs())
         if (api.succeeded) {
             this.albumRefs = api.response.results || []
@@ -155,7 +158,7 @@ export class Store {
     
     /** @param {number} count */
     async getLikedArtifacts(count= 50) {
-        const userLikeIds = this.userData.user?.likes.artifactIds.slice(0, count)
+        const userLikeIds = this.userData?.user?.likes.artifactIds.slice(0, count)
         if (userLikeIds.length > 0) {
             return await this.loadArtifactsByIds(userLikeIds)
         }

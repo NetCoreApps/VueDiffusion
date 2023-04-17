@@ -341,7 +341,7 @@ const App = {
         let observer = null
         
         onMounted(async () => {            
-            await store.load()
+            store.loadCached()
             if (qs.album) {
                 selectedAlbum.value = store.userData.user?.albums.find(x => x.id === parseInt(qs.album)) 
             }

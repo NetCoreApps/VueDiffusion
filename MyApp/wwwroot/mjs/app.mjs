@@ -107,12 +107,14 @@ export function init(exports) {
     if (qs.clear === 'storage') {
         localStorage.clear()
     }
-    
+
+    store.loadCached()
     nextTick(async () => {
-        store.load()
+        store.loadAlbumRefs()
         const api = await client.api(new Authenticate())
         if (api.succeeded) {
             store.signIn(api.response)
+            await store.loadUserData()
         } else {
             store.signOut()
             const protectedPages = ['/create','/favorites']
