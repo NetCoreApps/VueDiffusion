@@ -941,10 +941,6 @@ select{
   margin: 1rem;
 }
 
-.m-2 {
-  margin: 0.5rem;
-}
-
 .-mx-1 {
   margin-left: -0.25rem;
   margin-right: -0.25rem;
@@ -1217,6 +1213,10 @@ select{
 
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
 }
 
 .mt-6 {
@@ -1526,6 +1526,14 @@ select{
 
 .max-w-screen-lg {
   max-width: 1024px;
+}
+
+.max-w-screen-sm {
+  max-width: 640px;
+}
+
+.max-w-xl {
+  max-width: 36rem;
 }
 
 .max-w-xs {
@@ -2352,20 +2360,12 @@ select{
   padding: 0.625rem;
 }
 
-.p-3 {
-  padding: 0.75rem;
-}
-
 .p-4 {
   padding: 1rem;
 }
 
 .p-6 {
   padding: 1.5rem;
-}
-
-.p-8 {
-  padding: 2rem;
 }
 
 .px-1 {
@@ -2599,10 +2599,6 @@ select{
 
 .pt-2 {
   padding-top: 0.5rem;
-}
-
-.pt-2\.5 {
-  padding-top: 0.625rem;
 }
 
 .pt-4 {
@@ -3809,6 +3805,10 @@ select{
   border-color: rgb(31 41 55 / var(--tw-divide-opacity));
 }
 
+:is(.dark .dark\:border) {
+  border-width: 1px;
+}
+
 :is(.dark .dark\:border-gray-100) {
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
@@ -3827,6 +3827,11 @@ select{
 :is(.dark .dark\:border-gray-800) {
   --tw-border-opacity: 1;
   border-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+
+:is(.dark .dark\:border-red-400) {
+  --tw-border-opacity: 1;
+  border-color: rgb(248 113 113 / var(--tw-border-opacity));
 }
 
 :is(.dark .dark\:border-slate-800) {
@@ -4384,10 +4389,6 @@ select{
     margin-top: 0px;
   }
 
-  .sm\:mt-0\.5 {
-    margin-top: 0.125rem;
-  }
-
   .sm\:mt-2 {
     margin-top: 0.5rem;
   }
@@ -4484,6 +4485,10 @@ select{
     max-width: 24rem;
   }
 
+  .sm\:max-w-xs {
+    max-width: 20rem;
+  }
+
   .sm\:flex-1 {
     flex: 1 1 0%;
   }
@@ -4511,6 +4516,10 @@ select{
 
   .sm\:flex-row-reverse {
     flex-direction: row-reverse;
+  }
+
+  .sm\:items-end {
+    align-items: flex-end;
   }
 
   .sm\:items-center {
@@ -4619,10 +4628,6 @@ select{
     padding-bottom: 0px;
   }
 
-  .sm\:pb-1 {
-    padding-bottom: 0.25rem;
-  }
-
   .sm\:pb-2 {
     padding-bottom: 0.5rem;
   }
@@ -4651,10 +4656,6 @@ select{
     padding-top: 0.5rem;
   }
 
-  .sm\:pt-4 {
-    padding-top: 1rem;
-  }
-
   .sm\:text-left {
     text-align: left;
   }
@@ -4672,11 +4673,6 @@ select{
   .sm\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
-  }
-
-  .sm\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
   }
 
   .sm\:text-sm {
