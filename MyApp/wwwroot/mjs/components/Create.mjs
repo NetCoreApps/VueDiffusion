@@ -311,7 +311,7 @@ export default {
                             </div>
                         </div>
 
-                      <ArtifactMenu v-if="artifactMenu?.id === artifact.id" :artifact="artifactMenu" menuClass="justify-end"
+                      <ArtifactMenu v-if="!(activeCreative && active) && artifactMenu?.id === artifact.id" :artifact="artifactMenu" menuClass="justify-end"
                                     @changed="notifyChanged" @done="artifactMenu=null" @open="openDialog" />
                         
                     </div>
@@ -320,7 +320,7 @@ export default {
         </div>
     </div>
     
-    <ArtifactModal v-if="activeCreative && active" :artifact="active" @selected="showArtifact(activeCreative,$event)" @done="showArtifact(null,null)">
+    <ArtifactModal v-if="activeCreative && active" :artifact="active" @selected="showArtifact(activeCreative,$event)" @done="showArtifact(null,null)" @contextmenu="artifactMenu=$event">
         <template #icons="artifact">
             <div class="relative p-4 w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
                 <div class="flex justify-between flex-none">
