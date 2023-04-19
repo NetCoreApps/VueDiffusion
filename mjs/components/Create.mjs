@@ -3,7 +3,7 @@ import { useClient, useAuth, useUtils, useFormatters } from "@servicestack/vue"
 import { queryString, ApiResult, combinePaths, map } from "@servicestack/client"
 import {
     QueryCreatives, CreateCreative, SearchData, SearchDataResponse,
-    ArtistInfo, ModifierInfo, UpdateCreative,
+    ArtistInfo, ModifierInfo, UpdateCreative, CreateSignup,
 } from "../dtos.mjs"
 import { Store } from "../store.mjs"
 
@@ -73,8 +73,69 @@ const PinArtifactIcon = {
     }
 }
 
+const DailyQuotaExceeded = {
+    template:`<div class="mx-auto max-w-screen-sm bg-white dark:bg-black shadow dark:border dark:border-red-400 sm:rounded-lg">
+    <div class="px-4 py-5 sm:p-6">
+      <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">{{quotaError.message}}</h3>
+      <div class="mt-2 max-w-xl text-gray-500 dark:text-gray-400">
+        <p class="py-2">The <b>{{quotaError.creditsRequested}}</b> credits requested exceeds the <b>{{Math.max(quotaError.creditsRemaining,0)}}</b> daily quota you have remaining.</p>
+        <p class="py-2">Come back tomorrow in <b>{{quotaError.timeRemaining}}</b> for another <b>{{quotaError.dailyQuota}}</b> credits!</p>
+        <div class="pt-4 text-center">
+          Request Details:<br>
+          <div class="block pt-2 dark:text-gray-200">{{quotaError.requestedDetails}}</div>
+        </div>
+      </div>
+      <div v-if="!store.userData.signups.includes('Beta')" class="border-t mt-8">
+          <ErrorSummary class="pb-2" except="email" />
+          <div class="pt-4 border-gray-700 mt-2 max-w-xl text-gray-500 dark:text-gray-400">
+            <p>You can also request an increased quota by signing up for early Beta access:</p>
+          </div>
+          <div class="mt-5 sm:flex sm:items-end">
+
+            <div class="w-full sm:max-w-xs mr-2">
+              <TextInput id="email" v-model="signup.email" placeholder="you@example.com" />
+            </div>
+            <div>
+              <PrimaryButton @click="signupBeta">Sign up</PrimaryButton>
+            </div>
+          </div>
+      </div>
+    </div>
+    </div>
+    `,
+    props: {
+        status:Object 
+    },
+    setup(props) {
+        /** @type {Store} */
+        const store = inject('store')
+        const client = useClient()
+        const instance = getCurrentInstance()
+
+        const quotaError = map(props.status, status => Object.assign({
+            timeRemaining: status.meta['TimeRemaining'],
+            dailyQuota: parseInt(status.meta['DailyQuota']),
+            creditsUsed: parseInt(status.meta['CreditsUsed']),
+            creditsRequested: parseInt(status.meta['CreditsRequested']),
+            requestedDetails: status.meta['RequestedDetails'] || '',
+        }, props.status))
+        quotaError.creditsRemaining = quotaError.dailyQuota - quotaError.creditsUsed
+        
+        const signup = ref(new CreateSignup({ type:'Beta' }))
+        async function signupBeta() {
+            const api = await client.api(signup.value)
+            if (api.succeeded) {
+                store.userData.signups.push('Beta')
+                instance?.proxy?.$forceUpdate()
+            }
+        }
+        
+        return { store, quotaError, signup, signupBeta }
+    }
+}
+
 export default {
-    components: { PinArtifactIcon },
+    components: { PinArtifactIcon, DailyQuotaExceeded },
     template:/*html*/`<div>
     <form class="mt-4 mb-20 mx-auto shadow overflow-hidden sm:rounded-md w-[420px] sm:w-[600px]" @submit.prevent="noop">
         <ErrorSummary except="userPrompt,images,width,height" />
@@ -195,7 +256,7 @@ export default {
         <div class="mt-4 mx-auto flex justify-center">
             <div class="flex flex-col">
 
-                <PrimaryButton @click="submit" style="sky" class="!rounded-full !text-lg font-normal" :disabled="loading">
+                <PrimaryButton @click="submit" color="sky" class="!rounded-full !text-lg font-normal" :disabled="loading">
                     Generate
                 </PrimaryButton>
 
@@ -203,7 +264,8 @@ export default {
             </div>
         </div>
     </form>
-    <div v-if="loading" class="mt-20 mb-32 flex justify-center">
+    <DailyQuotaExceeded class="mb-16" v-if="api.error?.errorCode === 'QuotaExceeded'" :status="api.error" />
+    <div v-else-if="loading" class="mt-20 mb-32 flex justify-center">
         <Loading class="text-gray-300 font-normal" imageClass="w-7 h-7 mt-1.5">generating images...</Loading>
     </div>
     <div v-for="c in creatives">
