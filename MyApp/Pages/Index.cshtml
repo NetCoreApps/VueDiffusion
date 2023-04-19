@@ -57,7 +57,7 @@
 </div>
 
 <script type="module">
-import { ref, inject, onMounted, onUnmounted, getCurrentInstance } from "vue"
+import { ref, inject, onMounted, onUnmounted, getCurrentInstance, nextTick } from "vue"
 import { ApiResult, queryString, pick, map } from "@@servicestack/client"
 import { useClient, useUtils } from "@@servicestack/vue"
 import { mount } from "app.mjs"
@@ -139,6 +139,8 @@ const Search = {
             const qs = queryString(location.search)
             const requestArgs = pick(qs, ['query','similar','by','user','modifier','artist','album'])
             Object.assign(request.value, requestArgs)
+                        
+            store.events.subscribe('userData', () => results.value = results.value.map(x => x)) // force update
             
             await Promise.all([
                 client.swr(request.value, r => {

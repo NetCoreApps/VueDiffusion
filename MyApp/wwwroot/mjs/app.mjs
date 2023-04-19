@@ -110,7 +110,7 @@ export function init(exports) {
 
     store.loadCached()
     nextTick(async () => {
-        store.loadAlbumRefs()
+        let task = store.loadAlbumRefs()
         const api = await client.api(new Authenticate())
         if (api.succeeded) {
             store.signIn(api.response)
@@ -122,6 +122,7 @@ export function init(exports) {
                 location.href = '/'
             }
         }
+        await task
     })
     mountAll()
 

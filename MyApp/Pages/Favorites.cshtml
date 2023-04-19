@@ -307,9 +307,10 @@ const App = {
         }
         
         async function fetchResults(count) {
-            const nextResults = selectedAlbum.value
+            let nextResults = selectedAlbum.value
                 ? await store.getAlbumArtifacts(selectedAlbum.value, count)
                 : await store.getLikedArtifacts(count)
+
             hasMore.value = nextResults.length >= count
             results.value = nextResults
             //console.log('fetchResults', selectedAlbum.value || 'likes', count,  hasMore.value, nextResults.length)
@@ -317,7 +318,7 @@ const App = {
         }
         
         async function loadMore() {
-            console.log('loadMore', selectedAlbum.value || 'likes', hasMore.value, results.value.length)
+            //console.log('loadMore', selectedAlbum.value || 'likes', hasMore.value, results.value.length)
             if (hasMore.value) {
                 await fetchResults(results.value.length + store.NextPage)
             }
@@ -333,6 +334,7 @@ const App = {
                 if (api.succeeded) {
                     store.removeArtifactFromAlbum(selectedAlbum.value, artifact)
                     store.addArtifactToAlbum(selectedAlbum.value, artifact)
+                    await store.loadUserData(forceUpdate)
                 }
             }
             notifyChanged()
@@ -341,21 +343,31 @@ const App = {
         let observer = null
         
         onMounted(async () => {            
-            store.loadCached()
+            store.loadCached()            
+            forceUpdate()
+
             if (qs.album) {
-                selectedAlbum.value = store.userData.user?.albums.find(x => x.id === parseInt(qs.album)) 
+                selectedAlbum.value = store.userData.user?.albums.find(x => x.id === parseInt(qs.album))
             }
-            await Promise.all([
-                store.loadCachedUserArtifacts(),
-                update()
-            ])
-                        
-            forceUpdate()    
-            nextTick(async () => {
-                await store.loadUserArtifacts()
-                forceUpdate()    
+            
+            store.events.subscribe('userData',async () => {
+                const updateLikes = artifacts => {
+                    hasMore.value = artifacts.length >= store.InitialTake                    
+                    results.value = artifacts
+                    forceUpdate()
+                }
+                store.loadCachedUserLikes(updateLikes)
+                forceUpdate()
+                
+                await Promise.all([
+                    store.swrUserAlbums(forceUpdate),
+                    qs.album
+                        ? update() 
+                        : store.swrUserLikes(updateLikes)
+                ])
+                forceUpdate()
             })
-                        
+        
             setTimeout(() => {
                 observer = new IntersectionObserver(
                     ([{isIntersecting, target}]) => { 
