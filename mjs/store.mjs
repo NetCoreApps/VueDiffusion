@@ -2,7 +2,7 @@ import {
     Authenticate, Creative, Artifact, GetCreativesInAlbums, UserData, CreateArtifactLike, DeleteArtifactLike,
     DeleteCreative, HardDeleteCreative, QueryCreatives, QueryArtifacts, AlbumRef, GetAlbumRefs, GetUserInfo,
 } from "./dtos.mjs"
-import { ApiResult, combinePaths, leftPart, queryString, rightPart, setQueryString } from "@servicestack/client"
+import { ApiResult, combinePaths, EventBus, leftPart, queryString, rightPart, setQueryString } from "@servicestack/client"
 import { useAuth, useUtils } from "@servicestack/vue"
 
 export const BaseUrl = globalThis.BaseUrl = location.origin === 'https://localhost:5002' || location.origin === 'http://localhost:8080'
@@ -46,6 +46,7 @@ export class Store {
     css = new AppCss()
     data = new AppData()
     prefs = new AppPrefs()
+    events = new EventBus()
 
     constructor(client) {
         this.client = client
@@ -68,6 +69,7 @@ export class Store {
         this.userAlbumArtifactsKey = `swr[${this.auth.userId}].userAlbumArtifacts`
         this.userLikesKey = `swr[${this.auth.userId}].userLikedArtifacts`
         this.loadCachedUserData()
+        this.events.publish('signIn', auth)
     }
     signOut() {
         localStorage.removeItem(this.authKey)
@@ -77,9 +79,23 @@ export class Store {
         this.userAlbumArtifactsKey = this.userLikesKey = null
         const { signOut } = useAuth()
         signOut()
+        this.events.publish('signOut')
     }
+
+    /** @param {Function} cb */
+    onSignIn(cb) {
+        if (this.auth) {
+            cb(this.auth)
+        } else {
+            this.events.subscribe('signIn', e => {
+                console.log('signIn.fired', e)
+                cb(e)
+            })
+        }
+    }
+    
     loadCached() {
-        this.loadCachedAuth()
+        this.loadCachedAuth() //calls loadCachedUserData() after signIn
         this.loadCachedAlbumRefs()
     }
     loadCachedAuth() {
@@ -94,18 +110,22 @@ export class Store {
         const json = localStorage.getItem(cacheKey)
         if (json) {
             this.userData = JSON.parse(json)
+            this.events.publish('userData', this.userData)
         }
     }
     async loadUserData() {
+        console.log('loadUserData.started')
         const cacheKey = this.userDataKey
         const api = await this.client.api(new UserData())
         if (api.succeeded) {
             this.userData = api.response
             localStorage.setItem(cacheKey, JSON.stringify(this.userData))
+            this.events.publish('userData', this.userData)
         } else {
             this.userData = null
             localStorage.removeItem(cacheKey)
         }
+        console.log('loadUserData.ended')
     }
     loadCachedAlbumRefs() {
         const cacheKey = this.albumRefsKey
@@ -124,25 +144,51 @@ export class Store {
             localStorage.setItem(cacheKey, JSON.stringify(this.albumRefs))
         }
     }
-    async loadCachedUserArtifacts() {
-        const userAlbumsJson = localStorage.getItem(this.userAlbumArtifactsKey)
-        if (userAlbumsJson) {
-            this.loadArtifacts(JSON.parse(userAlbumsJson))
+    
+    loadCachedUserLikes() {
+        const json = localStorage.getItem(this.userLikesKey)
+        if (json) {
+            const artifacts = JSON.parse(json)
+            this.loadArtifacts(artifacts)
+            return artifacts
         }
-        const userLikesJson = localStorage.getItem(this.userLikesKey)
-        if (userLikesJson) {
-            this.loadArtifacts(JSON.parse(userLikesJson))
+        return []
+    }
+
+    /** @param {(artifacts:Artifact[]) => void} cb */
+    async swrUserLikes(cb) {
+        let artifacts = this.loadCachedUserLikes()
+        if (artifacts.length > 0) cb(artifacts)
+
+        artifacts = await store.getLikedArtifacts(this.InitialTake)
+        console.log('swrUserLikes.2', artifacts.length)
+        if (artifacts.length > 0) {
+            localStorage.setItem(this.userLikesKey, JSON.stringify(artifacts))
+            cb(artifacts)
         }
     }
-    async loadUserArtifacts() {
-        const userAlbumIds = this.userData.user?.albums.map(x => this.getAlbumCoverArtifactId(x)).filter(x => !!x) || []
-        if (userAlbumIds.length > 0) {
-            const artifacts = await this.loadArtifactsByIds(userAlbumIds)
-            localStorage.setItem(this.userAlbumArtifactsKey, JSON.stringify(artifacts))
+
+    loadCachedUserAlbums() {
+        const json = localStorage.getItem(this.userAlbumArtifactsKey)
+        if (json) {
+            const artifacts = JSON.parse(json)
+            this.loadArtifacts(artifacts)
+            return artifacts
         }
-        const userLikeArtifacts = await this.getLikedArtifacts()
-        if (userLikeArtifacts.length > 0) {
-            localStorage.setItem(this.userLikesKey, JSON.stringify(userLikeArtifacts))
+        return []
+    }
+
+    /** @param {(artifacts:Artifact[]) => void} cb */
+    async swrUserAlbums(cb) {
+        const artifacts = this.loadCachedUserAlbums()
+        if (artifacts.length > 0) cb(artifacts)
+        
+        const userAlbumCoverIds = this.userData.user?.albums.map(x => this.getAlbumCoverArtifactId(x)).filter(x => !!x) || []
+        console.log('swrUserAlbums.2', userAlbumCoverIds.length)
+        if (userAlbumCoverIds.length > 0) {
+            const artifacts = await this.loadArtifactsByIds(userAlbumCoverIds)
+            localStorage.setItem(this.userAlbumArtifactsKey, JSON.stringify(artifacts))
+            cb(artifacts)
         }
     }
 
@@ -152,8 +198,7 @@ export class Store {
         const artifactIds = count != null
             ? album.artifactIds.slice(0, count)
             : album.artifactIds
-        const to = this.loadArtifactsByIds(artifactIds)
-        return to
+        return this.loadArtifactsByIds(artifactIds)
     }
     
     /** @param {number} count */
@@ -474,12 +519,14 @@ export class Store {
 
     /** @param {Creative} creative
      *  @param {number|null} artifactId,
-     *  @param {Creative[]|null} creatives
+     *  @param {Creative[]|null} [creatives]
      */
     updatePrimaryArtifact(creative, artifactId, creatives) {
         creative.primaryArtifactId = artifactId
         if (creatives) {
-            const updateCreative = c => { if (c && c.id == creative.id) c.primaryArtifactId = artifactId }
+            const updateCreative = c => { 
+                if (c && c.id === creative.id) c.primaryArtifactId = artifactId 
+            }
             creatives.forEach(updateCreative)
             Object.values(this.creativesMap).forEach(updateCreative)
         }
@@ -501,30 +548,32 @@ export class Store {
     /** @param {AlbumResult} album
      *  @param {Artifact} artifact */
     addArtifactToAlbum(album, artifact) {
-        const userAlbum = this.userAlbums.find(x => x.id === album.id)
-        if (userAlbum) {
-            if (!album.artifactIds.includes(artifact.id)) {
-                album.artifactIds.unshift(artifact.id)
-                if (album.primaryArtifactId) {
-                    album.artifactIds = album.artifactIds.filter(id => id !== album.primaryArtifactId)
-                    album.artifactIds.unshift(album.primaryArtifactId)
+        [album, this.userAlbums.find(x => x.id === album.id)]
+            .filter(x => !!x)
+            .forEach(album => {
+                if (!album.artifactIds.includes(artifact.id)) {
+                    album.artifactIds.unshift(artifact.id)
+                    if (album.primaryArtifactId) {
+                        album.artifactIds = album.artifactIds.filter(id => id !== album.primaryArtifactId)
+                        album.artifactIds.unshift(album.primaryArtifactId)
+                    }
                 }
-            }
-        }
+            })
     }
 
     /** @param {AlbumResult} album
      *  @param {Artifact} artifact */
     removeArtifactFromAlbum(album, artifact) {
-        const userAlbum = this.userAlbums.find(x => x.id === album.id)
-        if (userAlbum) {
-            if (album.artifactIds.includes(artifact.id)) {
-                album.artifactIds = album.artifactIds.filter(id => id !== artifact.id)
-                if (album.artifactIds.length === 0) {
-                    this.userData.user.albums = this.userAlbums.filter(x => x.id !== album.id)
+        [album, this.userAlbums.find(x => x.id === album.id)]
+            .filter(x => !!x)
+            .forEach(album => {
+                if (album.artifactIds.includes(artifact.id)) {
+                    album.artifactIds = album.artifactIds.filter(id => id !== artifact.id)
+                    if (album.artifactIds.length === 0) {
+                        this.userData.user.albums = this.userAlbums.filter(x => x.id !== album.id)
+                    }
                 }
-            }
-        }
+            })
     }
 
     /** @param {Artifact} artifact */
