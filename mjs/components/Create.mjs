@@ -508,7 +508,6 @@ export default {
         }
 
         async function submit() {
-            request.value.images = 4
             request.value.width = imageSize.value === 'portrait'
                 ? 512
                 : imageSize.value === 'landscape'
