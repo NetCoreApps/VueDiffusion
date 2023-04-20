@@ -576,6 +576,7 @@ export default {
                         if (clear) creativeHistory.value = []
                         creativeHistory.value.push(...api.response.results)
                         store.loadCreatives(creativeHistory.value)
+                        forceUpdate()
                     }
                 })
                 loadingMore.value = false
