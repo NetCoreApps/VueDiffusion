@@ -303,7 +303,7 @@ export default {
                             <div class="absolute w-full h-full flex z-10 text-zinc-100 justify-between drop-shadow opacity-0 group-hover:opacity-100 transition-opacity sm:mb-1 text-sm">
                                 <div class="relative p-4 w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
                                     <div class="flex justify-between flex-none">
-                                        <PinArtifactIcon :creative="c" :artifact="artifact" @changed="update" />
+                                        <PinArtifactIcon :creative="c" :artifact="artifact" @changed="primaryArtifactChanged(c,artifact)" />
                                         <ArtifactMenuIcon :artifact="artifact" @showArtifactMenu="artifactMenu=artifact" />
                                     </div>
                                     <ArtifactLikeIcon :artifact="artifact" @changed="update" @open="openDialog" />                                   
@@ -352,31 +352,31 @@ export default {
         const qs = queryString(location.search) 
         
         const api = ref(new ApiResult())
-        /** @type {Ref<CreateCreative>} */
+        /** @type {import('vue').Ref<CreateCreative>} */
         const request = ref(new CreateCreative())
-        /** @type {Ref<ArtistInfo[]>} */
+        /** @type {import('vue').Ref<ArtistInfo[]>} */
         const artists = ref([])
-        /** @type {Ref<ModifierInfo[]>} */
+        /** @type {import('vue').Ref<ModifierInfo[]>} */
         const modifiers = ref([])
-        /** @type {Ref<SearchDataResponse>} */
+        /** @type {import('vue').Ref<SearchDataResponse>} */
         const dataCache = ref()
-        /** @type {Ref<Creative>} */
+        /** @type {import('vue').Ref<Creative>} */
         const creative = ref()
-        /** @type {Ref<Creative[]>} */
+        /** @type {import('vue').Ref<Creative[]>} */
         const creativeHistory = ref([])
-        /** @type {ComputedRef<Creative[]>} */
+        /** @type {import('vue').ComputedRef<Creative[]>} */
         const creatives = computed(() => creative.value 
             ? [creative.value, ...creativeHistory.value.filter(x => x.id !== creative.value.id)] 
             : creativeHistory.value)
-        /** @type {Ref<{id?:number,view?:number}|null>} */
+        /** @type {import('vue').Ref<{id?:number,view?:number}|null>} */
         const selected = ref({ id:qs.id, view:qs.view })
         const showAuth = ref(false)
         const showSignUp = ref(false)
         const active = ref()
 
-        /** @type {ComputedRef<ArtistInfo[]>} */
+        /** @type {import('vue').ComputedRef<ArtistInfo[]>} */
         const artistOptions = computed(() => dataCache.value?.artists || [])
-        /** @type {ComputedRef<ModifierInfo[]>} */
+        /** @type {import('vue').ComputedRef<ModifierInfo[]>} */
         const modifierOptions = computed(() => dataCache.value?.modifiers || [])
         const groupCategories = computed(() => store.data.categoryGroups.find(x => x.name === selectedGroup.value)?.items || [])
         const categoryModifiers = computed(() => (selectedCategory.value 
@@ -408,7 +408,7 @@ export default {
         function forceUpdate() { instance?.proxy?.$forceUpdate() }
         async function update() {
             forceUpdate()
-            await fetchHistory({skip:0}, x => null) //update swr cache
+            await fetchHistory({ skip: 0}, x => null) //update swr cache
             forceUpdate()
         }
 
@@ -548,6 +548,17 @@ export default {
             }
         }
 
+        /** @param {Creative} creative
+         *  @param {Artifact} artifact */
+        async function primaryArtifactChanged(creative,artifact){
+            creativeHistory.value.forEach(x => {
+                if (x.id === creative.id) {
+                    x.primaryArtifactId = creative.primaryArtifactId
+                }
+            })
+            await update()
+        }
+
         function reset() {
             closeDialogs()
             request.value.userPrompt = ''
@@ -621,7 +632,7 @@ export default {
             creative, creatives, loadingMore, bottom, categoryModifiers, imageSize, selected, showAuth, showSignUp, active, activeCreative,
             resolveBorderColor, noop, navTo, populateForm, closeDialogs, submit, reset, map, showArtifact,
             selectedGroup, selectGroup, selectedCategory, selectCategory, removeArtist, addModifier, removeModifier, discard,
-            likeArtifact, unlikeArtifact,
+            likeArtifact, unlikeArtifact, primaryArtifactChanged,
             artifactMenu, open, openDialog, closeDialog, notifyChanged, update,
         }
     }
