@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.0 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.1 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -4107,12 +4107,12 @@ select{
   --tw-ring-offset-color: #bbf7d0;
 }
 
-:is(.dark .dark\:file\:bg-violet-900::file-selector-button) {
+:is(.dark .dark\:file\:bg-violet-900)::file-selector-button {
   --tw-bg-opacity: 1;
   background-color: rgb(76 29 149 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:file\:text-violet-200::file-selector-button) {
+:is(.dark .dark\:file\:text-violet-200)::file-selector-button {
   --tw-text-opacity: 1;
   color: rgb(221 214 254 / var(--tw-text-opacity));
 }
@@ -4257,7 +4257,7 @@ select{
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-:is(.dark .dark\:hover\:file\:bg-violet-800::file-selector-button:hover) {
+:is(.dark .dark\:hover\:file\:bg-violet-800)::file-selector-button:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(91 33 182 / var(--tw-bg-opacity));
 }
