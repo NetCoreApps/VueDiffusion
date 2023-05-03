@@ -1,4 +1,4 @@
-# razor-ssg
+# Vue Diffusion
 
 .NET 6.0 razor-ssg Static Generated Razor Pages Project Template
 
