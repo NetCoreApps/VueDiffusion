@@ -5,7 +5,7 @@ import { Store } from "../store.mjs"
 import { Authenticate, Register } from "../dtos.mjs"
 
 export const SignInDialog = {
-    template:/*html*/`<ModalDialog @done="done" sizeClass="sm:max-w-prose sm:w-full">
+    template:/*html*/`<ModalDialog @done="done" class="z-40" sizeClass="sm:max-w-prose sm:w-full">
     <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
             <h2 class="text-center text-3xl font-extrabold text-gray-50">
@@ -104,7 +104,7 @@ export const SignInDialog = {
 }
 
 export const SignUpDialog = {
-    template:/*html*/`<ModalDialog @done="done" sizeClass="sm:max-w-prose sm:w-full">
+    template:/*html*/`<ModalDialog @done="done" class="z-40" sizeClass="sm:max-w-prose sm:w-full">
     <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
             <h2 class="text-center text-3xl font-extrabold text-gray-50">
@@ -167,7 +167,7 @@ export const SignInLink = {
         <SignUpDialog v-if="showAuth && showSignUp" @done="showAuth=false"  @signin="showSignUp=false"/>
     </div>
     <div v-else>
-        <div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10"
+        <div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden"
              @click="showAuthMenu=!showAuthMenu">
             <Icon :src="profileUrl" class="w-9 h-9 cursor-pointer" />
         </div>

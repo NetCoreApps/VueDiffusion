@@ -3,6 +3,7 @@ import { useClient, useAuth, useUtils, useFormatters, useMetadata, css } from "@
 import { queryString, ApiResult } from "@servicestack/client"
 import { Artifact, QueryArtifacts, QueryCreatives, UpdateArtifact, CreateArtifactReport, CreateAlbum, UpdateAlbum, ReportType } from "../dtos.mjs"
 import { Store } from "../store.mjs"
+import { SignInDialog } from "./Auth.mjs";
 
 export const AlbumTitle = {
     template:`<div>
@@ -350,14 +351,14 @@ export const ArtifactModal = {
                         <svg class="w-5 h-5 mr-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 20h12M12 4v12m0 0l3.5-3.5M12 16l-3.5-3.5" /></svg>
                         download
                     </a>
-                    <a :href="store.createUrl(creative.id)"
+                    <a @click="ensureAuth" :href="store.createUrl(creative.id)"
                         class="ml-8 mb-4 flex text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
                         <svg class="w-5 h-5 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                             <path fill="currentColor" d="M13.74 10.25h8.046v2.626l7.556-4.363l-7.556-4.363v2.598H9.826c1.543.864 2.79 2.174 3.915 3.5zm8.046 10.404c-.618-.195-1.407-.703-2.29-1.587c-1.79-1.756-3.713-4.675-5.732-7.227c-2.05-2.486-4.16-4.972-7.45-5.09h-3.5v3.5h3.5c.655-.028 1.682.485 2.878 1.682c1.788 1.753 3.712 4.674 5.73 7.226c1.922 2.33 3.908 4.64 6.864 5.016v2.702l7.556-4.362l-7.556-4.362v2.502z" />
                         </svg>
                         new from this
                     </a>
-                    <a :href="store.artViewUrl(artifact.id,creative.userPrompt)" target="_blank"
+                    <a @click="ensureAuth" :href="store.artViewUrl(artifact.id,creative.userPrompt)" target="_blank"
                         class="ml-8 mb-4 flex text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
                         <svg class="w-5 h-5 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M8.586 17H3v-2h18v2h-5.586l3.243 3.243l-1.414 1.414L13 17.414V20h-2v-2.586l-4.243 4.243l-1.414-1.414L8.586 17zM5 3h14a1 1 0 0 1 1 1v10H4V4a1 1 0 0 1 1-1zm1 2v7h12V5H6z" />
@@ -471,6 +472,15 @@ export const ArtifactModal = {
         function open(dialog, artifact) {
             emit('open',dialog,artifact)
         }
+        
+        /** @param {Event} e*/
+        function ensureAuth(e) {
+            if (!store.auth) {
+                e.preventDefault()
+                e.stopPropagation()
+                open('SignInDialog', props.artifact)
+            }
+        }
 
         onMounted(async () => {
             await Promise.all([
@@ -483,7 +493,7 @@ export const ArtifactModal = {
         onUnmounted(() => document.removeEventListener('keydown', handleNav))
 
         return { css, store, creative, artifactAlbums, bytes,
-            open, resolveBorderColor, navNext, hardDelete, }
+            open, resolveBorderColor, navNext, hardDelete, ensureAuth, }
     }
 }
 
