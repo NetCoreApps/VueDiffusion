@@ -93,7 +93,7 @@
 const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
-        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden">
           <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
@@ -170,6 +170,17 @@ mountAll()
 
     
 <div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(60453)">
+        
+        <div class="relative overflow-hidden" style="background-color:#755868FF">
+        <img alt="Iridescent opalescent landscape, warm tones, 8k, Award-Winning, Highly Detailed, Beautiful, Octane Render, Unreal Engine, Bioluminescent, Radiant, Volumetric Lighting by Michal Karcz" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/05/03/31664935/output_3835602544.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/60/60453_iridescent-opalescent-landscape-warm-tones.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(60448)">
         
         <div class="relative overflow-hidden" style="background-color:#928F8DFF">
@@ -2799,23 +2810,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(58224)">
-        
-        <div class="relative overflow-hidden" style="background-color:#827669FF">
-        <img alt="Hal finney holding yoda doll, 4k" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/04/15/76831547/output_4204294575.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/58/58224_hal-finney-holding-yoda-doll.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(58221)">
         
         <div class="relative overflow-hidden" style="background-color:#79745EFF">
         <img alt="Lightning Unit Testing Logo, 16-Bit by Pablo Picasso" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/04/14/71036070/output_128271208.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/58/58221_lightning-unit-testing-logo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(58224)">
+        
+        <div class="relative overflow-hidden" style="background-color:#827669FF">
+        <img alt="Hal finney holding yoda doll, 4k" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/04/15/76831547/output_4204294575.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/58/58224_hal-finney-holding-yoda-doll.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4229,17 +4240,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(57237)">
-        
-        <div class="relative overflow-hidden" style="background-color:#A6774CFF">
-        <img alt="orange white and black cat, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/04/01/80781182/output_773000964.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/57/57237_orange-white-and-black-cat.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(57208)">
         
         <div class="relative overflow-hidden" style="background-color:#6FAC91FF">
@@ -4251,12 +4251,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(57235)">
+    <div v-on:click.prevent.stop="loadArtifact(57237)">
         
-        <div class="relative overflow-hidden" style="background-color:#A8653CFF">
+        <div class="relative overflow-hidden" style="background-color:#A6774CFF">
         <img alt="orange white and black cat, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/04/01/80760633/output_1295555249.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/57/57235_orange-white-and-black-cat.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+             src="https://cdn.diffusion.works/artifacts/2023/04/01/80781182/output_773000964.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/57/57237_orange-white-and-black-cat.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4284,12 +4284,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(57229)">
+    <div v-on:click.prevent.stop="loadArtifact(57235)">
         
-        <div class="relative overflow-hidden" style="background-color:#A15324FF">
+        <div class="relative overflow-hidden" style="background-color:#A8653CFF">
         <img alt="orange white and black cat, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/04/01/80714660/output_3233371959.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/57/57229_orange-white-and-black-cat.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+             src="https://cdn.diffusion.works/artifacts/2023/04/01/80760633/output_1295555249.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/57/57235_orange-white-and-black-cat.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4317,12 +4317,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(57224)">
+    <div v-on:click.prevent.stop="loadArtifact(57229)">
         
-        <div class="relative overflow-hidden" style="background-color:#545561FF">
-        <img alt="soviet russia, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/04/01/80608079/output_3938174674.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/57/57224_soviet-russia.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#A15324FF">
+        <img alt="orange white and black cat, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/04/01/80714660/output_3233371959.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/57/57229_orange-white-and-black-cat.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4350,12 +4350,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(57223)">
+    <div v-on:click.prevent.stop="loadArtifact(57224)">
         
-        <div class="relative overflow-hidden" style="background-color:#686D50FF">
-        <img alt="soviet, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/04/01/80581250/output_2902477020.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/57/57223_soviet.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#545561FF">
+        <img alt="soviet russia, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/04/01/80608079/output_3938174674.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/57/57224_soviet-russia.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4383,12 +4383,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(57218)">
+    <div v-on:click.prevent.stop="loadArtifact(57223)">
         
-        <div class="relative overflow-hidden" style="background-color:#7D8D68FF">
-        <img alt="vladimir putin, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/04/01/80549168/output_2381877432.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/57/57218_vladimir-putin.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#686D50FF">
+        <img alt="soviet, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/04/01/80581250/output_2902477020.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/57/57223_soviet.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4416,12 +4416,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(57213)">
+    <div v-on:click.prevent.stop="loadArtifact(57218)">
         
-        <div class="relative overflow-hidden" style="background-color:#639178FF">
-        <img alt="drug addict, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/04/01/80487161/output_2405032701.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/57/57213_drug-addict.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#7D8D68FF">
+        <img alt="vladimir putin, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/04/01/80549168/output_2381877432.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/57/57218_vladimir-putin.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4444,6 +4444,17 @@ mountAll()
         <img alt="a dark, foreboding ritual chamber, lit only by flickering torches and glowing runes etched into the walls. In the center of the room, we see a figure, perhaps a powerful mage or cleric, holding aloft a sinister-looking scroll. Around them, we see several other figures, each holding a small vial filled with a dark, viscous liquid, Watercolor by Mattias Adolfsson" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/04/01/28482746/output_3611569274.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/57/57161_a-dark-foreboding-ritual-chamber-lit-only-by-flickering-torches-and-glowing-runes-etched-into-the.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(57213)">
+        
+        <div class="relative overflow-hidden" style="background-color:#639178FF">
+        <img alt="drug addict, 8k, HDR by Lois van Baarle, Vincent van Gogh" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/04/01/80487161/output_2405032701.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/57/57213_drug-addict.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -4790,17 +4801,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(56967)">
-        
-        <div class="relative overflow-hidden" style="background-color:#777789FF">
-        <img alt="Alita hermosa, agachada, mostrando sus piernas ((con ojos azules)) ((pelo corto)), , 4k resolution, 8k, HD, High Resolution, RTX by Alex Alemany" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2023/03/28/67684656/output_433895347.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56967_alita-hermosa-agachada-mostrando-sus-piernas-con-ojos-azules-pelo-corto.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(56962)">
         
         <div class="relative overflow-hidden" style="background-color:#A38F98FF">
@@ -4834,6 +4834,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(56967)">
+        
+        <div class="relative overflow-hidden" style="background-color:#777789FF">
+        <img alt="Alita hermosa, agachada, mostrando sus piernas ((con ojos azules)) ((pelo corto)), , 4k resolution, 8k, HD, High Resolution, RTX by Alex Alemany" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2023/03/28/67684656/output_433895347.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56967_alita-hermosa-agachada-mostrando-sus-piernas-con-ojos-azules-pelo-corto.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(56934)">
         
         <div class="relative overflow-hidden" style="background-color:#7CA2BBFF">
@@ -4856,28 +4867,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(56918)">
-        
-        <div class="relative overflow-hidden" style="background-color:#716A63FF">
-        <img alt="a beautiful woman, 8k, HD, DMT, Atompunk, Manga, Spring by Alvar Aalto" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/28/3476471/output_665332763.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56918_a-beautiful-woman.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(56909)">
-        
-        <div class="relative overflow-hidden" style="background-color:#727583FF">
-        <img alt="a beautiful woman, 8k, HD, DMT, Atompunk, Big Smile, Manga, Spring by Alvar Aalto" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/27/63726035/output_2479012252.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56909_a-beautiful-woman.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(56905)">
         
         <div class="relative overflow-hidden" style="background-color:#6F8CA4FF">
@@ -4889,12 +4878,34 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(56918)">
+        
+        <div class="relative overflow-hidden" style="background-color:#716A63FF">
+        <img alt="a beautiful woman, 8k, HD, DMT, Atompunk, Manga, Spring by Alvar Aalto" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/28/3476471/output_665332763.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56918_a-beautiful-woman.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(56901)">
         
         <div class="relative overflow-hidden" style="background-color:#907E6AFF">
         <img alt="beauty, realism, 4k, Hyper Detailed, Ultra Detailed, Alluring, Magical, Beautiful, Unimaginable Beauty, Blue Hair, Soft Details, Wings, Matte Painting, Spring, RPG, Bokeh effect, Photo Realistic, Realistic, Smooth, Physically Based Render, Aestheticism, Naive, Digital Art, Realism, Ecstatic, Expressive, Peaceful, Romantic, Soft, Symmetrical by Arthur Adams, Miles Aldridge" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/03/27/63052574/output_2798402355.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/56/56901_beauty-realism.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56909)">
+        
+        <div class="relative overflow-hidden" style="background-color:#727583FF">
+        <img alt="a beautiful woman, 8k, HD, DMT, Atompunk, Big Smile, Manga, Spring by Alvar Aalto" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/27/63726035/output_2479012252.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56909_a-beautiful-woman.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5175,17 +5186,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(56696)">
-        
-        <div class="relative overflow-hidden" style="background-color:#76767FFF">
-        <img alt="full frame landscape next to the river in winter time, white rocks, silence, 8k, Aesthetic, High Resolution, Highly Detailed, Wallpaper, Autumn by Edwin Austin Abbey" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/22/6964706/output_417298041.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56696_full-frame-landscape-next-to-the-river-in-winter-time-white-rocks-silence.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(56673)">
         
         <div class="relative overflow-hidden" style="background-color:#6B6660FF">
@@ -5197,12 +5197,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(56687)">
+    <div v-on:click.prevent.stop="loadArtifact(56696)">
         
-        <div class="relative overflow-hidden" style="background-color:#6D6663FF">
+        <div class="relative overflow-hidden" style="background-color:#76767FFF">
         <img alt="full frame landscape next to the river in winter time, white rocks, silence, 8k, Aesthetic, High Resolution, Highly Detailed, Wallpaper, Autumn by Edwin Austin Abbey" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/22/6919365/output_652914414.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56687_full-frame-landscape-next-to-the-river-in-winter-time-white-rocks-silence.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+             src="https://cdn.diffusion.works/artifacts/2023/03/22/6964706/output_417298041.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56696_full-frame-landscape-next-to-the-river-in-winter-time-white-rocks-silence.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5230,12 +5230,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(56682)">
+    <div v-on:click.prevent.stop="loadArtifact(56687)">
         
-        <div class="relative overflow-hidden" style="background-color:#787982FF">
+        <div class="relative overflow-hidden" style="background-color:#6D6663FF">
         <img alt="full frame landscape next to the river in winter time, white rocks, silence, 8k, Aesthetic, High Resolution, Highly Detailed, Wallpaper, Autumn by Edwin Austin Abbey" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/22/6886654/output_905657030.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56682_full-frame-landscape-next-to-the-river-in-winter-time-white-rocks-silence.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+             src="https://cdn.diffusion.works/artifacts/2023/03/22/6919365/output_652914414.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56687_full-frame-landscape-next-to-the-river-in-winter-time-white-rocks-silence.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5258,6 +5258,17 @@ mountAll()
         <img alt="matte portrait of Prapor trader from &quot;Escape From Tarkov&quot;, bald, without a mustache and with glasses, High Definition, High Resolution, Highly Detailed, Intricate, Half Body, Realistic, Elegant, Apocalyptic" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2023/03/21/37914228/output_2999404326.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/56/56657_matte-portrait-of-prapor-trader-from-escape-from-tarkov-bald-without-a-mustache-and-with-glasses.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(56682)">
+        
+        <div class="relative overflow-hidden" style="background-color:#787982FF">
+        <img alt="full frame landscape next to the river in winter time, white rocks, silence, 8k, Aesthetic, High Resolution, Highly Detailed, Wallpaper, Autumn by Edwin Austin Abbey" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2023/03/22/6886654/output_905657030.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/56/56682_full-frame-landscape-next-to-the-river-in-winter-time-white-rocks-silence.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5659,18 +5670,7 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(56465)">
-        
-        <div class="relative overflow-hidden" style="background-color:#907972FF">
-        <img alt="Alluring matte portrait of the perfect woman, with beautiful face, 8k, High Resolution, HQ, Ultra Detailed, Artstation, Perfect Face, Comic, Anime by Beeple, Stefan Kostic" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2023/03/19/33143693/output_3440368352.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/56/56465_alluring-matte-portrait-of-the-perfect-woman-with-beautiful-face.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)">
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)" v-on:open="openDialog">
         <template #icons="artifact">
             <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
                 <div class="flex flex-col h-full justify-between">

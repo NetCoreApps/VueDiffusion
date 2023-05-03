@@ -93,7 +93,7 @@
 const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
-        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden">
           <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
@@ -177,6 +177,17 @@ mountAll()
 
     
 <div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(19399)">
+        
+        <div class="relative overflow-hidden" style="background-color:#80735FFF">
+        <img alt="Nami from League of Legends, 8k, Highly Detailed, Alluring, Photo Realistic, Sharp Focus, Octane Render, Unreal Engine, Volumetric Lighting by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/38776171/output_3248132907.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/19/19399_nami-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(19390)">
         
         <div class="relative overflow-hidden" style="background-color:#6B7D7EFF">
@@ -914,23 +925,78 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(18678)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6C633AFF">
-        <img alt="Void covered fields with large mountains in the distance, small medieval town, nighttime, 4k, HQ, Intricate Artwork, Ultra Detailed, Gothic and Fantasy, Isometric, Oil on Canvas, Cloudy Day, Sharp Focus, Volumetric Lighting" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/13/9152039/output_2860534339.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/18/18678_void-covered-fields-with-large-mountains-in-the-distance-small-medieval-town-nighttime.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(18701)">
         
         <div class="relative overflow-hidden" style="background-color:#646950FF">
         <img alt="Void covered fields with large mountains in the distance, small medieval town, nighttime, 4k, HQ, Intricate Artwork, Ultra Detailed, Gothic and Fantasy, Oil on Canvas, Cloudy Day, Sharp Focus, Volumetric Lighting" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/13/19605304/output_2344874627.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/18/18701_void-covered-fields-with-large-mountains-in-the-distance-small-medieval-town-nighttime.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(18700)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3F5463FF">
+        <img alt="A deserted street at night, 4k resolution, Crystallized, Eldritch, Cybernatic and Sci-Fi, Gothic and Fantasy, Horror, Pixiv, Post-Apocalyptic, Apocalyptic, Bleak, Dark, Depressing, Funeral, Gloomy, Shadowy, Sinister, Unnerving by Yoshitaka Amano" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/11891290/output_867282965.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18700_a-deserted-street-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(18693)">
+        
+        <div class="relative overflow-hidden" style="background-color:#354761FF">
+        <img alt="A deserted street at night, 4k resolution, Crystallized, Eldritch, Cybernatic and Sci-Fi, Gothic and Fantasy, Horror, Pixiv, Post-Apocalyptic, Apocalyptic, Bleak, Dark, Depressing, Gloomy, Shadowy, Sinister, Unnerving by Yoshitaka Amano" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/11704273/output_944381705.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18693_a-deserted-street-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(18690)">
+        
+        <div class="relative overflow-hidden" style="background-color:#405F64FF">
+        <img alt="A deserted street at night, creepy and scary, 4k resolution, Crystallized, Eldritch, Cybernatic and Sci-Fi, Gothic and Fantasy, Horror, Pixiv, Post-Apocalyptic by Yoshitaka Amano" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/11652617/output_2137010007.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18690_a-deserted-street-at-night-creepy-and-scary.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(18685)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6E7B6AFF">
+        <img alt="Void covered fields with large mountains in the distance, small medieval town, nighttime, 4k, HQ, Intricate Artwork, Ultra Detailed, Gothic and Fantasy, Oil on Canvas, Cloudy Day, Sharp Focus, Volumetric Lighting" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/9233845/output_2706054311.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18685_void-covered-fields-with-large-mountains-in-the-distance-small-medieval-town-nighttime.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(18683)">
+        
+        <div class="relative overflow-hidden" style="background-color:#514A35FF">
+        <img alt="Void covered fields with large mountains in the distance, small medieval town, nighttime, 4k, HQ, Intricate Artwork, Ultra Detailed, Gothic and Fantasy, Oil on Canvas, Cloudy Day, Sharp Focus, Volumetric Lighting" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/9209339/output_2239168358.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18683_void-covered-fields-with-large-mountains-in-the-distance-small-medieval-town-nighttime.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(18678)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C633AFF">
+        <img alt="Void covered fields with large mountains in the distance, small medieval town, nighttime, 4k, HQ, Intricate Artwork, Ultra Detailed, Gothic and Fantasy, Isometric, Oil on Canvas, Cloudy Day, Sharp Focus, Volumetric Lighting" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/9152039/output_2860534339.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18678_void-covered-fields-with-large-mountains-in-the-distance-small-medieval-town-nighttime.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -958,17 +1024,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(18700)">
-        
-        <div class="relative overflow-hidden" style="background-color:#3F5463FF">
-        <img alt="A deserted street at night, 4k resolution, Crystallized, Eldritch, Cybernatic and Sci-Fi, Gothic and Fantasy, Horror, Pixiv, Post-Apocalyptic, Apocalyptic, Bleak, Dark, Depressing, Funeral, Gloomy, Shadowy, Sinister, Unnerving by Yoshitaka Amano" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/13/11891290/output_867282965.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/18/18700_a-deserted-street-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(18665)">
         
         <div class="relative overflow-hidden" style="background-color:#525442FF">
@@ -986,17 +1041,6 @@ mountAll()
         <img alt="Black &amp; White portrait of Gal Gadot, Highly Detailed, Intricate, Artstation, Beautiful, Digital Painting, Sharp Focus, Concept Art, Elegant" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/13/6567179/output_3760428042.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/18/18659_black-white-portrait-of-gal-gadot.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(18693)">
-        
-        <div class="relative overflow-hidden" style="background-color:#354761FF">
-        <img alt="A deserted street at night, 4k resolution, Crystallized, Eldritch, Cybernatic and Sci-Fi, Gothic and Fantasy, Horror, Pixiv, Post-Apocalyptic, Apocalyptic, Bleak, Dark, Depressing, Gloomy, Shadowy, Sinister, Unnerving by Yoshitaka Amano" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/13/11704273/output_944381705.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/18/18693_a-deserted-street-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -1024,28 +1068,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(18653)">
-        
-        <div class="relative overflow-hidden" style="background-color:#7B7B7BFF">
-        <img alt="Black &amp; White portrait of Gal Gadot, Highly Detailed, Intricate, Artstation, Beautiful, Digital Painting, Sharp Focus, Concept Art, Elegant" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/12/13/6427650/output_3764623197.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/18/18653_black-white-portrait-of-gal-gadot.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(18690)">
-        
-        <div class="relative overflow-hidden" style="background-color:#405F64FF">
-        <img alt="A deserted street at night, creepy and scary, 4k resolution, Crystallized, Eldritch, Cybernatic and Sci-Fi, Gothic and Fantasy, Horror, Pixiv, Post-Apocalyptic by Yoshitaka Amano" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/13/11652617/output_2137010007.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/18/18690_a-deserted-street-at-night-creepy-and-scary.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(18633)">
         
         <div class="relative overflow-hidden" style="background-color:#498496FF">
@@ -1057,12 +1079,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(18685)">
+    <div v-on:click.prevent.stop="loadArtifact(18653)">
         
-        <div class="relative overflow-hidden" style="background-color:#6E7B6AFF">
-        <img alt="Void covered fields with large mountains in the distance, small medieval town, nighttime, 4k, HQ, Intricate Artwork, Ultra Detailed, Gothic and Fantasy, Oil on Canvas, Cloudy Day, Sharp Focus, Volumetric Lighting" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/13/9233845/output_2706054311.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/18/18685_void-covered-fields-with-large-mountains-in-the-distance-small-medieval-town-nighttime.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#7B7B7BFF">
+        <img alt="Black &amp; White portrait of Gal Gadot, Highly Detailed, Intricate, Artstation, Beautiful, Digital Painting, Sharp Focus, Concept Art, Elegant" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/13/6427650/output_3764623197.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/18/18653_black-white-portrait-of-gal-gadot.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -1074,17 +1096,6 @@ mountAll()
         <img alt="Horse water, Oily, Cozy" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/12/68128601/output_1923041059.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/18/18625_horse-water.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(18683)">
-        
-        <div class="relative overflow-hidden" style="background-color:#514A35FF">
-        <img alt="Void covered fields with large mountains in the distance, small medieval town, nighttime, 4k, HQ, Intricate Artwork, Ultra Detailed, Gothic and Fantasy, Oil on Canvas, Cloudy Day, Sharp Focus, Volumetric Lighting" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/13/9209339/output_2239168358.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/18/18683_void-covered-fields-with-large-mountains-in-the-distance-small-medieval-town-nighttime.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5050,17 +5061,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(15306)">
-        
-        <div class="relative overflow-hidden" style="background-color:#706971FF">
-        <img alt="Female rouge assassin in a snowy battlefield in The Witcher 3 Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Volumetric Lighting, Closeup Portrait, Concept Art by Alphonse Mucha" width="512" height="896"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/27702423/output_2808768786.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15306_female-rouge-assassin-in-a-snowy-battlefield-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(15320)">
         
         <div class="relative overflow-hidden" style="background-color:#706B6DFF">
@@ -5072,12 +5072,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(15076)">
+    <div v-on:click.prevent.stop="loadArtifact(15311)">
         
-        <div class="relative overflow-hidden" style="background-color:#8C544BFF">
-        <img alt="Goddess of death with wings in Elden Ring style, 8k, Highly Detailed, Intricate, Artstation, Half Body, Sharp Focus, Volumetric Lighting, Concept Art by Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/25141245/output_1299720594.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15076_goddess-of-death-with-wings-in-elden-ring-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#51373DFF">
+        <img alt="Female rouge assassin in a snowy battlefield in The Witcher 3 Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Volumetric Lighting, Closeup Portrait, Concept Art by Alphonse Mucha" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/27797168/output_498515200.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15311_female-rouge-assassin-in-a-snowy-battlefield-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(15306)">
+        
+        <div class="relative overflow-hidden" style="background-color:#706971FF">
+        <img alt="Female rouge assassin in a snowy battlefield in The Witcher 3 Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Volumetric Lighting, Closeup Portrait, Concept Art by Alphonse Mucha" width="512" height="896"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/27702423/output_2808768786.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15306_female-rouge-assassin-in-a-snowy-battlefield-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5215,23 +5226,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(15311)">
-        
-        <div class="relative overflow-hidden" style="background-color:#51373DFF">
-        <img alt="Female rouge assassin in a snowy battlefield in The Witcher 3 Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Volumetric Lighting, Closeup Portrait, Concept Art by Alphonse Mucha" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/27797168/output_498515200.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15311_female-rouge-assassin-in-a-snowy-battlefield-in-the-witcher-3-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(15277)">
         
         <div class="relative overflow-hidden" style="background-color:#77838EFF">
         <img alt="Closeup of Kassandra in white Assassins Creed armor in a snowy battlefield, Highly Detailed, Beautiful, Sharp Focus, Volumetric Lighting, Concept Art, Elegant by Alphonse Mucha" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/09/27316883/output_22831266.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/15/15277_closeup-of-kassandra-in-white-assassins-creed-armor-in-a-snowy-battlefield.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(15076)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8C544BFF">
+        <img alt="Goddess of death with wings in Elden Ring style, 8k, Highly Detailed, Intricate, Artstation, Half Body, Sharp Focus, Volumetric Lighting, Concept Art by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/25141245/output_1299720594.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15076_goddess-of-death-with-wings-in-elden-ring-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5248,122 +5259,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(15173)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5E816CFF">
-        <img alt="Studio ghibli, rocket, jungle, green technology, optimist future, 8k, Bokeh effect, Octane Render, Iridescence, Volumetric Lighting, Vibrant" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/26347296/output_3161077585.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15173_studio-ghibli-rocket-jungle-green-technology-optimist-future.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15162)">
-        
-        <div class="relative overflow-hidden" style="background-color:#466F5DFF">
-        <img alt="Studio ghibli, rocket explosion, jungle, solar, green technology, optimist future, 8k, Bokeh effect, Cinematic Lighting, Octane Render, Iridescence, Vibrant by Beeple, Asher Brown Durand, Dan Mumford, Greg Rutkowski, WLOP" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/26190393/output_2355029699.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15162_studio-ghibli-rocket-explosion-jungle-solar-green-technology-optimist-future.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15155)">
-        
-        <div class="relative overflow-hidden" style="background-color:#605455FF">
-        <img alt="Closeup portrait of a veiled female rouge assassin in Assassin&#x27;s Creed Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/26097393/output_2887068268.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15155_closeup-portrait-of-a-veiled-female-rouge-assassin-in-assassin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15144)">
-        
-        <div class="relative overflow-hidden" style="background-color:#737276FF">
-        <img alt="Veiled female rouge assassin in Assassin&#x27;s Creed Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/25827038/output_2673534855.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15144_veiled-female-rouge-assassin-in-assassin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15138)">
-        
-        <div class="relative overflow-hidden" style="background-color:#605355FF">
-        <img alt="Veiled female rouge assassin in Assassin&#x27;s Creed Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/25892635/output_2218313522.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15138_veiled-female-rouge-assassin-in-assassin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15122)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6B5544FF">
-        <img alt="Female rouge assassin in Assassin&#x27;s Creed Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/25585820/output_34531401.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15122_female-rouge-assassin-in-assassin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15115)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6A6254FF">
-        <img alt="Female rouge assassin in Assassin&#x27;s Creed Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/25654002/output_3031931813.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15115_female-rouge-assassin-in-assassin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15111)">
-        
-        <div class="relative overflow-hidden" style="background-color:#8F7367FF">
-        <img alt="Female rouge assassin in Assassin&#x27;s Creed Odyssey Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/25514405/output_3666319415.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15111_female-rouge-assassin-in-assassin-s-creed-odyssey-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15102)">
-        
-        <div class="relative overflow-hidden" style="background-color:#565043FF">
-        <img alt="Veiled Assasin with daggers, 8k, Highly Detailed, Intricate, Sharp Focus, Smooth, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/25386263/output_2530986664.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15102_veiled-assasin-with-daggers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(15087)">
-        
-        <div class="relative overflow-hidden" style="background-color:#555349FF">
-        <img alt="Veiled Assasin with daggers, 8k, Highly Detailed, Intricate, Artstation, Digital Painting, Sharp Focus, Smooth, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/25297954/output_3255387701.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15087_veiled-assasin-with-daggers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(15066)">
         
         <div class="relative overflow-hidden" style="background-color:#7B6153FF">
         <img alt="Goddess of death in Elden Ring style, 8k, Highly Detailed, Intricate, Artstation, Matte Painting, Sharp Focus, Volumetric Lighting, Concept Art by Alphonse Mucha" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/09/25075624/output_877531657.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/15/15066_goddess-of-death-in-elden-ring-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(15173)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E816CFF">
+        <img alt="Studio ghibli, rocket, jungle, green technology, optimist future, 8k, Bokeh effect, Octane Render, Iridescence, Volumetric Lighting, Vibrant" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/26347296/output_3161077585.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15173_studio-ghibli-rocket-jungle-green-technology-optimist-future.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5391,6 +5303,17 @@ mountAll()
         </div>
 
     </div>
+    <div v-on:click.prevent.stop="loadArtifact(15162)">
+        
+        <div class="relative overflow-hidden" style="background-color:#466F5DFF">
+        <img alt="Studio ghibli, rocket explosion, jungle, solar, green technology, optimist future, 8k, Bokeh effect, Cinematic Lighting, Octane Render, Iridescence, Vibrant by Beeple, Asher Brown Durand, Dan Mumford, Greg Rutkowski, WLOP" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/26190393/output_2355029699.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15162_studio-ghibli-rocket-explosion-jungle-solar-green-technology-optimist-future.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(15027)">
         
         <div class="relative overflow-hidden" style="background-color:#3D5A45FF">
@@ -5402,12 +5325,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(14924)">
+    <div v-on:click.prevent.stop="loadArtifact(15155)">
         
-        <div class="relative overflow-hidden" style="background-color:#9B7E6BFF">
-        <img alt="Alluring matte portrait of a beautiful Emma Watson, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/23323220/output_700629393.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/14/14924_alluring-matte-portrait-of-a-beautiful-emma-watson.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#605455FF">
+        <img alt="Closeup portrait of a veiled female rouge assassin in Assassin&#x27;s Creed Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/26097393/output_2887068268.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15155_closeup-portrait-of-a-veiled-female-rouge-assassin-in-assassin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5424,23 +5347,12 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(14916)">
+    <div v-on:click.prevent.stop="loadArtifact(15144)">
         
-        <div class="relative overflow-hidden" style="background-color:#6A5545FF">
-        <img alt="Alluring matte portrait of a beautiful Nidalee, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/23424886/output_4069554715.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/14/14916_alluring-matte-portrait-of-a-beautiful-nidalee.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(14906)">
-        
-        <div class="relative overflow-hidden" style="background-color:#827D7AFF">
-        <img alt="Alluring matte portrait of a beautiful Aloy, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/23306950/output_485936772.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/14/14906_alluring-matte-portrait-of-a-beautiful-aloy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+        <div class="relative overflow-hidden" style="background-color:#737276FF">
+        <img alt="Veiled female rouge assassin in Assassin&#x27;s Creed Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/25827038/output_2673534855.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15144_veiled-female-rouge-assassin-in-assassin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5452,6 +5364,149 @@ mountAll()
         <img alt="Epic fantasy jungle ruins landscape, 8k, Photo Realistic, Unreal Engine, Volumetric Lighting" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/09/24540568/output_3330139608.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/15/15009_epic-fantasy-jungle-ruins-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(15138)">
+        
+        <div class="relative overflow-hidden" style="background-color:#605355FF">
+        <img alt="Veiled female rouge assassin in Assassin&#x27;s Creed Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/25892635/output_2218313522.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15138_veiled-female-rouge-assassin-in-assassin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(15004)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3E6373FF">
+        <img alt="Matte portrait of a futuristic undewater city of Atlantis, Highly Detailed, Stunning, Realistic, Octane Render, Unreal Engine, Volumetric Lighting, Vibrant Colors" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/24303167/output_3016390144.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15004_matte-portrait-of-a-futuristic-undewater-city-of-atlantis.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(15122)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6B5544FF">
+        <img alt="Female rouge assassin in Assassin&#x27;s Creed Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/25585820/output_34531401.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15122_female-rouge-assassin-in-assassin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14988)">
+        
+        <div class="relative overflow-hidden" style="background-color:#576D75FF">
+        <img alt="Matte portrait of a futuristic undewater city of Atlantis, Highly Detailed, Stunning, Realistic, Octane Render, Unreal Engine, Volumetric Lighting, Vibrant Colors" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/24367771/output_1113209128.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14988_matte-portrait-of-a-futuristic-undewater-city-of-atlantis.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(15115)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A6254FF">
+        <img alt="Female rouge assassin in Assassin&#x27;s Creed Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/25654002/output_3031931813.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15115_female-rouge-assassin-in-assassin-s-creed-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14986)">
+        
+        <div class="relative overflow-hidden" style="background-color:#775258FF">
+        <img alt="A highly detailed matte painting of a camp fire in the forest at night in the style of Firewatch, 4k resolution, Masterpiece, Trending on Artstation, Volumetric Lighting" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/24196671/output_3675926353.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14986_a-highly-detailed-matte-painting-of-a-camp-fire-in-the-forest-at-night-in-the-style-of-firewatch.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(15111)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8F7367FF">
+        <img alt="Female rouge assassin in Assassin&#x27;s Creed Odyssey Style, 4k, Highly Detailed, Beautiful, Sharp Focus, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/25514405/output_3666319415.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15111_female-rouge-assassin-in-assassin-s-creed-odyssey-style.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14970)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C7F94FF">
+        <img alt="Snowy peaks Mountain landscape on a sunny day, 4k, Trending on Artstation, Volumetric Lighting, Concept Art" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/24070313/output_2494877668.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14970_snowy-peaks-mountain-landscape-on-a-sunny-day.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(15102)">
+        
+        <div class="relative overflow-hidden" style="background-color:#565043FF">
+        <img alt="Veiled Assasin with daggers, 8k, Highly Detailed, Intricate, Sharp Focus, Smooth, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/25386263/output_2530986664.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15102_veiled-assasin-with-daggers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14924)">
+        
+        <div class="relative overflow-hidden" style="background-color:#9B7E6BFF">
+        <img alt="Alluring matte portrait of a beautiful Emma Watson, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/23323220/output_700629393.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14924_alluring-matte-portrait-of-a-beautiful-emma-watson.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14916)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A5545FF">
+        <img alt="Alluring matte portrait of a beautiful Nidalee, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/23424886/output_4069554715.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14916_alluring-matte-portrait-of-a-beautiful-nidalee.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(15087)">
+        
+        <div class="relative overflow-hidden" style="background-color:#555349FF">
+        <img alt="Veiled Assasin with daggers, 8k, Highly Detailed, Intricate, Artstation, Digital Painting, Sharp Focus, Smooth, Unreal Engine, Volumetric Lighting, Concept Art by Alphonse Mucha" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/25297954/output_3255387701.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/15/15087_veiled-assasin-with-daggers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(14906)">
+        
+        <div class="relative overflow-hidden" style="background-color:#827D7AFF">
+        <img alt="Alluring matte portrait of a beautiful Aloy, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/09/23306950/output_485936772.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/14/14906_alluring-matte-portrait-of-a-beautiful-aloy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5479,17 +5534,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(15004)">
-        
-        <div class="relative overflow-hidden" style="background-color:#3E6373FF">
-        <img alt="Matte portrait of a futuristic undewater city of Atlantis, Highly Detailed, Stunning, Realistic, Octane Render, Unreal Engine, Volumetric Lighting, Vibrant Colors" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/24303167/output_3016390144.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/15/15004_matte-portrait-of-a-futuristic-undewater-city-of-atlantis.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(14866)">
         
         <div class="relative overflow-hidden" style="background-color:#5D2D19FF">
@@ -5507,17 +5551,6 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful Ellie from the Last of Us, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/09/23177129/output_3272122852.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/14/14852_alluring-matte-portrait-of-a-beautiful-ellie-from-the-last-of-us.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(14988)">
-        
-        <div class="relative overflow-hidden" style="background-color:#576D75FF">
-        <img alt="Matte portrait of a futuristic undewater city of Atlantis, Highly Detailed, Stunning, Realistic, Octane Render, Unreal Engine, Volumetric Lighting, Vibrant Colors" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/24367771/output_1113209128.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/14/14988_matte-portrait-of-a-futuristic-undewater-city-of-atlantis.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5545,17 +5578,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(14986)">
-        
-        <div class="relative overflow-hidden" style="background-color:#775258FF">
-        <img alt="A highly detailed matte painting of a camp fire in the forest at night in the style of Firewatch, 4k resolution, Masterpiece, Trending on Artstation, Volumetric Lighting" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/24196671/output_3675926353.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/14/14986_a-highly-detailed-matte-painting-of-a-camp-fire-in-the-forest-at-night-in-the-style-of-firewatch.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(14831)">
         
         <div class="relative overflow-hidden" style="background-color:#654D2EFF">
@@ -5573,17 +5595,6 @@ mountAll()
         <img alt="Alluring matte portrait of a beautiful Rita Ora, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/09/23005197/output_2085441035.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/14/14817_alluring-matte-portrait-of-a-beautiful-rita-ora.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(14970)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6C7F94FF">
-        <img alt="Snowy peaks Mountain landscape on a sunny day, 4k, Trending on Artstation, Volumetric Lighting, Concept Art" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/24070313/output_2494877668.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/14/14970_snowy-peaks-mountain-landscape-on-a-sunny-day.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5666,18 +5677,7 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(14729)">
-        
-        <div class="relative overflow-hidden" style="background-color:#856047FF">
-        <img alt="Alluring matte portrait of a beautiful Gal Gadot, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Alphonse Mucha" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/09/22430819/output_2792203090.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/14/14729_alluring-matte-portrait-of-a-beautiful-gal-gadot.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)">
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)" v-on:open="openDialog">
         <template #icons="artifact">
             <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
                 <div class="flex flex-col h-full justify-between">

@@ -93,7 +93,7 @@
 const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
 if (cachedAuth?.profileUrl) {
     document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
-        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden">
           <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
         </div>`)
 }
@@ -177,6 +177,17 @@ mountAll()
 
     
 <div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(30174)">
+        
+        <div class="relative overflow-hidden" style="background-color:#996860FF">
+        <img alt="Alluring matte portrait of a beautiful Samira wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/29/16431903/output_1921977614.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/30/30174_alluring-matte-portrait-of-a-beautiful-samira-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
     <div v-on:click.prevent.stop="loadArtifact(30157)">
         
         <div class="relative overflow-hidden" style="background-color:#937372FF">
@@ -3620,34 +3631,23 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(27342)">
-        
-        <div class="relative overflow-hidden" style="background-color:#967246FF">
-        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/26/30462017/output_3842926100.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27342_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(27340)">
-        
-        <div class="relative overflow-hidden" style="background-color:#8F8469FF">
-        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism by Pablo Picasso" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/26/30421707/output_3358622358.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27340_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(27334)">
         
         <div class="relative overflow-hidden" style="background-color:#757D8BFF">
         <img alt="a girl, 16-Bit, Award-Winning, Dystopian, High Definition, Intricate Artwork, Macabre, Oily, Bloom light effect, Lens flare effect, Sharp Focus, Volumetric light effect, Anime, asian art, Energetic, Lively, Quiet, Serene" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/26/1491710/output_2075746757.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/27/27334_a-girl.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27342)">
+        
+        <div class="relative overflow-hidden" style="background-color:#967246FF">
+        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/26/30462017/output_3842926100.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27342_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3670,6 +3670,17 @@ mountAll()
         <img alt="Closeup portrait of a fierce dragon in a fantasy world of dragons, 4k, Highly Detailed, Sharp Focus, Octane Render, Volumetric Lighting by Stanley Artgerm Lau, Frank Frazetta, WLOP" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/25/14263164/output_3032518516.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/27/27322_closeup-portrait-of-a-fierce-dragon-in-a-fantasy-world-of-dragons.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27340)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8F8469FF">
+        <img alt="paella and bagette in rome, GLaDOS, Retro-Futurism by Pablo Picasso" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/26/30421707/output_3358622358.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27340_paella-and-bagette-in-rome.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3785,23 +3796,56 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(27228)">
-        
-        <div class="relative overflow-hidden" style="background-color:#5A5E63FF">
-        <img alt="Doctor with a stubble crossing arms in front of an hospital, 8k, Half Body, Photo Realistic, Realistic, Sharp Focus, Volumetric light effect" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/24/34154533/output_1347853127.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27228_doctor-with-a-stubble-crossing-arms-in-front-of-an-hospital.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(27248)">
         
         <div class="relative overflow-hidden" style="background-color:#68664EFF">
         <img alt="an angry parrot rising from the grave, High Resolution, Powerful" width="896" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/24/54679648/output_2540169991.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/27/27248_an-angry-parrot-rising-from-the-grave.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27244)">
+        
+        <div class="relative overflow-hidden" style="background-color:#68564EFF">
+        <img alt="an angry parrot rising from the ashes, High Resolution, Powerful" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/24/54639893/output_1339912050.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27244_an-angry-parrot-rising-from-the-ashes.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27238)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6E6569FF">
+        <img alt="an angry parrot rising from the ashes of the Angry Parrot pub, Massurrealism" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/24/54533442/output_2280671417.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27238_an-angry-parrot-rising-from-the-ashes-of-the-angry-parrot-pub.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27231)">
+        
+        <div class="relative overflow-hidden" style="background-color:#856647FF">
+        <img alt="a parrot rising from the ashes of the Angry Parrot pub, 18th Century Colour Palette" width="896" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/24/54447305/output_1070646761.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27231_a-parrot-rising-from-the-ashes-of-the-angry-parrot-pub.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(27228)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5A5E63FF">
+        <img alt="Doctor with a stubble crossing arms in front of an hospital, 8k, Half Body, Photo Realistic, Realistic, Sharp Focus, Volumetric light effect" width="512" height="512"
+             src="https://cdn.diffusion.works/artifacts/2022/12/24/34154533/output_1347853127.png" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/27/27228_doctor-with-a-stubble-crossing-arms-in-front-of-an-hospital.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -3829,17 +3873,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(27244)">
-        
-        <div class="relative overflow-hidden" style="background-color:#68564EFF">
-        <img alt="an angry parrot rising from the ashes, High Resolution, Powerful" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/24/54639893/output_1339912050.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27244_an-angry-parrot-rising-from-the-ashes.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(27205)">
         
         <div class="relative overflow-hidden" style="background-color:#8E6354FF">
@@ -3862,17 +3895,6 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(27238)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6E6569FF">
-        <img alt="an angry parrot rising from the ashes of the Angry Parrot pub, Massurrealism" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/24/54533442/output_2280671417.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27238_an-angry-parrot-rising-from-the-ashes-of-the-angry-parrot-pub.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
     <div v-on:click.prevent.stop="loadArtifact(27190)">
         
         <div class="relative overflow-hidden" style="background-color:#727E81FF">
@@ -3890,17 +3912,6 @@ mountAll()
         <img alt="A Christmas Miracle, 8k, Highly Detailed, Magical, Stunning, Photo Realistic, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="512" height="512"
              src="https://cdn.diffusion.works/artifacts/2022/12/24/16725649/output_3559154821.png" loading="lazy">
             <a href="https://blazordiffusion.com/artifacts/27/27183_a-christmas-miracle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <div v-on:click.prevent.stop="loadArtifact(27231)">
-        
-        <div class="relative overflow-hidden" style="background-color:#856647FF">
-        <img alt="a parrot rising from the ashes of the Angry Parrot pub, 18th Century Colour Palette" width="896" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/24/54447305/output_1070646761.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/27/27231_a-parrot-rising-from-the-ashes-of-the-angry-parrot-pub.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
                 <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
             </div></a>
         </div>
@@ -5666,18 +5677,7 @@ mountAll()
         </div>
 
     </div>
-    <div v-on:click.prevent.stop="loadArtifact(25746)">
-        
-        <div class="relative overflow-hidden" style="background-color:#6C6B72FF">
-        <img alt="Closeup of Santa Claus&#x27;s xmas reindeers in winters snow, 8k, Highly Detailed, Powerful, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="512" height="512"
-             src="https://cdn.diffusion.works/artifacts/2022/12/22/40144195/output_523688046.png" loading="lazy">
-            <a href="https://blazordiffusion.com/artifacts/25/25746_closeup-of-santa-claus-s-xmas-reindeers-in-winters-snow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
-                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
-            </div></a>
-        </div>
-
-    </div>
-    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)">
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)" v-on:open="openDialog">
         <template #icons="artifact">
             <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
                 <div class="flex flex-col h-full justify-between">
