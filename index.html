@@ -280,10 +280,15 @@ const Search = {
                     hasMore = results.value.length === request.value.take
                 }),
                 client.swr(new AnonData(), async api => {
-                    topAlbums.value = api.response?.topAlbums || []
-                    const albumIds = topAlbums.value.map(store.getAlbumCoverArtifactId)
+                    const albums = api.response?.topAlbums || []
+                    const albumIds = albums.map(store.getAlbumCoverArtifactId)
                     if (albumIds.length > 0)
-                        await client.swr(new QueryArtifacts({ ids:albumIds }), api => store.loadArtifacts(api.response?.results))
+                        await client.swr(new QueryArtifacts({ ids:albumIds }), 
+                            api => {
+                                store.loadArtifacts(api.response?.results)
+                                topAlbums.value = Array.from(albums)
+                            })
+                    topAlbums.value = albums
                 }),
             ])
             if (request.value.album) {
