@@ -146,7 +146,7 @@ mountAll()
     <div class="flex">
         <div class="flex flex-col flex-shrink">
             <div class="z-10 flex-shrink sm:mr-2">
-                <div v-if="topAlbums.length" class="flex flex-col -ml-6 sm:-ml-4 -mt-5 sm:-mt-8 pt-1 sm:pt-2 justify-center items-center">
+                <div v-if="topAlbums.length" :key="renderKey" class="flex flex-col -ml-6 sm:-ml-4 -mt-5 sm:-mt-8 pt-1 sm:pt-2 justify-center items-center">
                     <div class="-mt-1 sm:mt-0 text-xs sm:text-sm text-gray-500 whitespace-nowrap w-16 sm:w-24 text-center pb-1">top albums</div>
                     <a :key="album.slug" v-for="album in topAlbums" :href="`/albums/${album.slug}`">
                         <div :class="['sm:mt-2 hover:opacity-80 cursor-pointer h-16 w-16 sm:h-24 sm:w-24 overflow-hidden rounded sm:rounded-lg border-2',
@@ -192,7 +192,6 @@ import { ref, inject, onMounted, onUnmounted, getCurrentInstance, nextTick } fro
 import { ApiResult, queryString, pick, map } from "@servicestack/client"
 import { useClient, useUtils } from "@servicestack/vue"
 import { mount } from "app.mjs"
-import { Store } from "store.mjs"
 import { SearchArtifacts, AnonData, QueryArtifacts } from "dtos.mjs"
 
 const Search = {
@@ -203,6 +202,7 @@ const Search = {
         const results = ref([])
         const api = ref(new ApiResult())
         const topAlbums = ref([])
+        const renderKey = ref(1)
         const request = ref(new SearchArtifacts({
             query: '',
             skip: 0,
@@ -292,6 +292,7 @@ const Search = {
                 await store.loadUserByRef(request.value.user)
                 title.value = map(store.userRefsMap[request.value.user]?.handle, x => `@${x}`) || ''
             }             
+            renderKey.value++
             
             setTimeout(() => {
                 observer = new IntersectionObserver(
@@ -304,7 +305,7 @@ const Search = {
         onUnmounted(() => observer.unobserve())
         
         return { 
-            store, request, api, topAlbums, results, update, bottom, loadingMore, title, gallery,
+            store, request, api, renderKey, topAlbums, results, update, bottom, loadingMore, title, gallery,
             artifactMenu, activeArtifact, open, openDialog, closeDialog, notifyChanged,
         }
     }
