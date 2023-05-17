@@ -106,6 +106,9 @@ public class ConfigureSsg : IHostingStartup
     {
         var albums = (await client.ApiAsync(new QueryAlbums())).Response!.Results;
 
+        DateTime ValidDate(DateTime date) =>
+            date.Year < 2000 ? new DateTime(DateTime.UtcNow.Year, date.Month, date.Day) : date;
+
         var to = new SitemapFeature {
             SitemapIndex =
             {
@@ -116,7 +119,7 @@ public class ConfigureSsg : IHostingStartup
                     LastModified = albums.Max(x => x.ModifiedDate),
                     UrlSet = albums.Map(album => new SitemapUrl {
                         Location = baseUrl.CombineWith($"/albums/{album.Slug}"),
-                        LastModified = album.Artifacts.Max(x => x.ModifiedDate),
+                        LastModified = ValidDate(album.Artifacts.Max(x => x.ModifiedDate)),
                         ChangeFrequency = SitemapFrequency.Daily,
                     })
                 },
@@ -159,7 +162,7 @@ public class ConfigureSsg : IHostingStartup
                     LastModified = pageArtifacts.Max(x => x.ModifiedDate),
                     UrlSet = pageArtifacts.Map(x => new SitemapUrl {
                         Location = baseUrl.AddQueryParam("view", x.ArtifactId),
-                        LastModified = x.ModifiedDate,
+                        LastModified = ValidDate(x.ModifiedDate),
                         ChangeFrequency = SitemapFrequency.Monthly,
                     })
                 });
