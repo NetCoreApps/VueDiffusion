@@ -6,7 +6,7 @@ public class UserState
 {
     public const int InitialTake = 50;
     public const int NextPage = 100;
-    public const int StaticTake = 500;
+    public const int StaticTake = 250;
     public const int StaticPagedTake = 250;
     public IServiceGateway Client { get; }
 
