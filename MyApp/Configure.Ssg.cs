@@ -85,21 +85,9 @@ public class ConfigureSsg : IHostingStartup
         var sw = Stopwatch.StartNew();
 
         var feature = await CreateSitemapAsync(log, client, baseUrl);
-        var createElapsed = sw.Elapsed;
-        log.LogInformation("Sitemap took {Elapsed} to create", createElapsed.Humanize());
-        
-        var contents = feature.GetSitemapIndex();
-        await File.WriteAllTextAsync(distDir.CombineWith("/sitemap.xml"), contents);
+        await feature.RenderToAsync(distDir);
 
-        foreach (var sitemap in feature.SitemapIndex)
-        {
-            contents = feature.GetSitemapUrlSet(sitemap.UrlSet);
-            var sitemapPath = distDir.CombineWith(sitemap.AtPath);
-            Path.GetDirectoryName(sitemapPath).AssertDir();
-            await File.WriteAllTextAsync(sitemapPath, contents);
-        }
-
-        log.LogInformation("Sitemap took {Elapsed} to prerender", (sw.Elapsed - createElapsed).Humanize());
+        log.LogInformation("Sitemap took {Elapsed} to prerender", sw.Elapsed.Humanize());
     }
     
     async Task<SitemapFeature> CreateSitemapAsync(ILogger log, JsonApiClient client, string baseUrl)
@@ -116,7 +104,7 @@ public class ConfigureSsg : IHostingStartup
                 {
                     Location = baseUrl.CombineWith("/sitemaps/sitemap-albums.xml"),
                     AtPath = "/sitemaps/sitemap-albums.xml",
-                    LastModified = albums.Max(x => x.ModifiedDate),
+                    LastModified = ValidDate(albums.Max(x => x.ModifiedDate)),
                     UrlSet = albums.Map(album => new SitemapUrl {
                         Location = baseUrl.CombineWith($"/albums/{album.Slug}"),
                         LastModified = ValidDate(album.Artifacts.Max(x => x.ModifiedDate)),
@@ -136,7 +124,7 @@ public class ConfigureSsg : IHostingStartup
         {
             Location = baseUrl.CombineWith("/sitemaps/sitemap-latest.xml"),
             AtPath = "/sitemaps/sitemap-latest.xml",
-            LastModified = albums.Max(x => x.ModifiedDate),
+            LastModified = ValidDate(albums.Max(x => x.ModifiedDate)),
             UrlSet = latestPages.Times(i => new SitemapUrl {
                 Location = baseUrl.CombineWith("latest" + (i == 0 ? "" : "_" + (i + 1))),
                 LastModified = now,
@@ -159,7 +147,7 @@ public class ConfigureSsg : IHostingStartup
                 {
                     Location = baseUrl.CombineWith(path),
                     AtPath = path,
-                    LastModified = pageArtifacts.Max(x => x.ModifiedDate),
+                    LastModified = ValidDate(pageArtifacts.Max(x => x.ModifiedDate)),
                     UrlSet = pageArtifacts.Map(x => new SitemapUrl {
                         Location = baseUrl.AddQueryParam("view", x.ArtifactId),
                         LastModified = ValidDate(x.ModifiedDate),
