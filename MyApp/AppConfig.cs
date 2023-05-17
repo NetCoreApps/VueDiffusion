@@ -7,6 +7,7 @@ public class AppConfig
     {
         Instance = config;
     }
+    public string? BaseUrl { get; init; }
     public string? CdnBaseUrl { get; init; }
     public string? ApiBaseUrl { get; init; }
     public string? AssetsBasePath { get; init; }

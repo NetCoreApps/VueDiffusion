@@ -316,11 +316,13 @@ public static class CreativeExtensions
         return str;
     }
 
-    public static string GetArtifactFileName(Artifact artifact, string slug) =>
-        $"{artifact.Id.ToString().PadLeft(4, '0')}_{slug}";
+    public static string GetArtifactFileName(int artifactId, string slug) =>
+        $"{artifactId.ToString().PadLeft(4, '0')}_{slug}";
     
     public static string GetArtifactArtView(this Artifact artifact, string slug) =>
-        $"/artifacts/{Math.Floor(artifact.Id / 1000d)}/{GetArtifactFileName(artifact, slug)}.html";
+        $"/artifacts/{Math.Floor(artifact.Id / 1000d)}/{GetArtifactFileName(artifact.Id, slug)}.html";
+    public static string GetArtifactArtView(this AlbumArtifact artifact, string slug) =>
+        $"/artifacts/{Math.Floor(artifact.Id / 1000d)}/{GetArtifactFileName(artifact.ArtifactId, slug)}.html";
     public static string GetSlug(this Creative creative) => GenerateSlug(creative.UserPrompt);
     public static string GetSlug(this Artifact artifact) => GenerateSlug(GetArtifactPrompt(artifact));
     public static string GetArtifactPrompt(Artifact artifact) =>

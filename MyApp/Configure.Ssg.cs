@@ -1,4 +1,10 @@
+using System.Diagnostics;
+using System.Globalization;
+using System.Text;
+using ServiceStack.Host;
 using ServiceStack.IO;
+using ServiceStack.Logging;
+using ServiceStack.Text;
 
 [assembly: HostingStartup(typeof(MyApp.ConfigureSsg))]
 
@@ -46,8 +52,12 @@ public class ConfigureSsg : IHostingStartup
                     FileSystemVirtualFiles.CopyAll(
                         new DirectoryInfo(appHost.ContentRootDirectory.RealPath.CombineWith("wwwroot")),
                         new DirectoryInfo(distDir));
+
                     var razorFiles = appHost.VirtualFiles.GetAllMatchingFiles("*.cshtml");
                     RazorSsg.PrerenderAsync(appHost, razorFiles, distDir).GetAwaiter().GetResult();
+
+                    var appConfig = AppConfig.Instance;
+                    PrerenderSitemapAsync(appHost, distDir, new JsonApiClient(appConfig.ApiBaseUrl!), appConfig.BaseUrl!).GetAwaiter().GetResult();
                 });
             });
 
@@ -67,6 +77,167 @@ public class ConfigureSsg : IHostingStartup
             GitHubUrl = "https://github.com/brandon",
         },
     };
+
+    async Task PrerenderSitemapAsync(ServiceStackHost appHost, string distDir, JsonApiClient client, string baseUrl)
+    {
+        var log = appHost.Resolve<ILogger<SitemapFeature>>();
+        log.LogInformation("Prerendering Sitemap...");
+        var sw = Stopwatch.StartNew();
+
+        var feature = await CreateSitemapAsync(log, client, baseUrl);
+        var createElapsed = sw.Elapsed;
+        log.LogInformation("Sitemap took {Elapsed} to create", createElapsed.Humanize());
+        
+        var contents = feature.GetSitemapIndex();
+        await File.WriteAllTextAsync(distDir.CombineWith("/sitemap.xml"), contents);
+
+        foreach (var sitemap in feature.SitemapIndex)
+        {
+            contents = feature.GetSitemapUrlSet(sitemap.UrlSet);
+            var sitemapPath = distDir.CombineWith(sitemap.AtPath);
+            Path.GetDirectoryName(sitemapPath).AssertDir();
+            await File.WriteAllTextAsync(sitemapPath, contents);
+        }
+
+        log.LogInformation("Sitemap took {Elapsed} to prerender", (sw.Elapsed - createElapsed).Humanize());
+    }
+    
+    async Task<SitemapFeature> CreateSitemapAsync(ILogger log, JsonApiClient client, string baseUrl)
+    {
+        var albums = (await client.ApiAsync(new QueryAlbums())).Response!.Results;
+
+        var to = new SitemapFeature {
+            SitemapIndex =
+            {
+                new Sitemap
+                {
+                    Location = baseUrl.CombineWith("/sitemaps/sitemap-albums.xml"),
+                    AtPath = "/sitemaps/sitemap-albums.xml",
+                    LastModified = albums.Max(x => x.ModifiedDate),
+                    UrlSet = albums.Map(album => new SitemapUrl {
+                        Location = baseUrl.CombineWith($"/albums/{album.Slug}"),
+                        LastModified = album.Artifacts.Max(x => x.ModifiedDate),
+                        ChangeFrequency = SitemapFrequency.Daily,
+                    })
+                },
+            }
+        };
+        log.LogInformation("Albums Loaded: {Count}", albums.Count);
+
+        /*
+        var index = 0;
+        var pageSize = 1000;
+        var creatives = new List<Creative>();
+        var creativeMap = new Dictionary<int, Creative>();
+        while (true)
+        {
+            var results = (await client.ApiAsync(new QueryCreatives {
+                OrderBy = nameof(Creative.Id),
+                Skip = index++ * pageSize,
+                Take = pageSize,
+            })).Response!.Results;
+            
+            foreach (var creative in results)
+            {
+                if (!creativeMap.ContainsKey(creative.Id))
+                {
+                    creativeMap[creative.Id] = creative;
+                    creatives.Add(creative);
+                }
+            }
+            log.LogInformation("Creatives Loaded: {Count}", creatives.Count);
+
+            if (results.Count < pageSize)
+                break;
+        }
+        
+        var artifacts = new List<Artifact>();
+        var artifactMap = new Dictionary<int, Artifact>();
+        index = 0;
+        while (true)
+        {
+            var pageNo = index + 1;
+            var suffix = "_" + pageNo;
+
+            var results = (await client.ApiAsync(new QueryArtifacts {
+                OrderBy = nameof(Artifact.Id),
+                Skip = index++ * pageSize,
+                Take = pageSize,
+            })).Response!.Results;
+
+            foreach (var artifact in results)
+            {
+                if (!artifactMap.ContainsKey(artifact.Id))
+                {
+                    artifactMap[artifact.Id] = artifact;
+                    artifacts.Add(artifact);
+                }
+            }
+            log.LogInformation("Artifacts Loaded: {Count}", artifacts.Count);
+
+            var path = $"/sitemaps/artifacts/sitemap{suffix}.xml";
+            to.SitemapIndex.Add(new Sitemap
+            {
+                Location = baseUrl.CombineWith(path),
+                AtPath = path,
+                LastModified = artifacts.Max(x => x.ModifiedDate),
+                UrlSet = artifacts.Map(x => new SitemapUrl {
+                    Location = baseUrl.AddQueryParam("view", x.Id),
+                    LastModified = x.ModifiedDate,
+                    ChangeFrequency = SitemapFrequency.Monthly,
+                })
+            });
+
+            if (results.Count < pageSize)
+                break;
+        }
+        */
+
+        var api = await client.ApiAsync(new QueryArtifacts { Include = "total", Take = 1 });
+        var totalArtifacts = api.Response!.Total;
+        
+        var now = DateTime.UtcNow.Date;
+        int latestPages = (int)Math.Ceiling(totalArtifacts / (double)UserState.StaticTake);
+        to.SitemapIndex.Add(new Sitemap
+        {
+            Location = baseUrl.CombineWith("/sitemaps/sitemap-latest.xml"),
+            AtPath = "/sitemaps/sitemap-latest.xml",
+            LastModified = albums.Max(x => x.ModifiedDate),
+            UrlSet = latestPages.Times(i => new SitemapUrl {
+                Location = baseUrl.CombineWith("latest" + (i == 0 ? "" : "_" + (i + 1))),
+                LastModified = now,
+                ChangeFrequency = SitemapFrequency.Daily,
+            })
+        });
+        
+        foreach (var album in albums)
+        {
+            var total = album.Artifacts.Count;
+            var pages = (int)Math.Ceiling(total / (double)UserState.StaticPagedTake);
+            var albumArtifacts = album.Artifacts;
+            for (var i = 0; i < pages; i++)
+            {
+                var pageNo = i + 1;
+                var suffix = pages == 1 ? "" : "_" + pageNo;
+                var path = $"/sitemaps/albums/sitemap-{album.Slug}{suffix}.xml";
+                var pageArtifacts = albumArtifacts.Skip(i * UserState.StaticPagedTake).Take(UserState.StaticPagedTake).ToList();
+                to.SitemapIndex.Add(new Sitemap
+                {
+                    Location = baseUrl.CombineWith(path),
+                    AtPath = path,
+                    LastModified = pageArtifacts.Max(x => x.ModifiedDate),
+                    UrlSet = pageArtifacts.Map(x => new SitemapUrl {
+                        Location = baseUrl.AddQueryParam("view", x.ArtifactId),
+                        LastModified = x.ModifiedDate,
+                        ChangeFrequency = SitemapFrequency.Monthly,
+                    })
+                });
+            }
+        }
+        
+        return to;
+    }
+    
 }
 
 // Add additional frontmatter info to include
