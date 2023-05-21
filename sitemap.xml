@@ -2,11 +2,11 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <sitemap>
   <loc>https://diffusion.works/sitemaps/sitemap-albums.xml</loc>
-  <lastmod>2023-05-17</lastmod>
+  <lastmod>2023-05-21</lastmod>
 </sitemap>
 <sitemap>
   <loc>https://diffusion.works/sitemaps/sitemap-latest.xml</loc>
-  <lastmod>2023-05-17</lastmod>
+  <lastmod>2023-05-21</lastmod>
 </sitemap>
 <sitemap>
   <loc>https://diffusion.works/sitemaps/albums/sitemap-minecraft.xml</loc>
@@ -22,7 +22,7 @@
 </sitemap>
 <sitemap>
   <loc>https://diffusion.works/sitemaps/albums/sitemap-ciri_2.xml</loc>
-  <lastmod>2023-01-14</lastmod>
+  <lastmod>2023-05-17</lastmod>
 </sitemap>
 <sitemap>
   <loc>https://diffusion.works/sitemaps/albums/sitemap-kassandra_1.xml</loc>
@@ -78,7 +78,7 @@
 </sitemap>
 <sitemap>
   <loc>https://diffusion.works/sitemaps/albums/sitemap-the-witcher_2.xml</loc>
-  <lastmod>2023-01-14</lastmod>
+  <lastmod>2023-05-17</lastmod>
 </sitemap>
 <sitemap>
   <loc>https://diffusion.works/sitemaps/albums/sitemap-assassin-s-creed.xml</loc>
@@ -465,7 +465,11 @@
   <lastmod>2023-05-13</lastmod>
 </sitemap>
 <sitemap>
-  <loc>https://diffusion.works/sitemaps/albums/sitemap-fog-of-war.xml</loc>
-  <lastmod>2023-05-15</lastmod>
+  <loc>https://diffusion.works/sitemaps/albums/sitemap-fog-of-war_1.xml</loc>
+  <lastmod>2023-05-18</lastmod>
+</sitemap>
+<sitemap>
+  <loc>https://diffusion.works/sitemaps/albums/sitemap-fog-of-war_2.xml</loc>
+  <lastmod>2023-05-18</lastmod>
 </sitemap>
 </sitemapindex>
