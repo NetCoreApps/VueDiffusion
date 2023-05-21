@@ -1,6 +1,9 @@
 ﻿@page "/latest_{Page}"
 @model LatestModel
 @inherits ServiceStack.Mvc.RazorPage
+@{
+    ViewBag.Title = "Latest Images - page " + Model.Page;
+}
 
 @implements IRenderStaticWithPath<LatestModel>
 @functions
