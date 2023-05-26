@@ -4,7 +4,6 @@ const writeTo = './wwwroot/lib'
 const defaultPrefix = 'https://unpkg.com'
 const files = {
   js: {
-      'htmx.js':                         '/htmx.org@1/dist/htmx.js',
       'highlight.js':                    '/@highlightjs/cdn-assets/highlight.min.js',
   },
   mjs: {
