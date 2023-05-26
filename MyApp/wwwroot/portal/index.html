@@ -39,7 +39,7 @@
                 </li>
                 <li class="-mx-6 mt-auto">
                     <div v-if="showUserMenu" class="font-normal absolute z-10 -mt-10 left-6 w-60 origin-top-right rounded-md bg-white dark:bg-black py-1 shadow-lg ring-1 ring-black dark:ring-gray-600 ring-opacity-5 focus:outline-none right-2" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                        <a href="/auth/logout" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800" role="menuitem" tabindex="-1">Logout</a>
+                        <a :href="urls.logout" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800" role="menuitem" tabindex="-1">Logout</a>
                     </div>
                     <span v-if="user" @click="showUserMenu=!showUserMenu" class="flex cursor-pointer bg-gray-50 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">
                         <img class="h-8 w-8 rounded-full bg-gray-50" :src="user.profileUrl" alt="">
@@ -60,6 +60,12 @@
     <main class="lg:pl-72">
         <div v-if="init" class="px-4 sm:px-6 lg:px-8">
             <sign-in v-if="!user"></sign-in>
+            <div v-if="!isAdmin" class="mt-20">
+                <div>
+                    <alert class="mb-3">Admin Role Required</alert>
+                    <secondary-button :href="urls.logout">Sign Out</secondary-button>
+                </div>
+            </div>
             <div v-else>
                 <h1 class="hidden lg:block pt-4 mb-2 text-3xl font-bold leading-tight tracking-tight text-gray-900">{{ activeSection.label }}</h1>
                 <component :key="refreshKey" :is="activeSection.component" @nav="navTo" :type="activeSection.type"></component>
@@ -69,19 +75,23 @@
 </div>
 
 <script type="module">
-    import { createApp, ref, onMounted, shallowRef } from "vue"
+    import { createApp, ref, computed, onMounted, shallowRef } from "vue"
     import { JsonApiClient, leftPart, rightPart, appendQueryString, humanize } from "@servicestack/client"
     import ServiceStackVue, { useClient, useAuth, useMetadata } from "@servicestack/vue"
     import { Authenticate, AdminData } from "dtos.mjs"
 
-    const client = JsonApiClient.create(location.origin === 'https://diffusion.works'
+    const baseUrl = location.origin === 'https://diffusion.works'
         ? 'https://api.blazordiffusion.com'
-        : 'https://localhost:5001')
+        : 'https://localhost:5001'
+    const urls = {
+        logout: appendQueryString(`${baseUrl}/auth/logout`, {'continue': leftPart(location.href,'#')})
+    }
+    const client = JsonApiClient.create(baseUrl)
     
     const { loadMetadata, metadataApi, typeOf } = useMetadata()
     await loadMetadata({
         olderThan: window.Server ? null : location.search.includes('clear=metadata') ? 0 : 60 * 60 * 1000, //1hr
-        resolvePath: client.baseUrl + '/metadata/app.json',
+        resolvePath: `${baseUrl}/metadata/app.json`,
     })
 
     const sections = {
@@ -214,7 +224,7 @@
 
     const App = {
         setup() {
-            const { user, signIn } = useAuth()
+            const { user, signIn, hasRole } = useAuth()
             const client = useClient()
             const sidebar = ref()
             const refreshKey = ref(1)
@@ -242,7 +252,8 @@
                 init.value = true
             })
 
-            return { init, sidebar, user, sections, activeSection, navTo, refreshKey, showUserMenu }
+            const isAdmin = computed(() => hasRole('Admin'))
+            return { init, sidebar, urls, user, isAdmin, sections, activeSection, navTo, refreshKey, showUserMenu }
         }
     }
 
