@@ -1,5 +1,5 @@
 /* Options:
-Date: 2023-04-12 21:18:31
+Date: 2023-05-26 12:57:14
 Version: 6.81
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: https://localhost:5001
@@ -632,25 +632,13 @@ export class ArtifactCommentReport {
     /** @type {string} */
     createdDate;
 }
-export class AlbumResult {
-    /** @param {{id?:number,name?:string,slug?:string,albumRef?:string,ownerRef?:string,primaryArtifactId?:number,score?:number,artifactIds?:number[]}} [init] */
+export class PageStats {
+    /** @param {{label?:string,total?:number}} [init] */
     constructor(init) { Object.assign(this, init) }
+    /** @type {string} */
+    label;
     /** @type {number} */
-    id;
-    /** @type {string} */
-    name;
-    /** @type {string} */
-    slug;
-    /** @type {string} */
-    albumRef;
-    /** @type {string} */
-    ownerRef;
-    /** @type {?number} */
-    primaryArtifactId;
-    /** @type {number} */
-    score;
-    /** @type {number[]} */
-    artifactIds;
+    total;
 }
 export class ResponseError {
     /** @param {{errorCode?:string,fieldName?:string,message?:string,meta?:{ [index: string]: string; }}} [init] */
@@ -677,6 +665,26 @@ export class ResponseStatus {
     errors;
     /** @type {{ [index: string]: string; }} */
     meta;
+}
+export class AlbumResult {
+    /** @param {{id?:number,name?:string,slug?:string,albumRef?:string,ownerRef?:string,primaryArtifactId?:number,score?:number,artifactIds?:number[]}} [init] */
+    constructor(init) { Object.assign(this, init) }
+    /** @type {number} */
+    id;
+    /** @type {string} */
+    name;
+    /** @type {string} */
+    slug;
+    /** @type {string} */
+    albumRef;
+    /** @type {string} */
+    ownerRef;
+    /** @type {?number} */
+    primaryArtifactId;
+    /** @type {number} */
+    score;
+    /** @type {number[]} */
+    artifactIds;
 }
 export class ArtistInfo {
     /** @param {{id?:number,name?:string,type?:string}} [init] */
@@ -741,6 +749,14 @@ export class AlbumRef {
     primaryArtifactRef;
     /** @type {number} */
     artifactsCount;
+}
+export class AdminDataResponse {
+    /** @param {{pageStats?:PageStats[],responseStatus?:ResponseStatus}} [init] */
+    constructor(init) { Object.assign(this, init) }
+    /** @type {PageStats[]} */
+    pageStats;
+    /** @type {ResponseStatus} */
+    responseStatus;
 }
 export class GetCreativesInAlbumsResponse {
     /** @param {{results?:AlbumResult[]}} [init] */
@@ -988,6 +1004,12 @@ export class RegisterResponse {
     responseStatus;
     /** @type {{ [index: string]: string; }} */
     meta;
+}
+export class AdminData {
+    constructor(init) { Object.assign(this, init) }
+    getTypeName() { return 'AdminData' }
+    getMethod() { return 'GET' }
+    createResponse() { return new AdminDataResponse() }
 }
 export class CreateAlbum {
     /** @param {{name?:string,description?:string,tags?:string[],primaryArtifactId?:number,artifactIds?:number[]}} [init] */
