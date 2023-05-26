@@ -60,7 +60,7 @@
     <main class="lg:pl-72">
         <div v-if="init" class="px-4 sm:px-6 lg:px-8">
             <sign-in v-if="!user"></sign-in>
-            <div v-if="!isAdmin" class="mt-20">
+            <div v-else-if="!isAdmin" class="mt-20">
                 <div>
                     <alert class="mb-3">Admin Role Required</alert>
                     <secondary-button :href="urls.logout">Sign Out</secondary-button>
