@@ -50,7 +50,7 @@
             </ul>
         </nav>
         <template #mobiletitlebar>
-            <div class="flex-1 text-sm font-semibold leading-6 text-gray-900">{{ activeSection.label }}</div>
+            <div class="flex-1 text-sm font-semibold leading-6 text-gray-900">{{ activeSection.title }}</div>
             <span v-if="user" class="cursor-pointer bg-gray-50">
                 <span class="sr-only">Your profile</span>
                 <img class="h-8 w-8 rounded-full bg-gray-50" :src="user.profileUrl" alt="">
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div v-else>
-                <h1 class="hidden lg:block pt-4 mb-2 text-3xl font-bold leading-tight tracking-tight text-gray-900">{{ activeSection.label }}</h1>
+                <h1 class="hidden lg:block pt-4 mb-2 text-3xl font-bold leading-tight tracking-tight text-gray-900">{{ activeSection.title }}</h1>
                 <component :key="refreshKey" :is="activeSection.component" @nav="navTo" :type="activeSection.type"></component>
             </div>            
         </div>
@@ -217,6 +217,7 @@
         const section = sections[id]
         section.id = id
         section.label = section.label || humanize(id)
+        section.title = section.title || section.label
         section.icon  = section.icon  || typeOf(section.type)?.icon?.svg
         section.component.props = section.component.props || ['type']
         section.component.emits = section.component.emits || ['nav']
