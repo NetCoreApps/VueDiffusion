@@ -10,7 +10,7 @@ public class AppHost() : AppHostBase("MyApp"), IHostingStartup
             var env = context.HostingEnvironment;
             AppConfig.Set(new AppConfig {
                 BaseUrl = env.IsDevelopment() ? "https://localhost:5002" : "https://diffusion.works",
-                ApiBaseUrl = env.IsDevelopment() ? "https://localhost:5001" : "https://api.blazordiffusion.com",
+                ApiBaseUrl = env.IsDevelopment() ? "https://localhost:5001" : "https://blazordiffusion.com",
                 CdnBaseUrl = env.IsDevelopment() ? "https://localhost:5001" : "https://blazordiffusion.com",
                 AssetsBasePath = "https://cdn.diffusion.works",
                 FallbackAssetsBasePath = "https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev",
