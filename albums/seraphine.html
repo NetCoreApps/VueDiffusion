@@ -1,0 +1,1174 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Seraphine</title>
+    <base href="/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+<link rel="canonical" href="https://blazordiffusion.com/albums/seraphine"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="diffusion.works"/>
+<meta name="twitter:creator" content="@blazordiffusion"/>
+<meta property="og:url" content="https://blazordiffusion.com/albums/seraphine"/>
+<meta property="og:title" content="Seraphine"/>
+<meta property="og:description" content="Alluring matte portrait of a beautiful Seraphine from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP"/>
+<meta property="og:image" content="https://cdn.diffusion.works/artifacts/2024/08/09/12/3e7eb7f90cc718a1cc82c63f86126df08df2a3a22ac0fb4dc85780465618f937.webp"/>
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "store.mjs": "./mjs/store.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"baseUrl":"https://diffusion.works","cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+    <style>:root { color-scheme:dark }</style>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header id="header" class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex sm:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Diffusion Works</span>
+                <svg class="hidden sm:inline w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M8.55 3.06c1.01.34-1.95 2.01-.1 3.13c1.04.63 3.31-2.22 4.45-2.86c.97-.54 2.67-.65 3.53 1.23c1.09 2.38.14 8.57-3.79 11.06c-3.97 2.5-8.97 1.23-10.7-2.66c-2.01-4.53 3.12-11.09 6.61-9.9zm1.21 6.45c.73 1.64 4.7-.5 3.79-2.8c-.59-1.49-4.48 1.25-3.79 2.8z"/></svg>
+                <span class="ml-1 text-lg sm:text-xl leading-6 tracking-tight text-white">diffusion.works</span>
+            </a>
+        </div>
+        <div class="flex sm:hidden">
+            <button v-on:click="showMobileNav=true" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden sm:flex sm:flex-1 sm:justify-end">
+            <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+        </div>
+    </nav>
+    <div v-if="showMobileNav" class="sm:hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button v-on:click="showMobileNav=false" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <sign-in-link menu-class="left-4">
+                            <div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
+</header>
+
+<script>
+const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
+if (cachedAuth?.profileUrl) {
+    document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
+        </div>`)
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
+
+const HeaderNav = {
+    setup() {
+        const showMobileNav = ref(false)
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
+    }
+}
+mount('#header', HeaderNav)
+
+mountAll()
+</script>
+
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-16 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="86">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">Seraphine</h1>
+    </div>
+
+    
+
+    
+<div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(82180)">
+        
+        <div class="relative overflow-hidden" style="background-color:#29303AFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/3e7eb7f90cc718a1cc82c63f86126df08df2a3a22ac0fb4dc85780465618f937.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82180_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94732)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E6777FF">
+        <img alt="Seraphine, sporting a futuristic, cyber-leathered bodysuit with glowing musical symbols embedded in the design, performing on a floating stage above a crowd in a bustling futuristic cityscape." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/8913e1a2c974aa5b9c557001d8b7ee0cf8be173d857a0c3439c07fe154ee4ca7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94732_seraphine-sporting-a-futuristic-cyber-leathered-bodysuit-with-glowing-musical-symbols-embedded-in.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94731)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6E707DFF">
+        <img alt="Seraphine, sporting a futuristic, cyber-leathered bodysuit with glowing musical symbols embedded in the design, performing on a floating stage above a crowd in a bustling futuristic cityscape." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/623d69cd91201cda101fb7dfee2c86106f4e2a8ec427ffb31e1cd2e7962446be.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94731_seraphine-sporting-a-futuristic-cyber-leathered-bodysuit-with-glowing-musical-symbols-embedded-in.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94733)">
+        
+        <div class="relative overflow-hidden" style="background-color:#555B6CFF">
+        <img alt="Seraphine, sporting a futuristic, cyber-leathered bodysuit with glowing musical symbols embedded in the design, performing on a floating stage above a crowd in a bustling futuristic cityscape." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/c3c795400eb520f1509d2840eba32703746ece5d97351da1c5baec36df65c073.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94733_seraphine-sporting-a-futuristic-cyber-leathered-bodysuit-with-glowing-musical-symbols-embedded-in.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94725)">
+        
+        <div class="relative overflow-hidden" style="background-color:#525160FF">
+        <img alt="Seraphine, the vibrant songstress, wearing a vibrant, multi-colored leather jacket over a white crop top, her hair flowing freely as she performs on a rooftop stage under a starry night sky." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/b7995d6c12a4763b5afa72c1fa3ff08a1ea8894ca2b65349af97bfc5844cb762.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94725_seraphine-the-vibrant-songstress-wearing-a-vibrant-multi-colored-leather-jacket-over-a-white-crop.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94728)">
+        
+        <div class="relative overflow-hidden" style="background-color:#57525EFF">
+        <img alt="Seraphine, the vibrant songstress, wearing a vibrant, multi-colored leather jacket over a white crop top, her hair flowing freely as she performs on a rooftop stage under a starry night sky." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/a12aca3f768bc6e72654a388c72f36d586492e39e3063edc2e93fd3d27fffa5e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94728_seraphine-the-vibrant-songstress-wearing-a-vibrant-multi-colored-leather-jacket-over-a-white-crop.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94727)">
+        
+        <div class="relative overflow-hidden" style="background-color:#535562FF">
+        <img alt="Seraphine, the vibrant songstress, wearing a vibrant, multi-colored leather jacket over a white crop top, her hair flowing freely as she performs on a rooftop stage under a starry night sky." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/013ca43d823edc57017bc6dfc4185ab05c5c3f80dd643e3801b7ee2f9d9afe02.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94727_seraphine-the-vibrant-songstress-wearing-a-vibrant-multi-colored-leather-jacket-over-a-white-crop.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94805)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4D526BFF">
+        <img alt="Seraphine, in a futuristic, cyber-leathered outfit with digital, animated tattoos that sync with her music, performing on a holographic stage above a crowd in a neon-drenched, futuristic club." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/84d4b5be74b7f3bc347f69b71f9a2299df83a987504cf424a098429cc41cb08b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94805_seraphine-in-a-futuristic-cyber-leathered-outfit-with-digital-animated-tattoos-that-sync-with-her.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94803)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4C5470FF">
+        <img alt="Seraphine, in a futuristic, cyber-leathered outfit with digital, animated tattoos that sync with her music, performing on a holographic stage above a crowd in a neon-drenched, futuristic club." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/4ff7529215c2644315f02e6266d27c938783a4e4912b73f8edc971b8c58dbcda.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94803_seraphine-in-a-futuristic-cyber-leathered-outfit-with-digital-animated-tattoos-that-sync-with-her.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94802)">
+        
+        <div class="relative overflow-hidden" style="background-color:#43526EFF">
+        <img alt="Seraphine, in a futuristic, cyber-leathered outfit with digital, animated tattoos that sync with her music, performing on a holographic stage above a crowd in a neon-drenched, futuristic club." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/619a77b8a040952299870ed83e62792258b23abaff85461342f8c769cc82e4e4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94802_seraphine-in-a-futuristic-cyber-leathered-outfit-with-digital-animated-tattoos-that-sync-with-her.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94753)">
+        
+        <div class="relative overflow-hidden" style="background-color:#524A76FF">
+        <img alt="Seraphine, in a futuristic, cyber-leathered outfit with digital, animated tattoos that sync with her music, performing on a holographic stage above a crowd in a neon-drenched, futuristic club." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/9e1923e5a58a4a20117d6e1b143cc6eb375a05b7237124b7f5dbce62e6e36b4f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94753_seraphine-in-a-futuristic-cyber-leathered-outfit-with-digital-animated-tattoos-that-sync-with-her.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94754)">
+        
+        <div class="relative overflow-hidden" style="background-color:#615295FF">
+        <img alt="Seraphine, in a futuristic, cyber-leathered outfit with digital, animated tattoos that sync with her music, performing on a holographic stage above a crowd in a neon-drenched, futuristic club." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/6d13596d0b83583cb2db74823608a5b901288fcc31abba0c78bdbb9358748d98.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94754_seraphine-in-a-futuristic-cyber-leathered-outfit-with-digital-animated-tattoos-that-sync-with-her.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94749)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C5745FF">
+        <img alt="Seraphine, with delicate, butterfly tattoos fluttering across her wrists and ankles, dressed in a sparkling, sequined dress, standing in a serene, garden setting with cherry blossoms falling around her." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/08b5fde8d907ccd58d01a8c62b06b43bc0b9a077c4330ab1528661ac7473868d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94749_seraphine-with-delicate-butterfly-tattoos-fluttering-across-her-wrists-and-ankles-dressed-in-a-sp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94682)">
+        
+        <div class="relative overflow-hidden" style="background-color:#323A4BFF">
+        <img alt="Seraphine, the vibrant songstress, wearing a vibrant, multi-colored leather jacket over a white crop top, her hair flowing freely as she performs on a rooftop stage under a starry night sky." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/bfd8d20c1165c1fc645e0ac89800947cd6e2ca10ed2479f06c61f0c019c5db68.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94682_seraphine-the-vibrant-songstress-wearing-a-vibrant-multi-colored-leather-jacket-over-a-white-crop.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94681)">
+        
+        <div class="relative overflow-hidden" style="background-color:#394862FF">
+        <img alt="Seraphine, the vibrant songstress, wearing a vibrant, multi-colored leather jacket over a white crop top, her hair flowing freely as she performs on a rooftop stage under a starry night sky." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/53ca82e6d641e86b42f6833061267d5ac22e245a706ec25ba4c5b69c82d6b241.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94681_seraphine-the-vibrant-songstress-wearing-a-vibrant-multi-colored-leather-jacket-over-a-white-crop.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94793)">
+        
+        <div class="relative overflow-hidden" style="background-color:#787373FF">
+        <img alt="Seraphine, sporting bold, graffiti-style tattoos that spell out lyrics on her forearms, wearing a chic, leather jacket over a graphic tee, leaning against a vibrant, street art-covered wall in a bustling city square." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/4521f1d90ab77c8f7ca60c0d53bbddc28b62e4ff18efd0a811d72f455c18c4ad.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94793_seraphine-sporting-bold-graffiti-style-tattoos-that-spell-out-lyrics-on-her-forearms-wearing-a-ch.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94746)">
+        
+        <div class="relative overflow-hidden" style="background-color:#48565EFF">
+        <img alt="Seraphine, sporting bold, graffiti-style tattoos that spell out lyrics on her forearms, wearing a chic, leather jacket over a graphic tee, leaning against a vibrant, street art-covered wall in a bustling city square." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/7d523f5650e334b36ac12dbaea39097b5ba8db1d57ee63860a712d98a3dc6777.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94746_seraphine-sporting-bold-graffiti-style-tattoos-that-spell-out-lyrics-on-her-forearms-wearing-a-ch.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94735)">
+        
+        <div class="relative overflow-hidden" style="background-color:#472F43FF">
+        <img alt="Seraphine, the spirited songstress, with colorful, musical note tattoos adorning her arms and neck, wearing a vibrant, off-the-shoulder top, performing on a stage surrounded by a sea of glowing, interactive audience lights." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/0dec09194769d70d04c861a9a2d6adbf3cb6a60320b72fe2c7f03c853c1532d8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94735_seraphine-the-spirited-songstress-with-colorful-musical-note-tattoos-adorning-her-arms-and-neck.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94699)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8B8D8CFF">
+        <img alt="Seraphine, sporting a futuristic, cyber-leathered bodysuit with glowing musical symbols embedded in the design, performing on a floating stage above a crowd in a bustling futuristic cityscape." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/87e7c2283b1cf4330188ec9d3847f3411dadce7a5197254066fc1a76c392d7bf.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94699_seraphine-sporting-a-futuristic-cyber-leathered-bodysuit-with-glowing-musical-symbols-embedded-in.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94703)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6B7A85FF">
+        <img alt="Seraphine, sporting a futuristic, cyber-leathered bodysuit with glowing musical symbols embedded in the design, performing on a floating stage above a crowd in a bustling futuristic cityscape." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/94c05b2061d935efe063700079714f54a27754b8851fd84739469271fe5d9f2d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94703_seraphine-sporting-a-futuristic-cyber-leathered-bodysuit-with-glowing-musical-symbols-embedded-in.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94702)">
+        
+        <div class="relative overflow-hidden" style="background-color:#808C92FF">
+        <img alt="Seraphine, sporting a futuristic, cyber-leathered bodysuit with glowing musical symbols embedded in the design, performing on a floating stage above a crowd in a bustling futuristic cityscape." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/4c72273eb7e349f7d47fc17a967680ad5b5b30e16dcb5d9a984bcedc6e384fae.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94702_seraphine-sporting-a-futuristic-cyber-leathered-bodysuit-with-glowing-musical-symbols-embedded-in.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94690)">
+        
+        <div class="relative overflow-hidden" style="background-color:#96797FFF">
+        <img alt="Seraphine, in a chic, high-waisted leather skirt paired with a glittery tank top, holding a microphone and surrounded by holographic music notes, standing in a dreamy, pastel-colored recording studio." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/1618aeb54f1562360ada609a1ac3c71ab63d03df21d743bd433189533cc904dd.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94690_seraphine-in-a-chic-high-waisted-leather-skirt-paired-with-a-glittery-tank-top-holding-a-micropho.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94694)">
+        
+        <div class="relative overflow-hidden" style="background-color:#97869BFF">
+        <img alt="Seraphine, in a chic, high-waisted leather skirt paired with a glittery tank top, holding a microphone and surrounded by holographic music notes, standing in a dreamy, pastel-colored recording studio." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/c0ed09748592ae1dc65e7960cb1c6f080939f98af9d3e58204e84345ea77335e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94694_seraphine-in-a-chic-high-waisted-leather-skirt-paired-with-a-glittery-tank-top-holding-a-micropho.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94812)">
+        
+        <div class="relative overflow-hidden" style="background-color:#827163FF">
+        <img alt="Seraphine, with delicate, butterfly tattoos fluttering across her wrists and ankles, dressed in a sparkling, sequined dress, standing in a serene, garden setting with cherry blossoms falling around her." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/4a8cb6aba6c221c8c027d4194eb8b8e6c68bf2ea7b2e5faba9d5c65e1d19b390.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94812_seraphine-with-delicate-butterfly-tattoos-fluttering-across-her-wrists-and-ankles-dressed-in-a-sp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94698)">
+        
+        <div class="relative overflow-hidden" style="background-color:#24231FFF">
+        <img alt="Seraphine, dressed in a sleek, all-black leather outfit with silver accents, sitting on a grand piano in a cozy, intimate jazz bar, her eyes closed as she loses herself in the melody." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/48ea0914e23d6f37a29b121e6a1cf033f059edda9f728bd8a0ddd41ff0de675a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94698_seraphine-dressed-in-a-sleek-all-black-leather-outfit-with-silver-accents-sitting-on-a-grand-pian.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94697)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2B1A16FF">
+        <img alt="Seraphine, dressed in a sleek, all-black leather outfit with silver accents, sitting on a grand piano in a cozy, intimate jazz bar, her eyes closed as she loses herself in the melody." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/e70702cbf16d4105f7a17ae7a9a86ddf374a14b4e3336a96b31c6e244bd57fe6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94697_seraphine-dressed-in-a-sleek-all-black-leather-outfit-with-silver-accents-sitting-on-a-grand-pian.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94695)">
+        
+        <div class="relative overflow-hidden" style="background-color:#362A20FF">
+        <img alt="Seraphine, dressed in a sleek, all-black leather outfit with silver accents, sitting on a grand piano in a cozy, intimate jazz bar, her eyes closed as she loses herself in the melody." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/05/12/3deafb3224fbf24749d3e5a0405a9766142292b63abf49bd9fcbef8037f87b18.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94695_seraphine-dressed-in-a-sleek-all-black-leather-outfit-with-silver-accents-sitting-on-a-grand-pian.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94520)">
+        
+        <div class="relative overflow-hidden" style="background-color:#545E5BFF">
+        <img alt="Seraphine, the angelic muse, depicted in a tranquil garden where bioluminescent plants illuminate her ethereal beauty, her eyes reflecting the cosmos, Stable Diffusion SDXL" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/03/12/48603348dc8833d8bae31e53d76d453b143523093385edaf2b6cb4d12e6234d5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94520_seraphine-the-angelic-muse-depicted-in-a-tranquil-garden-where-bioluminescent-plants-illuminate-he.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94517)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C635EFF">
+        <img alt="Seraphine, the angelic muse, depicted in a tranquil garden where bioluminescent plants illuminate her ethereal beauty, her eyes reflecting the cosmos, Stable Diffusion SDXL" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/03/12/dafb54610e527d12d3307a24e5c9f93f49495b3d581534d68dcfb60b4b048a95.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94517_seraphine-the-angelic-muse-depicted-in-a-tranquil-garden-where-bioluminescent-plants-illuminate-he.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94518)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4C5958FF">
+        <img alt="Seraphine, the angelic muse, depicted in a tranquil garden where bioluminescent plants illuminate her ethereal beauty, her eyes reflecting the cosmos, Stable Diffusion SDXL" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/03/12/844f4919211608a1ddab9b04c328a02cadd47470eb2f766518a14f593c36117a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94518_seraphine-the-angelic-muse-depicted-in-a-tranquil-garden-where-bioluminescent-plants-illuminate-he.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94516)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E6969FF">
+        <img alt="Seraphine, the angelic muse, depicted in a tranquil garden where bioluminescent plants illuminate her ethereal beauty, her eyes reflecting the cosmos, Stable Diffusion SDXL" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/03/12/d77431cdc2e196b368f0ff330ad208e1525fa2865242adcf58a0b9996e92f133.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94516_seraphine-the-angelic-muse-depicted-in-a-tranquil-garden-where-bioluminescent-plants-illuminate-he.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94519)">
+        
+        <div class="relative overflow-hidden" style="background-color:#536063FF">
+        <img alt="Seraphine, the angelic muse, depicted in a tranquil garden where bioluminescent plants illuminate her ethereal beauty, her eyes reflecting the cosmos, Stable Diffusion SDXL" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/03/12/a55ee26c3c36707839027d9127f1b512ca801cd9ef52face925b6bc3cb6b8cc0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94519_seraphine-the-angelic-muse-depicted-in-a-tranquil-garden-where-bioluminescent-plants-illuminate-he.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94452)">
+        
+        <div class="relative overflow-hidden" style="background-color:#455949FF">
+        <img alt="Seraphine, the angelic muse, depicted in a tranquil garden where bioluminescent plants illuminate her ethereal beauty, her eyes reflecting the cosmos, Stable Diffusion SDXL" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/03/12/0c50e19c5dd1c2abcce227dca96c60f87cd78d409f5a313946bbfd22425bb130.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94452_seraphine-the-angelic-muse-depicted-in-a-tranquil-garden-where-bioluminescent-plants-illuminate-he.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94455)">
+        
+        <div class="relative overflow-hidden" style="background-color:#516038FF">
+        <img alt="Seraphine, the angelic muse, depicted in a tranquil garden where bioluminescent plants illuminate her ethereal beauty, her eyes reflecting the cosmos, Stable Diffusion SDXL" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/03/12/1a6c18d76f8317db6f6c21609a87fbe243c797a4050f455def77ccf9884ffc51.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94455_seraphine-the-angelic-muse-depicted-in-a-tranquil-garden-where-bioluminescent-plants-illuminate-he.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94454)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4C574AFF">
+        <img alt="Seraphine, the angelic muse, depicted in a tranquil garden where bioluminescent plants illuminate her ethereal beauty, her eyes reflecting the cosmos, Stable Diffusion SDXL" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/03/12/c09bca0af0a5f9ed5f45376fe92c8b518846f80bed08757768a4b0fe3d66033d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94454_seraphine-the-angelic-muse-depicted-in-a-tranquil-garden-where-bioluminescent-plants-illuminate-he.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94453)">
+        
+        <div class="relative overflow-hidden" style="background-color:#515A48FF">
+        <img alt="Seraphine, the angelic muse, depicted in a tranquil garden where bioluminescent plants illuminate her ethereal beauty, her eyes reflecting the cosmos, Stable Diffusion SDXL" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/03/12/6fec07145b95978d17bc148173047fbe36d97ea7ba714848a913ecc1a793127f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94453_seraphine-the-angelic-muse-depicted-in-a-tranquil-garden-where-bioluminescent-plants-illuminate-he.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(94456)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2F5145FF">
+        <img alt="Seraphine, the angelic muse, depicted in a tranquil garden where bioluminescent plants illuminate her ethereal beauty, her eyes reflecting the cosmos, Stable Diffusion SDXL" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/03/12/60c963f05870175d715946ce812cb2c2ac97fb8fa142780c938e3e038ee8551b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/94/94456_seraphine-the-angelic-muse-depicted-in-a-tranquil-garden-where-bioluminescent-plants-illuminate-he.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82183)">
+        
+        <div class="relative overflow-hidden" style="background-color:#615366FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends, Intricate, Half Body, Volumetric Lighting, Fantasy, Elegant by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/43f01044cde30115e7c1f9af9086f47ebc79abaa1eb5c2d89f613fa0e19284b3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82183_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82182)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3E454EFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends, Intricate, Half Body, Volumetric Lighting, Fantasy, Elegant by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/07d59c1425e38a0e76c786552f4ea3aa0b015b61e5f7ad39262af6397af956db.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82182_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82181)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4B4252FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/0f8f4eb564d635fab56b2a07e53f647026df642cd611883a75ee6c36c684a0f2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82181_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82179)">
+        
+        <div class="relative overflow-hidden" style="background-color:#684566FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/c2e21bb89c0868151587184a14abfdf422a0337ddf3cd2b4eb0236daa97d6552.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82179_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82178)">
+        
+        <div class="relative overflow-hidden" style="background-color:#404A46FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/426605ac212154a345db6ed29e72cb1653a960955282b3fd799e90abd502d6f7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82178_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81234)">
+        
+        <div class="relative overflow-hidden" style="background-color:#40454BFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/32dd3d798b8b5dca7f450706db8be2d12ceb58342963a10681437e13603bfddb.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81234_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends-in-the-style-of-stefan-kosti.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81236)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3D3132FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/6b5a04032385f72824e0648f9cbcbc33dc7377a490f0df9d610d547b6701667d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81236_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends-in-the-style-of-stefan-kosti.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81235)">
+        
+        <div class="relative overflow-hidden" style="background-color:#504753FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/7478700e6b6564a72ae8b3ec1bd752c595b5ad5ee21d552e9e4cde50f1901fb8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81235_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends-in-the-style-of-stefan-kosti.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81232)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3E3636FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/4476c7f9149573155fc298c98c045df047dfa61e2dd02c47468118ee68a00092.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81232_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends-in-the-style-of-stefan-kosti.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81233)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2D425DFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine from League of Legends in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/b046ffffd8837281c88c9639911b8c4d4a2a360c4adab2a8aec69225950f3384.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81233_alluring-matte-portrait-of-a-beautiful-seraphine-from-league-of-legends-in-the-style-of-stefan-kosti.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80090)">
+        
+        <div class="relative overflow-hidden" style="background-color:#655D54FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/e66dc45445a382ca99d4386a48a9faac72da7e690d761fd85214245f5def5af6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80090_alluring-matte-portrait-of-a-beautiful-seraphine.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80089)">
+        
+        <div class="relative overflow-hidden" style="background-color:#625C55FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/2a861f30b5611689ab3223e8f794914af777776414b1b8ec03ae1f570084af8f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80089_alluring-matte-portrait-of-a-beautiful-seraphine.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80088)">
+        
+        <div class="relative overflow-hidden" style="background-color:#62645FFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/f849451c480b39289b1ec6fc911b7f05968b00446058b5a989debfcc88290566.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80088_alluring-matte-portrait-of-a-beautiful-seraphine-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80086)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A6F6CFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/15651986d7f84603bdff69d84efc9543fd9c10ecd2d87d36e63d9a37334fd7a4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80086_alluring-matte-portrait-of-a-beautiful-seraphine-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80085)">
+        
+        <div class="relative overflow-hidden" style="background-color:#616463FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/498175628a5db5c8b14b64e35772abd4581d917a6814f1a5f11f6da09655882c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80085_alluring-matte-portrait-of-a-beautiful-seraphine-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80084)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7B756DFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/e927de7fcdc0bc5feb341507c1dc60b7c82b3bbe6fa4bb418c6164e09b5ffd1a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80084_alluring-matte-portrait-of-a-beautiful-seraphine-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80038)">
+        
+        <div class="relative overflow-hidden" style="background-color:#363333FF">
+        <img alt="Alluring matte half body portrait of a beautiful Seraphine wearing tight black leather, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/606352c89bbf94a4b07481fc16d32dff2193242060aba87395f45178467b5213.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80038_alluring-matte-half-body-portrait-of-a-beautiful-seraphine-wearing-tight-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80036)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3D3735FF">
+        <img alt="Alluring matte half body portrait of a beautiful Seraphine wearing tight black leather, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/a033ca532c778d23b0548429d5d2d2af225cd6e9e8497459497252bf58c7c36d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80036_alluring-matte-half-body-portrait-of-a-beautiful-seraphine-wearing-tight-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80034)">
+        
+        <div class="relative overflow-hidden" style="background-color:#393637FF">
+        <img alt="Alluring matte half body portrait of a beautiful Seraphine wearing tight black leather, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/c73aebcabc9f7ddfd5b6f0dce6dd9404e5dec9ef61fe54ee6a8cbfb4ec2c4e55.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80034_alluring-matte-half-body-portrait-of-a-beautiful-seraphine-wearing-tight-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79586)">
+        
+        <div class="relative overflow-hidden" style="background-color:#584E46FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine in black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/71c14a5f1fa509fe50b19fb772e757c9c0eccc0580fd35150fa006d34a116dfb.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79586_alluring-matte-portrait-of-a-beautiful-seraphine-in-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79584)">
+        
+        <div class="relative overflow-hidden" style="background-color:#524841FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine in black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/27e43b56af5bd81966f067860725dc644b495219c3f96b1a85e2a72ebf78b31f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79584_alluring-matte-portrait-of-a-beautiful-seraphine-in-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79583)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B4D41FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine in black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/0900288734b65d55d50efba002fc88636707c86be367a5c7043fe7f1b306eee2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79583_alluring-matte-portrait-of-a-beautiful-seraphine-in-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79582)">
+        
+        <div class="relative overflow-hidden" style="background-color:#675E56FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine in black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/fc44bdc102f1e868baf31d89b63ca5178ee7bc60be772429ad94067b79a6bde1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79582_alluring-matte-portrait-of-a-beautiful-seraphine-in-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79585)">
+        
+        <div class="relative overflow-hidden" style="background-color:#52463DFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine in black leather, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/c1b0c47eaf702cbc062dbfdf1ff78068e428b40b5819f2c942e8fdfcbf83e565.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79585_alluring-matte-portrait-of-a-beautiful-seraphine-in-black-leather.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75727)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4A505DFF">
+        <img alt="Matte portrait of the beautiful Seraphine in dark blue, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/07/12/7dd9e383075bd0417b6e1a5c4b7c1d192239ad580122f2ed7f53fdc5aa75300b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75727_matte-portrait-of-the-beautiful-seraphine-in-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75726)">
+        
+        <div class="relative overflow-hidden" style="background-color:#787986FF">
+        <img alt="Matte portrait of the beautiful Seraphine in dark blue, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/07/12/2dec52464ad59887e0698db871d485b33f705eaebd071666dceb6c9d373104be.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75726_matte-portrait-of-the-beautiful-seraphine-in-dark-blue.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75228)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7B3130FF">
+        <img alt="Matte portrait of the beautiful Seraphine in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/22/12/0f4c2c9dc61f05af462d7492505c5d74d7c63821af9fcd8c734ae54b59fc6602.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75228_matte-portrait-of-the-beautiful-seraphine-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75158)">
+        
+        <div class="relative overflow-hidden" style="background-color:#897371FF">
+        <img alt="Matte portrait of Seraphine with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/14/12/343564118f98f0f168c73cf7bcdc4ff91f5e08cf89208070074e8dd697d7447b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75158_matte-portrait-of-seraphine-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75162)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A6162FF">
+        <img alt="Matte portrait of Seraphine with tattoos, 8k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/14/12/5d4c3349682f1b9a832364ce06511e97e8e81cd6808baba05268dd912796cb4b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75162_matte-portrait-of-seraphine-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75154)">
+        
+        <div class="relative overflow-hidden" style="background-color:#333134FF">
+        <img alt="Matte portrait of a beautiful Seraphine in black, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/9e30eddda9e490449ffa14e4531a5486e9b76d9dddad59aa133cf6ebe16eb602.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75154_matte-portrait-of-a-beautiful-seraphine-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75155)">
+        
+        <div class="relative overflow-hidden" style="background-color:#544845FF">
+        <img alt="Matte portrait of a beautiful Seraphine in black, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/a28c6d7bdb44a3ed94b89b82a787e8abb00dd82c87dfb833879456d2a8bf5776.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75155_matte-portrait-of-a-beautiful-seraphine-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75150)">
+        
+        <div class="relative overflow-hidden" style="background-color:#897E7BFF">
+        <img alt="Matte portrait of a beautiful Seraphine, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/763a94f3d31ccc16cf8f07e3d1433da234ac42700d42e0c774529c61c48fd387.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75150_matte-portrait-of-a-beautiful-seraphine.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75151)">
+        
+        <div class="relative overflow-hidden" style="background-color:#988678FF">
+        <img alt="Matte portrait of a beautiful Seraphine, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/ebc0ef9dc70a4040c2bcbd346b1bc34b2242c802c866b78a5ac08a3e29f4c72e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75151_matte-portrait-of-a-beautiful-seraphine.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75127)">
+        
+        <div class="relative overflow-hidden" style="background-color:#867269FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/2b82fafbf16f6b809c65a8dca3ce9aba352146d863224040b057af4b94d62069.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75127_alluring-matte-portrait-of-a-beautiful-seraphine-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75125)">
+        
+        <div class="relative overflow-hidden" style="background-color:#856D5BFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/5789b4cbe651d97d3f73612b127bb6b6fd60dda41f3522c1cb474abf2bae9e84.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75125_alluring-matte-portrait-of-a-beautiful-seraphine-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75144)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8E7F76FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/ff06c4ffcf750e9ea2d5e7f287f77b8e43409ce5d7a99d69d55a75ec6c678083.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75144_alluring-matte-portrait-of-a-beautiful-seraphine-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75143)">
+        
+        <div class="relative overflow-hidden" style="background-color:#787372FF">
+        <img alt="Matte portrait of a beautiful Seraphine in black, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/c2d7e3ae44729b9e375e0e56f00bd37641ce8a2a5fb756f48b0f76d14cb21075.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75143_matte-portrait-of-a-beautiful-seraphine-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75142)">
+        
+        <div class="relative overflow-hidden" style="background-color:#787270FF">
+        <img alt="Matte portrait of a beautiful Seraphine in black, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/7303c1c919ab149ca5e850786ec0ffca3b18bf25da60b50dbfcdfd6e11ba36ed.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75142_matte-portrait-of-a-beautiful-seraphine-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75141)">
+        
+        <div class="relative overflow-hidden" style="background-color:#635A56FF">
+        <img alt="Matte portrait of a beautiful Seraphine in black, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/549fd7e1754437520ac52448b5105f07b2df9c6743f88f132ddac6b1bf7f0c69.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75141_matte-portrait-of-a-beautiful-seraphine-in-black.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75131)">
+        
+        <div class="relative overflow-hidden" style="background-color:#83766DFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/dca2976dfcb40879e8b9bd4da75d61ebd04a46fc736dd048b3d7e3884c197021.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75131_alluring-matte-portrait-of-a-beautiful-seraphine-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75130)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F7374FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine wearing feathers, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/278ba6060353ce33f1c4fcff4671c66d9048da11613891a86d550060a8b862f2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75130_alluring-matte-portrait-of-a-beautiful-seraphine-wearing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75107)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D746EFF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/0dfdc330110ce5914287587b35895d1d1b5e5af5f4fecdb84668521ad075a880.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75107_alluring-matte-portrait-of-a-beautiful-seraphine-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75106)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7B6A60FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/9fd15cdad79bd20a7e96222f78f81b0beb9aa26b62c97b7577cc7470a7095e6d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75106_alluring-matte-portrait-of-a-beautiful-seraphine-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75104)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7E6F66FF">
+        <img alt="Alluring matte portrait of a beautiful Seraphine with wings, 8k, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/13/12/d3f6be2d7472c3bbdf6e18d258ea1cc78a40de777cc624d14e1eff8d8e735d7d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75104_alluring-matte-portrait-of-a-beautiful-seraphine-with-wings.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)" v-on:open="openDialog">
+        <template #icons="artifact">
+            <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                <div class="flex flex-col h-full justify-between">
+                    <div class="flex justify-between flex-none">
+                        <artifact-like-icon :artifact="artifact" v-on:changed="update"></artifact-like-icon>
+                        <artifact-menu-icon :artifact="artifact" v-on:show-artifact-menu="artifactMenu=artifact"></artifact-menu-icon>
+                    </div>
+                    <artifact-explore-icon :artifact="artifact" v-on:changed="update"></artifact-explore-icon>
+                </div>
+            </div>
+        </template>
+        <template #contextmenu="artifact">
+            <artifact-menu v-if="artifactMenu?.id === artifact.id" :artifact="artifactMenu" menu-class="justify-end"
+                           v-on:changed="notifyChanged" v-on:done="artifactMenu=null" v-on:open="openDialog">
+            </artifact-menu>
+        </template>
+    </artifact-modal>
+    <artifact-dialogs :show="open" :artifact="artifact" v-on:done="closeDialog"></artifact-dialogs>
+</div>
+
+<script type="module">
+import { ref, inject, getCurrentInstance } from "vue"
+import { mount } from "app.mjs"
+import { Store } from "store.mjs"
+
+const Gallery = {
+    setup() {
+        const store = inject('store')
+        const artifact = ref()
+        
+        async function loadArtifact(id) {
+            artifact.value = await store.getArtifact(id)
+        }
+        function showArtifact(a) {
+            artifact.value = a
+        }
+        
+        const instance = getCurrentInstance()
+        const artifactMenu = ref()
+        const open = ref('')
+        function openDialog(dialog, artifact) {
+            artifactMenu.value = null
+            open.value = dialog
+            //artifact.value = artifact
+        }
+        function closeDialog() {
+            open.value = ''
+            //artifact.value = null
+        }
+        function notifyChanged() {
+            artifactMenu.value = null
+            forceUpdate()
+            update() 
+        }
+        function update() {}
+        function forceUpdate() { instance?.proxy?.$forceUpdate() }
+        
+        return { store, artifact, loadArtifact, showArtifact,
+            artifactMenu, open, openDialog, closeDialog, notifyChanged, update }
+    }
+}
+mount('#gallery', Gallery)
+</script>
+    
+
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="relative z-10 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://razor-ssg.web-templates.io/posts/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

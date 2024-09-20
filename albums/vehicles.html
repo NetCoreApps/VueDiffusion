@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Vehicles</title>
+    <base href="/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+<link rel="canonical" href="https://blazordiffusion.com/albums/vehicles"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="diffusion.works"/>
+<meta name="twitter:creator" content="@blazordiffusion"/>
+<meta property="og:url" content="https://blazordiffusion.com/albums/vehicles"/>
+<meta property="og:title" content="Vehicles"/>
+<meta property="og:description" content="futuristic car with huge wheels and modernized taillights"/>
+<meta property="og:image" content="https://cdn.diffusion.works/artifacts/2024/09/14/12/036047a4683ba87d65a9ac370ce295464206d57535ccd0d17dc75af8404a2a65.webp"/>
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "store.mjs": "./mjs/store.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"baseUrl":"https://diffusion.works","cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+    <style>:root { color-scheme:dark }</style>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header id="header" class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex sm:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Diffusion Works</span>
+                <svg class="hidden sm:inline w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M8.55 3.06c1.01.34-1.95 2.01-.1 3.13c1.04.63 3.31-2.22 4.45-2.86c.97-.54 2.67-.65 3.53 1.23c1.09 2.38.14 8.57-3.79 11.06c-3.97 2.5-8.97 1.23-10.7-2.66c-2.01-4.53 3.12-11.09 6.61-9.9zm1.21 6.45c.73 1.64 4.7-.5 3.79-2.8c-.59-1.49-4.48 1.25-3.79 2.8z"/></svg>
+                <span class="ml-1 text-lg sm:text-xl leading-6 tracking-tight text-white">diffusion.works</span>
+            </a>
+        </div>
+        <div class="flex sm:hidden">
+            <button v-on:click="showMobileNav=true" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden sm:flex sm:flex-1 sm:justify-end">
+            <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+        </div>
+    </nav>
+    <div v-if="showMobileNav" class="sm:hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button v-on:click="showMobileNav=false" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <sign-in-link menu-class="left-4">
+                            <div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
+</header>
+
+<script>
+const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
+if (cachedAuth?.profileUrl) {
+    document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
+        </div>`)
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
+
+const HeaderNav = {
+    setup() {
+        const showMobileNav = ref(false)
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
+    }
+}
+mount('#header', HeaderNav)
+
+mountAll()
+</script>
+
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-16 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="95">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">Vehicles</h1>
+    </div>
+
+    
+
+    
+<div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(97706)">
+        
+        <div class="relative overflow-hidden" style="background-color:#646669FF">
+        <img alt="futuristic car with huge wheels and modernized taillights" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/036047a4683ba87d65a9ac370ce295464206d57535ccd0d17dc75af8404a2a65.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97706_futuristic-car-with-huge-wheels-and-modernized-taillights.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97751)">
+        
+        <div class="relative overflow-hidden" style="background-color:#949B9EFF">
+        <img alt="Armoured cyberpunkultra minimal X-treme G Nintendo 64 ultra futuristic minimal design bike Designed by 8k resolution,hyper realistic, detailed render, extremely complex and advanced chassis, natural dirt and debris detail, scuffs" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/ebfd9833fea8c88bf2b607b49d7df2c115926e031b0528f0a71f776bc205e75d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97751_armoured-cyberpunkultra-minimal-x-treme-g-nintendo-64-ultra-futuristic-minimal-design-bike-designed.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97750)">
+        
+        <div class="relative overflow-hidden" style="background-color:#979A9CFF">
+        <img alt="Armoured cyberpunkultra minimal X-treme G Nintendo 64 ultra futuristic minimal design bike Designed by 8k resolution,hyper realistic, detailed render, extremely complex and advanced chassis, natural dirt and debris detail, scuffs" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/85fd780ea7f2deba23edb0dbd98b4877bc92c5c47c8b126bda1a8ba26585c888.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97750_armoured-cyberpunkultra-minimal-x-treme-g-nintendo-64-ultra-futuristic-minimal-design-bike-designed.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97749)">
+        
+        <div class="relative overflow-hidden" style="background-color:#B0B3AEFF">
+        <img alt="Armoured cyberpunkultra minimal X-treme G Nintendo 64 ultra futuristic minimal design bike Designed by 8k resolution,hyper realistic, detailed render, extremely complex and advanced chassis, natural dirt and debris detail, scuffs" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/76a7df4511aa6fb8bfd587d4c018c1634157d0024b62c1099b07e7d832fcd243.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97749_armoured-cyberpunkultra-minimal-x-treme-g-nintendo-64-ultra-futuristic-minimal-design-bike-designed.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97747)">
+        
+        <div class="relative overflow-hidden" style="background-color:#606061FF">
+        <img alt="Armoured cyberpunkultra minimal X-treme G Nintendo 64 ultra futuristic minimal design bike Designed by 8k resolution,hyper realistic, detailed render, extremely complex and advanced chassis, natural dirt and debris detail, scuffs" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/e7e2fd59445a43a7ff037a263a27b8a3d15451bb96b9306633f60ad884ddfcd2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97747_armoured-cyberpunkultra-minimal-x-treme-g-nintendo-64-ultra-futuristic-minimal-design-bike-designed.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97746)">
+        
+        <div class="relative overflow-hidden" style="background-color:#707173FF">
+        <img alt="Armoured cyberpunkultra minimal X-treme G Nintendo 64 ultra futuristic minimal design bike Designed by 8k resolution,hyper realistic, detailed render, extremely complex and advanced chassis, natural dirt and debris detail, scuffs" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/4984412585f2e35b0e5a2addbbb69484497ac47e027b135a7400d994bab692fe.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97746_armoured-cyberpunkultra-minimal-x-treme-g-nintendo-64-ultra-futuristic-minimal-design-bike-designed.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97745)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D7F81FF">
+        <img alt="Armoured cyberpunkultra minimal X-treme G Nintendo 64 ultra futuristic minimal design bike Designed by 8k resolution,hyper realistic, detailed render, extremely complex and advanced chassis, natural dirt and debris detail, scuffs" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/c8d84c1fd4cccf50a64bc89392594effd48a49a1f5434d1e23d19fbbbabc8465.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97745_armoured-cyberpunkultra-minimal-x-treme-g-nintendo-64-ultra-futuristic-minimal-design-bike-designed.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97743)">
+        
+        <div class="relative overflow-hidden" style="background-color:#475862FF">
+        <img alt="Armoured cyberpunkultra minimal X-treme G Nintendo 64 ultra futuristic minimal design bike Designed by 8k resolution,hyper realistic, detailed render, extremely complex and advanced chassis, natural dirt and debris detail, scuffs" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/66fd9845f9f6871885ab37d142887d3036d3abd1682c88fd57473f4707a518ac.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97743_armoured-cyberpunkultra-minimal-x-treme-g-nintendo-64-ultra-futuristic-minimal-design-bike-designed.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97744)">
+        
+        <div class="relative overflow-hidden" style="background-color:#819297FF">
+        <img alt="Armoured cyberpunkultra minimal X-treme G Nintendo 64 ultra futuristic minimal design bike Designed by 8k resolution,hyper realistic, detailed render, extremely complex and advanced chassis, natural dirt and debris detail, scuffs" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/7c81171566ad74388adc89663442094f2bd2265caa73d2008d2ff503fd7427b1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97744_armoured-cyberpunkultra-minimal-x-treme-g-nintendo-64-ultra-futuristic-minimal-design-bike-designed.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97742)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6B7478FF">
+        <img alt="Armoured cyberpunkultra minimal X-treme G Nintendo 64 ultra futuristic minimal design bike Designed by 8k resolution,hyper realistic, detailed render, extremely complex and advanced chassis, natural dirt and debris detail, scuffs" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/f27702b4ecde462120d7cd16d6ed60c77a35c3083fa159dc108a7f4d7294a774.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97742_armoured-cyberpunkultra-minimal-x-treme-g-nintendo-64-ultra-futuristic-minimal-design-bike-designed.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97740)">
+        
+        <div class="relative overflow-hidden" style="background-color:#303E56FF">
+        <img alt="Futuristic KITT from Knight Rider in a cyberpunk city at night, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/25f4092aef7a248d582ff605d5fa4e3ef6ccde9519de342c8e2935202ef92cae.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97740_futuristic-kitt-from-knight-rider-in-a-cyberpunk-city-at-night-an-advanced-artificially-intelligen.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97739)">
+        
+        <div class="relative overflow-hidden" style="background-color:#21353EFF">
+        <img alt="Futuristic KITT from Knight Rider in a cyberpunk city at night, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/3414ca8e9853cb80792625d6a7f6df8f82f98d0b37a2e5e533b48f67757d26f5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97739_futuristic-kitt-from-knight-rider-in-a-cyberpunk-city-at-night-an-advanced-artificially-intelligen.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97738)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3C4857FF">
+        <img alt="Futuristic KITT from Knight Rider in a cyberpunk city at night, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/c7ef65c1f6cf9b12db9e5dd1f0203b9fbc360f00a215e991dfc61200522ef9ef.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97738_futuristic-kitt-from-knight-rider-in-a-cyberpunk-city-at-night-an-advanced-artificially-intelligen.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97737)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2A3E48FF">
+        <img alt="Futuristic KITT from Knight Rider in a cyberpunk city at night, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/3a045beb1086ba814f91da94672e4ce71bfa41337a0efba643ca6e3775e1e32d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97737_futuristic-kitt-from-knight-rider-in-a-cyberpunk-city-at-night-an-advanced-artificially-intelligen.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97736)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3D4551FF">
+        <img alt="Futuristic KITT from Knight Rider in a cyberpunk city at night, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/5af94e54a97c57ffb720711ef3fdaed23ebc082d24d04801275d7d1fb28d1c75.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97736_futuristic-kitt-from-knight-rider-in-a-cyberpunk-city-at-night-an-advanced-artificially-intelligen.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97735)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3E404DFF">
+        <img alt="Futuristic KITT from Knight Rider in a cyberpunk city at night, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/5893099b76541836f60ca9ddc20ef70b636c0c8b539a620c19c2073903354c1b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97735_futuristic-kitt-from-knight-rider-in-a-cyberpunk-city-at-night-an-advanced-artificially-intelligen.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97734)">
+        
+        <div class="relative overflow-hidden" style="background-color:#343C46FF">
+        <img alt="Futuristic KITT from Knight Rider in a cyberpunk city at night, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/f757360c50c3ffaeb57a01541f20f41f03e3519addc745a0c84762a336245d78.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97734_futuristic-kitt-from-knight-rider-in-a-cyberpunk-city-at-night-an-advanced-artificially-intelligen.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97733)">
+        
+        <div class="relative overflow-hidden" style="background-color:#41424DFF">
+        <img alt="Futuristic KITT from Knight Rider in a cyberpunk city at night, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/d74571bc0cb8242fdd176c21954b585f3bbe6c6af24bac399975856fbbd82310.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97733_futuristic-kitt-from-knight-rider-in-a-cyberpunk-city-at-night-an-advanced-artificially-intelligen.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97732)">
+        
+        <div class="relative overflow-hidden" style="background-color:#554F4DFF">
+        <img alt="Futuristic KITT from Knight Rider, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/5591bbe6fb25ec60d2749f367af6524894ad2ff1fbe7fff57999481e1d09b1c8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97732_futuristic-kitt-from-knight-rider-an-advanced-artificially-intelligent-self-aware-and-nearly-ind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97730)">
+        
+        <div class="relative overflow-hidden" style="background-color:#616469FF">
+        <img alt="Futuristic KITT from Knight Rider, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/e3d296ded4a60ff98613c873a3abc0f3e72a2c8212da3c11cb6a792df8e9cfb4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97730_futuristic-kitt-from-knight-rider-an-advanced-artificially-intelligent-self-aware-and-nearly-ind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97729)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A6B6CFF">
+        <img alt="Futuristic KITT from Knight Rider, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/c3e35106907f17807c2c5b66a9924cd8e3cfd164b93e57c7724797c73f7a1fbf.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97729_futuristic-kitt-from-knight-rider-an-advanced-artificially-intelligent-self-aware-and-nearly-ind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97728)">
+        
+        <div class="relative overflow-hidden" style="background-color:#66798FFF">
+        <img alt="Futuristic KITT from Knight Rider, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/3bedf850214bd62fb8fad145fa98136e99cb5c8de28f98b34936c7222f86c77c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97728_futuristic-kitt-from-knight-rider-an-advanced-artificially-intelligent-self-aware-and-nearly-ind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97727)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5A5D65FF">
+        <img alt="Futuristic KITT from Knight Rider, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/ba3d12a4bcd5ae56fb70ab34b1d17eee4138620053692c52dab002d458ab2248.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97727_futuristic-kitt-from-knight-rider-an-advanced-artificially-intelligent-self-aware-and-nearly-ind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97726)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D8385FF">
+        <img alt="Futuristic KITT from Knight Rider, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/989dc21a039fdc993be967013e2184ac5e33c0dcd35b5adff491d06954f5524f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97726_futuristic-kitt-from-knight-rider-an-advanced-artificially-intelligent-self-aware-and-nearly-ind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97725)">
+        
+        <div class="relative overflow-hidden" style="background-color:#75757AFF">
+        <img alt="Futuristic KITT from Knight Rider, an advanced, artificially intelligent, self-aware, and nearly indestructible car" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/d186fe1f05cee0bbbfedecb3f6b2fbd515ac6158d12e602d933e9c7431c3aa59.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97725_futuristic-kitt-from-knight-rider-an-advanced-artificially-intelligent-self-aware-and-nearly-ind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97724)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2D4748FF">
+        <img alt="Beached steampunk submarine shipwreck in swamp,  dark atmosphere, night, mijn, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, erte, 8 k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/c7bf8248fd5057c4f4c8b2230561c91d8fa4e949892fb2a64904e7a64a5b34c8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97724_beached-steampunk-submarine-shipwreck-in-swamp-dark-atmosphere-night-mijn-highly-detailed-digi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97723)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2F4744FF">
+        <img alt="Beached steampunk submarine shipwreck in swamp,  dark atmosphere, night, mijn, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, erte, 8 k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/c7b0b235c05cdf38b73857bfe3f1348bcd405af40f70b697af94d362faf37349.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97723_beached-steampunk-submarine-shipwreck-in-swamp-dark-atmosphere-night-mijn-highly-detailed-digi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97722)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2C4545FF">
+        <img alt="Beached steampunk submarine shipwreck in swamp,  dark atmosphere, night, mijn, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, erte, 8 k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/e8a689ed599913978426689d08a854c1a2ea504431f7cbc25ff82748e98269f1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97722_beached-steampunk-submarine-shipwreck-in-swamp-dark-atmosphere-night-mijn-highly-detailed-digi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97721)">
+        
+        <div class="relative overflow-hidden" style="background-color:#314948FF">
+        <img alt="Beached steampunk submarine shipwreck in swamp,  dark atmosphere, night, mijn, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, erte, 8 k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/f4659dbbbb771e6e1e5d2596083a249bee2c67a6f7cb640d13a5d77457e39ef8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97721_beached-steampunk-submarine-shipwreck-in-swamp-dark-atmosphere-night-mijn-highly-detailed-digi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97720)">
+        
+        <div class="relative overflow-hidden" style="background-color:#232F33FF">
+        <img alt="Beached steampunk submarine shipwreck in swamp,  dark atmosphere, night, mijn, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, erte, 8 k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/5d2de51060d7e1683da4c391ad38f5acbac998a400a2371384aef278056965c6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97720_beached-steampunk-submarine-shipwreck-in-swamp-dark-atmosphere-night-mijn-highly-detailed-digi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97719)">
+        
+        <div class="relative overflow-hidden" style="background-color:#1B2826FF">
+        <img alt="Beached steampunk submarine shipwreck in swamp,  dark atmosphere, night, mijn, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, erte, 8 k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/e30f8d48258eac7b9c8f3dd88e447b87c1e07058edb95038bb6e0d8d94521874.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97719_beached-steampunk-submarine-shipwreck-in-swamp-dark-atmosphere-night-mijn-highly-detailed-digi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97717)">
+        
+        <div class="relative overflow-hidden" style="background-color:#132227FF">
+        <img alt="Beached steampunk submarine shipwreck in swamp,  dark atmosphere, night, mijn, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, erte, 8 k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/ec5f908540fe8cc9d3376b77b48ca73d515e603b7f15215cd5c524abb2bcebb0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97717_beached-steampunk-submarine-shipwreck-in-swamp-dark-atmosphere-night-mijn-highly-detailed-digi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(70118)">
+        
+        <div class="relative overflow-hidden" style="background-color:#243836FF">
+        <img alt="Beached steampunk submarine shipwreck in swamp,  dark atmosphere, night, mijn, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, erte, 8 k, Highly Detailed, Artstation, Digital Painting, Illustration, Sharp Focus, Smooth, Concept Art by Stanley Artgerm Lau, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/908df586599e08d44f6ac3d2c215145496433cdb988b64953aeaeaf4935fbf2c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/70/70118_beached-steampunk-submarine-shipwreck-in-swamp-dark-atmosphere-night-mijn-highly-detailed-digi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87458)">
+        
+        <div class="relative overflow-hidden" style="background-color:#536067FF">
+        <img alt="A woman with pink hair and heterochromatic eyes (one blue, one green), riding her motorcycle through neon-lit city streets at night, Highly Detailed, Intricate, Half Body, Realistic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/cb52835dc8e4e1553d69bda18c49bcf13909c80e624cbfcba77681b68af141d0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87458_a-woman-with-pink-hair-and-heterochromatic-eyes-one-blue-one-green-riding-her-motorcycle-through.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87459)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4D575DFF">
+        <img alt="A woman with pink hair and heterochromatic eyes (one blue, one green), riding her motorcycle through neon-lit city streets at night, Highly Detailed, Intricate, Half Body, Realistic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/f40c0627988d5e75b806fae78bad935b98ab110bb2bff7b92024f74867b04e63.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87459_a-woman-with-pink-hair-and-heterochromatic-eyes-one-blue-one-green-riding-her-motorcycle-through.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87460)">
+        
+        <div class="relative overflow-hidden" style="background-color:#53585EFF">
+        <img alt="A woman with pink hair and heterochromatic eyes (one blue, one green), riding her motorcycle through neon-lit city streets at night, Highly Detailed, Intricate, Half Body, Realistic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/f5b030029dd5d4a3bb6fab21abddf9c4f96220e1f49235018f566e28bb798c07.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87460_a-woman-with-pink-hair-and-heterochromatic-eyes-one-blue-one-green-riding-her-motorcycle-through.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91380)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F7D83FF">
+        <img alt="A futuristic biker chick in a sleek black leather jumpsuit rides a neon-lit motorcycle through a cityscape at dusk, the skyscrapers towering above her." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/27/12/c28177edc2dab784a6a3afbce0a34a3551360d8884ec37fb88f8fd76f1b57aa3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91380_a-futuristic-biker-chick-in-a-sleek-black-leather-jumpsuit-rides-a-neon-lit-motorcycle-through-a-cit.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91382)">
+        
+        <div class="relative overflow-hidden" style="background-color:#777068FF">
+        <img alt="A futuristic biker chick in a sleek black leather jumpsuit rides a neon-lit motorcycle through a cityscape at dusk, the skyscrapers towering above her." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/27/12/c48c1d130ab115a7c59029d3e34c0cc42c5a62b644013dd80c9fea43ee82f268.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91382_a-futuristic-biker-chick-in-a-sleek-black-leather-jumpsuit-rides-a-neon-lit-motorcycle-through-a-cit.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91381)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D6062FF">
+        <img alt="A futuristic biker chick in a sleek black leather jumpsuit rides a neon-lit motorcycle through a cityscape at dusk, the skyscrapers towering above her." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/27/12/d72311718780d1cf6dd4e7f2cf60ffa1acebbca5e376d41e8a15e2641e833445.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91381_a-futuristic-biker-chick-in-a-sleek-black-leather-jumpsuit-rides-a-neon-lit-motorcycle-through-a-cit.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91379)">
+        
+        <div class="relative overflow-hidden" style="background-color:#817670FF">
+        <img alt="A futuristic biker chick in a sleek black leather jumpsuit rides a neon-lit motorcycle through a cityscape at dusk, the skyscrapers towering above her." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/27/12/3fd5f8d2ca5e494577a09cf83f2a37b0814f16376730cbdd5904d44f95365429.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91379_a-futuristic-biker-chick-in-a-sleek-black-leather-jumpsuit-rides-a-neon-lit-motorcycle-through-a-cit.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97702)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7B7C76FF">
+        <img alt="futuristic car with huge wheels and modernized taillights" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/157c4736a85dcb5b3bba282aecaec7cd07c783b48c7a0c4fb6fa884e0034a8e4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97702_futuristic-car-with-huge-wheels-and-modernized-taillights.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97701)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E7592FF">
+        <img alt="futuristic car with huge wheels and modernized taillights" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/46f34382d33276086671e93540c202f5c96d3f8dde8c2c7b960b40e4cb5500c7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97701_futuristic-car-with-huge-wheels-and-modernized-taillights.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97699)">
+        
+        <div class="relative overflow-hidden" style="background-color:#B3AEB2FF">
+        <img alt="futuristic car with huge wheels and modernized taillights" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/122160597b671dc11090166d85c4df53861f66af79f575c876e7f002312eec02.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97699_futuristic-car-with-huge-wheels-and-modernized-taillights.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97703)">
+        
+        <div class="relative overflow-hidden" style="background-color:#56676EFF">
+        <img alt="futuristic car with huge wheels and modernized taillights" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/079f41471a7b2f2ac8ce08c69c239e39a282766f0c3bfe9b40188b46ec9c70c1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97703_futuristic-car-with-huge-wheels-and-modernized-taillights.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97708)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A6B70FF">
+        <img alt="futuristic car with huge wheels and modernized taillights" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/c6191839d470a009e061bc99312a9de3db3129e182951cc5844830de0aa16825.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97708_futuristic-car-with-huge-wheels-and-modernized-taillights.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97707)">
+        
+        <div class="relative overflow-hidden" style="background-color:#616569FF">
+        <img alt="futuristic car with huge wheels and modernized taillights" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/1bb45faa1c32f1639cdbaaefe69193f55992feef363addefc700ca408bc2b2ad.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97707_futuristic-car-with-huge-wheels-and-modernized-taillights.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97705)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5F5E60FF">
+        <img alt="futuristic car with huge wheels and modernized taillights" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/8de2855595a2137bd9ece4e1f57327b69567acad593bd4a2a378842716f87c11.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97705_futuristic-car-with-huge-wheels-and-modernized-taillights.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)" v-on:open="openDialog">
+        <template #icons="artifact">
+            <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                <div class="flex flex-col h-full justify-between">
+                    <div class="flex justify-between flex-none">
+                        <artifact-like-icon :artifact="artifact" v-on:changed="update"></artifact-like-icon>
+                        <artifact-menu-icon :artifact="artifact" v-on:show-artifact-menu="artifactMenu=artifact"></artifact-menu-icon>
+                    </div>
+                    <artifact-explore-icon :artifact="artifact" v-on:changed="update"></artifact-explore-icon>
+                </div>
+            </div>
+        </template>
+        <template #contextmenu="artifact">
+            <artifact-menu v-if="artifactMenu?.id === artifact.id" :artifact="artifactMenu" menu-class="justify-end"
+                           v-on:changed="notifyChanged" v-on:done="artifactMenu=null" v-on:open="openDialog">
+            </artifact-menu>
+        </template>
+    </artifact-modal>
+    <artifact-dialogs :show="open" :artifact="artifact" v-on:done="closeDialog"></artifact-dialogs>
+</div>
+
+<script type="module">
+import { ref, inject, getCurrentInstance } from "vue"
+import { mount } from "app.mjs"
+import { Store } from "store.mjs"
+
+const Gallery = {
+    setup() {
+        const store = inject('store')
+        const artifact = ref()
+        
+        async function loadArtifact(id) {
+            artifact.value = await store.getArtifact(id)
+        }
+        function showArtifact(a) {
+            artifact.value = a
+        }
+        
+        const instance = getCurrentInstance()
+        const artifactMenu = ref()
+        const open = ref('')
+        function openDialog(dialog, artifact) {
+            artifactMenu.value = null
+            open.value = dialog
+            //artifact.value = artifact
+        }
+        function closeDialog() {
+            open.value = ''
+            //artifact.value = null
+        }
+        function notifyChanged() {
+            artifactMenu.value = null
+            forceUpdate()
+            update() 
+        }
+        function update() {}
+        function forceUpdate() { instance?.proxy?.$forceUpdate() }
+        
+        return { store, artifact, loadArtifact, showArtifact,
+            artifactMenu, open, openDialog, closeDialog, notifyChanged, update }
+    }
+}
+mount('#gallery', Gallery)
+</script>
+    
+
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="relative z-10 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://razor-ssg.web-templates.io/posts/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

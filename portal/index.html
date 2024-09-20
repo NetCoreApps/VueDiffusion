@@ -81,7 +81,7 @@
     import { Authenticate, AdminData } from "dtos.mjs"
 
     const baseUrl = location.origin === 'https://diffusion.works'
-        ? 'https://api.blazordiffusion.com'
+        ? 'https://blazordiffusion.com'
         : 'https://localhost:5001'
     const urls = {
         logout: appendQueryString(`${baseUrl}/auth/logout`, {'continue': leftPart(location.href,'#')})

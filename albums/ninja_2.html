@@ -1,0 +1,2079 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Ninja Page 2</title>
+    <base href="/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "store.mjs": "./mjs/store.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"baseUrl":"https://diffusion.works","cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+    <style>:root { color-scheme:dark }</style>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header id="header" class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex sm:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Diffusion Works</span>
+                <svg class="hidden sm:inline w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M8.55 3.06c1.01.34-1.95 2.01-.1 3.13c1.04.63 3.31-2.22 4.45-2.86c.97-.54 2.67-.65 3.53 1.23c1.09 2.38.14 8.57-3.79 11.06c-3.97 2.5-8.97 1.23-10.7-2.66c-2.01-4.53 3.12-11.09 6.61-9.9zm1.21 6.45c.73 1.64 4.7-.5 3.79-2.8c-.59-1.49-4.48 1.25-3.79 2.8z"/></svg>
+                <span class="ml-1 text-lg sm:text-xl leading-6 tracking-tight text-white">diffusion.works</span>
+            </a>
+        </div>
+        <div class="flex sm:hidden">
+            <button v-on:click="showMobileNav=true" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden sm:flex sm:flex-1 sm:justify-end">
+            <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+        </div>
+    </nav>
+    <div v-if="showMobileNav" class="sm:hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button v-on:click="showMobileNav=false" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <sign-in-link menu-class="left-4">
+                            <div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
+</header>
+
+<script>
+const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
+if (cachedAuth?.profileUrl) {
+    document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
+        </div>`)
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
+
+const HeaderNav = {
+    setup() {
+        const showMobileNav = ref(false)
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
+    }
+}
+mount('#header', HeaderNav)
+
+mountAll()
+</script>
+
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-16 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="20">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">Ninja</h1>
+    </div>
+
+    
+    <nav class="mt-8 mb-8 flex items-center justify-between border-t border-gray-700 px-4 sm:px-0">
+        <div class="-mt-px flex w-0 flex-1">
+                <a href="/albums/ninja" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">
+                    <!-- Heroicon name: mini/arrow-long-left -->
+                    <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"/>
+                    </svg>
+                    Previous
+                </a>
+        </div>
+        <div class="hidden md:-mt-px md:flex">
+                    <a href="/albums/ninja" class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">1</a>
+                    <a href="/albums/ninja_2" class="inline-flex items-center border-t-2 border-indigo-400 px-4 pt-4 text-sm font-medium text-indigo-300" aria-current="page">2</a>
+        </div>
+        <div class="-mt-px flex w-0 flex-1 justify-end">
+        </div>
+    </nav>
+
+    
+<div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(78189)">
+        
+        <div class="relative overflow-hidden" style="background-color:#57596AFF">
+        <img alt="Mysterious beautiful kunoichi ninja with blue hair wearing black, red, and gold jewelry in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Red Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/07/31/12/60f7e0780ca7bcb14976cd75a645597e4405da570c5d560b460e7faa2ea2ddc0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/78/78189_mysterious-beautiful-kunoichi-ninja-with-blue-hair-wearing-black-red-and-gold-jewelry-in-the-stree.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75530)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5F5040FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and gold, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/2d4c98a5dcfc9e82ba27ebbd17f122beebca216a8c6ac0ed44f7c2aa340647cc.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75530_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-gold.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75528)">
+        
+        <div class="relative overflow-hidden" style="background-color:#776857FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and gold, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/ef410c43f5f2054906f3f82a7dabf89989622c9fd8bc659220fbdb6f139cc446.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75528_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-gold.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75527)">
+        
+        <div class="relative overflow-hidden" style="background-color:#564C43FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and gold, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/e6635d0eca8b2e803c7b355a5332eb81ecbe80f6edefa406988c4b17ab1c46a2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75527_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-gold.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75526)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B4C40FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and gold, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/34dd4543c57c6a951478efffa6a7c7355c573cee956887ba524cd30d1f81e743.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75526_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-gold.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75523)">
+        
+        <div class="relative overflow-hidden" style="background-color:#584D42FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and gold, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/47c360e19ec9f73e86938d3d9ddfedc5904655c6e7c54a8645f183aeda6a4b7b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75523_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-gold.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75521)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D5448FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/7a5f2cb8c9e163b60a193cae2bbe4fc5e40b80264c2499a2961700adc76bc398.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75521_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75520)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4E4333FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/c3eb6a4adecd8aace152d85ec203c58b577633627107807e2bd7627297d85555.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75520_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75519)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5A4E39FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/274b50161972b7c05f8d9e6ba451b4b6339f8ecd9ea458f53fb6c42cad8b1035.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75519_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75518)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D513CFF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/779f0824f45b2bee089af9c7caeec8f944bfe84a277ff77e0bf26f325386ccc1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75518_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75517)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8E7C53FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/2c09e75662c860410006d0c3be7e05eed118d0aad3af970859032a3248e932e4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75517_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75514)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F4739FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/977c3d342792be41322ce9b10f4042033a2bbb27193728841e42225bee7c6e39.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75514_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75512)">
+        
+        <div class="relative overflow-hidden" style="background-color:#846D42FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/b5e41402c3bb945df253f1a37b89a5a73dff211da3e0f3af8b5f01ef31c42a99.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75512_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75510)">
+        
+        <div class="relative overflow-hidden" style="background-color:#66522DFF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/a8bf81874605559a7421919f5d4abb0eb16db561955970e79451ea19bd2866ba.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75510_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75509)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5A4D39FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/9cb1cb3b670617a5f2709c8fc78fa230fd18761647eff4373327197d19761ff7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75509_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75506)">
+        
+        <div class="relative overflow-hidden" style="background-color:#50442DFF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/bb7bc0949ac5c5636358f4e7048f99fc1b4bb220dcce7129a28418096c64da1c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75506_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75505)">
+        
+        <div class="relative overflow-hidden" style="background-color:#59482BFF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/f2286d6afd37c868bcf1cc4e084b704f3c944490e8cf6cc06eb9280c8a59d2ce.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75505_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75504)">
+        
+        <div class="relative overflow-hidden" style="background-color:#716042FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in black and yellow, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/06/12/2842394cdb429dc5a6fa750b0476d4efc33a08aff15aea237f580322e0b732ae.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75504_matte-portrait-of-a-beautiful-kunoichi-ninja-in-black-and-yellow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75472)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6B2022FF">
+        <img alt="Silhouette of a ninja assassin with her drawn daggers in front of a red sunset, Ambient Lighting, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/04/12/9a4e92d14e8d0138360dc91dc8fa64e779c295eafab91e2f7715e9347880e269.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75472_silhouette-of-a-ninja-assassin-with-her-drawn-daggers-in-front-of-a-red-sunset.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75470)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D1F22FF">
+        <img alt="Silhouette of a ninja assassin with her drawn daggers in front of a red sunset, Ambient Lighting, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/04/12/56a50cbb6161dba9a89cec6e18cbb65a32b95e4b992caec340c71974c7b241fe.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75470_silhouette-of-a-ninja-assassin-with-her-drawn-daggers-in-front-of-a-red-sunset.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75466)">
+        
+        <div class="relative overflow-hidden" style="background-color:#812226FF">
+        <img alt="Silhouette of a ninja assassin with her drawn daggers in front of a red sunset, Ambient Lighting, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/04/12/92b607996b076a15df08b6bfd7144fbdc23c7c312122b6a89443638ff156e132.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75466_silhouette-of-a-ninja-assassin-with-her-drawn-daggers-in-front-of-a-red-sunset.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75465)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7E2C2FFF">
+        <img alt="Silhouette of a ninja assassin with her drawn daggers in front of a red sunset, Ambient Lighting, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/01/04/12/68b728a074f67cdc8ae62535fd71053a4067a16368f9e0c4ddab2fc9e9755fed.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75465_silhouette-of-a-ninja-assassin-with-her-drawn-daggers-in-front-of-a-red-sunset.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75427)">
+        
+        <div class="relative overflow-hidden" style="background-color:#59383AFF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/22/12/e421466ca3c545917e921702c3f27e0472ee1b9a57079274eeb4879004ef5013.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75427_matte-portrait-of-a-beautiful-kunoichi-ninja-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75425)">
+        
+        <div class="relative overflow-hidden" style="background-color:#845152FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/22/12/11582c55cd1899f43c4024454de674fda4e8689571260890bafe708564ae7de7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75425_matte-portrait-of-a-beautiful-kunoichi-ninja-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75423)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D484AFF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/22/12/8f9d3e740d887059b0e8ae39be73fc1e0aa7c24f045c8377241563adfe96dd9f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75423_matte-portrait-of-a-beautiful-kunoichi-ninja-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75422)">
+        
+        <div class="relative overflow-hidden" style="background-color:#492F33FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/22/12/4dc0e9d513f9d249a8a0b9afad8872b0132320dd862834828569b2ea9f9cd143.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75422_matte-portrait-of-a-beautiful-kunoichi-ninja-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75421)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3A2124FF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/22/12/fd936eb14b6083eeee32ed729c15161afbcf854a4b22cf46f1f7b20d62afdf29.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75421_matte-portrait-of-a-beautiful-kunoichi-ninja-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(75420)">
+        
+        <div class="relative overflow-hidden" style="background-color:#78595BFF">
+        <img alt="Matte portrait of a beautiful Kunoichi Ninja in dark red, 8k, Highly Detailed, Intricate, Realistic, Sharp Focus, Volumetric Lighting, Fantasy, Elegant by Stanley Artgerm Lau, Alphonse Mucha, WLOP, Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/12/22/12/0ae7fc190e6e71513ddf1b088ff08c676e0b3e02eeb32d4d3d71c3a6a53e49d4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/75/75420_matte-portrait-of-a-beautiful-kunoichi-ninja-in-dark-red.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71971)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6B6462FF">
+        <img alt="Silhouette of a mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/6b45b8ffc71f08140ae85985a82cee7716eeffb92e105294976547c51d32097d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71971_silhouette-of-a-mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-stre.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71970)">
+        
+        <div class="relative overflow-hidden" style="background-color:#56514EFF">
+        <img alt="Silhouette of a mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/f8a74222ed4454efee4894931d6bf35c4534a32da114630b06afb6990351a103.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71970_silhouette-of-a-mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-stre.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71969)">
+        
+        <div class="relative overflow-hidden" style="background-color:#605F61FF">
+        <img alt="Silhouette of a mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/58f0b227b4861b2cda51fc7d8e0e263106bb712eda14cf1b86f87bf481c56bef.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71969_silhouette-of-a-mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-stre.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71967)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C6059FF">
+        <img alt="Silhouette of a mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/439fbbd22cd56038ee748be93c564b9fb0c61af737d48291081b6833484783cf.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71967_silhouette-of-a-mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-stre.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71963)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D5757FF">
+        <img alt="A mysterious Gogo Yubari kill bill ninja in a dark snowy Tokyo town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/689a03f47dc47a612847d6388238cbf8f25521989797e5d5a21313bb45fce46c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71963_a-mysterious-gogo-yubari-kill-bill-ninja-in-a-dark-snowy-tokyo-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71949)">
+        
+        <div class="relative overflow-hidden" style="background-color:#585557FF">
+        <img alt="Silhouette of a mysterious Gogo Yubari kill bill ninja in a dark snowy town in Tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/74338008c3b713755918d7289b675d872611d17d55af9f196acd794a24b5dd7d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71949_silhouette-of-a-mysterious-gogo-yubari-kill-bill-ninja-in-a-dark-snowy-town-in-tokyo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71946)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F635DFF">
+        <img alt="Silhouette of a mysterious kill bill ninja in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/e9a9dae70319c44399600f9f0e9454eae69f545828f4ae5fbb9ce725abe9824b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71946_silhouette-of-a-mysterious-kill-bill-ninja-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71943)">
+        
+        <div class="relative overflow-hidden" style="background-color:#595553FF">
+        <img alt="Silhouette of a mysterious kill bill ninja in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/c209990f2678c0e8899464a86c734143aa10d5c59da77b5a650b9640c9eb4bef.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71943_silhouette-of-a-mysterious-kill-bill-ninja-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71935)">
+        
+        <div class="relative overflow-hidden" style="background-color:#59574DFF">
+        <img alt="Mysterious beautiful kill bill ninja in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/6e39952e6f7bd294f1875fde479ab3f1572f6152c821f309f989a3e81fe9019c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71935_mysterious-beautiful-kill-bill-ninja-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71933)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E5444FF">
+        <img alt="Mysterious beautiful kill bill ninja in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/e41109417c0ae29db1ae6222386ff905218e8034cc080e8b724f565a1734dc0c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71933_mysterious-beautiful-kill-bill-ninja-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71932)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C6B66FF">
+        <img alt="Mysterious beautiful kill bill ninja in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/a8048597dccb4a68f5d6e166c5e82026c2b762961ececeb886c42703ab34743a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71932_mysterious-beautiful-kill-bill-ninja-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71930)">
+        
+        <div class="relative overflow-hidden" style="background-color:#625D53FF">
+        <img alt="Mysterious beautiful kill bill ninja in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/08/12/576ce4ca0cc19094256319ee70b82a5f1f2018b80d33649069a51a78ef1f55f9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71930_mysterious-beautiful-kill-bill-ninja-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71412)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A5753FF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red and gold in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Blonde Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/28fcb3a53e0b54725bdf506d35248392ef04d509b6f23a115abca4f24d5ce8e8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71412_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71409)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E5152FF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red and gold in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Blonde Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/478bb03b1ef3d118f7b9e57fe410353b5f6008be1666c7cafdcb279aef221f68.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71409_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71408)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B4F4DFF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red and gold in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Blonde Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/7c0c21d4fb7d39dc7316b21a5419d4570c56a20220911d56a36039cde3439bf7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71408_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71406)">
+        
+        <div class="relative overflow-hidden" style="background-color:#645A5AFF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red and gold in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, White Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/f16b5869a8fdd886b37901c484ce36913832833f741239479dd7d7aa2e0c4eb5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71406_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71403)">
+        
+        <div class="relative overflow-hidden" style="background-color:#625552FF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red and gold in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, White Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/3298ef66d376e2fd860419ff696c5df8a4fd01b2fddc332a475e5041b006a888.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71403_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71401)">
+        
+        <div class="relative overflow-hidden" style="background-color:#62534FFF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red and gold in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, White Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/5cf88b299a8aadad1740c239743edad4b3e75c1fe2b1a4d33feb7141d3eb961e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71401_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71400)">
+        
+        <div class="relative overflow-hidden" style="background-color:#645452FF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red and gold in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, White Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/ae3b90d29857eccdf7a3fe8d518add567139306a8c515636a013c86090a5db5d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71400_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71395)">
+        
+        <div class="relative overflow-hidden" style="background-color:#594F51FF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red and gold in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Blue Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/820938e0c29ecfca97187b968d43606176dd5b25c29938de92eeeeb69d9e5c3d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71395_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71391)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D5C61FF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red and gold in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Blue Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/e93ed5d77b58deb066d43871c8fe542b497bbb63c82ac2a700b79ff075e3fa3a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71391_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-in-the-streets-of-a-dark-snowy-town.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71384)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5A5250FF">
+        <img alt="Mysterious beautiful kunoichi ninja with ashen hair wearing black and gold jewelry in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Red Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/29f636f266a66e397bda6d25a40aca6383dae88de999f3f7adde4aeabd8c4e96.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71384_mysterious-beautiful-kunoichi-ninja-with-ashen-hair-wearing-black-and-gold-jewelry-in-the-streets-of.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71388)">
+        
+        <div class="relative overflow-hidden" style="background-color:#554845FF">
+        <img alt="Mysterious beautiful kunoichi ninja with ashen hair wearing black and gold jewelry in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Red Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/0f574a25ef57ebcd0c147ef8c28761973cef34b918338e635b9585db0951630e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71388_mysterious-beautiful-kunoichi-ninja-with-ashen-hair-wearing-black-and-gold-jewelry-in-the-streets-of.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71377)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A5E5FFF">
+        <img alt="Mysterious beautiful kunoichi ninja with blue hair wearing black, red, and gold jewelry in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Red Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/723ae34bb594ba994c0d9c7096cc27bb19fe1ed55c5e95dea9dc578fedfedd36.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71377_mysterious-beautiful-kunoichi-ninja-with-blue-hair-wearing-black-red-and-gold-jewelry-in-the-stree.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71376)">
+        
+        <div class="relative overflow-hidden" style="background-color:#555256FF">
+        <img alt="Mysterious beautiful kunoichi ninja with blue hair wearing black, red, and gold jewelry in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Red Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/2e1f1d92678dbf5ad24e32098f98ac7c903d0f73d3a0dfb110be2a98e61d84f0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71376_mysterious-beautiful-kunoichi-ninja-with-blue-hair-wearing-black-red-and-gold-jewelry-in-the-stree.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71204)">
+        
+        <div class="relative overflow-hidden" style="background-color:#514D45FF">
+        <img alt="Red haired armed kunoichi ninja in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/88b84b58e294d7a9a53df3f9f5a2d3d9ecebb9f37ac6fcaa3fd8038242050c3f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71204_red-haired-armed-kunoichi-ninja-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71202)">
+        
+        <div class="relative overflow-hidden" style="background-color:#544F49FF">
+        <img alt="Red haired armed kunoichi ninja in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/a8c9dee803fed3364794218bed999dfd61757871a8ba40f8f79c8abe29e1f9e4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71202_red-haired-armed-kunoichi-ninja-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71201)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3F3636FF">
+        <img alt="Red hooded female ninja in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/a7d9845a16a3252f0032036237cce4b38719fdc89fda4a60671f59549a2e140e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71201_red-hooded-female-ninja-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(70828)">
+        
+        <div class="relative overflow-hidden" style="background-color:#786663FF">
+        <img alt="&quot;female Japanese ronin&quot;, heroine, katana, samurai, head and shoulders portrait, intricately detailed eyes, 8k, Gothic and Fantasy, Trending on Artstation, Unreal Engine, Dynamic Lighting, Volumetric Lighting by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/9528e322d758980eb75affe25840b57d7762170ba9701409603025dea0913cf0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/70/70828_female-japanese-ronin-heroine-katana-samurai-head-and-shoulders-portrait-intricately-detailed.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(70211)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4E3F3CFF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red, and gold jewelry in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Red Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/15c73491c2be3149b801fa68bf5afe8cb6c73bd5e22791836c5c2f84476861e2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/70/70211_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-jewelry-in-the-streets-of-a-dark-sn.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(70208)">
+        
+        <div class="relative overflow-hidden" style="background-color:#685F61FF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red, and gold jewelry in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Red Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/fec1503de38b3554b1cf2642576460ab6461ad170c353bd1e90a2037fac3fad7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/70/70208_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-jewelry-in-the-streets-of-a-dark-sn.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(70205)">
+        
+        <div class="relative overflow-hidden" style="background-color:#574340FF">
+        <img alt="Mysterious beautiful kunoichi ninja wearing black, red, and gold jewelry in the streets of a dark snowy town in russia, 8k, Intricate Details, Trending on Artstation, Red Hair by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/ce23baa61335289108a2953760f04f1febfc00086b8f8c9ccf36af8661b80554.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/70/70205_mysterious-beautiful-kunoichi-ninja-wearing-black-red-and-gold-jewelry-in-the-streets-of-a-dark-sn.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69206)">
+        
+        <div class="relative overflow-hidden" style="background-color:#555250FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/7c6b1408f840706c89143ef96c8c8a80545f55255cbf94a92036042a0191c32b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69206_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-streets-of-dark-snow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69205)">
+        
+        <div class="relative overflow-hidden" style="background-color:#626062FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/bee36ee763ec110cc87c2d34b95b50b0a6b476a0b4b432a710d3fc49fe297e0b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69205_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-streets-of-dark-snow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69204)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E5B5AFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/582eeed0aa335190e610d232d9620e320b03d22acddf206159d248232aa7cafe.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69204_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-streets-of-dark-snow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69202)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4D4C4DFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/37a0b276440dbdf5ab42e8b6ac9f46730f40e2bb25b8208b442efa0fd5b9232f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69202_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-streets-of-dark-snow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69201)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C5958FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/4ae642e45730e25b97a33a5b01617cf419383ea692a98b71c373e305338b5897.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69201_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-streets-of-dark-snow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69200)">
+        
+        <div class="relative overflow-hidden" style="background-color:#514E4CFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/4d05d2424209b0f7832694365c65dd7e1feb66808f6ff5264712d13d9f022e26.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69200_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-streets-of-dark-snow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69198)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E5653FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black leather and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/15866807dbd5a12f267cadbc04dadcf71a59ce33389bc756752c067c8c0d89ea.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69198_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-leather-and-gold-in-the-streets-of-dark-snow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69197)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4B4744FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/ff0adbafc2751ae90b8188cea883a02546110211d90ba030ec25ddcc44748599.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69197_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-and-gold-in-the-streets-of-dark-snowy-tokyo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69196)">
+        
+        <div class="relative overflow-hidden" style="background-color:#68605CFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/302244f9abf51167a33b184a7535984585884e8e75f2361cb2bcdd1a82247ce4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69196_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-and-gold-in-the-streets-of-dark-snowy-tokyo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69195)">
+        
+        <div class="relative overflow-hidden" style="background-color:#65615FFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/9a73bd782dd633b3fc48c8d706d6fb13d67bfe71838b23b53081db7363912bd2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69195_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-and-gold-in-the-streets-of-dark-snowy-tokyo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69194)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6B6662FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/5f1d8c32e6dd9fa4637f30ac0fb0dd08f2b00906e99abc13b80f4f2f3554b613.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69194_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-and-gold-in-the-streets-of-dark-snowy-tokyo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69193)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D5552FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/07902ea74e9521d54c99adce2d4d808835fc88f43cb5dca9b446f303aaae33c1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69193_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-and-gold-in-the-streets-of-dark-snowy-tokyo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69192)">
+        
+        <div class="relative overflow-hidden" style="background-color:#544F4AFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/ea5609e779f62e0db165930269e67743673f8ec892ad633d6d0a9ba451ce1c56.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69192_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-and-gold-in-the-streets-of-dark-snowy-tokyo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69191)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D5855FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/c0f95c7f1ca4db5919bebc86476837509d81246d9527a9fdcddcb7e6fc0e6a96.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69191_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-and-gold-in-the-streets-of-dark-snowy-tokyo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69190)">
+        
+        <div class="relative overflow-hidden" style="background-color:#66615EFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/620c0a8797f2de7472dd1b1d23b86bb4451b2853887e0c7407faf9f93a2a5279.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69190_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-and-gold-in-the-streets-of-dark-snowy-tokyo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69189)">
+        
+        <div class="relative overflow-hidden" style="background-color:#55524FFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing black and gold in the streets of dark snowy tokyo, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/45f47014af38207573e601d0552b7919205ab009e3ca7ba23ae429edc0d46694.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69189_mysterious-beautiful-armed-kunoichi-ninja-wearing-black-and-gold-in-the-streets-of-dark-snowy-tokyo.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69050)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E5856FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/af0cc5987173731096e2f682fe30681498608fa186b1c2e7872abc3301f01976.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69050_mysterious-beautiful-armed-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-streets-of-a-dark.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69049)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D5553FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/167ac902645391ff21929294802b5da3d6e24673b056e247ed79ab4e5b0383b1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69049_mysterious-beautiful-armed-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-streets-of-a-dark.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69047)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E5857FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/f2ea30e34e13c9baff3e41859b322049673e35149d1e4c8816d930d04955537a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69047_mysterious-beautiful-armed-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-streets-of-a-dark.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69046)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D595AFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/9764c34491cfb7012d1c4ddf1b28e9df2efc7fcca8dfe902e0ab26c655098674.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69046_mysterious-beautiful-armed-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-streets-of-a-dark.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69045)">
+        
+        <div class="relative overflow-hidden" style="background-color:#59595AFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/85d88d6126d3e32e390a4bdc4c0e6c6db3e357d308fa22614898f493aa370716.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69045_mysterious-beautiful-armed-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-streets-of-a-dark.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69043)">
+        
+        <div class="relative overflow-hidden" style="background-color:#534B4BFF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/c10a8ca77b42d2cc4d25457b6da2a6e5aada25d7917f82a8bed09eab97f2977c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69043_mysterious-beautiful-armed-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-streets-of-a-dark.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69042)">
+        
+        <div class="relative overflow-hidden" style="background-color:#524F50FF">
+        <img alt="Mysterious beautiful armed kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/e92a5a2031f4f985ae27af610aa5add7b7c3c21a47c4c855c7a0350137fe8b66.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69042_mysterious-beautiful-armed-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-streets-of-a-dark.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67196)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5A5553FF">
+        <img alt="Wallpaper of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/03/12/518007ba112cfc43a19ddae45ebaa2ccab3d88914d819b418f1da064445425d5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67196_wallpaper-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67194)">
+        
+        <div class="relative overflow-hidden" style="background-color:#514D4BFF">
+        <img alt="Wallpaper of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/03/12/13254e5e0a61dfef1be9ff270b4ae814d16a38b2182223b3d6f2fe996e203101.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67194_wallpaper-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67193)">
+        
+        <div class="relative overflow-hidden" style="background-color:#595859FF">
+        <img alt="Wallpaper of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/03/12/f9e4377cf68f985c8d058597ea2aebc98bdde85155c1977d590c2548d25834e6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67193_wallpaper-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67192)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B5654FF">
+        <img alt="Wallpaper of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/03/12/9131447bb38ceb7576068c9ca301058fe05ea6704359d91fd34a0f6f22b70354.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67192_wallpaper-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67191)">
+        
+        <div class="relative overflow-hidden" style="background-color:#575658FF">
+        <img alt="Wallpaper of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/03/12/3904a49688441369cf867f563a1213809302db22d8b3774239835c75fc868465.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67191_wallpaper-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67188)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D5554FF">
+        <img alt="Wallpaper of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/03/12/cdad8d1efb1fc1efd003938b6e19dad19db3e8461c4a37dd1d9b94627e434942.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67188_wallpaper-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67195)">
+        
+        <div class="relative overflow-hidden" style="background-color:#575151FF">
+        <img alt="Wallpaper of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/03/12/741fc986489d7c87de735ed284cfb634a17ca4ff3fc689d57e8a0915f3ff418d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67195_wallpaper-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67189)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5F5B5DFF">
+        <img alt="Wallpaper of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/03/12/07ee13de1c7a0ab4e9356e737c4af7055e9c76805ef02216162418bf5e7d42bf.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67189_wallpaper-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67190)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5F5C5CFF">
+        <img alt="Wallpaper of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning, Centered by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/03/12/3632e31fc6668830cd01e38a1b286e91b1558b8e3b274ff900c27cb0bd4b662a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67190_wallpaper-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry-in-the-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67640)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7E7D7DFF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/9f74a5f5457283ba2b762895b8e6d6f71d2e99e3fed00f045982a48552dd1da7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67640_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67638)">
+        
+        <div class="relative overflow-hidden" style="background-color:#858383FF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/350039c32fc8b8975c649f3f706dea79c1a46653d89949ea5c619724a11566d5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67638_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67636)">
+        
+        <div class="relative overflow-hidden" style="background-color:#888788FF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/49f8ec44002bcaf61cd2d439f0744e992d34cc88a144d420f1afba511ac82571.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67636_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67634)">
+        
+        <div class="relative overflow-hidden" style="background-color:#858484FF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/6c9f2196d8abb5cfb236cb2a5496bd32d98a8d210eaf8b1a96d07e29a7254f67.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67634_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67633)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7B7B7BFF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/5b432a4b6c570a9438eb8d0561c50b8418e408d2663cb43f7977d42227130bb3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67633_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67641)">
+        
+        <div class="relative overflow-hidden" style="background-color:#707070FF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/4743b16cc64425872788890366a8972ed26f985c310427cc3ad33dc81d576861.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67641_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68170)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A6A6BFF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/000d35b6339bc2a90bc5570e9b92167e4434c6785b4b3a6d13fb0cbf969135af.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68170_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68164)">
+        
+        <div class="relative overflow-hidden" style="background-color:#787777FF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/6698c52c9a98e5c2498e0cbe844942f7ef392bb125b2e6aa4d7b7268e21f36ec.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68164_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68172)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7F7F80FF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/64a4ed187b9636fa7c3730bd98e78a7d8ce36bb21d23192233cee063225659af.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68172_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68171)">
+        
+        <div class="relative overflow-hidden" style="background-color:#878685FF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/4c5bfdbfe623b34042ebd148e108d65b94a8b6930879818a8d74d39b59bc51c3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68171_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68166)">
+        
+        <div class="relative overflow-hidden" style="background-color:#767676FF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/7e5daecf049aa3a49a91980865b3f94d01cd4bcb19201eb33d378255526d9266.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68166_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68203)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C5856FF">
+        <img alt="Alluring highly detailed matte portrait of beautiful female ninja wearing Assassin Creed armor in the style of Stefan Kostic, 8k, High Definition, Highly Detailed, Intricate, Half Body, Realistic, Sharp Focus, Fantasy, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/26c1d22d5df4d31e8d13b624c40752a2485891c8d7273c9c7e6c017d7295e187.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68203_alluring-highly-detailed-matte-portrait-of-beautiful-female-ninja-wearing-assassin-creed-armor-in-th.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68279)">
+        
+        <div class="relative overflow-hidden" style="background-color:#706F6FFF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/ad8c0db1dd2a8db453af210e9c8e5ce69fba134288024a4a2e370746765b3423.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68279_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68275)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7C7B7BFF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/a6f2782f4f2eaec8d567bed54d6afbe09e21122aba4630f17f4c2bfdd4fa67ec.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68275_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68277)">
+        
+        <div class="relative overflow-hidden" style="background-color:#757474FF">
+        <img alt="Grayscale matte portrait of a beautiful female ninja with tattoos, 4k, Highly Detailed, Powerful, Alluring, Artstation, Magical, Digital Painting, Photo Realistic, Sharp Focus, Volumetric Lighting, Concept Art by Stanley Artgerm Lau, Alphonse Mucha, Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/4570e6147ff7a26ccf533a46510a78d50ec01ecb2fe0ba94b1b94a0dd2bfd498.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68277_grayscale-matte-portrait-of-a-beautiful-female-ninja-with-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68539)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D5856FF">
+        <img alt="Alluring portrait of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/64a446a956cf2c5a5a8e51795e6b60995d739959832d2ec1b33908280ad15404.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68539_alluring-portrait-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68537)">
+        
+        <div class="relative overflow-hidden" style="background-color:#514C49FF">
+        <img alt="Alluring portrait of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/cdc4233af1d83156b27b42b1c508dbefc13a17c124f0049966451aa77a60a132.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68537_alluring-portrait-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68536)">
+        
+        <div class="relative overflow-hidden" style="background-color:#514D4DFF">
+        <img alt="Alluring portrait of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/dbaaa1b6b0f6e2c2c82743fec5dfc5274c49461f40af89e6b2dcbed0bbde4946.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68536_alluring-portrait-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68535)">
+        
+        <div class="relative overflow-hidden" style="background-color:#606062FF">
+        <img alt="Alluring portrait of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/fa3fac30e0eee3f537110c8c919a12bd9f02c99162fdddb0adc7890a77d94e48.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68535_alluring-portrait-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68534)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5A5655FF">
+        <img alt="Alluring portrait of a mysterious beautiful masked kunoichi ninja wearing eyeliner and gold jewelry in the streets of a dark snowy town in moscow, fluid motion, 8k, Intricate Details, Trending on Artstation, Beautiful, Stunning by Stanley Artgerm Lau, WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/3186a68aa7b820c9725d7f07f2417acefeee3a0ee75b50f005b3dae29fcc7255.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68534_alluring-portrait-of-a-mysterious-beautiful-masked-kunoichi-ninja-wearing-eyeliner-and-gold-jewelry.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)" v-on:open="openDialog">
+        <template #icons="artifact">
+            <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                <div class="flex flex-col h-full justify-between">
+                    <div class="flex justify-between flex-none">
+                        <artifact-like-icon :artifact="artifact" v-on:changed="update"></artifact-like-icon>
+                        <artifact-menu-icon :artifact="artifact" v-on:show-artifact-menu="artifactMenu=artifact"></artifact-menu-icon>
+                    </div>
+                    <artifact-explore-icon :artifact="artifact" v-on:changed="update"></artifact-explore-icon>
+                </div>
+            </div>
+        </template>
+        <template #contextmenu="artifact">
+            <artifact-menu v-if="artifactMenu?.id === artifact.id" :artifact="artifactMenu" menu-class="justify-end"
+                           v-on:changed="notifyChanged" v-on:done="artifactMenu=null" v-on:open="openDialog">
+            </artifact-menu>
+        </template>
+    </artifact-modal>
+    <artifact-dialogs :show="open" :artifact="artifact" v-on:done="closeDialog"></artifact-dialogs>
+</div>
+
+<script type="module">
+import { ref, inject, getCurrentInstance } from "vue"
+import { mount } from "app.mjs"
+import { Store } from "store.mjs"
+
+const Gallery = {
+    setup() {
+        const store = inject('store')
+        const artifact = ref()
+        
+        async function loadArtifact(id) {
+            artifact.value = await store.getArtifact(id)
+        }
+        function showArtifact(a) {
+            artifact.value = a
+        }
+        
+        const instance = getCurrentInstance()
+        const artifactMenu = ref()
+        const open = ref('')
+        function openDialog(dialog, artifact) {
+            artifactMenu.value = null
+            open.value = dialog
+            //artifact.value = artifact
+        }
+        function closeDialog() {
+            open.value = ''
+            //artifact.value = null
+        }
+        function notifyChanged() {
+            artifactMenu.value = null
+            forceUpdate()
+            update() 
+        }
+        function update() {}
+        function forceUpdate() { instance?.proxy?.$forceUpdate() }
+        
+        return { store, artifact, loadArtifact, showArtifact,
+            artifactMenu, open, openDialog, closeDialog, notifyChanged, update }
+    }
+}
+mount('#gallery', Gallery)
+</script>
+    
+    <nav class="mt-8 mb-8 flex items-center justify-between border-t border-gray-700 px-4 sm:px-0">
+        <div class="-mt-px flex w-0 flex-1">
+                <a href="/albums/ninja" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">
+                    <!-- Heroicon name: mini/arrow-long-left -->
+                    <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"/>
+                    </svg>
+                    Previous
+                </a>
+        </div>
+        <div class="hidden md:-mt-px md:flex">
+                    <a href="/albums/ninja" class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">1</a>
+                    <a href="/albums/ninja_2" class="inline-flex items-center border-t-2 border-indigo-400 px-4 pt-4 text-sm font-medium text-indigo-300" aria-current="page">2</a>
+        </div>
+        <div class="-mt-px flex w-0 flex-1 justify-end">
+        </div>
+    </nav>
+
+
+    <h3 class="mt-16 mb-8 text-xl">Other Albums</h3>
+
+    <div class="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
+            <div class="text-center">
+                <a href="/albums/silhouettes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Silhouettes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fog-of-war"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fog of War
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/league-of-legends"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    League of Legends
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/tattoos"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Tattoos
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fictional-characters"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fictional Characters
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/matte-finesse"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Matte Finesse
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/leathered-league"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Leathered League
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/nidalee"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Nidalee
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kassandra"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kassandra
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/the-witcher"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    The Witcher
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/anime"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Anime
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/goddess"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Goddess
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/steampunk"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Steampunk
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/a-christmas-miracle"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    A Christmas Miracle
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/morgana"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Morgana
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/elden-ring"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Elden Ring
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/architect"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Architect
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/black-white"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Black &amp; White
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/irelia"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Irelia
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fantasy"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fantasy
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/league-with-wings"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    League with Wings
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/dystopia"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Dystopia
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ciri"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ciri
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/christmas"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Christmas
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/katarina"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Katarina
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fiora"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fiora
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kayle"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kayle
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/veiled-vixens"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Veiled Vixens
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/feathered-femmes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Feathered Femmes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/forest-femmes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Forest Femmes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ninja"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-300">
+                    Ninja
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/landscapes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Landscapes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/samira"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Samira
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/cyborg"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Cyborg
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/models"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Models
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/futuristic"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Futuristic
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/overwatch"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Overwatch
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/quinn"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Quinn
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/akali"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Akali
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/pirates"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Pirates
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kiki-the-witch"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kiki the witch
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/femme-fighters"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Femme Fighters
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/lyx"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Lux
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/retrofuturistic"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Retrofuturistic
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/high-octane"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    High Octane
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/assassin-s-creed"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Assassin&#x27;s Creed
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/dieter-rams-designs"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Dieter Rams Designs
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/cassandra-cain"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Cassandra Cain
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/nature-s-landing"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Nature&#x27;s Landing
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/sarah-kerrigan"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Sarah Kerrigan
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/poison-ivy"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Poison Ivy
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/miss-fortune"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Miss Fortune
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/a2"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Nier Automata
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/sona"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Sona
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/artistic-effects"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Artistic effects
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/mystical"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Mystical
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vintage-builds"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vintage Builds
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/princess-mononoke"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Princess Mononoke
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vayne"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vayne
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/matte-wings"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Matte Wings
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/dragons"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Dragons
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/gods"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Gods
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/princess-jasmine"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Princess Jasmine
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/matte-portraits"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Matte Portraits
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/sivir"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Sivir
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/weird-portraits"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    weird portraits 
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vex"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vex
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/tifa-lockhart"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Tifa Lockhart
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/tranquil"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Tranquil
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/retro"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Retro
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ghibli"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ghibli
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/evil"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    evil
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/aloy"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Aloy
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/minecraft"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Minecraft
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/disney-portraits"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Disney portraits
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/posters"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    posters 
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/trump"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Trump
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/cyberpunk"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Cyberpunk
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/steampunk-styles"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Steampunk Styles
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/animal-kingdom"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Animal Kingdom
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/lara-croft"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Lara Croft
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ahri"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ahri
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/xmen"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Xmen
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vampira"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vampira
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/seraphine"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Seraphine
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/interior-design"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Interior Design
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/galactica"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Galactica
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vehicles"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vehicles
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vintage-beauty"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vintage Beauty
+                </a>
+            </div>
+    </div>
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="relative z-10 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://razor-ssg.web-templates.io/posts/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,1130 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Vintage Beauty</title>
+    <base href="/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+<link rel="canonical" href="https://blazordiffusion.com/albums/vintage-beauty"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="diffusion.works"/>
+<meta name="twitter:creator" content="@blazordiffusion"/>
+<meta property="og:url" content="https://blazordiffusion.com/albums/vintage-beauty"/>
+<meta property="og:title" content="Vintage Beauty"/>
+<meta property="og:description" content="A regal woman with braided updo, wearing an elaborate gown fit for a queen, with gold filigree and rich, deep satin textures, in a grand throne room adorned with tapestries, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau"/>
+<meta property="og:image" content="https://cdn.diffusion.works/artifacts/2024/08/22/12/7b6ecffe0ebe2213d2cda8d3dc5fddd3680edf31e20ab84c945ca429138676e6.webp"/>
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "store.mjs": "./mjs/store.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"baseUrl":"https://diffusion.works","cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+    <style>:root { color-scheme:dark }</style>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header id="header" class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex sm:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Diffusion Works</span>
+                <svg class="hidden sm:inline w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M8.55 3.06c1.01.34-1.95 2.01-.1 3.13c1.04.63 3.31-2.22 4.45-2.86c.97-.54 2.67-.65 3.53 1.23c1.09 2.38.14 8.57-3.79 11.06c-3.97 2.5-8.97 1.23-10.7-2.66c-2.01-4.53 3.12-11.09 6.61-9.9zm1.21 6.45c.73 1.64 4.7-.5 3.79-2.8c-.59-1.49-4.48 1.25-3.79 2.8z"/></svg>
+                <span class="ml-1 text-lg sm:text-xl leading-6 tracking-tight text-white">diffusion.works</span>
+            </a>
+        </div>
+        <div class="flex sm:hidden">
+            <button v-on:click="showMobileNav=true" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden sm:flex sm:flex-1 sm:justify-end">
+            <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+        </div>
+    </nav>
+    <div v-if="showMobileNav" class="sm:hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button v-on:click="showMobileNav=false" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <sign-in-link menu-class="left-4">
+                            <div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
+</header>
+
+<script>
+const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
+if (cachedAuth?.profileUrl) {
+    document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
+        </div>`)
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
+
+const HeaderNav = {
+    setup() {
+        const showMobileNav = ref(false)
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
+    }
+}
+mount('#header', HeaderNav)
+
+mountAll()
+</script>
+
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-16 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="93">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">Vintage Beauty</h1>
+    </div>
+
+    
+
+    
+<div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(88926)">
+        
+        <div class="relative overflow-hidden" style="background-color:#644C36FF">
+        <img alt="A regal woman with braided updo, wearing an elaborate gown fit for a queen, with gold filigree and rich, deep satin textures, in a grand throne room adorned with tapestries, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/7b6ecffe0ebe2213d2cda8d3dc5fddd3680edf31e20ab84c945ca429138676e6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88926_a-regal-woman-with-braided-updo-wearing-an-elaborate-gown-fit-for-a-queen-with-gold-filigree-and-r.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91959)">
+        
+        <div class="relative overflow-hidden" style="background-color:#726459FF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/eb5471523e1ea4a6f09f2ce4ff9b26b2642e67b3b164a11d0bab0fca44b0645d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91959_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91958)">
+        
+        <div class="relative overflow-hidden" style="background-color:#67564AFF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/aed192389fc25ea48c12078382bed117a1e538e5e48e623c51bbaeae6b400b42.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91958_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91956)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4B4540FF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/57cd6baee1217d55ad18f755c5a74e73a3c53f2be742d76fffdb3330c231594e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91956_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91955)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E4B3AFF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/e5c2ba19688b15f037e01d22f88ee2e422eb9a468ef3c6b45f9806da962e90dc.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91955_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90690)">
+        
+        <div class="relative overflow-hidden" style="background-color:#655041FF">
+        <img alt="Triss Merigold, the elegant and wise sorceress, with short, curly blonde hair and a warm smile, sitting in a cozy library" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/1e347fd8f59c8eb13b7ef630ddadf52ba03e5442ace4f7a565b6108370b5eb9f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90690_triss-merigold-the-elegant-and-wise-sorceress-with-short-curly-blonde-hair-and-a-warm-smile-sitt.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90703)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4C3428FF">
+        <img alt="Fringilla Vigo, the cunning and seductive sorceress, with short, curly red hair and a revealing black dress, standing in a dimly lit tavern" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/300206e13e2a087c23d4ea935dd1f626a8e80a686a39398d3e30fb4fda83dfc0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90703_fringilla-vigo-the-cunning-and-seductive-sorceress-with-short-curly-red-hair-and-a-revealing-blac.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90705)">
+        
+        <div class="relative overflow-hidden" style="background-color:#82644BFF">
+        <img alt="A regal, golden-haired princess, inspired by the kingdom of Cintra, with a kind face and a gentle smile" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/ff084b8072efeb622524361ace871ca5517e117c00cb68adb7887b22d6e7665a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90705_a-regal-golden-haired-princess-inspired-by-the-kingdom-of-cintra-with-a-kind-face-and-a-gentle-sm.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90564)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8A7763FF">
+        <img alt="A radiant princess with skin like porcelain and eyes the color of emeralds, her gown a masterpiece of intricate embroidery and delicate lace, her gentle smile reflecting the warmth of her heart." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/719ea647ec892f45cd7f63fae83921ce7f9cf92f3ba691c20cab4a50b8615433.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90564_a-radiant-princess-with-skin-like-porcelain-and-eyes-the-color-of-emeralds-her-gown-a-masterpiece-o.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90640)">
+        
+        <div class="relative overflow-hidden" style="background-color:#704D3CFF">
+        <img alt="A portrait of Triss Merigold, her auburn hair cascading down her shoulders, a mischievous smile playing on her lips, holding a staff that crackles with magic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/d18a0ff915c682e06d5bb74d8b6db2edbcae7c0effff6701f92b47d72d803d9c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90640_a-portrait-of-triss-merigold-her-auburn-hair-cascading-down-her-shoulders-a-mischievous-smile-play.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90571)">
+        
+        <div class="relative overflow-hidden" style="background-color:#876951FF">
+        <img alt="A young princess with hair the color of spun gold, her delicate features accented by a tiara of gleaming platinum, her expression a blend of wisdom and innocence as she surveys her domain." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/558a01a1e7be22eaed6afcf8f648326c878c94287e1dc72b77712a8f89ea60ea.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90571_a-young-princess-with-hair-the-color-of-spun-gold-her-delicate-features-accented-by-a-tiara-of-glea.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90482)">
+        
+        <div class="relative overflow-hidden" style="background-color:#847360FF">
+        <img alt="Desert queen with sun-kissed skin and kohl-rimmed eyes, adorned in jewel-toned silks and gold, atop a sand dune at sunset" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/25/12/86a2b324cbd08535ef4ad27fb6f25384b15e41c2411c78f649b4d2a9f8cfa12a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90482_desert-queen-with-sun-kissed-skin-and-kohl-rimmed-eyes-adorned-in-jewel-toned-silks-and-gold-atop.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88752)">
+        
+        <div class="relative overflow-hidden" style="background-color:#826950FF">
+        <img alt="A beautiful woman with freckles and curly hair sitting in a cozy caf&#xE9;, her eyes sparkling with laughter, adorned in a cute vintage dress, a steaming cup of coffee in her hands, sunlight streaming through the window., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/8cff7d8d5eb3a6aa496c939d0e6c398c5fb1a2517343bc9bf78ca4c6097308e6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88752_a-beautiful-woman-with-freckles-and-curly-hair-sitting-in-a-cozy-caf-her-eyes-sparkling-with-laught.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90630)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F634DFF">
+        <img alt="A queen with a crown of feathers, her dress a tapestry of bird songs, ruling from a treehouse high in the branches of a forest that stretches to the horizon." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/0f7677fa27f45f2f91e38452865e3fa4286d04ac8c44e14ca1d2a3544e471274.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90630_a-queen-with-a-crown-of-feathers-her-dress-a-tapestry-of-bird-songs-ruling-from-a-treehouse-high-i.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90553)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7B675AFF">
+        <img alt="A young princess with cascading waves of lustrous auburn hair, her delicate features framed by a circlet of silver filigree, a serene expression on her face as she gazes out over her kingdom." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/c150c06bb6ea4ac35bf309af8ced33668d0425370bc3a43af225f9723782a8e6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90553_a-young-princess-with-cascading-waves-of-lustrous-auburn-hair-her-delicate-features-framed-by-a-cir.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90558)">
+        
+        <div class="relative overflow-hidden" style="background-color:#383239FF">
+        <img alt="A powerful queen in a dress of shimmering midnight blue, her shoulders draped in a cloak of deep purple velvet, a scepter of carved ivory in her hand as she stands before her loyal subjects." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/0d20dd0fc1edad6dae95a09af66182bf0e020d1f2227968d143a173ceba1e6c1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90558_a-powerful-queen-in-a-dress-of-shimmering-midnight-blue-her-shoulders-draped-in-a-cloak-of-deep-pur.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90565)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5F534AFF">
+        <img alt="A regal queen in a flowing gown of iridescent silk, her long silver hair adorned with a crown of delicate, twisting vines, her gaze commanding respect and admiration from all who see her." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/83082e16c5806853b1272a2a2b62c6956cc2c20bdb7d4393fc671c26821cc8d0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90565_a-regal-queen-in-a-flowing-gown-of-iridescent-silk-her-long-silver-hair-adorned-with-a-crown-of-del.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90578)">
+        
+        <div class="relative overflow-hidden" style="background-color:#573D32FF">
+        <img alt="A majestic queen in a dress of deep scarlet, her shoulders draped in a cloak of shimmering black velvet, a scepter of carved ebony in her hand as she stands tall and proud, her eyes reflecting the strength and determination that has made her a formidable ruler." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/1ea0ed50a6cadde818f8b6d553cb6f89ef1c6d9235787a1d848e56fe5bb2ea25.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90578_a-majestic-queen-in-a-dress-of-deep-scarlet-her-shoulders-draped-in-a-cloak-of-shimmering-black-vel.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90588)">
+        
+        <div class="relative overflow-hidden" style="background-color:#67695FFF">
+        <img alt="A powerful queen in a flowing gown of deep green and gold, her long dark hair cascading down her back, a crown of intricate metalwork adorning her head, her gaze commanding the respect and loyalty of all who behold her." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/6b27be15187d4970a720b9ea530d2cb53152030e0fa4ab48807745a13b03a125.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90588_a-powerful-queen-in-a-flowing-gown-of-deep-green-and-gold-her-long-dark-hair-cascading-down-her-bac.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90603)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8C7048FF">
+        <img alt="A majestic queen with a crown of golden leaves, her dress woven from the threads of sunlight, presiding over a court in a forest where the trees whisper secrets." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/b3dc2ca099fb902ec58aa95fd1ce458a72666d8a356800e1cbb8416873ebf688.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90603_a-majestic-queen-with-a-crown-of-golden-leaves-her-dress-woven-from-the-threads-of-sunlight-presid.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90608)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4B4E52FF">
+        <img alt="A princess with hair the color of midnight, adorned with a tiara of sea pearls, standing on the deck of a ship sailing through a sea of stars." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/26/12/3ff5626359a23702956b08e96d657758efcb6ea94207c19a4b998ee1d0a0a1ea.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90608_a-princess-with-hair-the-color-of-midnight-adorned-with-a-tiara-of-sea-pearls-standing-on-the-deck.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90128)">
+        
+        <div class="relative overflow-hidden" style="background-color:#614934FF">
+        <img alt="a confident, 1950s-style femme fatale with bold, crimson lips and a sultry gaze" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/24/12/695e366e1a1f9ad6c086a3887606a31deb920fb9f0861fc7ade09a14add6b1c0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90128_a-confident-1950s-style-femme-fatale-with-bold-crimson-lips-and-a-sultry-gaze.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90126)">
+        
+        <div class="relative overflow-hidden" style="background-color:#614B33FF">
+        <img alt="a confident, 1950s-style femme fatale with bold, crimson lips and a sultry gaze" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/24/12/d67437e6f0f0e49d3cd4a7cce6c2aaab7c16710ce45885a450bc12293f6585f0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90126_a-confident-1950s-style-femme-fatale-with-bold-crimson-lips-and-a-sultry-gaze.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90127)">
+        
+        <div class="relative overflow-hidden" style="background-color:#958374FF">
+        <img alt="a confident, 1950s-style femme fatale with bold, crimson lips and a sultry gaze" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/24/12/1831828e791d359fe761f8245bccc55e551511fad1bdade8eaa4feaacff4f1f0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90127_a-confident-1950s-style-femme-fatale-with-bold-crimson-lips-and-a-sultry-gaze.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(90233)">
+        
+        <div class="relative overflow-hidden" style="background-color:#463725FF">
+        <img alt="A mesmerizing woman with fiery red hair, sitting by a cozy fireplace with a book" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/24/12/739ac951ebb32aaff1fe9b84061b248d7c43e6b34487bdbb086ee7cd91b13740.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/90/90233_a-mesmerizing-woman-with-fiery-red-hair-sitting-by-a-cozy-fireplace-with-a-book.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89440)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F6060FF">
+        <img alt="Ethereal queen with porcelain skin and raven-black hair adorned with diamonds, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/442292fe38e0e6dfbd73017874b716d04b5d86ddf895d94bde026c1a733a4a0d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89440_ethereal-queen-with-porcelain-skin-and-raven-black-hair-adorned-with-diamonds.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89409)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6E6660FF">
+        <img alt="Steampunk enchantress with copper accents and a timepiece-adorned corset, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/fdd388a1ac10fcef3267a609fb636e00a5cbfed36a97cf10b437c26ac3c0a063.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89409_steampunk-enchantress-with-copper-accents-and-a-timepiece-adorned-corset.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89453)">
+        
+        <div class="relative overflow-hidden" style="background-color:#31271BFF">
+        <img alt="Renaissance-era noblewoman with a intricate golden headdress and a velvet cloak, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/c38f7035453e0236339188bd6ff3bc38b120f786718c85820c0f79eb5eea9b0a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89453_renaissance-era-noblewoman-with-a-intricate-golden-headdress-and-a-velvet-cloak.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89395)">
+        
+        <div class="relative overflow-hidden" style="background-color:#64594DFF">
+        <img alt="Renaissance-era noblewoman with a intricate golden headdress and a velvet cloak, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/69a6ebc092e1b514420092896bc7c35e8178052ee8a2abee638afe4cda90ba57.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89395_renaissance-era-noblewoman-with-a-intricate-golden-headdress-and-a-velvet-cloak.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89386)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D5959FF">
+        <img alt="Ethereal queen with porcelain skin and raven-black hair adorned with diamonds, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/9c9fa634cd174ea9367b92d94d55084341d7c712626f04466ee14ca9142a0ed4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89386_ethereal-queen-with-porcelain-skin-and-raven-black-hair-adorned-with-diamonds.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89367)">
+        
+        <div class="relative overflow-hidden" style="background-color:#46433DFF">
+        <img alt="A Victorian-era aristocrat with porcelain skin and raven-black hair, dressed in a corset and bustle, surrounded by opulent furnishings and velvet drapes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/8667c23a3091bc64a4c0308636491809ea1838658549f8e2e29538ec96f80d67.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89367_a-victorian-era-aristocrat-with-porcelain-skin-and-raven-black-hair-dressed-in-a-corset-and-bustle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89369)">
+        
+        <div class="relative overflow-hidden" style="background-color:#443529FF">
+        <img alt="A Victorian-era aristocrat with porcelain skin and raven-black hair, dressed in a corset and bustle, surrounded by opulent furnishings and velvet drapes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/2a7bcf517c312ce8ba4b073fbc38999a45d4390a51510672e78e5302d64a77b8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89369_a-victorian-era-aristocrat-with-porcelain-skin-and-raven-black-hair-dressed-in-a-corset-and-bustle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89365)">
+        
+        <div class="relative overflow-hidden" style="background-color:#524938FF">
+        <img alt="A Victorian-era aristocrat with porcelain skin and raven-black hair, dressed in a corset and bustle, surrounded by opulent furnishings and velvet drapes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/157ac0a61912ea422d72407da25d38e3b90bdb32aebd058f8320256e4022a37f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89365_a-victorian-era-aristocrat-with-porcelain-skin-and-raven-black-hair-dressed-in-a-corset-and-bustle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89345)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C4C36FF">
+        <img alt="A regal queen with porcelain skin and fiery red locks, adorned in a gown of shimmering gold and sapphire, surrounded by a retinue of loyal courtiers, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/7e2acb631999c05fc694c78d1902a18f5e1fa950d5f0dc31783c5c492245aa88.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89345_a-regal-queen-with-porcelain-skin-and-fiery-red-locks-adorned-in-a-gown-of-shimmering-gold-and-sapp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89347)">
+        
+        <div class="relative overflow-hidden" style="background-color:#58412BFF">
+        <img alt="A regal queen with porcelain skin and fiery red locks, adorned in a gown of shimmering gold and sapphire, surrounded by a retinue of loyal courtiers, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/3fedced8401305547c7ff00a96efec55caa094ea735f1720fb237209b6c9f0c4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89347_a-regal-queen-with-porcelain-skin-and-fiery-red-locks-adorned-in-a-gown-of-shimmering-gold-and-sapp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89294)">
+        
+        <div class="relative overflow-hidden" style="background-color:#594C43FF">
+        <img alt="A regal queen with porcelain skin and fiery red locks, adorned in a gown of shimmering gold and sapphire, surrounded by a retinue of loyal courtiers, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/d61ffd0ea19a22927cef437e0154779b208a1f802f23413e086f0c7a6ada9b93.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89294_a-regal-queen-with-porcelain-skin-and-fiery-red-locks-adorned-in-a-gown-of-shimmering-gold-and-sapp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89292)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C4D43FF">
+        <img alt="A regal queen with porcelain skin and fiery red locks, adorned in a gown of shimmering gold and sapphire, surrounded by a retinue of loyal courtiers, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/4d1839370ed515124e2dcaa48beb6424de8835f8b028ad5932b85450c4f37dbd.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89292_a-regal-queen-with-porcelain-skin-and-fiery-red-locks-adorned-in-a-gown-of-shimmering-gold-and-sapp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89293)">
+        
+        <div class="relative overflow-hidden" style="background-color:#55473EFF">
+        <img alt="A regal queen with porcelain skin and fiery red locks, adorned in a gown of shimmering gold and sapphire, surrounded by a retinue of loyal courtiers, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/abeeab47e7d14b06fd9257a6d6459e019a7f1563e5763d1472e9ea5f3bed15b3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89293_a-regal-queen-with-porcelain-skin-and-fiery-red-locks-adorned-in-a-gown-of-shimmering-gold-and-sapp.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89311)">
+        
+        <div class="relative overflow-hidden" style="background-color:#53453CFF">
+        <img alt="A Victorian-era aristocrat with porcelain skin and raven-black hair, dressed in a corset and bustle, surrounded by opulent furnishings and velvet drapes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/7a9f1bbe0aaa3948271d8e98bdadf96ff2ce6ac5a2b1d797fd0608b6878968a6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89311_a-victorian-era-aristocrat-with-porcelain-skin-and-raven-black-hair-dressed-in-a-corset-and-bustle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89310)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B4D47FF">
+        <img alt="A Victorian-era aristocrat with porcelain skin and raven-black hair, dressed in a corset and bustle, surrounded by opulent furnishings and velvet drapes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/35fd1b97d4e037f7fd4825fc257e9abc8d1ee6356501ebc4c1db575f9cf19fa0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89310_a-victorian-era-aristocrat-with-porcelain-skin-and-raven-black-hair-dressed-in-a-corset-and-bustle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89313)">
+        
+        <div class="relative overflow-hidden" style="background-color:#484038FF">
+        <img alt="A Victorian-era aristocrat with porcelain skin and raven-black hair, dressed in a corset and bustle, surrounded by opulent furnishings and velvet drapes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/b464ddfa7323da2d88f476d0d3960a5881efd3737d67be3bda088e4ca2b21103.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89313_a-victorian-era-aristocrat-with-porcelain-skin-and-raven-black-hair-dressed-in-a-corset-and-bustle.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87638)">
+        
+        <div class="relative overflow-hidden" style="background-color:#493421FF">
+        <img alt="A stunning woman reminiscent of Salvador Dali&#x27;s &#x27;Gala&#x27;, with bold red lips and curly black hair, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/4374c8346df156dba6ca2c79c3d9e43e617301476f003e256be7b3ee2062fea1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87638_a-stunning-woman-reminiscent-of-salvador-dali-s-gala-with-bold-red-lips-and-curly-black-hair.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87636)">
+        
+        <div class="relative overflow-hidden" style="background-color:#48372AFF">
+        <img alt="A stunning woman reminiscent of Salvador Dali&#x27;s &#x27;Gala&#x27;, with bold red lips and curly black hair, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/db7711ad6e18ffe7eee04853fb3c80be99a5f17b77a620989b8c14de782efb4c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87636_a-stunning-woman-reminiscent-of-salvador-dali-s-gala-with-bold-red-lips-and-curly-black-hair.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88352)">
+        
+        <div class="relative overflow-hidden" style="background-color:#272B26FF">
+        <img alt="An ageless woman with platinum blonde hair, dressed in a Victorian-style midnight blue gown, holding a vintage book and gazing pensively into the distance, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/ccb42da2daa2937fa2b45e05ce54c71501fac1bce90cbee0b502ed498ab3e244.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88352_an-ageless-woman-with-platinum-blonde-hair-dressed-in-a-victorian-style-midnight-blue-gown-holding.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88354)">
+        
+        <div class="relative overflow-hidden" style="background-color:#282825FF">
+        <img alt="An ageless woman with platinum blonde hair, dressed in a Victorian-style midnight blue gown, holding a vintage book and gazing pensively into the distance, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/030b73d2b742491974f54dfab240026734d9d67ae5d7bcec08feabf0e24ca4d7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88354_an-ageless-woman-with-platinum-blonde-hair-dressed-in-a-victorian-style-midnight-blue-gown-holding.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87733)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F3E2BFF">
+        <img alt="Victorian era sweetheart with raven tresses, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/bf7b003ea4d5f9f09465416bd15699f64868b4b6bd50c580f7d08c375df96ac3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87733_victorian-era-sweetheart-with-raven-tresses.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87730)">
+        
+        <div class="relative overflow-hidden" style="background-color:#373227FF">
+        <img alt="Victorian era sweetheart with raven tresses, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/b2129e4639a61b1b8eb8919001b218d0c7b65840ef740b705612c8c2b355e66b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87730_victorian-era-sweetheart-with-raven-tresses.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87715)">
+        
+        <div class="relative overflow-hidden" style="background-color:#46392CFF">
+        <img alt="Victorian era sweetheart with raven tresses, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/56fe36a2dcd260089b4f0be024499cbab5052a8dc900e587e3e710762d0164f8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87715_victorian-era-sweetheart-with-raven-tresses.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88890)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7F6654FF">
+        <img alt="An elegant woman with a porcelain complexion, dressed in a Victorian-era ballgown, adorned with delicate lace and sparkling jewels, standing in a grandiose ballroom, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/d2218aa4a56e5b53760995ddce2558934e2dbba81709e00ca86d77df2a220258.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88890_an-elegant-woman-with-a-porcelain-complexion-dressed-in-a-victorian-era-ballgown-adorned-with-deli.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89122)">
+        
+        <div class="relative overflow-hidden" style="background-color:#464638FF">
+        <img alt="An embodiment of renaissance beauty, painted with colors that blend the Renaissance era&#x27;s elegance and modern artistry, her expression one of thoughtful contemplation amidst an ornate studio filled with artifacts of the past., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/1657e51aa7b8434b387a232f862e1053c94a83d5734de459aece7d5d1b9dff19.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89122_an-embodiment-of-renaissance-beauty-painted-with-colors-that-blend-the-renaissance-era-s-elegance-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(89121)">
+        
+        <div class="relative overflow-hidden" style="background-color:#524330FF">
+        <img alt="An embodiment of renaissance beauty, painted with colors that blend the Renaissance era&#x27;s elegance and modern artistry, her expression one of thoughtful contemplation amidst an ornate studio filled with artifacts of the past., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/23/12/d7d35811b38a1616b8d67ef7acd69e768c1e521806df18311a3dd9dadc6ceb3d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/89/89121_an-embodiment-of-renaissance-beauty-painted-with-colors-that-blend-the-renaissance-era-s-elegance-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87939)">
+        
+        <div class="relative overflow-hidden" style="background-color:#555A36FF">
+        <img alt="A vibrant Renaissance-style portrait of a woman with fiery red hair and emerald green eyes, wearing an elegant silk gown, set against a lush garden backdrop., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/1565b151e8f9636bd42c82de2b310fb62688009383b4119ef223cc0df759095d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87939_a-vibrant-renaissance-style-portrait-of-a-woman-with-fiery-red-hair-and-emerald-green-eyes-wearing.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87938)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4A5938FF">
+        <img alt="A vibrant Renaissance-style portrait of a woman with fiery red hair and emerald green eyes, wearing an elegant silk gown, set against a lush garden backdrop., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/126768a4d3523508d506e31cbbceadf23342e9beebe2acbdc4ccc21880dd3452.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87938_a-vibrant-renaissance-style-portrait-of-a-woman-with-fiery-red-hair-and-emerald-green-eyes-wearing.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87937)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E5A3CFF">
+        <img alt="A vibrant Renaissance-style portrait of a woman with fiery red hair and emerald green eyes, wearing an elegant silk gown, set against a lush garden backdrop., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/224ce87e61884a2d20f5b08558b5f945abc3f5f8b41712f60c3d8db6b3ae9892.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87937_a-vibrant-renaissance-style-portrait-of-a-woman-with-fiery-red-hair-and-emerald-green-eyes-wearing.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87934)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6B5D37FF">
+        <img alt="A vibrant Renaissance-style portrait of a woman with fiery red hair and emerald green eyes, wearing an elegant silk gown, set against a lush garden backdrop., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/25b3e8bacf8ceccac30229ba75fcff70a323d1fdcd4726e7bbf2bd80dad0d3e4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87934_a-vibrant-renaissance-style-portrait-of-a-woman-with-fiery-red-hair-and-emerald-green-eyes-wearing.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87931)">
+        
+        <div class="relative overflow-hidden" style="background-color:#775C42FF">
+        <img alt="A vibrant Renaissance-style portrait of a woman with fiery red hair and emerald green eyes, wearing an elegant silk gown, set against a lush garden backdrop., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/e1a92d10925ace7f729b6181e7ab52ded95651255ef06e37c95f57368cee8431.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87931_a-vibrant-renaissance-style-portrait-of-a-woman-with-fiery-red-hair-and-emerald-green-eyes-wearing.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87930)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C462AFF">
+        <img alt="A vibrant Renaissance-style portrait of a woman with fiery red hair and emerald green eyes, wearing an elegant silk gown, set against a lush garden backdrop., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/9fa360490bf47a774939a38f205b6d201c558725f17a4b61b9a514b549dc90a9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87930_a-vibrant-renaissance-style-portrait-of-a-woman-with-fiery-red-hair-and-emerald-green-eyes-wearing.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87644)">
+        
+        <div class="relative overflow-hidden" style="background-color:#61584AFF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/2ea9cb283e752aea28f7fb9cf5bce703e09a3f5686fc4f1733d8c828ed1b9b65.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87644_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87641)">
+        
+        <div class="relative overflow-hidden" style="background-color:#403224FF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/18debc0ec5552e1743259590217bc906428ef54042247fb4ef4e1c27ac550bd1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87641_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87640)">
+        
+        <div class="relative overflow-hidden" style="background-color:#483627FF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/d128a4319301acee68201590e80fa588a88cb57171f5cb2a68d912ef79f877fd.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87640_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87523)">
+        
+        <div class="relative overflow-hidden" style="background-color:#675C53FF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/2fdfac63f957e52bfb2ae0f5fca28947244d713505097566172f02ea1979738f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87523_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87521)">
+        
+        <div class="relative overflow-hidden" style="background-color:#76665CFF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/0a1c0fe01c65c8e916f41c7d7900fb2173259c7db240ee567d713871d63c5e9b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87521_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87520)">
+        
+        <div class="relative overflow-hidden" style="background-color:#665C54FF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/20fe3fc3bfcf4ca906468fa46e25621650dc0c35a5441091e704a47222635dfd.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87520_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87522)">
+        
+        <div class="relative overflow-hidden" style="background-color:#625951FF">
+        <img alt="A gorgeous woman inspired by the Renaissance era, with long, straight brown hair and piercing blue eyes, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/50b1fd32055634c30c35950a69fb98a1958df4d3d79391ebee6fa716c975b7d4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87522_a-gorgeous-woman-inspired-by-the-renaissance-era-with-long-straight-brown-hair-and-piercing-blue-e.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88626)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B5145FF">
+        <img alt="A stunning woman with long red hair, wearing an intricately detailed medieval gown, standing in a grand castle hall, the light streaming through stained glass windows, regal and majestic, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/fce70ea5ecb870c92439ab79fa1b3e4ae90d52b88fcd08f03d8ab2ea2fa4c0b1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88626_a-stunning-woman-with-long-red-hair-wearing-an-intricately-detailed-medieval-gown-standing-in-a-gr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88628)">
+        
+        <div class="relative overflow-hidden" style="background-color:#605345FF">
+        <img alt="A stunning woman with long red hair, wearing an intricately detailed medieval gown, standing in a grand castle hall, the light streaming through stained glass windows, regal and majestic, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/f08857a266cdb5caa7a38882e513a3ca5c2baa1eba86488f6dc0b79d6753910f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88628_a-stunning-woman-with-long-red-hair-wearing-an-intricately-detailed-medieval-gown-standing-in-a-gr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88979)">
+        
+        <div class="relative overflow-hidden" style="background-color:#553D35FF">
+        <img alt="A regal woman with braided updo, wearing an elaborate gown fit for a queen, with gold filigree and rich, deep satin textures, in a grand throne room adorned with tapestries, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/d761ca2f2a8798febd6a836e4f18e9193d6682ba06ea0a76b82821fd6083ef21.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88979_a-regal-woman-with-braided-updo-wearing-an-elaborate-gown-fit-for-a-queen-with-gold-filigree-and-r.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88977)">
+        
+        <div class="relative overflow-hidden" style="background-color:#503C29FF">
+        <img alt="A regal woman with braided updo, wearing an elaborate gown fit for a queen, with gold filigree and rich, deep satin textures, in a grand throne room adorned with tapestries, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/07d4fcba86de9f83b409296d9df764370ade4fb0ea2a3e63e579a3654b2dc3b5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88977_a-regal-woman-with-braided-updo-wearing-an-elaborate-gown-fit-for-a-queen-with-gold-filigree-and-r.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88978)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3C362DFF">
+        <img alt="A regal woman with braided updo, wearing an elaborate gown fit for a queen, with gold filigree and rich, deep satin textures, in a grand throne room adorned with tapestries, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/b3abdbc826e8c98a65a2d877c48166cf8eea27a92d2f8a9999285950cc163b2b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88978_a-regal-woman-with-braided-updo-wearing-an-elaborate-gown-fit-for-a-queen-with-gold-filigree-and-r.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88975)">
+        
+        <div class="relative overflow-hidden" style="background-color:#574C38FF">
+        <img alt="A regal woman with braided updo, wearing an elaborate gown fit for a queen, with gold filigree and rich, deep satin textures, in a grand throne room adorned with tapestries, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/6c6603d3eab26ac9bacd99844739dd3327bc3f0be6973cdbfda110f385f8325e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88975_a-regal-woman-with-braided-updo-wearing-an-elaborate-gown-fit-for-a-queen-with-gold-filigree-and-r.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88976)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4E402CFF">
+        <img alt="A regal woman with braided updo, wearing an elaborate gown fit for a queen, with gold filigree and rich, deep satin textures, in a grand throne room adorned with tapestries, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/166260071ef514896acde24c74e06308b4fb4dab0bf6bb2e86bb8d8871b283be.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88976_a-regal-woman-with-braided-updo-wearing-an-elaborate-gown-fit-for-a-queen-with-gold-filigree-and-r.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88684)">
+        
+        <div class="relative overflow-hidden" style="background-color:#70614EFF">
+        <img alt="A stunning woman with long red hair, wearing an intricately detailed medieval gown, standing in a grand castle hall, the light streaming through stained glass windows, regal and majestic, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/ed937ada87bacb262cd6d9aebdd16a500a49b57c27d60424c29dda20cd038106.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88684_a-stunning-woman-with-long-red-hair-wearing-an-intricately-detailed-medieval-gown-standing-in-a-gr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88681)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D5A42FF">
+        <img alt="A stunning woman with long red hair, wearing an intricately detailed medieval gown, standing in a grand castle hall, the light streaming through stained glass windows, regal and majestic, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/ad87490037bbd388f2e9d104e1c96fc3329a9827bb95479263046cce70e59baa.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88681_a-stunning-woman-with-long-red-hair-wearing-an-intricately-detailed-medieval-gown-standing-in-a-gr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88680)">
+        
+        <div class="relative overflow-hidden" style="background-color:#625A4CFF">
+        <img alt="A stunning woman with long red hair, wearing an intricately detailed medieval gown, standing in a grand castle hall, the light streaming through stained glass windows, regal and majestic, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/f5354428c97297a55fdbf1f448debb36aa77465fb4ca2c0dd5e8de27a3487319.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88680_a-stunning-woman-with-long-red-hair-wearing-an-intricately-detailed-medieval-gown-standing-in-a-gr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88682)">
+        
+        <div class="relative overflow-hidden" style="background-color:#534335FF">
+        <img alt="A stunning woman with long red hair, wearing an intricately detailed medieval gown, standing in a grand castle hall, the light streaming through stained glass windows, regal and majestic, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/cb91a66119137bd9e7726f5ab7bc29efee6f1307e57c02a5efce83e6a10bc095.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88682_a-stunning-woman-with-long-red-hair-wearing-an-intricately-detailed-medieval-gown-standing-in-a-gr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88929)">
+        
+        <div class="relative overflow-hidden" style="background-color:#614B35FF">
+        <img alt="A regal woman with braided updo, wearing an elaborate gown fit for a queen, with gold filigree and rich, deep satin textures, in a grand throne room adorned with tapestries, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/1ea70ea69277e83ea804bc3032d10f02b2932f76931464f83d4c880298bd07e3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88929_a-regal-woman-with-braided-updo-wearing-an-elaborate-gown-fit-for-a-queen-with-gold-filigree-and-r.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88928)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5D4732FF">
+        <img alt="A regal woman with braided updo, wearing an elaborate gown fit for a queen, with gold filigree and rich, deep satin textures, in a grand throne room adorned with tapestries, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/a25a4fbc5d77b2caed655acd894eb1a2c49690249b5479e6893530e9f5146704.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88928_a-regal-woman-with-braided-updo-wearing-an-elaborate-gown-fit-for-a-queen-with-gold-filigree-and-r.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)" v-on:open="openDialog">
+        <template #icons="artifact">
+            <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                <div class="flex flex-col h-full justify-between">
+                    <div class="flex justify-between flex-none">
+                        <artifact-like-icon :artifact="artifact" v-on:changed="update"></artifact-like-icon>
+                        <artifact-menu-icon :artifact="artifact" v-on:show-artifact-menu="artifactMenu=artifact"></artifact-menu-icon>
+                    </div>
+                    <artifact-explore-icon :artifact="artifact" v-on:changed="update"></artifact-explore-icon>
+                </div>
+            </div>
+        </template>
+        <template #contextmenu="artifact">
+            <artifact-menu v-if="artifactMenu?.id === artifact.id" :artifact="artifactMenu" menu-class="justify-end"
+                           v-on:changed="notifyChanged" v-on:done="artifactMenu=null" v-on:open="openDialog">
+            </artifact-menu>
+        </template>
+    </artifact-modal>
+    <artifact-dialogs :show="open" :artifact="artifact" v-on:done="closeDialog"></artifact-dialogs>
+</div>
+
+<script type="module">
+import { ref, inject, getCurrentInstance } from "vue"
+import { mount } from "app.mjs"
+import { Store } from "store.mjs"
+
+const Gallery = {
+    setup() {
+        const store = inject('store')
+        const artifact = ref()
+        
+        async function loadArtifact(id) {
+            artifact.value = await store.getArtifact(id)
+        }
+        function showArtifact(a) {
+            artifact.value = a
+        }
+        
+        const instance = getCurrentInstance()
+        const artifactMenu = ref()
+        const open = ref('')
+        function openDialog(dialog, artifact) {
+            artifactMenu.value = null
+            open.value = dialog
+            //artifact.value = artifact
+        }
+        function closeDialog() {
+            open.value = ''
+            //artifact.value = null
+        }
+        function notifyChanged() {
+            artifactMenu.value = null
+            forceUpdate()
+            update() 
+        }
+        function update() {}
+        function forceUpdate() { instance?.proxy?.$forceUpdate() }
+        
+        return { store, artifact, loadArtifact, showArtifact,
+            artifactMenu, open, openDialog, closeDialog, notifyChanged, update }
+    }
+}
+mount('#gallery', Gallery)
+</script>
+    
+
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="relative z-10 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://razor-ssg.web-templates.io/posts/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

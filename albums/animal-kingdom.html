@@ -1,0 +1,1757 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Animal Kingdom</title>
+    <base href="/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+<link rel="canonical" href="https://blazordiffusion.com/albums/animal-kingdom"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="diffusion.works"/>
+<meta name="twitter:creator" content="@blazordiffusion"/>
+<meta property="og:url" content="https://blazordiffusion.com/albums/animal-kingdom"/>
+<meta property="og:title" content="Animal Kingdom"/>
+<meta property="og:description" content="Raven in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau"/>
+<meta property="og:image" content="https://cdn.diffusion.works/artifacts/2024/08/06/12/dc2f690cc8c755add2a22d0f2ee30a9fcef53ae69dde5f85afd3c4f17e5f8266.webp"/>
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "store.mjs": "./mjs/store.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"baseUrl":"https://diffusion.works","cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+    <style>:root { color-scheme:dark }</style>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header id="header" class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex sm:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Diffusion Works</span>
+                <svg class="hidden sm:inline w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M8.55 3.06c1.01.34-1.95 2.01-.1 3.13c1.04.63 3.31-2.22 4.45-2.86c.97-.54 2.67-.65 3.53 1.23c1.09 2.38.14 8.57-3.79 11.06c-3.97 2.5-8.97 1.23-10.7-2.66c-2.01-4.53 3.12-11.09 6.61-9.9zm1.21 6.45c.73 1.64 4.7-.5 3.79-2.8c-.59-1.49-4.48 1.25-3.79 2.8z"/></svg>
+                <span class="ml-1 text-lg sm:text-xl leading-6 tracking-tight text-white">diffusion.works</span>
+            </a>
+        </div>
+        <div class="flex sm:hidden">
+            <button v-on:click="showMobileNav=true" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden sm:flex sm:flex-1 sm:justify-end">
+            <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+        </div>
+    </nav>
+    <div v-if="showMobileNav" class="sm:hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button v-on:click="showMobileNav=false" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <sign-in-link menu-class="left-4">
+                            <div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
+</header>
+
+<script>
+const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
+if (cachedAuth?.profileUrl) {
+    document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
+        </div>`)
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
+
+const HeaderNav = {
+    setup() {
+        const showMobileNav = ref(false)
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
+    }
+}
+mount('#header', HeaderNav)
+
+mountAll()
+</script>
+
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-16 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="91">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">Animal Kingdom</h1>
+    </div>
+
+    
+
+    
+<div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(79267)">
+        
+        <div class="relative overflow-hidden" style="background-color:#697271FF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/dc2f690cc8c755add2a22d0f2ee30a9fcef53ae69dde5f85afd3c4f17e5f8266.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79267_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97764)">
+        
+        <div class="relative overflow-hidden" style="background-color:#797E74FF">
+        <img alt="CUTE AND ADORABLE FLUFFY cute creature FANTASY, DREAMLIKE, SURREALISM, SUPER CUTE" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/e66e1420967325c4da3d19ce305e4d7edf8a967a79b78f2080eda29b0489634e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97764_cute-and-adorable-fluffy-cute-creature-fantasy-dreamlike-surrealism-super-cute.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97763)">
+        
+        <div class="relative overflow-hidden" style="background-color:#83867FFF">
+        <img alt="CUTE AND ADORABLE FLUFFY cute creature FANTASY, DREAMLIKE, SURREALISM, SUPER CUTE" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/b2ae04f6ef8b47559adafa198d191e76d59d4b48ebfdfeec5569dd45358df3f9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97763_cute-and-adorable-fluffy-cute-creature-fantasy-dreamlike-surrealism-super-cute.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97762)">
+        
+        <div class="relative overflow-hidden" style="background-color:#858980FF">
+        <img alt="CUTE AND ADORABLE FLUFFY cute creature FANTASY, DREAMLIKE, SURREALISM, SUPER CUTE" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/e81fa0908a04143ed4a49443d3cea10a2f690aea823e07a22a7172031201e36a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97762_cute-and-adorable-fluffy-cute-creature-fantasy-dreamlike-surrealism-super-cute.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97761)">
+        
+        <div class="relative overflow-hidden" style="background-color:#9A9D9BFF">
+        <img alt="CUTE AND ADORABLE FLUFFY cute creature FANTASY, DREAMLIKE, SURREALISM, SUPER CUTE" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/b5f55d9cd6ea81316fe5f153feab2781e1424e53ddfdf4808368006f443884e2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97761_cute-and-adorable-fluffy-cute-creature-fantasy-dreamlike-surrealism-super-cute.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97716)">
+        
+        <div class="relative overflow-hidden" style="background-color:#404142FF">
+        <img alt="Robotic eagle, wires and gears" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/7aac707e48f369b389a297879f737976b1be3394f4e0096fefa24f4602ae9d40.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97716_robotic-eagle-wires-and-gears.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97715)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3F4143FF">
+        <img alt="Robotic eagle, wires and gears" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/c3a3d5184d53d53a7ba5150d071981e869ccee4125a91f20299512b760e5fcce.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97715_robotic-eagle-wires-and-gears.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97714)">
+        
+        <div class="relative overflow-hidden" style="background-color:#423F3EFF">
+        <img alt="Robotic eagle, wires and gears" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/f7d0004a5476db8b90934a5bf0353667b92a69d9710719f59d147223e8c2a495.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97714_robotic-eagle-wires-and-gears.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97713)">
+        
+        <div class="relative overflow-hidden" style="background-color:#343434FF">
+        <img alt="Robotic eagle, wires and gears" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/5ff9133f1ec4fe654edd5cb1c01fc6c9539f7b248dbed58062b4ab1d6ae49918.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97713_robotic-eagle-wires-and-gears.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97709)">
+        
+        <div class="relative overflow-hidden" style="background-color:#767F7AFF">
+        <img alt="Robotic eagle, wires and gears" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/d8b5775fcf0742ff9b22b39c8ecd7092ae415b2cab518cd9e19adfb5f5d0be58.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97709_robotic-eagle-wires-and-gears.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97712)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2B2925FF">
+        <img alt="Robotic eagle, wires and gears" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/252ced5379ebcd5c82344cbc1141bc1cd9d698109443abebd3d446be1f9dc8ef.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97712_robotic-eagle-wires-and-gears.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97711)">
+        
+        <div class="relative overflow-hidden" style="background-color:#272D2FFF">
+        <img alt="Robotic eagle, wires and gears" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/797aeddb0a61ec87887890feeb26ef584a77e75ff411a695ef781e40fd800f70.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97711_robotic-eagle-wires-and-gears.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97710)">
+        
+        <div class="relative overflow-hidden" style="background-color:#425860FF">
+        <img alt="Robotic eagle, wires and gears" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/14/12/0d72dc6b700640b37a955f6e3941ed2b2fccc176a0dc1faff2f0191399e5b2a2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97710_robotic-eagle-wires-and-gears.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97623)">
+        
+        <div class="relative overflow-hidden" style="background-color:#25414DFF">
+        <img alt="An immense, bioluminescent, jellyfish-like alien spacecraft, its translucent bell shimmering with ethereal light, trailing long, glowing tendrils as it navigates through a swirling nebula." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/13/12/cf162a53cd4615a2c07fdb36bff8142115f4404808c449cf7ef9e5af6dec2c74.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97623_an-immense-bioluminescent-jellyfish-like-alien-spacecraft-its-translucent-bell-shimmering-with-et.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97622)">
+        
+        <div class="relative overflow-hidden" style="background-color:#324A59FF">
+        <img alt="An immense, bioluminescent, jellyfish-like alien spacecraft, its translucent bell shimmering with ethereal light, trailing long, glowing tendrils as it navigates through a swirling nebula." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/13/12/0da340431ad23fc69c8d654df9f05097404a01f41c58df0494fdffc7d9b87076.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97622_an-immense-bioluminescent-jellyfish-like-alien-spacecraft-its-translucent-bell-shimmering-with-et.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97620)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2F4B54FF">
+        <img alt="An immense, bioluminescent, jellyfish-like alien spacecraft, its translucent bell shimmering with ethereal light, trailing long, glowing tendrils as it navigates through a swirling nebula." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/13/12/496edf511ebb98a361d294e2d5815960ca76f4f9fbb93cc3f76f7df4c4142e4a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97620_an-immense-bioluminescent-jellyfish-like-alien-spacecraft-its-translucent-bell-shimmering-with-et.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97619)">
+        
+        <div class="relative overflow-hidden" style="background-color:#254A59FF">
+        <img alt="An immense, bioluminescent, jellyfish-like alien spacecraft, its translucent bell shimmering with ethereal light, trailing long, glowing tendrils as it navigates through a swirling nebula." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/13/12/8c9918c991d1813b8dbccd3d1c0af8cddb7237fa7bc690f722b622790b6a6ccc.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97619_an-immense-bioluminescent-jellyfish-like-alien-spacecraft-its-translucent-bell-shimmering-with-et.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97621)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2A434DFF">
+        <img alt="An immense, bioluminescent, jellyfish-like alien spacecraft, its translucent bell shimmering with ethereal light, trailing long, glowing tendrils as it navigates through a swirling nebula." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/13/12/99ff2b8e7f031a0421d627369f9602df9ab38304862a0ce7f52c10cc821d8d4b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97621_an-immense-bioluminescent-jellyfish-like-alien-spacecraft-its-translucent-bell-shimmering-with-et.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97603)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8F7D6EFF">
+        <img alt="An immense, bioluminescent, jellyfish-like alien spacecraft, its translucent bell shimmering with ethereal light, trailing long, glowing tendrils as it navigates through a swirling nebula." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/13/12/e94910d5f84958b91821016480b2f5f06172bf2537af14d6cad07ea71d7e5545.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97603_an-immense-bioluminescent-jellyfish-like-alien-spacecraft-its-translucent-bell-shimmering-with-et.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97602)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7E7369FF">
+        <img alt="An immense, bioluminescent, jellyfish-like alien spacecraft, its translucent bell shimmering with ethereal light, trailing long, glowing tendrils as it navigates through a swirling nebula." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/13/12/9c09d0316ee8beb2a37c8fd804a4cf519efb99857b07811cc3eb4e4cb6d1a6b2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97602_an-immense-bioluminescent-jellyfish-like-alien-spacecraft-its-translucent-bell-shimmering-with-et.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97601)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3B5849FF">
+        <img alt="An immense, bioluminescent, jellyfish-like alien spacecraft, its translucent bell shimmering with ethereal light, trailing long, glowing tendrils as it navigates through a swirling nebula." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/13/12/ea6d53540bca4a26b85d25e9222d0ea44370150ba04d550f17f343fdab16d7a6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97601_an-immense-bioluminescent-jellyfish-like-alien-spacecraft-its-translucent-bell-shimmering-with-et.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97600)">
+        
+        <div class="relative overflow-hidden" style="background-color:#236076FF">
+        <img alt="An immense, bioluminescent, jellyfish-like alien spacecraft, its translucent bell shimmering with ethereal light, trailing long, glowing tendrils as it navigates through a swirling nebula." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/13/12/3ebd4984dae978f2dd534589e313fdf8892ba8c845f458c35e53a15fef0919ca.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97600_an-immense-bioluminescent-jellyfish-like-alien-spacecraft-its-translucent-bell-shimmering-with-et.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97599)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A726DFF">
+        <img alt="An immense, bioluminescent, jellyfish-like alien spacecraft, its translucent bell shimmering with ethereal light, trailing long, glowing tendrils as it navigates through a swirling nebula." width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/13/12/294057d6ed4aa981496c8d912db77eaa3d636a918a97a43f551e346af9e82d95.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97599_an-immense-bioluminescent-jellyfish-like-alien-spacecraft-its-translucent-bell-shimmering-with-et.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97373)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7D7E58FF">
+        <img alt="A fluffy baby bunny with big eyes, wearing a tiny knitted hat, sitting in a field of clovers, soft lighting, adorable, cute, pixar style" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/011e9a765f3b93f1a620abc013977ad9537428edf07fb7db36663f1467921f0a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97373_a-fluffy-baby-bunny-with-big-eyes-wearing-a-tiny-knitted-hat-sitting-in-a-field-of-clovers-soft-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97371)">
+        
+        <div class="relative overflow-hidden" style="background-color:#817B4EFF">
+        <img alt="A fluffy baby bunny with big eyes, wearing a tiny knitted hat, sitting in a field of clovers, soft lighting, adorable, cute, pixar style" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/e6a8abba33d843b338f9cd581f7a835a8bec6d36d1217b85efbb5f7ffad7644a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97371_a-fluffy-baby-bunny-with-big-eyes-wearing-a-tiny-knitted-hat-sitting-in-a-field-of-clovers-soft-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97369)">
+        
+        <div class="relative overflow-hidden" style="background-color:#9D8868FF">
+        <img alt="A fluffy baby bunny with big eyes, wearing a tiny knitted hat, sitting in a field of clovers, soft lighting, adorable, cute, pixar style" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/bc6279d995f35a77697b8844dd0c6c0699d85c4406a94e85fa81bbeb50c32644.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97369_a-fluffy-baby-bunny-with-big-eyes-wearing-a-tiny-knitted-hat-sitting-in-a-field-of-clovers-soft-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97376)">
+        
+        <div class="relative overflow-hidden" style="background-color:#786549FF">
+        <img alt="A sleepy orange tabby kitten curled up in a warm sunbeam on a fluffy rug, hyperrealistic, 8k, award-winning photography" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/48179986a0c198f642ec5283311afc599dd686ebd007d55384a5be7c96012d88.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97376_a-sleepy-orange-tabby-kitten-curled-up-in-a-warm-sunbeam-on-a-fluffy-rug-hyperrealistic-8k-award.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97380)">
+        
+        <div class="relative overflow-hidden" style="background-color:#ADA27CFF">
+        <img alt="A playful golden retriever puppy with its tongue out, chasing butterflies in a field of wildflowers, whimsical, storybook illustration" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/a91b57142a895452dcf592cb2d069db5404f34e37e89372d033c7fd6b4a20d8f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97380_a-playful-golden-retriever-puppy-with-its-tongue-out-chasing-butterflies-in-a-field-of-wildflowers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97388)">
+        
+        <div class="relative overflow-hidden" style="background-color:#425249FF">
+        <img alt="A mischievous raccoon wearing a tiny bandit mask, peeking out from behind a tree with a sparkling acorn in its paw, enchanting forest setting, soft focus" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/f8706c7811a1f42e5ce041f77b123aa0da228a17ee05dbb98cddf55158fb6fda.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97388_a-mischievous-raccoon-wearing-a-tiny-bandit-mask-peeking-out-from-behind-a-tree-with-a-sparkling-ac.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97385)">
+        
+        <div class="relative overflow-hidden" style="background-color:#40433BFF">
+        <img alt="A mischievous raccoon wearing a tiny bandit mask, peeking out from behind a tree with a sparkling acorn in its paw, enchanting forest setting, soft focus" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/74b759cddba2af0d14355172ea88ab3d491d2262aa952eebfbd0a47f0770eefa.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97385_a-mischievous-raccoon-wearing-a-tiny-bandit-mask-peeking-out-from-behind-a-tree-with-a-sparkling-ac.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97393)">
+        
+        <div class="relative overflow-hidden" style="background-color:#715A3AFF">
+        <img alt="A tiny hedgehog with big eyes and a curious expression, sniffing a pink mushroom in a magical forest, fantasy art, glowing mushrooms" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/422685a835f9b20ddedeb10c7f00827c26f1be29cafdddd92d38b18fe6ee4ad5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97393_a-tiny-hedgehog-with-big-eyes-and-a-curious-expression-sniffing-a-pink-mushroom-in-a-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97392)">
+        
+        <div class="relative overflow-hidden" style="background-color:#574845FF">
+        <img alt="A tiny hedgehog with big eyes and a curious expression, sniffing a pink mushroom in a magical forest, fantasy art, glowing mushrooms" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/b4460d2b74e955f8d50cd99a0d851af25405656006121ccc7b4efe9dd9d58c33.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97392_a-tiny-hedgehog-with-big-eyes-and-a-curious-expression-sniffing-a-pink-mushroom-in-a-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97389)">
+        
+        <div class="relative overflow-hidden" style="background-color:#453E2FFF">
+        <img alt="A tiny hedgehog with big eyes and a curious expression, sniffing a pink mushroom in a magical forest, fantasy art, glowing mushrooms" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/70faea4fe9a0296186e697f430a950ca4899d8b0d4dd13a0b2437e2edd1bf2c1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97389_a-tiny-hedgehog-with-big-eyes-and-a-curious-expression-sniffing-a-pink-mushroom-in-a-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97398)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7B8761FF">
+        <img alt="A fluffy baby bunny with big eyes, wearing a tiny knitted hat, sitting in a field of clovers, soft lighting, adorable, cute, pixar style" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/fce0402b3a1ae76367284863534957f9f6a34777eb3fb561b4030df3695f1546.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97398_a-fluffy-baby-bunny-with-big-eyes-wearing-a-tiny-knitted-hat-sitting-in-a-field-of-clovers-soft-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97396)">
+        
+        <div class="relative overflow-hidden" style="background-color:#737A5CFF">
+        <img alt="A fluffy baby bunny with big eyes, wearing a tiny knitted hat, sitting in a field of clovers, soft lighting, adorable, cute, pixar style" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/ba17218d90cabbb924e2e10b24feae4a08b8a9463fe87edf40fa81dcdded8077.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97396_a-fluffy-baby-bunny-with-big-eyes-wearing-a-tiny-knitted-hat-sitting-in-a-field-of-clovers-soft-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97395)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F775EFF">
+        <img alt="A fluffy baby bunny with big eyes, wearing a tiny knitted hat, sitting in a field of clovers, soft lighting, adorable, cute, pixar style" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/e0d0dffe08cd6ce34e9aa3a910214996727c6be373b8fbfcb0a854656aba189f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97395_a-fluffy-baby-bunny-with-big-eyes-wearing-a-tiny-knitted-hat-sitting-in-a-field-of-clovers-soft-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97394)">
+        
+        <div class="relative overflow-hidden" style="background-color:#76825DFF">
+        <img alt="A fluffy baby bunny with big eyes, wearing a tiny knitted hat, sitting in a field of clovers, soft lighting, adorable, cute, pixar style" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/438384f9779e9b985316de52cca24386b9d50de4a1573773924349b1f44df863.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97394_a-fluffy-baby-bunny-with-big-eyes-wearing-a-tiny-knitted-hat-sitting-in-a-field-of-clovers-soft-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97403)">
+        
+        <div class="relative overflow-hidden" style="background-color:#938A69FF">
+        <img alt="A playful golden retriever puppy with its tongue out, chasing butterflies in a field of wildflowers, whimsical, storybook illustration" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/460c01c241dfc6ee865a9a2a74779bdcaf5563eacd27cd1007499ba2410516b9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97403_a-playful-golden-retriever-puppy-with-its-tongue-out-chasing-butterflies-in-a-field-of-wildflowers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97402)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8E8157FF">
+        <img alt="A playful golden retriever puppy with its tongue out, chasing butterflies in a field of wildflowers, whimsical, storybook illustration" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/ca3148be8a7bb22c365c23e20fb568eb9c0207bebb2af8ed467c15f2dbaa6754.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97402_a-playful-golden-retriever-puppy-with-its-tongue-out-chasing-butterflies-in-a-field-of-wildflowers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97401)">
+        
+        <div class="relative overflow-hidden" style="background-color:#8B805AFF">
+        <img alt="A playful golden retriever puppy with its tongue out, chasing butterflies in a field of wildflowers, whimsical, storybook illustration" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/1f107ff8125cd84dc78888043ba402099d93e86b09af58a3f50209af87da6bf4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97401_a-playful-golden-retriever-puppy-with-its-tongue-out-chasing-butterflies-in-a-field-of-wildflowers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97407)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F644EFF">
+        <img alt="A mischievous raccoon wearing a tiny bandit mask, peeking out from behind a tree with a sparkling acorn in its paw, enchanting forest setting, soft focus" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/8a64643c7b7ff31620767de810ed735a18b9c3cc94b95a6f6d0898ba21cdab0e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97407_a-mischievous-raccoon-wearing-a-tiny-bandit-mask-peeking-out-from-behind-a-tree-with-a-sparkling-ac.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97406)">
+        
+        <div class="relative overflow-hidden" style="background-color:#655A44FF">
+        <img alt="A mischievous raccoon wearing a tiny bandit mask, peeking out from behind a tree with a sparkling acorn in its paw, enchanting forest setting, soft focus" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/f7978dfaaddef0acd1378f33d7b0a9f2a8a0ec7a8677771b84d61547d11a47ad.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97406_a-mischievous-raccoon-wearing-a-tiny-bandit-mask-peeking-out-from-behind-a-tree-with-a-sparkling-ac.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97405)">
+        
+        <div class="relative overflow-hidden" style="background-color:#685D46FF">
+        <img alt="A mischievous raccoon wearing a tiny bandit mask, peeking out from behind a tree with a sparkling acorn in its paw, enchanting forest setting, soft focus" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/9ce8932db91a2c990718a358761ed7ed50b0c9dbb161a2b0c1dbfdccf98f5731.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97405_a-mischievous-raccoon-wearing-a-tiny-bandit-mask-peeking-out-from-behind-a-tree-with-a-sparkling-ac.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97404)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C6248FF">
+        <img alt="A mischievous raccoon wearing a tiny bandit mask, peeking out from behind a tree with a sparkling acorn in its paw, enchanting forest setting, soft focus" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/1c67c41c9d3231e0936a34064313df511f6767ed426e268e5b5a8e0f0176db15.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97404_a-mischievous-raccoon-wearing-a-tiny-bandit-mask-peeking-out-from-behind-a-tree-with-a-sparkling-ac.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97410)">
+        
+        <div class="relative overflow-hidden" style="background-color:#A78C73FF">
+        <img alt="A sleepy orange tabby kitten curled up in a warm sunbeam on a fluffy rug, hyperrealistic, 8k, award-winning photography" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/3140a053bdb423096e81a3382328b6d8639d5b8376f0f145f2802de5a020fd74.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97410_a-sleepy-orange-tabby-kitten-curled-up-in-a-warm-sunbeam-on-a-fluffy-rug-hyperrealistic-8k-award.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97409)">
+        
+        <div class="relative overflow-hidden" style="background-color:#AD9178FF">
+        <img alt="A sleepy orange tabby kitten curled up in a warm sunbeam on a fluffy rug, hyperrealistic, 8k, award-winning photography" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/6c723f5bb41a3f76fd56415d438d7b76e470ede14c1fad1f81ea525ebd2362b6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97409_a-sleepy-orange-tabby-kitten-curled-up-in-a-warm-sunbeam-on-a-fluffy-rug-hyperrealistic-8k-award.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97372)">
+        
+        <div class="relative overflow-hidden" style="background-color:#82713CFF">
+        <img alt="A fluffy baby bunny with big eyes, wearing a tiny knitted hat, sitting in a field of clovers, soft lighting, adorable, cute, pixar style" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/7c5e5d91a0c690d03153afa8525172d5c999d37778cef057429fd80b88a22573.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97372_a-fluffy-baby-bunny-with-big-eyes-wearing-a-tiny-knitted-hat-sitting-in-a-field-of-clovers-soft-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97378)">
+        
+        <div class="relative overflow-hidden" style="background-color:#A0896DFF">
+        <img alt="A sleepy orange tabby kitten curled up in a warm sunbeam on a fluffy rug, hyperrealistic, 8k, award-winning photography" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/7bb250bac437af2651473334f81b2aaa216374ffb70303f49b693282a3f47aa9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97378_a-sleepy-orange-tabby-kitten-curled-up-in-a-warm-sunbeam-on-a-fluffy-rug-hyperrealistic-8k-award.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97379)">
+        
+        <div class="relative overflow-hidden" style="background-color:#A58F65FF">
+        <img alt="A playful golden retriever puppy with its tongue out, chasing butterflies in a field of wildflowers, whimsical, storybook illustration" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/ca51ea9fd2fc490489810f861abccbfbddec20febf3efeba7e7c35cc89862e13.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97379_a-playful-golden-retriever-puppy-with-its-tongue-out-chasing-butterflies-in-a-field-of-wildflowers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97384)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4B4D38FF">
+        <img alt="A mischievous raccoon wearing a tiny bandit mask, peeking out from behind a tree with a sparkling acorn in its paw, enchanting forest setting, soft focus" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/7f26a1e82bbd69f76b6bf0efec4e9287624f2b020e49503284c18f59ff8edbe5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97384_a-mischievous-raccoon-wearing-a-tiny-bandit-mask-peeking-out-from-behind-a-tree-with-a-sparkling-ac.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97391)">
+        
+        <div class="relative overflow-hidden" style="background-color:#454237FF">
+        <img alt="A tiny hedgehog with big eyes and a curious expression, sniffing a pink mushroom in a magical forest, fantasy art, glowing mushrooms" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/7f39d388254fa8612df2ac39d3dc5a9cc87c3f136e8667275ae46da7c0e19c08.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97391_a-tiny-hedgehog-with-big-eyes-and-a-curious-expression-sniffing-a-pink-mushroom-in-a-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97397)">
+        
+        <div class="relative overflow-hidden" style="background-color:#758357FF">
+        <img alt="A fluffy baby bunny with big eyes, wearing a tiny knitted hat, sitting in a field of clovers, soft lighting, adorable, cute, pixar style" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/fb4b35ecaa05776d697538938449ea292247971e340f3482ea58aa9a7fb17103.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97397_a-fluffy-baby-bunny-with-big-eyes-wearing-a-tiny-knitted-hat-sitting-in-a-field-of-clovers-soft-l.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97400)">
+        
+        <div class="relative overflow-hidden" style="background-color:#91855BFF">
+        <img alt="A playful golden retriever puppy with its tongue out, chasing butterflies in a field of wildflowers, whimsical, storybook illustration" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/7bae3439df0fea7a2fe4c5dd7a8c255d4844492624a5a47a1b14870ac6f71c79.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97400_a-playful-golden-retriever-puppy-with-its-tongue-out-chasing-butterflies-in-a-field-of-wildflowers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97408)">
+        
+        <div class="relative overflow-hidden" style="background-color:#665C44FF">
+        <img alt="A mischievous raccoon wearing a tiny bandit mask, peeking out from behind a tree with a sparkling acorn in its paw, enchanting forest setting, soft focus" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/932520b707b28a4f44931e72efe9cee73029775300ab94d2db4d18de0929ac77.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97408_a-mischievous-raccoon-wearing-a-tiny-bandit-mask-peeking-out-from-behind-a-tree-with-a-sparkling-ac.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97413)">
+        
+        <div class="relative overflow-hidden" style="background-color:#AB9078FF">
+        <img alt="A sleepy orange tabby kitten curled up in a warm sunbeam on a fluffy rug, hyperrealistic, 8k, award-winning photography" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/e7311fd6203cf5ea3786bc22820a79ebdcece39abcb7bc095fc85b71f8991beb.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97413_a-sleepy-orange-tabby-kitten-curled-up-in-a-warm-sunbeam-on-a-fluffy-rug-hyperrealistic-8k-award.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97416)">
+        
+        <div class="relative overflow-hidden" style="background-color:#655B51FF">
+        <img alt="A tiny hedgehog with big eyes and a curious expression, sniffing a pink mushroom in a magical forest, fantasy art, glowing mushrooms" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/55eccef1c443e499a73a2e06ca06fcb0685396fca7b0f6d0ed3e10b0bafa94af.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97416_a-tiny-hedgehog-with-big-eyes-and-a-curious-expression-sniffing-a-pink-mushroom-in-a-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97414)">
+        
+        <div class="relative overflow-hidden" style="background-color:#665954FF">
+        <img alt="A tiny hedgehog with big eyes and a curious expression, sniffing a pink mushroom in a magical forest, fantasy art, glowing mushrooms" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/d68f8a34cbac84d0e61cb94dd5a9584a2e55c0d7c388e29c3b42646a037c6de6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97414_a-tiny-hedgehog-with-big-eyes-and-a-curious-expression-sniffing-a-pink-mushroom-in-a-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97418)">
+        
+        <div class="relative overflow-hidden" style="background-color:#61564AFF">
+        <img alt="A tiny hedgehog with big eyes and a curious expression, sniffing a pink mushroom in a magical forest, fantasy art, glowing mushrooms" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/28964b4b07455682e5626fa3e8bb51b2c61013aa7e6cfa0b6b65448b753f66dd.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97418_a-tiny-hedgehog-with-big-eyes-and-a-curious-expression-sniffing-a-pink-mushroom-in-a-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97328)">
+        
+        <div class="relative overflow-hidden" style="background-color:#727E83FF">
+        <img alt="A fluffy, pastel-colored alien with oversized eyes and tiny antennae, giggling and holding a glowing flower, anime style, soft lighting" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/7251b16e88e0407b0b03d08cf35b1f5cb7c4148812deb153b1d20ba115fbe1f1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97328_a-fluffy-pastel-colored-alien-with-oversized-eyes-and-tiny-antennae-giggling-and-holding-a-glowing.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97273)">
+        
+        <div class="relative overflow-hidden" style="background-color:#545028FF">
+        <img alt="A tiny, iridescent alien with butterfly wings releasing glowing dandelion seeds into the wind, magical, ethereal, soft lighting" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/594bf44b96b2b71c61db2d4393ed86476dfc4a94105f156457c7f530fb68e781.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97273_a-tiny-iridescent-alien-with-butterfly-wings-releasing-glowing-dandelion-seeds-into-the-wind-magic.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(97243)">
+        
+        <div class="relative overflow-hidden" style="background-color:#AF977CFF">
+        <img alt="A fluffy, pastel-colored alien with oversized eyes and tiny antennae, giggling and holding a glowing flower, anime style, soft lighting" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/09/11/12/385924c74caa5fc9248eb87c53e28ad3b099fe915b7d80e2fee7acf47d38626c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/97/97243_a-fluffy-pastel-colored-alien-with-oversized-eyes-and-tiny-antennae-giggling-and-holding-a-glowing.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91785)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3F5332FF">
+        <img alt="A wolf in a green magical forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/228da77d7cd42bc1ec2af90652aad6e5e7ea344dd996f50fc1faf4fc957c8f63.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91785_a-wolf-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91784)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3E5B37FF">
+        <img alt="A wolf in a green magical forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/a1c8f1d727fcf2f44e5e9f2cff07ca322adeadeee0b8ced4c98da3a0c14c95c0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91784_a-wolf-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91782)">
+        
+        <div class="relative overflow-hidden" style="background-color:#30483AFF">
+        <img alt="A wolf in a green magical forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/a3950e850671e0fceb1ff26654afe68c6f0b57e02726ad0e0c5332f95686e499.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91782_a-wolf-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91781)">
+        
+        <div class="relative overflow-hidden" style="background-color:#456343FF">
+        <img alt="Panther in a green magical forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/8d33dcc2f73a644eacf4d8a2f57b73e0e4502f879d7e8d09a16a17e0896c891b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91781_panther-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91780)">
+        
+        <div class="relative overflow-hidden" style="background-color:#295943FF">
+        <img alt="Panther in a green magical forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/928e3beff29333394b6dc2dd4269e62596daba5a660b2a326b7842711ecf245e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91780_panther-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91779)">
+        
+        <div class="relative overflow-hidden" style="background-color:#545F40FF">
+        <img alt="Panther in a green magical forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/ba32ca5dbff04379c633dbc64eafcd3ec3d72d8db26fcc30d0d424b87a310715.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91779_panther-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91778)">
+        
+        <div class="relative overflow-hidden" style="background-color:#54664AFF">
+        <img alt="Panther in a green magical forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/698c8c3ed45ae334d27b18e2fa9570d1b97f951dc17e29b9754af6c860f47b1d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91778_panther-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91761)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2B3E3FFF">
+        <img alt="Raven in a haunted forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/08339eabd7ef134714660a118f834d793b72313053a95442e9671b30b7257f4f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91761_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91760)">
+        
+        <div class="relative overflow-hidden" style="background-color:#1D3A3AFF">
+        <img alt="Raven in a haunted forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/195e083a0fd3c1131d665aa37ab8cadc67cc00041b26908218f5f50511e162b4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91760_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91759)">
+        
+        <div class="relative overflow-hidden" style="background-color:#122728FF">
+        <img alt="Raven in a haunted forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/139d663eaee8b6039d7caec1d6a4422aab281de75bdd74400f8238417eea0a3f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91759_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91758)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3D504FFF">
+        <img alt="Raven in a haunted forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/9c503028ff350a5c95079f9f4300f47e1f920f09a18207cd12f00edcc4544218.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91758_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91777)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F5757FF">
+        <img alt="Raven in a haunted forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/f7860dd8b5831e68315ab4cc1bf2249fddbb7b697a60bd11a9a10076c87cbf17.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91777_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91776)">
+        
+        <div class="relative overflow-hidden" style="background-color:#535C5CFF">
+        <img alt="Raven in a haunted forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/064df7edf0d81d6dc8aad1a8f2885eddd62a61caf77f8a20e953a423885d5f33.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91776_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91775)">
+        
+        <div class="relative overflow-hidden" style="background-color:#525959FF">
+        <img alt="Raven in a haunted forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/e285d2c5588389d383dd6a88732aef74190acd33f098350bfefc3726128254e9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91775_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91774)">
+        
+        <div class="relative overflow-hidden" style="background-color:#525B5CFF">
+        <img alt="Raven in a haunted forest" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/9cf7495931bdd78c1c667e14c3885e1260df9cfcd7dfaa2e33525bf5011d2dc1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91774_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82146)">
+        
+        <div class="relative overflow-hidden" style="background-color:#ADACACFF">
+        <img alt="Raven, Highly Detailed, Intricate, Color Splash, Ink Art, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/6658bc8d1fac7f5ea7c4459771d7acdea6171cfbb17633be51bf9055feb9ea39.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82146_raven.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82141)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2C2B35FF">
+        <img alt="Octopus, Highly Detailed, Intricate, Color Splash, Ink Art, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/33382efa4ba40f88e96fb0770b1b0cc06c833006338116a09d197827d5aaf6dc.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82141_octopus.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82138)">
+        
+        <div class="relative overflow-hidden" style="background-color:#42555FFF">
+        <img alt="Deer in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/e5f292914ba18432bea0b1346128c8d4e67860ee7333458928b581a515820577.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82138_deer-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82135)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B6440FF">
+        <img alt="Panther in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/0b7a52a124b1cb7f82b1feed3d8432ce0dee2ffdf47440bf379da7f20b50339e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82135_panther-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82133)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3D5A32FF">
+        <img alt="Panther in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/156ee2e93438a3a0ad73ffe64f2fe98b19a8b0361923b07e3ccaf490fe3608a9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82133_panther-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82134)">
+        
+        <div class="relative overflow-hidden" style="background-color:#243A2EFF">
+        <img alt="Panther in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/a5742c37973cdf731dbb05769c71d16182467f0bbc9a3d1556fc310be7586458.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82134_panther-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(82132)">
+        
+        <div class="relative overflow-hidden" style="background-color:#213D34FF">
+        <img alt="Panther in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/77010f9451252c7f731872ebe530613d1b8c2a3b199150223fe957371a447aff.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/82/82132_panther-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80912)">
+        
+        <div class="relative overflow-hidden" style="background-color:#556644FF">
+        <img alt="Wolf in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/db1e9fba53bfc00d95298775e09200c3ed001fef4765b6136294284dad2f9bf9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80912_wolf-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80911)">
+        
+        <div class="relative overflow-hidden" style="background-color:#405F44FF">
+        <img alt="Wolf in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/c2c60f5a7d2a2ea1b7ae849202e3e796a126015a3964d427e090e9f4b7ab71a7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80911_wolf-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80910)">
+        
+        <div class="relative overflow-hidden" style="background-color:#415A30FF">
+        <img alt="Wolf in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/aa7a7f4336f8050df8fe03e15d53cfb6bde5aeb1a5a545a07a652d8eea2037e7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80910_wolf-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80909)">
+        
+        <div class="relative overflow-hidden" style="background-color:#355339FF">
+        <img alt="Wolf in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/9c6b15ee634ba0d2c45b9d7b6101b9d1f67d233d86b4b61ffc47817195b6f74b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80909_wolf-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80892)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D3E32FF">
+        <img alt="The Nebula Phoenix is a cosmic bird with wings that resemble swirling galaxies. Witness the physics of space and time as it flaps through the digital cosmos, Unreal Engine, Volumetric Lighting, Vibrant Colors" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/ca816f74816b6aad3de39143343428c169b56b4497520adefa82ef9ac31955f1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80892_the-nebula-phoenix-is-a-cosmic-bird-with-wings-that-resemble-swirling-galaxies-witness-the-physics.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80890)">
+        
+        <div class="relative overflow-hidden" style="background-color:#482337FF">
+        <img alt="The Nebula Phoenix is a cosmic bird with wings that resemble swirling galaxies. Witness the physics of space and time as it flaps through the digital cosmos, Unreal Engine, Volumetric Lighting, Vibrant Colors" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/a7834e4b9f78e3d2bdf859ff65ef0bcc8fbaa2dfa6b9d2448fd3deb0cc429d1f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80890_the-nebula-phoenix-is-a-cosmic-bird-with-wings-that-resemble-swirling-galaxies-witness-the-physics.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80889)">
+        
+        <div class="relative overflow-hidden" style="background-color:#554061FF">
+        <img alt="The Nebula Phoenix is a cosmic bird with wings that resemble swirling galaxies. Witness the physics of space and time as it flaps through the digital cosmos, Unreal Engine, Volumetric Lighting, Vibrant Colors" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/bcc109caa52e2741dbb3042c8dba5af974b17aec2272c442232704e79b268d0c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80889_the-nebula-phoenix-is-a-cosmic-bird-with-wings-that-resemble-swirling-galaxies-witness-the-physics.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80885)">
+        
+        <div class="relative overflow-hidden" style="background-color:#1B4344FF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/088d06cc521068b7cf3f3f4efbd4d5ae01255ed16d4507d4e1e5904d3fbc27ad.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80885_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80887)">
+        
+        <div class="relative overflow-hidden" style="background-color:#1E393EFF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/eb4fd9535e96367085fa3ac7a693c15bc6a3ed5c79ad44ed34e7cb55af89c466.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80887_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80886)">
+        
+        <div class="relative overflow-hidden" style="background-color:#25363CFF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/987b577fcd13505d5d2ccba7bc16c22e94e116f700170f0f527b80c7606ae674.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80886_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(70315)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C4444FF">
+        <img alt="The Nebula Phoenix is a cosmic bird with wings that resemble swirling galaxies. Witness the physics of space and time as it flaps through the digital cosmos, Unreal Engine, Volumetric Lighting, Vibrant Colors" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/3a01dfb011626696505094bd18faffcf7354921db373d4237f2843593ba0ca4a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/70/70315_the-nebula-phoenix-is-a-cosmic-bird-with-wings-that-resemble-swirling-galaxies-witness-the-physics.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71555)">
+        
+        <div class="relative overflow-hidden" style="background-color:#30553DFF">
+        <img alt="Wolf in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/ba8ab8d5b6240f17ed557502ab80aeb52b7270a67ee55a6eedfd9feec0cd9040.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71555_wolf-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71570)">
+        
+        <div class="relative overflow-hidden" style="background-color:#455734FF">
+        <img alt="Rabbit in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/a56a0c5c235719945289a397185817d77e97e4f3303f52063ed03dedbd28da5e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71570_rabbit-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73438)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C814EFF">
+        <img alt="Deer in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/14/12/a2cc096e34a02ef1e6d79751d4975be49344190dd0a348381196273e261486e7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73438_deer-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73433)">
+        
+        <div class="relative overflow-hidden" style="background-color:#445643FF">
+        <img alt="Raven in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/14/12/02d55843369b01db3f1c94630470a81a81ea95266c2552e51209c7864cce3ac3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73433_raven-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73436)">
+        
+        <div class="relative overflow-hidden" style="background-color:#364738FF">
+        <img alt="Raven in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/14/12/264e68ea96490ab2517ab3b9bd2d2e7cc724d4fa4ad3550c225af3dc15cfae90.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73436_raven-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71564)">
+        
+        <div class="relative overflow-hidden" style="background-color:#668053FF">
+        <img alt="Deer in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/03bf5f6106ff8dab9e8cf16f529c6b4f995be834d9c5f6b9a28c8687494afb24.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71564_deer-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73432)">
+        
+        <div class="relative overflow-hidden" style="background-color:#576A44FF">
+        <img alt="Rabbit in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/14/12/207b8ffd7a230bcc40b0933c3111282f3fda63eba59e2fba4ddc2c1f4d3a09bb.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73432_rabbit-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71545)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2C4537FF">
+        <img alt="Raven in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/c64008f322407deb8c2b03aa64cbf8e0b7773507c502e134beaf5213f4c8f3b4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71545_raven-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71549)">
+        
+        <div class="relative overflow-hidden" style="background-color:#445240FF">
+        <img alt="Raven in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/b50aa57f9ebbd9ac055bef72d193fc0a006d2bef456097a8aad73ea7328ef24b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71549_raven-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71546)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3A5038FF">
+        <img alt="Raven in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/532f2a505a8b87a05697c361b409f4eba43fdcd741db695d7e5b93eb239be149.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71546_raven-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(77815)">
+        
+        <div class="relative overflow-hidden" style="background-color:#414E3EFF">
+        <img alt="Raven in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/07/30/12/99311ec5171a2f298d2ea3a2418f33ad4185990d237b172902d50483fc5e3a74.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/77/77815_raven-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(77817)">
+        
+        <div class="relative overflow-hidden" style="background-color:#384D3EFF">
+        <img alt="Raven in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/07/30/12/fdb2a41eaab1e76ce680f1fa9ccd94ba282c69318b6e4f607470e2032d24f301.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/77/77817_raven-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73444)">
+        
+        <div class="relative overflow-hidden" style="background-color:#435E40FF">
+        <img alt="Wolf in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/14/12/89e474f8bc195c3d559314cf07e3b7d4bf8794c376b12ac1671c529baa3cacea.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73444_wolf-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73443)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B7D50FF">
+        <img alt="Wolf in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/14/12/e7c7f44a9ecf0ef0a1211e6fde91729198c04c1bcc77ab66ade90a67e81cc5db.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73443_wolf-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71066)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4C4E4AFF">
+        <img alt="Deer in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/b5f89ffc529dbf5e544a30c73fa444b40437b2343699cbe599dcc7864e75d60d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71066_deer-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(77967)">
+        
+        <div class="relative overflow-hidden" style="background-color:#414246FF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic and Fantasy, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/07/30/12/205df0fc6f9c5a7f351866b455d66dadf4834669f3ce7110c9ea686db9071fe2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/77/77967_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(77963)">
+        
+        <div class="relative overflow-hidden" style="background-color:#384048FF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic and Fantasy, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/07/30/12/d07ad7a6057df928acae08ca0950551b73d05308b4278c4d7a74320aab701b12.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/77/77963_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(77966)">
+        
+        <div class="relative overflow-hidden" style="background-color:#403F3DFF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic and Fantasy, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/07/30/12/5082db16fe6426b891031d72d2cde0ce35ad26e8a866b392a29e037c8d2475cc.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/77/77966_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71068)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4C4A4AFF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/6a22a9607604b5b07515caabb2142d2ed088747bc9af028d57db782682c9a2be.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71068_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79266)">
+        
+        <div class="relative overflow-hidden" style="background-color:#58615EFF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/ed6655d00f83d4c077e5300e6cce601deb4ce63f52849eedf62844bc9b6b11d4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79266_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79264)">
+        
+        <div class="relative overflow-hidden" style="background-color:#687475FF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/32977d7cb23cf241cdfc586a4221a81c9120b949dd9cc0311ac5b6600da4d38e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79264_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79263)">
+        
+        <div class="relative overflow-hidden" style="background-color:#646D6AFF">
+        <img alt="Raven in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/87b198636081fd586edc3288d5d626cf22ed1c3834c8b4cc430ec2a9ec1ee658.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79263_raven-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79403)">
+        
+        <div class="relative overflow-hidden" style="background-color:#556969FF">
+        <img alt="Panther in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/037a1a278a32fd78b2cbba879abf025a806a618054316dc87b2771c267c6347a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79403_panther-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79405)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E7070FF">
+        <img alt="Panther in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/2a21cb121e14f06307c9a137f7534bdc165b3a224554ed489cb60165c9ee75a0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79405_panther-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79406)">
+        
+        <div class="relative overflow-hidden" style="background-color:#566868FF">
+        <img alt="Panther in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/af09cf9a6e7ae244deb07a75f2079df3482d5d48893d3416d901ad6b34e88162.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79406_panther-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74172)">
+        
+        <div class="relative overflow-hidden" style="background-color:#716453FF">
+        <img alt="Steampunk portrait of a Panther, clean vector, colorful illustration, inspired by future technology, Highly Detailed, Vintage Illustration, Steampunk, Smooth, Vector Art, Colorful by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/21/12/41130ca878f44501007980fc4497923a6e9b3896c068cd117d9111a47abdf6a0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74172_steampunk-portrait-of-a-panther-clean-vector-colorful-illustration-inspired-by-future-technology.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71499)">
+        
+        <div class="relative overflow-hidden" style="background-color:#224E29FF">
+        <img alt="Panther in a luscious green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/61fb0b382fc74ccacca1a0fa0d47bc780cb7c51b231382e3c4ed7ed30fca78a4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71499_panther-in-a-luscious-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73447)">
+        
+        <div class="relative overflow-hidden" style="background-color:#325F33FF">
+        <img alt="Panther in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/14/12/d5c903efceb9cd21c00d7b2bf6e2b40a63645b8832a198d99cbf2537cf53fce4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73447_panther-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73448)">
+        
+        <div class="relative overflow-hidden" style="background-color:#345F3AFF">
+        <img alt="Panther in a green magical forest, Highly Detailed, Bokeh effect, Sharp Focus, Volumetric Lighting, Fantasy by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/14/12/86bb7a11b213c562a53fd7c080064e2bd8b73162485c4c30ed292adedf8ec418.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73448_panther-in-a-green-magical-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71092)">
+        
+        <div class="relative overflow-hidden" style="background-color:#545448FF">
+        <img alt="Panther in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/d2e33e7fb13e05b435aa149386f513821445d809269d0fe4e65699705fd074d0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71092_panther-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71019)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C6D6FFF">
+        <img alt="Crow, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Color Splash, Vibrant Colors, Ink Art, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/a3a6dc4fc4140ef65c0195be9f742a116ed5f52e588477fcc76c681c17ffe661.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71019_crow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71080)">
+        
+        <div class="relative overflow-hidden" style="background-color:#585553FF">
+        <img alt="Crow in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/4527b5a33e4a371aa1bb000f2c19ad8ae6a17a875a8b44ca6358019b77c1bdab.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71080_crow-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71076)">
+        
+        <div class="relative overflow-hidden" style="background-color:#525A5AFF">
+        <img alt="Crow in a haunted forest, Highly Detailed, Intricate, Gothic, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/8cf9ffa13853292d1ef59d59bb7eef17508681d4f2bde2aa0942e0dc66741622.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71076_crow-in-a-haunted-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74394)">
+        
+        <div class="relative overflow-hidden" style="background-color:#716569FF">
+        <img alt="Gothic raven with roses, 4k, Award-Winning" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/c4a3a99c5dbc54a2c786255a41f1df40a7d344bd0a6e57c11ca33ffce9cac9ee.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74394_gothic-raven-with-roses.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74399)">
+        
+        <div class="relative overflow-hidden" style="background-color:#424441FF">
+        <img alt="A macabre shadow creature, holding a black crow, 4k, Award-Winning, Hyper Detailed, Stunning, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/c20f1bbce228e75d5359978f26fbf8e59e61f3c2dab74ba7ddcfd1cd2cb173e2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74399_a-macabre-shadow-creature-holding-a-black-crow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74400)">
+        
+        <div class="relative overflow-hidden" style="background-color:#202428FF">
+        <img alt="A macabre shadow creature, holding a black crow, 4k, Award-Winning, Hyper Detailed, Stunning, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/ff4ae58fbb7972666855469b348aca8263b355067f5174d7c39e2ccc8742ea0a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74400_a-macabre-shadow-creature-holding-a-black-crow.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74407)">
+        
+        <div class="relative overflow-hidden" style="background-color:#624C4FFF">
+        <img alt="Splash, intricate raven bursting out, swirling liquid, holding a red rose, liquid steel background, soft box, rule of third&#x2019;s composition, Highly Detailed, Intricate Details, Trending on Artstation, Sharp Focus, Unsplash" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/c6688d02e6d1b58bc1dc765dc5e7bf284ce2c81e1b85d1216066f8762f4df499.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74407_splash-intricate-raven-bursting-out-swirling-liquid-holding-a-red-rose-liquid-steel-background.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74408)">
+        
+        <div class="relative overflow-hidden" style="background-color:#776366FF">
+        <img alt="Splash, intricate raven bursting out, swirling liquid, holding a red rose, liquid steel background, soft box, rule of third&#x2019;s composition, Highly Detailed, Intricate Details, Trending on Artstation, Sharp Focus, Unsplash" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/288180c26f16cdd1b78373eaeda20ff3e04d7e132e27ee451b7322ae0985046a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74408_splash-intricate-raven-bursting-out-swirling-liquid-holding-a-red-rose-liquid-steel-background.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74413)">
+        
+        <div class="relative overflow-hidden" style="background-color:#58595EFF">
+        <img alt="Raven sitting on an old decayed gravestone, red eyes, glowing feathers, 8k, Intricate Details by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/06e8ccb1b04319767bfe2163579ca9f08cc67612e017ddc92bdd07ef564f4a9d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74413_raven-sitting-on-an-old-decayed-gravestone-red-eyes-glowing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74410)">
+        
+        <div class="relative overflow-hidden" style="background-color:#685657FF">
+        <img alt="Raven sitting on an old decayed gravestone, red eyes, glowing feathers, 8k, Intricate Details by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/da3a360b5fe160ce502dbb42470df97d4ff2d0abf9a65451dabb2c2a560ad479.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74410_raven-sitting-on-an-old-decayed-gravestone-red-eyes-glowing-feathers.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)" v-on:open="openDialog">
+        <template #icons="artifact">
+            <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                <div class="flex flex-col h-full justify-between">
+                    <div class="flex justify-between flex-none">
+                        <artifact-like-icon :artifact="artifact" v-on:changed="update"></artifact-like-icon>
+                        <artifact-menu-icon :artifact="artifact" v-on:show-artifact-menu="artifactMenu=artifact"></artifact-menu-icon>
+                    </div>
+                    <artifact-explore-icon :artifact="artifact" v-on:changed="update"></artifact-explore-icon>
+                </div>
+            </div>
+        </template>
+        <template #contextmenu="artifact">
+            <artifact-menu v-if="artifactMenu?.id === artifact.id" :artifact="artifactMenu" menu-class="justify-end"
+                           v-on:changed="notifyChanged" v-on:done="artifactMenu=null" v-on:open="openDialog">
+            </artifact-menu>
+        </template>
+    </artifact-modal>
+    <artifact-dialogs :show="open" :artifact="artifact" v-on:done="closeDialog"></artifact-dialogs>
+</div>
+
+<script type="module">
+import { ref, inject, getCurrentInstance } from "vue"
+import { mount } from "app.mjs"
+import { Store } from "store.mjs"
+
+const Gallery = {
+    setup() {
+        const store = inject('store')
+        const artifact = ref()
+        
+        async function loadArtifact(id) {
+            artifact.value = await store.getArtifact(id)
+        }
+        function showArtifact(a) {
+            artifact.value = a
+        }
+        
+        const instance = getCurrentInstance()
+        const artifactMenu = ref()
+        const open = ref('')
+        function openDialog(dialog, artifact) {
+            artifactMenu.value = null
+            open.value = dialog
+            //artifact.value = artifact
+        }
+        function closeDialog() {
+            open.value = ''
+            //artifact.value = null
+        }
+        function notifyChanged() {
+            artifactMenu.value = null
+            forceUpdate()
+            update() 
+        }
+        function update() {}
+        function forceUpdate() { instance?.proxy?.$forceUpdate() }
+        
+        return { store, artifact, loadArtifact, showArtifact,
+            artifactMenu, open, openDialog, closeDialog, notifyChanged, update }
+    }
+}
+mount('#gallery', Gallery)
+</script>
+    
+
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="relative z-10 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://razor-ssg.web-templates.io/posts/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

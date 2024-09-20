@@ -1,0 +1,2215 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Fantasy Page 4</title>
+    <base href="/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "store.mjs": "./mjs/store.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"baseUrl":"https://diffusion.works","cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+    <style>:root { color-scheme:dark }</style>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header id="header" class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex sm:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Diffusion Works</span>
+                <svg class="hidden sm:inline w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M8.55 3.06c1.01.34-1.95 2.01-.1 3.13c1.04.63 3.31-2.22 4.45-2.86c.97-.54 2.67-.65 3.53 1.23c1.09 2.38.14 8.57-3.79 11.06c-3.97 2.5-8.97 1.23-10.7-2.66c-2.01-4.53 3.12-11.09 6.61-9.9zm1.21 6.45c.73 1.64 4.7-.5 3.79-2.8c-.59-1.49-4.48 1.25-3.79 2.8z"/></svg>
+                <span class="ml-1 text-lg sm:text-xl leading-6 tracking-tight text-white">diffusion.works</span>
+            </a>
+        </div>
+        <div class="flex sm:hidden">
+            <button v-on:click="showMobileNav=true" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden sm:flex sm:flex-1 sm:justify-end">
+            <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+        </div>
+    </nav>
+    <div v-if="showMobileNav" class="sm:hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button v-on:click="showMobileNav=false" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <sign-in-link menu-class="left-4">
+                            <div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
+</header>
+
+<script>
+const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
+if (cachedAuth?.profileUrl) {
+    document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
+        </div>`)
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
+
+const HeaderNav = {
+    setup() {
+        const showMobileNav = ref(false)
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
+    }
+}
+mount('#header', HeaderNav)
+
+mountAll()
+</script>
+
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-16 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="7">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">Fantasy</h1>
+    </div>
+
+    
+    <nav class="mt-8 mb-8 flex items-center justify-between border-t border-gray-700 px-4 sm:px-0">
+        <div class="-mt-px flex w-0 flex-1">
+                <a href="/albums/fantasy_3" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">
+                    <!-- Heroicon name: mini/arrow-long-left -->
+                    <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"/>
+                    </svg>
+                    Previous
+                </a>
+        </div>
+        <div class="hidden md:-mt-px md:flex">
+                    <a href="/albums/fantasy" class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">1</a>
+                    <a href="/albums/fantasy_2" class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">2</a>
+                    <a href="/albums/fantasy_3" class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">3</a>
+                    <a href="/albums/fantasy_4" class="inline-flex items-center border-t-2 border-indigo-400 px-4 pt-4 text-sm font-medium text-indigo-300" aria-current="page">4</a>
+        </div>
+        <div class="-mt-px flex w-0 flex-1 justify-end">
+        </div>
+    </nav>
+
+    
+<div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(88691)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A6350FF">
+        <img alt="A majestic warrior woman in ornate armor, standing in a mystical forest, her piercing eyes reflecting confidence and strength, surrounded by ethereal glowing lights and ancient trees., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/8d9d155b4f41833f7f1982e6ca87a6cf64bfc6efc2a453ee09705873988844ee.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88691_a-majestic-warrior-woman-in-ornate-armor-standing-in-a-mystical-forest-her-piercing-eyes-reflectin.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88690)">
+        
+        <div class="relative overflow-hidden" style="background-color:#615D4EFF">
+        <img alt="A majestic warrior woman in ornate armor, standing in a mystical forest, her piercing eyes reflecting confidence and strength, surrounded by ethereal glowing lights and ancient trees., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/380f994f46cfa82033a5f5d1ed8889480197be5d8de8f403a4189d443349b437.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88690_a-majestic-warrior-woman-in-ornate-armor-standing-in-a-mystical-forest-her-piercing-eyes-reflectin.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88682)">
+        
+        <div class="relative overflow-hidden" style="background-color:#534335FF">
+        <img alt="A stunning woman with long red hair, wearing an intricately detailed medieval gown, standing in a grand castle hall, the light streaming through stained glass windows, regal and majestic, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/cb91a66119137bd9e7726f5ab7bc29efee6f1307e57c02a5efce83e6a10bc095.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88682_a-stunning-woman-with-long-red-hair-wearing-an-intricately-detailed-medieval-gown-standing-in-a-gr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88680)">
+        
+        <div class="relative overflow-hidden" style="background-color:#625A4CFF">
+        <img alt="A stunning woman with long red hair, wearing an intricately detailed medieval gown, standing in a grand castle hall, the light streaming through stained glass windows, regal and majestic, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/f5354428c97297a55fdbf1f448debb36aa77465fb4ca2c0dd5e8de27a3487319.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88680_a-stunning-woman-with-long-red-hair-wearing-an-intricately-detailed-medieval-gown-standing-in-a-gr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88648)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2A3433FF">
+        <img alt="A mysterious woman with long silver hair, dressed in a sleek black gown, standing in a moonlit forest, shadows casting over her face, a mystical aura surrounding her, dramatic lighting, high contrast, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/89a2655cf1e818b1101131d5e9e0646497735e1a5f1632da7367edef2aa4af6a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88648_a-mysterious-woman-with-long-silver-hair-dressed-in-a-sleek-black-gown-standing-in-a-moonlit-fores.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88647)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2D3A3BFF">
+        <img alt="A mysterious woman with long silver hair, dressed in a sleek black gown, standing in a moonlit forest, shadows casting over her face, a mystical aura surrounding her, dramatic lighting, high contrast, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/a929ba54e47ed662f2614a0867ca18fd41a6ac5771e49f57928fa3ba1afb8f2d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88647_a-mysterious-woman-with-long-silver-hair-dressed-in-a-sleek-black-gown-standing-in-a-moonlit-fores.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88646)">
+        
+        <div class="relative overflow-hidden" style="background-color:#1B2024FF">
+        <img alt="A mysterious woman with long silver hair, dressed in a sleek black gown, standing in a moonlit forest, shadows casting over her face, a mystical aura surrounding her, dramatic lighting, high contrast, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/ce42635055f7ea70a4bd4836c501ff75b3e18a7718417cd561046b625d8a17b6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88646_a-mysterious-woman-with-long-silver-hair-dressed-in-a-sleek-black-gown-standing-in-a-moonlit-fores.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88645)">
+        
+        <div class="relative overflow-hidden" style="background-color:#323C3EFF">
+        <img alt="A mysterious woman with long silver hair, dressed in a sleek black gown, standing in a moonlit forest, shadows casting over her face, a mystical aura surrounding her, dramatic lighting, high contrast, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/79a86777a9a0656294eb67484119bd197765a15773b5deb74228142061d28722.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88645_a-mysterious-woman-with-long-silver-hair-dressed-in-a-sleek-black-gown-standing-in-a-moonlit-fores.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88628)">
+        
+        <div class="relative overflow-hidden" style="background-color:#605345FF">
+        <img alt="A stunning woman with long red hair, wearing an intricately detailed medieval gown, standing in a grand castle hall, the light streaming through stained glass windows, regal and majestic, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/f08857a266cdb5caa7a38882e513a3ca5c2baa1eba86488f6dc0b79d6753910f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88628_a-stunning-woman-with-long-red-hair-wearing-an-intricately-detailed-medieval-gown-standing-in-a-gr.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88591)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3A3D3DFF">
+        <img alt="A mysterious woman with long silver hair, dressed in a sleek black gown, standing in a moonlit forest, shadows casting over her face, a mystical aura surrounding her, dramatic lighting, high contrast, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/d60a81a3b0593f42a9a3f852603c82f88229df62d6da4642c38a86b872c53c10.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88591_a-mysterious-woman-with-long-silver-hair-dressed-in-a-sleek-black-gown-standing-in-a-moonlit-fores.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88594)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3A3C3EFF">
+        <img alt="A mysterious woman with long silver hair, dressed in a sleek black gown, standing in a moonlit forest, shadows casting over her face, a mystical aura surrounding her, dramatic lighting, high contrast, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/d148fd086e209848978348f970af507b1452427eaceeabd9bc24577134a72a8a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88594_a-mysterious-woman-with-long-silver-hair-dressed-in-a-sleek-black-gown-standing-in-a-moonlit-fores.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88518)">
+        
+        <div class="relative overflow-hidden" style="background-color:#71706EFF">
+        <img alt="A woman of strength and determination, standing at the helm of a ship as it cuts through turbulent waters, navigating the challenges of life with courage and resilience., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/9234f5e4c44ef3638eabab8c44bfec5c9fea15b3cc4978086d8269e247c78c71.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88518_a-woman-of-strength-and-determination-standing-at-the-helm-of-a-ship-as-it-cuts-through-turbulent-w.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88443)">
+        
+        <div class="relative overflow-hidden" style="background-color:#675D45FF">
+        <img alt="An ethereal woman with porcelain skin and cascading golden locks, illuminated by the soft glow of a full moon, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/3c59cfdab95efcb95b4478c63ebf320681e464f2da0bb5a5bf7eb4bf99eab97e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88443_an-ethereal-woman-with-porcelain-skin-and-cascading-golden-locks-illuminated-by-the-soft-glow-of-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88441)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C6958FF">
+        <img alt="An ethereal woman with porcelain skin and cascading golden locks, illuminated by the soft glow of a full moon, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/561aa2872a0f3a4a76938cfe71d4d80779fe85f75cfc36826030fd4d613a7f52.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88441_an-ethereal-woman-with-porcelain-skin-and-cascading-golden-locks-illuminated-by-the-soft-glow-of-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88440)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D5A3EFF">
+        <img alt="An ethereal woman with porcelain skin and cascading golden locks, illuminated by the soft glow of a full moon, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/fec1452afcba81a1e84743de9de97226e658327ce3569d45bec997a231211a68.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88440_an-ethereal-woman-with-porcelain-skin-and-cascading-golden-locks-illuminated-by-the-soft-glow-of-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88400)">
+        
+        <div class="relative overflow-hidden" style="background-color:#737579FF">
+        <img alt="A poised beauty with piercing sapphire eyes and silver hair, standing against a backdrop of a stormy sea, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/60a86cbd963b394d1eb1bfb1815f563cd20a9d0dd83599fe6936eb11e328066d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88400_a-poised-beauty-with-piercing-sapphire-eyes-and-silver-hair-standing-against-a-backdrop-of-a-stormy.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88386)">
+        
+        <div class="relative overflow-hidden" style="background-color:#86725FFF">
+        <img alt="An ethereal woman with porcelain skin and cascading golden locks, illuminated by the soft glow of a full moon, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/19e57a0ddd51e0cf960c57f48b5376dd4a7d095d771f8991bbede6e72e931d9e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88386_an-ethereal-woman-with-porcelain-skin-and-cascading-golden-locks-illuminated-by-the-soft-glow-of-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88385)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7E6B5AFF">
+        <img alt="An ethereal woman with porcelain skin and cascading golden locks, illuminated by the soft glow of a full moon, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/c5f935bd93a50557a469e3035e1e540cf28dedc783ae28c57e8b0027531515c2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88385_an-ethereal-woman-with-porcelain-skin-and-cascading-golden-locks-illuminated-by-the-soft-glow-of-a.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88177)">
+        
+        <div class="relative overflow-hidden" style="background-color:#423C2FFF">
+        <img alt="An elegant Cleopatra VII, the last Pharaoh of Ancient Egypt, sitting on her throne, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/f64e195ce2ffa1af7d6ffbee304632c8bcef724bf5e3ccf1b7b5df9fa584ba6e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88177_an-elegant-cleopatra-vii-the-last-pharaoh-of-ancient-egypt-sitting-on-her-throne.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88079)">
+        
+        <div class="relative overflow-hidden" style="background-color:#68696BFF">
+        <img alt="A confident astronaut floating among stars, wearing a spacesuit designed like a ball gown, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/0c9037fd6b53273832cfa12cd1a32b235481688b052ad416b3ade6fda07e3439.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88079_a-confident-astronaut-floating-among-stars-wearing-a-spacesuit-designed-like-a-ball-gown.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88071)">
+        
+        <div class="relative overflow-hidden" style="background-color:#636954FF">
+        <img alt="A serene goddess of nature, immersed in a lush, blooming forest, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/db65af1222aaedda675d12a35e8df3fc510eeaa55f7a6a655292079b0f32ca6d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88071_a-serene-goddess-of-nature-immersed-in-a-lush-blooming-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88070)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D7157FF">
+        <img alt="A serene goddess of nature, immersed in a lush, blooming forest, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/5fc7228b7ababcb6a1a8aa45e07355485f1a34eadb25da4de06a9eb85a392242.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88070_a-serene-goddess-of-nature-immersed-in-a-lush-blooming-forest.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88064)">
+        
+        <div class="relative overflow-hidden" style="background-color:#534336FF">
+        <img alt="An elegant queen from ancient Egypt with intricate henna tattoos, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/5c0f44816a9b80e92766ec15e7f51d08ea83831b06f655dda969baf346c48d88.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88064_an-elegant-queen-from-ancient-egypt-with-intricate-henna-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(88063)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7E5E47FF">
+        <img alt="An elegant queen from ancient Egypt with intricate henna tattoos, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/7e817d6d6f129a3b8e15c6406f84ac1688c0446956f2dafd0e9d098807fa0605.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/88/88063_an-elegant-queen-from-ancient-egypt-with-intricate-henna-tattoos.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87999)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4D433DFF">
+        <img alt="a fierce warrior queen with intricate tattoos and braided hair adorned with beads, her gaze commanding respect, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/7c2a7fa5ff6da623e2fed3d6e3ccab8373ddb1f2017650cdbb799b2bf1273fbb.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87999_a-fierce-warrior-queen-with-intricate-tattoos-and-braided-hair-adorned-with-beads-her-gaze-commandi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87997)">
+        
+        <div class="relative overflow-hidden" style="background-color:#81766DFF">
+        <img alt="a fierce warrior queen with intricate tattoos and braided hair adorned with beads, her gaze commanding respect, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/4b34e80c96288278ccd1e3b3083dd8684a54af96de08a24bdb59661f4bddea44.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87997_a-fierce-warrior-queen-with-intricate-tattoos-and-braided-hair-adorned-with-beads-her-gaze-commandi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87995)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E5047FF">
+        <img alt="a fierce warrior queen with intricate tattoos and braided hair adorned with beads, her gaze commanding respect, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/b8b8064dc6c81dbda55317f12e91d7e5eb8dfe102250b77c131e27e26938203f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87995_a-fierce-warrior-queen-with-intricate-tattoos-and-braided-hair-adorned-with-beads-her-gaze-commandi.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87976)">
+        
+        <div class="relative overflow-hidden" style="background-color:#567983FF">
+        <img alt="A serene depiction of a woman with pale lavender skin and flowing silver hair, sitting lotus-positioned atop a tranquil lotus flower in an otherworldly, bioluminescent pond, surrounded by ancient stone ruins., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/cb37ec60d0efc466704348a62d4782730787b71b5a3e423037df148b2d9d9bb8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87976_a-serene-depiction-of-a-woman-with-pale-lavender-skin-and-flowing-silver-hair-sitting-lotus-positio.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87975)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4A6571FF">
+        <img alt="A serene depiction of a woman with pale lavender skin and flowing silver hair, sitting lotus-positioned atop a tranquil lotus flower in an otherworldly, bioluminescent pond, surrounded by ancient stone ruins., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/e9f6c1132d019e80fff05328398bc556bdc2064cd8e98a885d0a9ac82ce71461.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87975_a-serene-depiction-of-a-woman-with-pale-lavender-skin-and-flowing-silver-hair-sitting-lotus-positio.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87938)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4A5938FF">
+        <img alt="A vibrant Renaissance-style portrait of a woman with fiery red hair and emerald green eyes, wearing an elegant silk gown, set against a lush garden backdrop., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/126768a4d3523508d506e31cbbceadf23342e9beebe2acbdc4ccc21880dd3452.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87938_a-vibrant-renaissance-style-portrait-of-a-woman-with-fiery-red-hair-and-emerald-green-eyes-wearing.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87931)">
+        
+        <div class="relative overflow-hidden" style="background-color:#775C42FF">
+        <img alt="A vibrant Renaissance-style portrait of a woman with fiery red hair and emerald green eyes, wearing an elegant silk gown, set against a lush garden backdrop., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/e1a92d10925ace7f729b6181e7ab52ded95651255ef06e37c95f57368cee8431.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87931_a-vibrant-renaissance-style-portrait-of-a-woman-with-fiery-red-hair-and-emerald-green-eyes-wearing.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87900)">
+        
+        <div class="relative overflow-hidden" style="background-color:#856557FF">
+        <img alt="A powerful depiction of a warrior queen with sun-kissed skin and fiery bronze hair, astride a magnificent white steed, leading her army into battle, clad in gleaming armor and a crimson cloak., Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/9b87ff49b2efa074e82676529ca391d332c5d62f23f8e99eaf5c01bda5678fdd.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87900_a-powerful-depiction-of-a-warrior-queen-with-sun-kissed-skin-and-fiery-bronze-hair-astride-a-magnif.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87841)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C4F35FF">
+        <img alt="A strong and regal warrior queen with piercing emerald eyes and raven-black hair, set against a fiery sunset, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/cb4c95a5ca1475e7f2e6cbc2c70441c98f412b11d4dbf907304ff95aee4ba025.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87841_a-strong-and-regal-warrior-queen-with-piercing-emerald-eyes-and-raven-black-hair-set-against-a-fier.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87800)">
+        
+        <div class="relative overflow-hidden" style="background-color:#656866FF">
+        <img alt="A mystical and enigmatic sorceress with eyes that shimmer like starlight, amidst a dreamlike, mist-shrouded forest, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/941e68bf85b6266b52222c7731d306ac1aaac71f476af55b75968743caf72400.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87800_a-mystical-and-enigmatic-sorceress-with-eyes-that-shimmer-like-starlight-amidst-a-dreamlike-mist-s.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87789)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D5541FF">
+        <img alt="A strong and regal warrior queen with piercing emerald eyes and raven-black hair, set against a fiery sunset, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/ca994fb68713ffbe53b9d15d8d37340542cf28656d4338f59ac9b459580f89fc.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87789_a-strong-and-regal-warrior-queen-with-piercing-emerald-eyes-and-raven-black-hair-set-against-a-fier.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87785)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5A493AFF">
+        <img alt="A strong and regal warrior queen with piercing emerald eyes and raven-black hair, set against a fiery sunset, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/31de1ec3753229133f8f9424badf5192785421018aac3f108dca2b89173eaf2f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87785_a-strong-and-regal-warrior-queen-with-piercing-emerald-eyes-and-raven-black-hair-set-against-a-fier.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87780)">
+        
+        <div class="relative overflow-hidden" style="background-color:#656461FF">
+        <img alt="A serene and ethereal woman with delicate, petal-like features, amidst a moonlit garden, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/3b8cf738a66715a804a17a43c96025f30928667e42a2fed4d4afacd223313bde.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87780_a-serene-and-ethereal-woman-with-delicate-petal-like-features-amidst-a-moonlit-garden.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(87784)">
+        
+        <div class="relative overflow-hidden" style="background-color:#666766FF">
+        <img alt="A serene and ethereal woman with delicate, petal-like features, amidst a moonlit garden, Highly Detailed, Half Body, Gorgeous, Stunning, Elegant by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/22/12/9798fc4f98881b9ced34dfd9ff3dcc354b7a9027817991ca6e7911217ab7619c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/87/87784_a-serene-and-ethereal-woman-with-delicate-petal-like-features-amidst-a-moonlit-garden.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81307)">
+        
+        <div class="relative overflow-hidden" style="background-color:#371348FF">
+        <img alt="A magical pond in a fantasy forest with glowing pink trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/79f606274d830b794518cd9c6a4201b8bbe067f2bf4e1610e0516919e5575e58.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81307_a-magical-pond-in-a-fantasy-forest-with-glowing-pink-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81305)">
+        
+        <div class="relative overflow-hidden" style="background-color:#262456FF">
+        <img alt="A magical pond in a fantasy forest with glowing pink trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/9447ffe48dcca1a7c522385a20b83934221e1546dde776f48373dea099ae5014.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81305_a-magical-pond-in-a-fantasy-forest-with-glowing-pink-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81297)">
+        
+        <div class="relative overflow-hidden" style="background-color:#04355AFF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/f3898b7b7a0f78567a85b05cff969a2200f32dfec14b1c24a77a04d9b49156ed.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81297_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81296)">
+        
+        <div class="relative overflow-hidden" style="background-color:#04425FFF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/82bf9176ebe5f5198e801900c71ff28e4e66322ca6c062d0c9def0774f6e4b9d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81296_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81295)">
+        
+        <div class="relative overflow-hidden" style="background-color:#07364CFF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/eba36216f5d563f367e9b527f028f6b58f75917134030fcface42f37927172fe.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81295_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81294)">
+        
+        <div class="relative overflow-hidden" style="background-color:#083049FF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/39cc811dcce39fc14e5df62df7e21ab54ed5aceca1007b0a6279ac2f1395cbe9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81294_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81293)">
+        
+        <div class="relative overflow-hidden" style="background-color:#072F40FF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/8d2a1406d2090f9faf04903b89b93a9143ab73d469e2d802b7846f9c3aefb6d8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81293_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73164)">
+        
+        <div class="relative overflow-hidden" style="background-color:#582633FF">
+        <img alt="A magical pond in a fantasy forest with glowing red trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/05eadba39139fb7f3dc5689dae1b7f16cd59162d021a12b310cef0c14cb559e5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73164_a-magical-pond-in-a-fantasy-forest-with-glowing-red-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73162)">
+        
+        <div class="relative overflow-hidden" style="background-color:#392C39FF">
+        <img alt="A magical pond in a fantasy forest with glowing red trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/f383c06d41c52db393b5d0b6a9925a2974b5b55135861b905508c245f2e3e7a9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73162_a-magical-pond-in-a-fantasy-forest-with-glowing-red-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73161)">
+        
+        <div class="relative overflow-hidden" style="background-color:#442B36FF">
+        <img alt="A magical pond in a fantasy forest with glowing red trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/3a93fa324898ae1535c1198e406b6565d9937c574c12ddebfce09014a9e95acf.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73161_a-magical-pond-in-a-fantasy-forest-with-glowing-red-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73160)">
+        
+        <div class="relative overflow-hidden" style="background-color:#572836FF">
+        <img alt="A magical pond in a fantasy forest with glowing red trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/605db95e32f7290a9865a356aef5e8691b9f0344519700b6c100345e068c70f6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73160_a-magical-pond-in-a-fantasy-forest-with-glowing-red-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73157)">
+        
+        <div class="relative overflow-hidden" style="background-color:#602B3EFF">
+        <img alt="A magical pond in a fantasy forest with glowing red trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/103892948d416d6c1b7af298c0e875aa4b45961556666f158a7f9f8befefd821.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73157_a-magical-pond-in-a-fantasy-forest-with-glowing-red-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73156)">
+        
+        <div class="relative overflow-hidden" style="background-color:#552833FF">
+        <img alt="A magical pond in a fantasy forest with glowing red trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/0191afa7d28a422f85df2679ebfc2a107223b63c7296e750f816fda9e1d4f4d1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73156_a-magical-pond-in-a-fantasy-forest-with-glowing-red-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73155)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5F4F2BFF">
+        <img alt="A magical pond in a fantasy forest with glowing yellow trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/1ba4e6e6c0031448f9e9c1213d02fcef9d74b9cd07b4bf46fc6cab05af4bff0f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73155_a-magical-pond-in-a-fantasy-forest-with-glowing-yellow-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73152)">
+        
+        <div class="relative overflow-hidden" style="background-color:#594428FF">
+        <img alt="A magical pond in a fantasy forest with glowing yellow trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/25f94b2cb9d96c8363ddbec9c863f49dd2e568d0f3f59b5c51286166c0a49db1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73152_a-magical-pond-in-a-fantasy-forest-with-glowing-yellow-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73148)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F4227FF">
+        <img alt="A magical pond in a fantasy forest with glowing yellow trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/fc680be715458b1b3447055b8b6345ca03b5ad1878127b302e0d4ff44f763a0a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73148_a-magical-pond-in-a-fantasy-forest-with-glowing-yellow-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73147)">
+        
+        <div class="relative overflow-hidden" style="background-color:#655336FF">
+        <img alt="A magical pond in a fantasy forest with glowing yellow trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/40a6cd999336c6cc474e7f0cf188a78d374f6f3e4f92721d34416216a33fb246.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73147_a-magical-pond-in-a-fantasy-forest-with-glowing-yellow-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73146)">
+        
+        <div class="relative overflow-hidden" style="background-color:#1F4C35FF">
+        <img alt="A magical pond in a fantasy forest with glowing green trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/071abe8c7a25f3527c129a8ac3b3c15e1ca8987cb13cb6736d9fe7aabb676936.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73146_a-magical-pond-in-a-fantasy-forest-with-glowing-green-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73143)">
+        
+        <div class="relative overflow-hidden" style="background-color:#243D26FF">
+        <img alt="A magical pond in a fantasy forest with glowing green trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/bec46ccf9830df8f1a278d7cff1c4c617b33663dc84355220bd33fd10b711945.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73143_a-magical-pond-in-a-fantasy-forest-with-glowing-green-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73142)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2C533AFF">
+        <img alt="A magical pond in a fantasy forest with glowing green trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/9f86f2a864d8e5f3f991fc36aa88ad1483254fda5921d4266ef31fb51287297d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73142_a-magical-pond-in-a-fantasy-forest-with-glowing-green-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73140)">
+        
+        <div class="relative overflow-hidden" style="background-color:#1E4D30FF">
+        <img alt="A magical pond in a fantasy forest with glowing green trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/c9f06320e70124291b673ca2c9fa6859bf92e6dc4c8907a654f0b851f6e44254.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73140_a-magical-pond-in-a-fantasy-forest-with-glowing-green-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73138)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2B492AFF">
+        <img alt="A magical pond in a fantasy forest with glowing green trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/08b6e57677f9e480b5864f2602ec459f183d774109785249cf56be18903556ad.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73138_a-magical-pond-in-a-fantasy-forest-with-glowing-green-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73137)">
+        
+        <div class="relative overflow-hidden" style="background-color:#1E394EFF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/efd0a5064c6e89e216b9b0ec43a3c1510215877064ce03de689e6b3df23f75ff.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73137_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73135)">
+        
+        <div class="relative overflow-hidden" style="background-color:#1D3C5AFF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/a4ac771eccecf0fdb5132d8c6399882861c0b7ec525b7f727215f7f66841ae3c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73135_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73133)">
+        
+        <div class="relative overflow-hidden" style="background-color:#343649FF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/8e40e1c238416133f826911796b3994cf32268289a57f46b44fb1e77ddc93764.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73133_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73132)">
+        
+        <div class="relative overflow-hidden" style="background-color:#32485AFF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/57fa7e9bea6c1f890410f2c2ebafe371bd84b7c2b4ad7787bf2ea184b0a627f6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73132_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73130)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2D344AFF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/8d96c6cea219b149192aa4a2c340f9a66ae449f32eb04489691e80775496a805.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73130_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73129)">
+        
+        <div class="relative overflow-hidden" style="background-color:#264056FF">
+        <img alt="A magical pond in a fantasy forest with glowing blue trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/44f4a5b3fe19f5e98d4aacc6d089e4f09b50796600a54cfa5dcf3e6fc36c6e19.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73129_a-magical-pond-in-a-fantasy-forest-with-glowing-blue-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73128)">
+        
+        <div class="relative overflow-hidden" style="background-color:#342F2EFF">
+        <img alt="A magical pond in a fantasy forest with glowing trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/94aac859695ee6317c6667e83007229e50186908bde9419263d8f9fd05adda96.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73128_a-magical-pond-in-a-fantasy-forest-with-glowing-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73126)">
+        
+        <div class="relative overflow-hidden" style="background-color:#713657FF">
+        <img alt="A magical pond in a fantasy forest with glowing trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/1653e273a30c2825d4d67a3b37a8d1ff5cbfd994a9b566841ba4977eec88c0bf.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73126_a-magical-pond-in-a-fantasy-forest-with-glowing-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73125)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4B3139FF">
+        <img alt="A magical pond in a fantasy forest with glowing trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/bd9b69d9f73c92bee87f683a6e202f8c60ed239ce2b0f8010688563eb573d4a5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73125_a-magical-pond-in-a-fantasy-forest-with-glowing-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73124)">
+        
+        <div class="relative overflow-hidden" style="background-color:#37343FFF">
+        <img alt="A magical pond in a fantasy forest with glowing trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/1d93785df06ee3fa868bcc4b1ceaff5e3499f9c6f3e557e6f73933d2d471f0ed.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73124_a-magical-pond-in-a-fantasy-forest-with-glowing-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73123)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2D2C32FF">
+        <img alt="A magical pond in a fantasy forest with glowing trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/80f1f858417f06e814357818f851dd17f119075c824045421b571c886b82ea84.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73123_a-magical-pond-in-a-fantasy-forest-with-glowing-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73121)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4A3336FF">
+        <img alt="A magical pond in a fantasy forest with glowing trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/3e2fdbf6bb710556ca30b00f0cdb1fd85818a934e85d78d1ecb445bad6d962e3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73121_a-magical-pond-in-a-fantasy-forest-with-glowing-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(69138)">
+        
+        <div class="relative overflow-hidden" style="background-color:#644A39FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/36f851ee7646202f4480d2de2d78a5394e999eb502339d44f34b9dd159daab64.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/69/69138_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68639)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C4343FF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/609bdb5f3b5bf31f1e1572e2500251d57637f6465d9cdb860c749fc7d4d9c5e4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68639_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68637)">
+        
+        <div class="relative overflow-hidden" style="background-color:#443D3DFF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/4fa71bf149e1d3c34052ecdb9c643cfc9bfd4da677141ce3cba12c74dc6b7310.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68637_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68635)">
+        
+        <div class="relative overflow-hidden" style="background-color:#53433EFF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/d2622b56fb671f93d50aeb26892f163f6deb4362e50419419342f6aeea11da96.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68635_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68624)">
+        
+        <div class="relative overflow-hidden" style="background-color:#56473EFF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/febe9edd0324d9b0560c6f92d54c30df5c875f6b475532066e1fa96307168e6a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68624_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68623)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F3D35FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/a39d12688376de1fd351efad8a1448c1311201a03571ab7788019f8b370fc68f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68623_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68622)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C5A5FFF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/05/12/5b27f9d8b4087151d69a988fc67b6bee5add2a2ce8c11a624660846b6ecf1bdd.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68622_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68028)">
+        
+        <div class="relative overflow-hidden" style="background-color:#523F31FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/24ec6b3fee8a053d59c0b35cda2be1e81c601b37c6be63d62af14ed4fc7fa815.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68028_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68023)">
+        
+        <div class="relative overflow-hidden" style="background-color:#504036FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/32c74fcd9f1920efd737dc65b3d3b9a376eae0fff8a4dc14689a242cba0d1e30.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68023_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68022)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C5653FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/89a4b10429ae81257c3882d6d44777994baef9a628b03501a4d2900a5577c16f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68022_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68020)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E493DFF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/8f586f69130b9dd97735e98da0bfa7fdd0a8c93b74cae8d52703871e8b7dc8d7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68020_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68024)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C4335FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/d57de603f9b417bfaeebbf9ddb8385f4f844e070d3c2740cf5464cdd869ecedb.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68024_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68252)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4D3D35FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/d361ac059c83892298533bb5b8d926488b560e92d44d8c7341d7dc66c21fdf9f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68252_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68247)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4B3C34FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/5566297f8c629edd5034f8b2ba86aa64e6fb636e80faaf31d7d82583c2e3fc1f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68247_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(68251)">
+        
+        <div class="relative overflow-hidden" style="background-color:#514037FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="768" height="1344"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/69f566d69f5bba883338d810081612df0836d93f6e5008ea0d12e2d71daac217.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/68/68251_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81304)">
+        
+        <div class="relative overflow-hidden" style="background-color:#42205BFF">
+        <img alt="A magical pond in a fantasy forest with glowing pink trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/8af4a85da389dffe796d6355ee101605ac6b2b35483cfa5da63228fafe88c469.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81304_a-magical-pond-in-a-fantasy-forest-with-glowing-pink-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81303)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2E2C55FF">
+        <img alt="A magical pond in a fantasy forest with glowing pink trees at night, 4k, HQ, Intricate, Artstation, Cinematic Lighting, Photo Realistic, Sharp Focus, Unreal Engine, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/b2ff43914754260dc2a2b3c42c06aeb71d547dd1ae1b307526594e8025860634.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81303_a-magical-pond-in-a-fantasy-forest-with-glowing-pink-trees-at-night.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81291)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2D453DFF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Ferdinand Knab, Ilya Kuvshinov, Alphonse Mucha, RHADS, Greg Rutkowski, Makoto Shinkai, Lois van Baarle" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/f43f0968ffe8d36b5ddcc7112275718ae276a338047396f6235035c0696f893b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81291_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81292)">
+        
+        <div class="relative overflow-hidden" style="background-color:#1E4042FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Ferdinand Knab, Ilya Kuvshinov, Alphonse Mucha, RHADS, Greg Rutkowski, Makoto Shinkai, Lois van Baarle" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/b8eaa84e190db72d2f943eedfa0b124cd3a7fc3e52e669c5b9060676ab051b96.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81292_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81290)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2E454AFF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Ferdinand Knab, Ilya Kuvshinov, Alphonse Mucha, RHADS, Greg Rutkowski, Makoto Shinkai, Lois van Baarle" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/f00f29b1a4833163d5e71ddeb8d1428dad0f3eab59cd007be550794819d2123d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81290_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81289)">
+        
+        <div class="relative overflow-hidden" style="background-color:#344138FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Ferdinand Knab, Ilya Kuvshinov, Alphonse Mucha, RHADS, Greg Rutkowski, Makoto Shinkai, Lois van Baarle" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/868bb44daaf88d4e957712292a81d3aa68f65eca260c24b5094ab1ef37f328b5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81289_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81288)">
+        
+        <div class="relative overflow-hidden" style="background-color:#374035FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Ferdinand Knab, Ilya Kuvshinov, Alphonse Mucha, RHADS, Greg Rutkowski, Makoto Shinkai, Lois van Baarle" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/add8a4b87d45e55e693896c848e057540e3c2dc66a4ab3d30b03c51dbb9850d4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81288_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81287)">
+        
+        <div class="relative overflow-hidden" style="background-color:#595642FF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/e43e01f583f51da7b7a600ac14027ec265887aec4d177b2b2e2f935193067347.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81287_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81284)">
+        
+        <div class="relative overflow-hidden" style="background-color:#634736FF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/aed53d8a90f9a2d56f9bde119f7c212d7b9e1f489da4021ae58e5d5b4b9f4076.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81284_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81281)">
+        
+        <div class="relative overflow-hidden" style="background-color:#656876FF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/c16cf3f462d51ce6f746abf3f1298eb61e43d9afb6d42536975a9095accc86f8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81281_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81280)">
+        
+        <div class="relative overflow-hidden" style="background-color:#797577FF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/ef4fb0984291d84cf9f24f0911eafcc38160e6ef605e96e8ddf57cd3df020b3e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81280_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81279)">
+        
+        <div class="relative overflow-hidden" style="background-color:#314D62FF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/749bdb084fb5366136f81338cc1c6f3482726472d848a23af02656beadc77057.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81279_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(81278)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F737CFF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/5ca19f7800acc17796c67c4bf5d12226067d2719a325ea5d0c63dc0e36788858.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/81/81278_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80228)">
+        
+        <div class="relative overflow-hidden" style="background-color:#746B78FF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/a73371bfc9092f80922016ab63432799dc7c568a84589cc8785d170c0e020fde.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80228_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80225)">
+        
+        <div class="relative overflow-hidden" style="background-color:#72627CFF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/780136666b816a649031fd04cd29f5b17692b92bb2c31dde70e82404d1ab00d4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80225_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80224)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7F6575FF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/a8f752e33df06fe8b31b147b32bc369c6b6713bbfb5c465cfc83a30f8f70e3d5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80224_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80222)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6E8680FF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/2d83b28cd63e8f8048da1f0b5de45810fb0d82f2d72ea2e6b685af94c9636dd4.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80222_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80221)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A8382FF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/19d8ebd71561368a432fc784af979b78c5c3f3bca247d405f95427ce498581aa.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80221_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80220)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F8787FF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/eb4b1f0107f18968d371242dea521f1529045a66d60399d4f80163ae9ba96128.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80220_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80219)">
+        
+        <div class="relative overflow-hidden" style="background-color:#618997FF">
+        <img alt="Wizard&#x27;s tower in fantasy landscape, Magical, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/9514e8a50b8a3ed0d2c5ec5340740459de5075442eb8a7d840503cd0c8094e22.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80219_wizard-s-tower-in-fantasy-landscape.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80218)">
+        
+        <div class="relative overflow-hidden" style="background-color:#465B6EFF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/e0d85b313adb4916b4a76a9bf846f1cea2eba6dabaa9c280ba5210d309a970a5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80218_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80217)">
+        
+        <div class="relative overflow-hidden" style="background-color:#344E6CFF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/582a306bc287cd48d8395feb086b7bd821865f070c488d1fba4845d691d7f017.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80217_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80216)">
+        
+        <div class="relative overflow-hidden" style="background-color:#32495DFF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/9e8e3cc39ba01b73dcde6ef357084fdb18ea1709647890b9b987a43a33098f2f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80216_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80214)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2C4964FF">
+        <img alt="moonrise over the equator, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/5ba6c10e3b2bdf55de48724d8be4292e379f6cafd42b5b3ce744a8ee4316ef5b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80214_moonrise-over-the-equator.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73118)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6B4C4AFF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Ferdinand Knab, Ilya Kuvshinov, Alphonse Mucha, RHADS, Greg Rutkowski, Makoto Shinkai, Lois van Baarle" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/64286f635c2977efcd45b9986a7a345c3a7c1cc84233fa0fadde4377b9d5a435.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73118_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73116)">
+        
+        <div class="relative overflow-hidden" style="background-color:#855B4AFF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Ferdinand Knab, Ilya Kuvshinov, Alphonse Mucha, RHADS, Greg Rutkowski, Makoto Shinkai, Lois van Baarle" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/beb414d64f7c5fec1108f41cc6bd9fef3ac77e61c6c67cc02cfb8e050b98437b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73116_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73115)">
+        
+        <div class="relative overflow-hidden" style="background-color:#664D48FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy by Ferdinand Knab, Ilya Kuvshinov, Alphonse Mucha, RHADS, Greg Rutkowski, Makoto Shinkai, Lois van Baarle" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/5bcd8bc837e2232a4652ca29927f8685198342ceed5d961ccb4cf9303de1f726.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73115_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73109)">
+        
+        <div class="relative overflow-hidden" style="background-color:#403530FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/c5da7b8ffdaf6a276fb29d5b03e01ef6ef74270335aab8fb80ad32985c746b3c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73109_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73103)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4C3F39FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/4b159896a87562579b39a502f79237eab68d51bbe648e76176835fadc4036692.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73103_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(73102)">
+        
+        <div class="relative overflow-hidden" style="background-color:#483930FF">
+        <img alt="Portrait of a fall we felled in the moonlight, Highly Detailed, Intricate, Cinematic Lighting, Unreal Engine, Radiant, Fantasy" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/12/12/71a910551a24c877844f07f1fbeb229cb8f0db4bd4f7eb85bb88157fe6420b1c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/73/73102_portrait-of-a-fall-we-felled-in-the-moonlight.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67803)">
+        
+        <div class="relative overflow-hidden" style="background-color:#2F3632FF">
+        <img alt="A beautiful digital illustration painting of a detailed gothic fantasy fireflies forest trees and iron gate cobblestone pathway vines full moon, 8k, Artstation, Digital Illustration, Concept Art by Justin Gerard, James Gurney" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/3020613800260dff681d09e51113872c7440322e73473f37b67f475d07a86f69.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67803_a-beautiful-digital-illustration-painting-of-a-detailed-gothic-fantasy-fireflies-forest-trees-and-ir.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67800)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3A4339FF">
+        <img alt="A beautiful digital illustration painting of a detailed gothic fantasy fireflies forest trees and iron gate cobblestone pathway vines full moon, 8k, Artstation, Digital Illustration, Concept Art by Justin Gerard, James Gurney" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/d1e45c37d2406e790553b607f9f6b32324f0b8d76d38a82958695f80ec7a1d62.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67800_a-beautiful-digital-illustration-painting-of-a-detailed-gothic-fantasy-fireflies-forest-trees-and-ir.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67799)">
+        
+        <div class="relative overflow-hidden" style="background-color:#39372EFF">
+        <img alt="A beautiful digital illustration painting of a detailed gothic fantasy fireflies forest trees and iron gate cobblestone pathway vines full moon, 8k, Artstation, Digital Illustration, Concept Art by Justin Gerard, James Gurney" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/f909dca6d6f9a18b6dd0967c981fdcec34e3d6e0d3f2460733ffe504396876dc.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67799_a-beautiful-digital-illustration-painting-of-a-detailed-gothic-fantasy-fireflies-forest-trees-and-ir.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67798)">
+        
+        <div class="relative overflow-hidden" style="background-color:#383832FF">
+        <img alt="A beautiful digital illustration painting of a detailed gothic fantasy fireflies forest trees and iron gate cobblestone pathway vines full moon, 8k, Artstation, Digital Illustration, Concept Art by Justin Gerard, James Gurney" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/3d1c78cc494c51c79b7b95c0f542fcede3d72fcd5373586b3c121313cc31cf1d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67798_a-beautiful-digital-illustration-painting-of-a-detailed-gothic-fantasy-fireflies-forest-trees-and-ir.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67797)">
+        
+        <div class="relative overflow-hidden" style="background-color:#333731FF">
+        <img alt="A beautiful digital illustration painting of a detailed gothic fantasy fireflies forest trees and iron gate cobblestone pathway vines full moon, 8k, Artstation, Digital Illustration, Concept Art by Justin Gerard, James Gurney" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/14dde587cfeee36bbc83006e97fd0cbff47e368a0f38c5faab758b421d80db3f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67797_a-beautiful-digital-illustration-painting-of-a-detailed-gothic-fantasy-fireflies-forest-trees-and-ir.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67796)">
+        
+        <div class="relative overflow-hidden" style="background-color:#333430FF">
+        <img alt="A beautiful digital illustration painting of a detailed gothic fantasy fireflies forest trees and iron gate cobblestone pathway vines full moon, 8k, Artstation, Digital Illustration, Concept Art by Justin Gerard, James Gurney" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/c55f6d6933f659ffc872193d3dd3455952ff10816cdae29657352eb06cdc82ac.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67796_a-beautiful-digital-illustration-painting-of-a-detailed-gothic-fantasy-fireflies-forest-trees-and-ir.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(67795)">
+        
+        <div class="relative overflow-hidden" style="background-color:#33342EFF">
+        <img alt="A beautiful digital illustration painting of a detailed gothic fantasy fireflies forest trees and iron gate cobblestone pathway vines full moon, 8k, Artstation, Digital Illustration, Concept Art by Justin Gerard, James Gurney" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/04/12/e4963eb50d24f6bd928a99805330d4788dd95c692f0c2ccf7f7e2ab762443bef.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/67/67795_a-beautiful-digital-illustration-painting-of-a-detailed-gothic-fantasy-fireflies-forest-trees-and-ir.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)" v-on:open="openDialog">
+        <template #icons="artifact">
+            <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                <div class="flex flex-col h-full justify-between">
+                    <div class="flex justify-between flex-none">
+                        <artifact-like-icon :artifact="artifact" v-on:changed="update"></artifact-like-icon>
+                        <artifact-menu-icon :artifact="artifact" v-on:show-artifact-menu="artifactMenu=artifact"></artifact-menu-icon>
+                    </div>
+                    <artifact-explore-icon :artifact="artifact" v-on:changed="update"></artifact-explore-icon>
+                </div>
+            </div>
+        </template>
+        <template #contextmenu="artifact">
+            <artifact-menu v-if="artifactMenu?.id === artifact.id" :artifact="artifactMenu" menu-class="justify-end"
+                           v-on:changed="notifyChanged" v-on:done="artifactMenu=null" v-on:open="openDialog">
+            </artifact-menu>
+        </template>
+    </artifact-modal>
+    <artifact-dialogs :show="open" :artifact="artifact" v-on:done="closeDialog"></artifact-dialogs>
+</div>
+
+<script type="module">
+import { ref, inject, getCurrentInstance } from "vue"
+import { mount } from "app.mjs"
+import { Store } from "store.mjs"
+
+const Gallery = {
+    setup() {
+        const store = inject('store')
+        const artifact = ref()
+        
+        async function loadArtifact(id) {
+            artifact.value = await store.getArtifact(id)
+        }
+        function showArtifact(a) {
+            artifact.value = a
+        }
+        
+        const instance = getCurrentInstance()
+        const artifactMenu = ref()
+        const open = ref('')
+        function openDialog(dialog, artifact) {
+            artifactMenu.value = null
+            open.value = dialog
+            //artifact.value = artifact
+        }
+        function closeDialog() {
+            open.value = ''
+            //artifact.value = null
+        }
+        function notifyChanged() {
+            artifactMenu.value = null
+            forceUpdate()
+            update() 
+        }
+        function update() {}
+        function forceUpdate() { instance?.proxy?.$forceUpdate() }
+        
+        return { store, artifact, loadArtifact, showArtifact,
+            artifactMenu, open, openDialog, closeDialog, notifyChanged, update }
+    }
+}
+mount('#gallery', Gallery)
+</script>
+    
+    <nav class="mt-8 mb-8 flex items-center justify-between border-t border-gray-700 px-4 sm:px-0">
+        <div class="-mt-px flex w-0 flex-1">
+                <a href="/albums/fantasy_3" class="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">
+                    <!-- Heroicon name: mini/arrow-long-left -->
+                    <svg class="mr-3 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"/>
+                    </svg>
+                    Previous
+                </a>
+        </div>
+        <div class="hidden md:-mt-px md:flex">
+                    <a href="/albums/fantasy" class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">1</a>
+                    <a href="/albums/fantasy_2" class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">2</a>
+                    <a href="/albums/fantasy_3" class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-600 hover:text-gray-200">3</a>
+                    <a href="/albums/fantasy_4" class="inline-flex items-center border-t-2 border-indigo-400 px-4 pt-4 text-sm font-medium text-indigo-300" aria-current="page">4</a>
+        </div>
+        <div class="-mt-px flex w-0 flex-1 justify-end">
+        </div>
+    </nav>
+
+
+    <h3 class="mt-16 mb-8 text-xl">Other Albums</h3>
+
+    <div class="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
+            <div class="text-center">
+                <a href="/albums/silhouettes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Silhouettes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fog-of-war"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fog of War
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/league-of-legends"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    League of Legends
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/tattoos"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Tattoos
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fictional-characters"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fictional Characters
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/matte-finesse"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Matte Finesse
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/leathered-league"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Leathered League
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/nidalee"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Nidalee
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kassandra"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kassandra
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/the-witcher"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    The Witcher
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/anime"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Anime
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/goddess"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Goddess
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/steampunk"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Steampunk
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/a-christmas-miracle"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    A Christmas Miracle
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/morgana"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Morgana
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/elden-ring"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Elden Ring
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/architect"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Architect
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/black-white"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Black &amp; White
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/irelia"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Irelia
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fantasy"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-300">
+                    Fantasy
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/league-with-wings"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    League with Wings
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/dystopia"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Dystopia
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ciri"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ciri
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/christmas"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Christmas
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/katarina"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Katarina
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/fiora"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Fiora
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kayle"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kayle
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/veiled-vixens"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Veiled Vixens
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/feathered-femmes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Feathered Femmes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/forest-femmes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Forest Femmes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ninja"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ninja
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/landscapes"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Landscapes
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/samira"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Samira
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/cyborg"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Cyborg
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/models"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Models
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/futuristic"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Futuristic
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/overwatch"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Overwatch
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/quinn"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Quinn
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/akali"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Akali
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/pirates"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Pirates
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/kiki-the-witch"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Kiki the witch
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/femme-fighters"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Femme Fighters
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/lyx"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Lux
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/retrofuturistic"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Retrofuturistic
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/high-octane"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    High Octane
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/assassin-s-creed"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Assassin&#x27;s Creed
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/dieter-rams-designs"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Dieter Rams Designs
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/cassandra-cain"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Cassandra Cain
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/nature-s-landing"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Nature&#x27;s Landing
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/sarah-kerrigan"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Sarah Kerrigan
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/poison-ivy"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Poison Ivy
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/miss-fortune"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Miss Fortune
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/a2"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Nier Automata
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/sona"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Sona
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/artistic-effects"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Artistic effects
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/mystical"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Mystical
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vintage-builds"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vintage Builds
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/princess-mononoke"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Princess Mononoke
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vayne"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vayne
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/matte-wings"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Matte Wings
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/dragons"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Dragons
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/gods"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Gods
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/princess-jasmine"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Princess Jasmine
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/matte-portraits"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Matte Portraits
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/sivir"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Sivir
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/weird-portraits"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    weird portraits 
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vex"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vex
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/tifa-lockhart"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Tifa Lockhart
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/tranquil"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Tranquil
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/retro"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Retro
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ghibli"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ghibli
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/evil"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    evil
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/aloy"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Aloy
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/minecraft"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Minecraft
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/disney-portraits"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Disney portraits
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/posters"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    posters 
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/trump"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Trump
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/cyberpunk"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Cyberpunk
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/steampunk-styles"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Steampunk Styles
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/animal-kingdom"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Animal Kingdom
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/lara-croft"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Lara Croft
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/ahri"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Ahri
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/xmen"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Xmen
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vampira"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vampira
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/seraphine"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Seraphine
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/interior-design"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Interior Design
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/galactica"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Galactica
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vehicles"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vehicles
+                </a>
+            </div>
+            <div class="text-center">
+                <a href="/albums/vintage-beauty"
+                   class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 hover:text-gray-300">
+                    Vintage Beauty
+                </a>
+            </div>
+    </div>
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="relative z-10 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://razor-ssg.web-templates.io/posts/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,1185 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg" href="img/logo.svg">
+    <title>Galactica</title>
+    <base href="/"/>
+    <link rel="stylesheet" href="css/app.css">
+    
+
+<link rel="canonical" href="https://blazordiffusion.com/albums/galactica"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="diffusion.works"/>
+<meta name="twitter:creator" content="@blazordiffusion"/>
+<meta property="og:url" content="https://blazordiffusion.com/albums/galactica"/>
+<meta property="og:title" content="Galactica"/>
+<meta property="og:description" content="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski"/>
+<meta property="og:image" content="https://cdn.diffusion.works/artifacts/2024/08/06/12/0eeb2de8fbaee18ce50c468b50095395a28248c76e4d5c5b6c9d9a7924e7a19c.webp"/>
+
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+{
+    "imports": {
+        "app.mjs": "./mjs/app.mjs",
+        "dtos.mjs": "./mjs/dtos.mjs",
+        "store.mjs": "./mjs/store.mjs",
+        "vue": "./lib/mjs/vue.min.mjs",
+        "@servicestack/client": "./lib/mjs/servicestack-client.min.mjs",
+        "@servicestack/vue": "./lib/mjs/servicestack-vue.min.mjs"
+    }
+}
+</script>
+    <script>window.AppConfig={"baseUrl":"https://diffusion.works","cdnBaseUrl":"https://blazordiffusion.com","apiBaseUrl":"https://blazordiffusion.com","assetsBasePath":"https://cdn.diffusion.works","fallbackAssetsBasePath":"https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"}</script>
+    <style>:root { color-scheme:dark }</style>
+</head>
+<body class="bg-white dark:bg-black dark:text-white">
+
+<header id="header" class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-4" aria-label="Global">
+        <div class="flex sm:flex-1">
+            <a href="/" class="-m-1.5 p-1.5 flex items-center">
+                <span class="sr-only">Diffusion Works</span>
+                <svg class="hidden sm:inline w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M8.55 3.06c1.01.34-1.95 2.01-.1 3.13c1.04.63 3.31-2.22 4.45-2.86c.97-.54 2.67-.65 3.53 1.23c1.09 2.38.14 8.57-3.79 11.06c-3.97 2.5-8.97 1.23-10.7-2.66c-2.01-4.53 3.12-11.09 6.61-9.9zm1.21 6.45c.73 1.64 4.7-.5 3.79-2.8c-.59-1.49-4.48 1.25-3.79 2.8z"/></svg>
+                <span class="ml-1 text-lg sm:text-xl leading-6 tracking-tight text-white">diffusion.works</span>
+            </a>
+        </div>
+        <div class="flex sm:hidden">
+            <button v-on:click="showMobileNav=true" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden sm:flex sm:gap-x-6 lg:gap-x-12">
+                    <a href="" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Search</a>
+                    <a href="create" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Create</a>
+                    <a href="favorites" v-on:click="nav" class="text-lg font-semibold leading-6 text-white">Favorites</a>
+        </div>
+        <div class="hidden sm:flex sm:flex-1 sm:justify-end">
+            <sign-in-link><div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+        </div>
+    </nav>
+    <div v-if="showMobileNav" class="sm:hidden" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <svg class="h-8 w-auto" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/>
+                    </svg>
+                </a>
+                <button v-on:click="showMobileNav=false" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/25">
+                    <div class="space-y-2 py-6">
+                            <a href="" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Search</a>
+                            <a href="create" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Create</a>
+                            <a href="favorites" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Favorites</a>
+                    </div>
+                    <div class="py-6">
+                        <sign-in-link menu-class="left-4">
+                            <div class="cursor-pointer -mx-3 block rounded-lg px-3 py-1.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Sign in &rarr;</div></sign-in-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <sign-in-dialog v-if="showAuth && !showSignUp" v-on:done="showAuth=false" v-on:signup="showSignUp=true"></sign-in-dialog>
+    <sign-up-dialog v-if="showAuth && showSignUp" v-on:done="showAuth=false"  v-on:signin="showSignUp=false"></sign-up-dialog>
+</header>
+
+<script>
+const cachedAuth = JSON.parse(localStorage.getItem('swr.Authenticate') || null) 
+if (cachedAuth?.profileUrl) {
+    document.querySelectorAll('nav sign-in-link').forEach(el => el.innerHTML = 
+        `<div class="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 overflow-hidden">
+          <img class="w-9 h-9 cursor-pointer" src="${cachedAuth.profileUrl}" alt="Profile">
+        </div>`)
+}
+</script>
+
+<script type="module">
+import { ref } from "vue"
+import { mountAll, mount } from "app.mjs"
+import { useAuth } from "@servicestack/vue"
+
+const HeaderNav = {
+    setup() {
+        const showMobileNav = ref(false)
+        const showAuth = ref(false)
+        const showSignUp = ref(false)
+        const { user } = useAuth()
+        
+        const requiresAuth = ['create','favorites']
+        function nav(e) {
+            if (requiresAuth.some(x => e.target.href.endsWith(x)) && !user.value) {
+                showAuth.value = true
+                e.preventDefault()                
+            }
+        }
+        
+        return { showMobileNav, showAuth, showSignUp, nav }
+    }
+}
+mount('#header', HeaderNav)
+
+mountAll()
+</script>
+
+
+<div class="bg-gray-900">
+    <div class="relative isolate pt-8 min-h-screen">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <main class="py-16 sm:py-32 lg:pb-40">
+            
+
+
+<div id="albums" class="mx-auto px-6 lg:px-8" data-album="90">
+    <div class="mb-8 mx-auto max-w-2xl text-center">
+        <h1 class="max-w-4xl font-display text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl">Galactica</h1>
+    </div>
+
+    
+
+    
+<div id="gallery" class="grid sm:gap-2 grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <div v-on:click.prevent.stop="loadArtifact(79466)">
+        
+        <div class="relative overflow-hidden" style="background-color:#374446FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/0eeb2de8fbaee18ce50c468b50095395a28248c76e4d5c5b6c9d9a7924e7a19c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79466_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91765)">
+        
+        <div class="relative overflow-hidden" style="background-color:#425151FF">
+        <img alt="Earth going through cycles of creation and destruction" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/82dfaf4029742c4e489e7b19983af3047c686b26c7bad0d981ffeb60f09a647d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91765_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91764)">
+        
+        <div class="relative overflow-hidden" style="background-color:#674A39FF">
+        <img alt="Earth going through cycles of creation and destruction" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/4eaf5c98916ab8ca5c5fb508f1d583bfc8c02116f7b85365ae187ccb7b126cb1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91764_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91763)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E4D35FF">
+        <img alt="Earth going through cycles of creation and destruction" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/15655a6e5ca7a6e8d64e0e091010215b23aaccc0803afca1b319987e11a3204c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91763_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91762)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5F5B4EFF">
+        <img alt="Earth going through cycles of creation and destruction" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/1c40a6b2dd7ff5b5b87e68f4731e0be9d5c9eb8e034c65cc0ae56cc5871ab700.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91762_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91768)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3A3F42FF">
+        <img alt="Earth going through cycles of creation and destruction" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/a70ae74256602ecaa8c1ba91a6a5445b93acc8ac05120a54913031fae8ff3774.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91768_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91767)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3D464BFF">
+        <img alt="Earth going through cycles of creation and destruction" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/339af0aa1e3941a7ce23f5a0480a546b2fba0c61dcd045e81f4083e27ed7f99e.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91767_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(91766)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3C3F41FF">
+        <img alt="Earth going through cycles of creation and destruction" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/28/12/a40b5153ea34cb6b405888c2d423524feeff29426fb9f19d967828a9474dc08b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/91/91766_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80906)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4E5E76FF">
+        <img alt="Cosmic round beautiful indigo temple in the center of a futuristic community. Extraterrestrial landscape. Planet sirius. The moon and stars can be seen in the sky even during the day., Sci-Fi, Volumetric Lighting, Vibrant Colors by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/4202650f6c5112674e933849ff6cd6fcf40988ceeaacf74ec0616f1a9c245269.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80906_cosmic-round-beautiful-indigo-temple-in-the-center-of-a-futuristic-community-extraterrestrial-lands.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80905)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3A6D74FF">
+        <img alt="Cosmic round beautiful indigo temple in the center of a futuristic community. Extraterrestrial landscape. Planet sirius. The moon and stars can be seen in the sky even during the day., Sci-Fi, Volumetric Lighting, Vibrant Colors by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/e4b328b639eeb3c350351e80aac311f36062f0ca9d17fd78dcb14c6e2c0f4722.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80905_cosmic-round-beautiful-indigo-temple-in-the-center-of-a-futuristic-community-extraterrestrial-lands.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80908)">
+        
+        <div class="relative overflow-hidden" style="background-color:#375378FF">
+        <img alt="Cosmic round beautiful indigo temple in the center of a futuristic community. Extraterrestrial landscape. Planet sirius. The moon and stars can be seen in the sky even during the day., Sci-Fi, Volumetric Lighting, Vibrant Colors by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/058de071dcd024181df2d147e7d10a01300f0813bab098e240c4dde37aca2c72.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80908_cosmic-round-beautiful-indigo-temple-in-the-center-of-a-futuristic-community-extraterrestrial-lands.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80907)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6E6760FF">
+        <img alt="Cosmic round beautiful indigo temple in the center of a futuristic community. Extraterrestrial landscape. Planet sirius. The moon and stars can be seen in the sky even during the day., Sci-Fi, Volumetric Lighting, Vibrant Colors by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/9a8e02ee9fe7b27efc6a626c7573c8bcc8c1cfb01d89fb8901abf3c70104ff0a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80907_cosmic-round-beautiful-indigo-temple-in-the-center-of-a-futuristic-community-extraterrestrial-lands.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80884)">
+        
+        <div class="relative overflow-hidden" style="background-color:#343F41FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/3c57f30fbd0a63bf5e0cdc515d746f293954e7859a0d80aa88660dc88cb71824.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80884_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80883)">
+        
+        <div class="relative overflow-hidden" style="background-color:#556053FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/37bf57b71cb88665b8b821af45f62f8370ddffc79dd70f2d51bc1bc7a4809479.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80883_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(80881)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F4437FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/09/12/4b37f156e88159778c486fea17e8c5ac246270af86d4eb5685269b70da248d92.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/80/80881_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(70315)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6C4444FF">
+        <img alt="The Nebula Phoenix is a cosmic bird with wings that resemble swirling galaxies. Witness the physics of space and time as it flaps through the digital cosmos, Unreal Engine, Volumetric Lighting, Vibrant Colors" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/3a01dfb011626696505094bd18faffcf7354921db373d4237f2843593ba0ca4a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/70/70315_the-nebula-phoenix-is-a-cosmic-bird-with-wings-that-resemble-swirling-galaxies-witness-the-physics.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79734)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D4553FF">
+        <img alt="Digital art of Black hole containing strange object astronaut, Sci-Fi, Volumetric Lighting" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/0fa3e1df1a5e4f7dbe071651954ba66689b0fb7d8f2391bb8df1e7293d1dbb38.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79734_digital-art-of-black-hole-containing-strange-object-astronaut.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79736)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D4C4BFF">
+        <img alt="Digital art of Black hole containing strange object astronaut, Sci-Fi, Volumetric Lighting" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/f7e2e3493e73d4e5a1f4c47175db08a3b489f22156115e358b0a4e1c29b50501.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79736_digital-art-of-black-hole-containing-strange-object-astronaut.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79696)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6F6066FF">
+        <img alt="Earth going through cycles of creation and destruction, 8k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/e5af23b220dbc6fd868101b6cfd8357983c63edc0c9313ade416d8f556b64e1f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79696_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79692)">
+        
+        <div class="relative overflow-hidden" style="background-color:#796262FF">
+        <img alt="Earth going through cycles of creation and destruction, 8k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/07/12/9d6c725e2bb4eede46bb2cd7f5db25ed8aacb856092b842edb1cc87fe11daa50.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79692_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79465)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3C4548FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/1505ad2241610f4283cc95be7fdb33ed107fedde3c75c74372955489853b8cb3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79465_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79464)">
+        
+        <div class="relative overflow-hidden" style="background-color:#474C49FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/cb3b84614569d0ebfd72d20463780963d8420bf98aca934640138327aed21dec.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79464_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79463)">
+        
+        <div class="relative overflow-hidden" style="background-color:#34444EFF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/49f5e6282f6fee64d534d5c831603c980f64fe8d94ce895f0603b30d098101ee.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79463_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74350)">
+        
+        <div class="relative overflow-hidden" style="background-color:#373836FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/6293bbde8a8a82581934ffe3a29a9be7913e9ed0aaa5b96d40df4ca8c04d300d.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74350_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71368)">
+        
+        <div class="relative overflow-hidden" style="background-color:#533F33FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/3b7c149d14c2adeedd52c30deb7bb148736e3acd016f4d622f8170ad568d905c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71368_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71366)">
+        
+        <div class="relative overflow-hidden" style="background-color:#594840FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/7af81d4ca11794a79f5d1b44e8e0bbaba1dd98a14276131dfbf28c4e8e692606.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71366_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71371)">
+        
+        <div class="relative overflow-hidden" style="background-color:#524845FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/9da60df5cdb25ee8dad1d936835b20d76282561489c3304cb226f9f0f34c2a89.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71371_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71370)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6A5246FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/69ed9afd93a5035fd87561a0a54b7b5fdbf2ee18376b987d32e1379b01ed068a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71370_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71367)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B534CFF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/8841c8875b8f15b402d6f48eb026b9ce75f615efb22630920aa677e789828a9a.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71367_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71362)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5F473CFF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/0491b649d93c5e06d9bba28530c9d4dd6cc3e49d7fd27785adcbe0da1bc1120f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71362_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71357)">
+        
+        <div class="relative overflow-hidden" style="background-color:#474B49FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/2afc2ee7dcfd0f1adf968a74c7bb120386d253b1662b0e99968f30da932f41ca.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71357_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71355)">
+        
+        <div class="relative overflow-hidden" style="background-color:#524742FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/13640a2840214540e89de0d5dbbc41ed028ebb5f62522467c48237b43a8e082b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71355_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71358)">
+        
+        <div class="relative overflow-hidden" style="background-color:#595550FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/262356a95d487e5d92a07a2887ca3d08b94c077a21f03622b17acfe199baf6ef.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71358_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(70168)">
+        
+        <div class="relative overflow-hidden" style="background-color:#766458FF">
+        <img alt="Earth going through cycles of creation and destruction, 8k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/48ffcb13a914416a804b6aa20afd403b9224d330ac1c005edbb2c38f2def5103.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/70/70168_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(70163)">
+        
+        <div class="relative overflow-hidden" style="background-color:#66574DFF">
+        <img alt="Earth going through cycles of creation and destruction, 8k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/3eabdda04b2e140fdbe1ba042f015fbb121ca548912359c36d45552279846ccd.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/70/70163_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(70161)">
+        
+        <div class="relative overflow-hidden" style="background-color:#453E3BFF">
+        <img alt="Earth going through cycles of creation and destruction, 8k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/06/12/bff952c4c0fc3ff09802689b206f1297cb871a688ac7e255be8ec69acf08d4f1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/70/70161_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71349)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C4E49FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/3622c2ccb13fcef83aa86abac8c59881c119b02ec3d298ea5c12af7697c4a771.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71349_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71351)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4D4742FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/b4e4f4557388547e3a466b846eafd52994c5ec607500e454a6aec380919a75b0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71351_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71347)">
+        
+        <div class="relative overflow-hidden" style="background-color:#736963FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/6832fa3bc5913932100b27120be18fc3da7782ffede3b2e4f8755174258f112c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71347_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71348)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4C4744FF">
+        <img alt="Earth going through cycles of creation and destruction, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/1394aec4f904a61fc5e4647e9889ebcf69cde767aff5a522c697b7df503b0da3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71348_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71343)">
+        
+        <div class="relative overflow-hidden" style="background-color:#664C41FF">
+        <img alt="Earth going through cycles of creation and destruction, 8k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/b4c4a17ad55316bc5e8805e215fad0d3fff3a7649074d2fb398d5a2ef897cbf0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71343_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71344)">
+        
+        <div class="relative overflow-hidden" style="background-color:#524741FF">
+        <img alt="Earth going through cycles of creation and destruction, 8k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/723b9987c5839a272eac78bacf795e0acdeeb6571e4845f087552ee6e1c85027.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71344_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(71342)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4C4C4EFF">
+        <img alt="Earth going through cycles of creation and destruction, 8k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/07/12/00b5b0b892fe4d7c1f14c00cbba99ea8e51ff9d3230185cd93b46d0becd1f1df.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/71/71342_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(79392)">
+        
+        <div class="relative overflow-hidden" style="background-color:#464B47FF">
+        <img alt="Earth going through cycles of creation and destruction, 8k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2024/08/06/12/ed6d1b6c3dcaeb9badb4e72601cba4ae1651cd40759d5455f3e3079256fbb2af.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/79/79392_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74610)">
+        
+        <div class="relative overflow-hidden" style="background-color:#553C3BFF">
+        <img alt="Flash. The Big Bang. Impossibly bright, silent in the vacuum of space. 1/8 images. This is the start, the next 7 will progress us to present day Earth.&#x9;, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/28/12/dd4a6732b10f73c3aeb81bfd48a0160b548d8e739817da0913862e3aff1608a5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74610_flash-the-big-bang-impossibly-bright-silent-in-the-vacuum-of-space-1-8-images-this-is-the-start.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74609)">
+        
+        <div class="relative overflow-hidden" style="background-color:#7C5355FF">
+        <img alt="Flash. The Big Bang. Impossibly bright, silent in the vacuum of space. 1/8 images. This is the start, the next 7 will progress us to present day Earth.&#x9;, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/28/12/ff2d6e0ae32980749d42515ad35e3f2eb7771e8a92e1c7ec70293035b94029b8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74609_flash-the-big-bang-impossibly-bright-silent-in-the-vacuum-of-space-1-8-images-this-is-the-start.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74608)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5C3A36FF">
+        <img alt="Flash. The Big Bang. Impossibly bright, silent in the vacuum of space. 1/8 images. This is the start, the next 7 will progress us to present day Earth.&#x9;, 4k" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/28/12/169e5d33abf575a4eae16d9c96963f1c96bc5af1b563e13f9b86a15c037627cf.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74608_flash-the-big-bang-impossibly-bright-silent-in-the-vacuum-of-space-1-8-images-this-is-the-start.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74372)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3F474DFF">
+        <img alt="Mountain surreal moon, Award-Winning, Volumetric Lighting, Fantasy, Dark by Studio Ghibli" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/92198658b15c1e42689bfd37a76aa7b7eb9686446e032e4b78f38204521217b5.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74372_mountain-surreal-moon.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74371)">
+        
+        <div class="relative overflow-hidden" style="background-color:#333F44FF">
+        <img alt="Mountain surreal moon, Award-Winning, Volumetric Lighting, Fantasy, Dark by Studio Ghibli" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/b682be367a1be4daceee3fd225cf4a45d5d524342006ce04c8162baa1a4051ca.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74371_mountain-surreal-moon.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74366)">
+        
+        <div class="relative overflow-hidden" style="background-color:#535859FF">
+        <img alt="Mountain surreal moon, Award-Winning, Volumetric Lighting, Fantasy, Dark by Studio Ghibli" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/f839c85d3327c7246fce35db0ead69c069b5d040a511a2012e91b5911b0705ee.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74366_mountain-surreal-moon.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74363)">
+        
+        <div class="relative overflow-hidden" style="background-color:#424649FF">
+        <img alt="Mountain surreal moon, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/554cbc6d19452eab89607712218ea6120f1a3f0d8256b817c3dd614bd77ecb76.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74363_mountain-surreal-moon.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74359)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3E3B3EFF">
+        <img alt="Mountain surreal moon, Award-Winning, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/b1e99eb26bbee3529aed2de55d1e0448fe7c3443bb330c2efc27f07b9b982ec7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74359_mountain-surreal-moon.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74361)">
+        
+        <div class="relative overflow-hidden" style="background-color:#32393DFF">
+        <img alt="Mountain surreal moon, Award-Winning, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/302fe9681041a52480c9394880c7cf1cf9d3dc22c669aaada115fa2027d52ea3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74361_mountain-surreal-moon.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74357)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3A4652FF">
+        <img alt="Mountain surreal moon, Award-Winning, Volumetric Lighting, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/e491f8b2cb0013f0beed5bfac7490e5ef203cb65f9a64bf4d7ee00d9a73c2dc6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74357_mountain-surreal-moon.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74346)">
+        
+        <div class="relative overflow-hidden" style="background-color:#37372FFF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Studio Ghibli" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/4f81e87e9c315b8395c7431afad36b2d5ff332cb5a6d5175ef12f3d373ab8c90.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74346_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74347)">
+        
+        <div class="relative overflow-hidden" style="background-color:#333A38FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Studio Ghibli" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/f5b5f273bb5a06eebb37d0d2ea8a804604588275576de376fb4fe7a721deafd3.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74347_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74342)">
+        
+        <div class="relative overflow-hidden" style="background-color:#46413AFF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/3962cc3c6b8cdac005f1ae531dafa05ec00a862db0dd987bef73cb302291eaa7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74342_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74345)">
+        
+        <div class="relative overflow-hidden" style="background-color:#383938FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/0b0f9415af99af47b9afc6aea2babb25b4e06df876ff2fc1c7f487034c709340.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74345_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74341)">
+        
+        <div class="relative overflow-hidden" style="background-color:#3F3B36FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/a5352fafb62aecf95633e4ed90f188402f55cff1900df3f867dceed3498111f1.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74341_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74340)">
+        
+        <div class="relative overflow-hidden" style="background-color:#40403CFF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/a56720429659e0377f11bb368d931e90dff4bce1ad3df09eeaeddc9cf58a33a9.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74340_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74339)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4D4C47FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/465df8e47d4e0e1aab6b2f1d4fa47509fa4bcfc9508db3852a01f37615f98b79.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74339_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74336)">
+        
+        <div class="relative overflow-hidden" style="background-color:#292A2AFF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/7908952221904271bbf5df60b5cfeb65ea788fd7262c3bc7f72e6269e8bf6dc2.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74336_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74337)">
+        
+        <div class="relative overflow-hidden" style="background-color:#443F39FF">
+        <img alt="Earth going through cycles of creation and destruction, Award-Winning, Volumetric Lighting, Fantasy, Dark" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/25/12/4fac880fdc673019d265e4efd1ecce1d42252c8a96930ac8849aabb69a023543.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74337_earth-going-through-cycles-of-creation-and-destruction.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74191)">
+        
+        <div class="relative overflow-hidden" style="background-color:#503647FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/f60fab01c124514f4cf30a7a41e601a547df9fbc1f8b65a6d86e6f7cdfb1e93b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74191_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74190)">
+        
+        <div class="relative overflow-hidden" style="background-color:#583A4FFF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/8d9a59eb53e932c04cfa948e0fb94415ff60b4762b871a12bba7865d093f11ac.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74190_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74188)">
+        
+        <div class="relative overflow-hidden" style="background-color:#63465DFF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/da18dd2359ec01a9c87282727e6038dcec73e197fba143b364f171558aa826a0.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74188_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74187)">
+        
+        <div class="relative overflow-hidden" style="background-color:#6D4758FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/aad17a0674cecae651d0a9bca77e2d06131773da66ad0813f314c81e27025cbd.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74187_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74185)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5B3B4BFF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/48bcc53c48689bb6b3ed9f8b47635d4c3de0a747df609c0bd5aa593010746e26.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74185_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74184)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4F414CFF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/94b4b4eac1a9a40c90ca6fce9689ea6c609c101a6a701a18d8d37cc4175a7b2c.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74184_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74192)">
+        
+        <div class="relative overflow-hidden" style="background-color:#52435AFF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Greg Rutkowski" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/817afb3eaabfcde3948337e970644f5d59489b214e91a7fd056938c57be513a6.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74192_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74208)">
+        
+        <div class="relative overflow-hidden" style="background-color:#623647FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/3aa72db672776c79889e7015e889ea8c4d567e617e228f2bfb4d94db133a71d8.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74208_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74206)">
+        
+        <div class="relative overflow-hidden" style="background-color:#563B47FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/70a390ec83d5e2ba9181a0eb37b442830507b6354dbc10715534d55e4a9e0a23.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74206_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74202)">
+        
+        <div class="relative overflow-hidden" style="background-color:#4B3D4EFF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/d2e1162e34cdc24f99f4a40724922a3e7a3d9675149b0664e544765779b7d167.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74202_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74201)">
+        
+        <div class="relative overflow-hidden" style="background-color:#533845FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/286924f12a3db6c0daa0cb084a6b6f323025df269154a7cda7b436a7097ee059.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74201_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74204)">
+        
+        <div class="relative overflow-hidden" style="background-color:#5E4050FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Stefan Kostic" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/7a87f821eb0f77b9fd1b2db04cde7c54af268b4f967be36ac37b276d7c668e1f.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74204_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74200)">
+        
+        <div class="relative overflow-hidden" style="background-color:#534759FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/1e33e59db80b40e5d2ee20857596e99ac9642a6398e0485e7aacc73670611688.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74200_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74199)">
+        
+        <div class="relative overflow-hidden" style="background-color:#433440FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/fb2a98bfb56bd0aabcad44c9a6b8a659a8a944592bb11ba0b263b7ff76804188.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74199_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74197)">
+        
+        <div class="relative overflow-hidden" style="background-color:#59404FFF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/29e9803f5fc35bf531d9d9bb8ea87dc57fa92681e99a67019991794be62476f7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74197_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74198)">
+        
+        <div class="relative overflow-hidden" style="background-color:#61435CFF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by WLOP" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/1a083b7d084bb3cccf1943bd5a2401e29d33a2c9c0cd0ba86aca380a495b922b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74198_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74195)">
+        
+        <div class="relative overflow-hidden" style="background-color:#534050FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/ac57cdad616685743f684f3e8d9884fb12a6dc316ad980353b1e2c70d0ce6d85.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74195_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74194)">
+        
+        <div class="relative overflow-hidden" style="background-color:#614358FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/cbe9f7ba433f6eb20d499799a882ff2c6631c6bcf3326d85ad2d658fe8ff169b.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74194_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <div v-on:click.prevent.stop="loadArtifact(74196)">
+        
+        <div class="relative overflow-hidden" style="background-color:#604155FF">
+        <img alt="Vibrant nebula with majestic planets of the wind, 8k, Award-Winning, Highly Detailed, Beautiful, Epic, Octane Render, Unreal Engine, Radiant, Volumetric Lighting by Stanley Artgerm Lau" width="1024" height="1024"
+             src="https://cdn.diffusion.works/artifacts/2023/11/22/12/8e8c7fd88032b7f185890fe9a517f714c72678e5f23abee6b245100e9913a7c7.webp" loading="lazy">
+            <a href="https://blazordiffusion.com/artifacts/74/74196_vibrant-nebula-with-majestic-planets-of-the-wind.html"><div class="absolute top-0 left-0 w-full h-full group select-none overflow-hidden">
+                <div class="w-full h-full absolute inset-0 z-10 block text-zinc-100 drop-shadow pointer-events-none line-clamp sm:px-2 sm:pb-2 text-sm opacity-0 group-hover:opacity-40 transition duration-300 ease-in-out bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+            </div></a>
+        </div>
+
+    </div>
+    <artifact-modal v-if="artifact" :artifact="artifact" v-on:selected="showArtifact" v-on:done="showArtifact(null)" v-on:open="openDialog">
+        <template #icons="artifact">
+            <div class="p-2 relative w-full h-full overflow-hidden flex flex-col justify-between overflow-hidden">
+                <div class="flex flex-col h-full justify-between">
+                    <div class="flex justify-between flex-none">
+                        <artifact-like-icon :artifact="artifact" v-on:changed="update"></artifact-like-icon>
+                        <artifact-menu-icon :artifact="artifact" v-on:show-artifact-menu="artifactMenu=artifact"></artifact-menu-icon>
+                    </div>
+                    <artifact-explore-icon :artifact="artifact" v-on:changed="update"></artifact-explore-icon>
+                </div>
+            </div>
+        </template>
+        <template #contextmenu="artifact">
+            <artifact-menu v-if="artifactMenu?.id === artifact.id" :artifact="artifactMenu" menu-class="justify-end"
+                           v-on:changed="notifyChanged" v-on:done="artifactMenu=null" v-on:open="openDialog">
+            </artifact-menu>
+        </template>
+    </artifact-modal>
+    <artifact-dialogs :show="open" :artifact="artifact" v-on:done="closeDialog"></artifact-dialogs>
+</div>
+
+<script type="module">
+import { ref, inject, getCurrentInstance } from "vue"
+import { mount } from "app.mjs"
+import { Store } from "store.mjs"
+
+const Gallery = {
+    setup() {
+        const store = inject('store')
+        const artifact = ref()
+        
+        async function loadArtifact(id) {
+            artifact.value = await store.getArtifact(id)
+        }
+        function showArtifact(a) {
+            artifact.value = a
+        }
+        
+        const instance = getCurrentInstance()
+        const artifactMenu = ref()
+        const open = ref('')
+        function openDialog(dialog, artifact) {
+            artifactMenu.value = null
+            open.value = dialog
+            //artifact.value = artifact
+        }
+        function closeDialog() {
+            open.value = ''
+            //artifact.value = null
+        }
+        function notifyChanged() {
+            artifactMenu.value = null
+            forceUpdate()
+            update() 
+        }
+        function update() {}
+        function forceUpdate() { instance?.proxy?.$forceUpdate() }
+        
+        return { store, artifact, loadArtifact, showArtifact,
+            artifactMenu, open, openDialog, closeDialog, notifyChanged, update }
+    }
+}
+mount('#gallery', Gallery)
+</script>
+    
+
+
+</div>
+
+
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="relative z-10 dark:border-slate-800">
+  <div class="mx-auto max-w-7xl overflow-hidden py-8 px-6 sm:py-14 lg:px-8">
+    <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+      <div class="pb-6">
+        <a href="albums" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Albums</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="latest" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Latest</a>
+      </div>
+
+      <div class="pb-6">
+        <a href="top" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:hover:text-gray-50">Top</a>
+      </div>
+    </nav>
+    <div class="mt-10 flex justify-center space-x-10">
+
+      <a href="https://twitter.com/blazordiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">Twitter</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/NetCoreApps/VueDiffusion" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">GitHub</span>
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+      
+    </div>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">
+      <a href="https://razor-ssg.web-templates.io/posts/razor-ssg">powered by razor</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script type="module">
+import { init } from "app.mjs"
+init()
+</script>
+
+
+
+</body>
+</html>
