@@ -2,24 +2,24 @@
 
 namespace MyApp;
 
-public class AppHost : AppHostBase, IHostingStartup
+public class AppHost() : AppHostBase("MyApp"), IHostingStartup
 {
     public void Configure(IWebHostBuilder builder) => builder
-        .ConfigureServices(services => {
+        .ConfigureServices((context,services) => {
             // Configure ASP.NET Core IOC Dependencies
+            var env = context.HostingEnvironment;
+            AppConfig.Set(new AppConfig {
+                BaseUrl = env.IsDevelopment() ? "https://localhost:5002" : "https://diffusion.works",
+                ApiBaseUrl = env.IsDevelopment() ? "https://localhost:5001" : "https://api.blazordiffusion.com",
+                CdnBaseUrl = env.IsDevelopment() ? "https://localhost:5001" : "https://blazordiffusion.com",
+                AssetsBasePath = "https://cdn.diffusion.works",
+                FallbackAssetsBasePath = "https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev",
+            });
+            services.AddSingleton(AppConfig.Instance);
         });
 
-    public AppHost() : base("MyApp", typeof(MyServices).Assembly) {}
-
-    public override void Configure(Funq.Container container)
+    public override void Configure()
     {
-        AppConfig.Set(new AppConfig {
-            BaseUrl = HostingEnvironment.IsDevelopment() ? "https://localhost:5002" : "https://diffusion.works",
-            ApiBaseUrl = HostingEnvironment.IsDevelopment() ? "https://localhost:5001" : "https://api.blazordiffusion.com",
-            CdnBaseUrl = HostingEnvironment.IsDevelopment() ? "https://localhost:5001" : "https://blazordiffusion.com",
-            AssetsBasePath = "https://cdn.diffusion.works",
-            FallbackAssetsBasePath = "https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev",
-        });
     }
 }
 

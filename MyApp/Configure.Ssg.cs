@@ -31,7 +31,6 @@ public class ConfigureSsg : IHostingStartup
                 var blogPosts = appHost.Resolve<MarkdownBlog>();
                 
                 var markdownFeatures = new IMarkdownPages[] { pages, blogPosts }; 
-                markdownFeatures.Each(x => x.VirtualFiles = appHost.VirtualFiles);
 
                 blogPosts.Authors = Authors;
 
@@ -63,17 +62,23 @@ public class ConfigureSsg : IHostingStartup
 
     public List<AuthorInfo> Authors { get; } = new() 
     {
-        new AuthorInfo("Lucy Bates", "img/authors/author1.svg")
+        new AuthorInfo
         {
+            Name = "Lucy Bates",
+            ProfileUrl = "img/authors/author1.svg",
             TwitterUrl = "https://twitter.com/lucy",
             GitHubUrl = "https://github.com/lucy",
         },
-        new AuthorInfo("Gayle Smith", "img/authors/author2.svg")
+        new AuthorInfo
         {
+            Name = "Gayle Smith",
+            ProfileUrl = "img/authors/author2.svg",
             TwitterUrl = "https://twitter.com/gayle",
         },
-        new AuthorInfo("Brandon Foley", "img/authors/author3.svg")
+        new AuthorInfo
         {
+            Name = "Brandon Foley",
+            ProfileUrl = "img/authors/author3.svg",
             GitHubUrl = "https://github.com/brandon",
         },
     };
