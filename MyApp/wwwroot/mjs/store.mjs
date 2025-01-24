@@ -8,8 +8,8 @@ import { useAuth, useUtils } from "@servicestack/vue"
 export const BaseUrl = globalThis.BaseUrl = location.origin === 'https://localhost:5002' || location.origin === 'http://localhost:8080'
     ? 'https://localhost:5001'
     : 'https://blazordiffusion.com/'
-export const AssetsBasePath = globalThis.AssetsBasePath = "https://cdn.diffusion.works"
-export const FallbackAssetsBasePath = globalThis.FallbackAssetsBasePath = "https://pub-97bba6b94a944260b10a6e7d4bf98053.r2.dev"
+export const AssetsBasePath = globalThis.AssetsBasePath = "https://ai-server-cdn.diffusion.works"
+export const FallbackAssetsBasePath = globalThis.FallbackAssetsBasePath = "https://openai.servicestack.net"
 
 export class Store {
     InitialTake = 50
