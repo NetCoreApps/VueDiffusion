@@ -161,6 +161,10 @@
   <lastmod>2023-05-26</lastmod>
 </sitemap>
 <sitemap>
+  <loc>https://diffusion.works/sitemaps/albums/sitemap-tattoos_4.xml</loc>
+  <lastmod>2023-05-26</lastmod>
+</sitemap>
+<sitemap>
   <loc>https://diffusion.works/sitemaps/albums/sitemap-ninja_1.xml</loc>
   <lastmod>2023-05-26</lastmod>
 </sitemap>
@@ -309,7 +313,11 @@
   <lastmod>2023-05-26</lastmod>
 </sitemap>
 <sitemap>
-  <loc>https://diffusion.works/sitemaps/albums/sitemap-matte-wings.xml</loc>
+  <loc>https://diffusion.works/sitemaps/albums/sitemap-matte-wings_1.xml</loc>
+  <lastmod>2023-05-26</lastmod>
+</sitemap>
+<sitemap>
+  <loc>https://diffusion.works/sitemaps/albums/sitemap-matte-wings_2.xml</loc>
   <lastmod>2023-05-26</lastmod>
 </sitemap>
 <sitemap>
@@ -433,11 +441,19 @@
   <lastmod>2023-12-13</lastmod>
 </sitemap>
 <sitemap>
-  <loc>https://diffusion.works/sitemaps/albums/sitemap-lara-croft.xml</loc>
+  <loc>https://diffusion.works/sitemaps/albums/sitemap-lara-croft_1.xml</loc>
   <lastmod>2024-01-07</lastmod>
 </sitemap>
 <sitemap>
-  <loc>https://diffusion.works/sitemaps/albums/sitemap-vampira.xml</loc>
+  <loc>https://diffusion.works/sitemaps/albums/sitemap-lara-croft_2.xml</loc>
+  <lastmod>2024-01-07</lastmod>
+</sitemap>
+<sitemap>
+  <loc>https://diffusion.works/sitemaps/albums/sitemap-vampira_1.xml</loc>
+  <lastmod>2024-07-30</lastmod>
+</sitemap>
+<sitemap>
+  <loc>https://diffusion.works/sitemaps/albums/sitemap-vampira_2.xml</loc>
   <lastmod>2024-07-30</lastmod>
 </sitemap>
 <sitemap>
